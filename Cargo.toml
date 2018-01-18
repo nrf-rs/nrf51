@@ -1,0 +1,18 @@
+[package]
+authors = ["Daniel Egger <daniel@eggers-club.de>"]
+categories = ["embedded"]
+description = "Rust register descriptions for Nordic Semiconductor NRF51 MCUs"
+keywords = [
+    "arm",
+    "cortex-m",
+    "nrf51",
+]
+license = "0BSD"
+name = "nrf51"
+repository = "https://github.com/therealprof/nrf51"
+version = "0.1.0"
+
+[dependencies]
+bare-metal = "0.1.1"
+cortex-m = "0.4.2"
+vcell = "0.1.0"
