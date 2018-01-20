@@ -10,9 +10,16 @@ keywords = [
 license = "0BSD"
 name = "nrf51"
 repository = "https://github.com/therealprof/nrf51"
-version = "0.1.0"
+version = "0.1.1"
 
 [dependencies]
 bare-metal = "0.1.1"
 cortex-m = "0.4.2"
 vcell = "0.1.0"
+
+[dependencies.cortex-m-rt]
+optional = true
+version = "0.3.12"
+
+[features]
+rt = ["cortex-m-rt"]
