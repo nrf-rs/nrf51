@@ -1,9 +1,10 @@
-# ! [ cfg_attr ( feature = "rt" , feature ( global_asm ) ) ] # ! [ cfg_attr ( feature = "rt" , feature ( macro_reexport ) ) ] # ! [ cfg_attr ( feature = "rt" , feature ( used ) ) ] # ! [ doc = "Peripheral access API for NRF51 microcontrollers (generated using svd2rust v0.12.0)\n\nYou can find an overview of the API [here].\n\n[here]: https://docs.rs/svd2rust/0.12.0/svd2rust/#peripheral-api" ] # ! [ allow ( private_no_mangle_statics ) ] # ! [ deny ( missing_docs ) ] # ! [ allow ( non_camel_case_types ) ] # ! [ feature ( const_fn ) ] # ! [ no_std ]extern crate cortex_m ;
+# ! [ cfg_attr ( feature = "rt" , feature ( global_asm ) ) ] # ! [ cfg_attr ( feature = "rt" , feature ( macro_reexport ) ) ] # ! [ cfg_attr ( feature = "rt" , feature ( used ) ) ] # ! [ doc = "Peripheral access API for NRF51 microcontrollers (generated using svd2rust v0.12.0)\n\nYou can find an overview of the API [here].\n\n[here]: https://docs.rs/svd2rust/0.12.0/svd2rust/#peripheral-api" ] # ! [ allow ( private_no_mangle_statics ) ] # ! [ deny ( missing_docs ) ] # ! [ allow ( non_camel_case_types ) ] # ! [ feature ( const_fn ) ] # ! [ no_std ]
+extern crate bare_metal;
+extern crate cortex_m;
 #[macro_reexport(default_handler, exception)]
 #[cfg(feature = "rt")]
-extern crate cortex_m_rt ;
-extern crate bare_metal ;
-extern crate vcell ;
+extern crate cortex_m_rt;
+extern crate vcell;
 use core::ops::Deref;
 use core::marker::PhantomData;
 #[doc = r" Number available in the NVIC for configuring priority"]
@@ -90,56 +91,31 @@ pub mod interrupt {
     ];
     #[doc = r" Enumeration of all the interrupts"]
     pub enum Interrupt {
-        #[doc = "0 - POWER_CLOCK"]
-        POWER_CLOCK,
-        #[doc = "1 - RADIO"]
-        RADIO,
-        #[doc = "2 - UART0"]
-        UART0,
-        #[doc = "3 - SPI0_TWI0"]
-        SPI0_TWI0,
-        #[doc = "4 - SPI1_TWI1"]
-        SPI1_TWI1,
-        #[doc = "6 - GPIOTE"]
-        GPIOTE,
-        #[doc = "7 - ADC"]
-        ADC,
-        #[doc = "8 - TIMER0"]
-        TIMER0,
-        #[doc = "9 - TIMER1"]
-        TIMER1,
-        #[doc = "10 - TIMER2"]
-        TIMER2,
-        #[doc = "11 - RTC0"]
-        RTC0,
-        #[doc = "12 - TEMP"]
-        TEMP,
-        #[doc = "13 - RNG"]
-        RNG,
-        #[doc = "14 - ECB"]
-        ECB,
-        #[doc = "15 - CCM_AAR"]
-        CCM_AAR,
-        #[doc = "16 - WDT"]
-        WDT,
-        #[doc = "17 - RTC1"]
-        RTC1,
-        #[doc = "18 - QDEC"]
-        QDEC,
-        #[doc = "19 - LPCOMP"]
-        LPCOMP,
-        #[doc = "20 - SWI0"]
-        SWI0,
-        #[doc = "21 - SWI1"]
-        SWI1,
-        #[doc = "22 - SWI2"]
-        SWI2,
-        #[doc = "23 - SWI3"]
-        SWI3,
-        #[doc = "24 - SWI4"]
-        SWI4,
-        #[doc = "25 - SWI5"]
-        SWI5,
+        #[doc = "0 - POWER_CLOCK"] POWER_CLOCK,
+        #[doc = "1 - RADIO"] RADIO,
+        #[doc = "2 - UART0"] UART0,
+        #[doc = "3 - SPI0_TWI0"] SPI0_TWI0,
+        #[doc = "4 - SPI1_TWI1"] SPI1_TWI1,
+        #[doc = "6 - GPIOTE"] GPIOTE,
+        #[doc = "7 - ADC"] ADC,
+        #[doc = "8 - TIMER0"] TIMER0,
+        #[doc = "9 - TIMER1"] TIMER1,
+        #[doc = "10 - TIMER2"] TIMER2,
+        #[doc = "11 - RTC0"] RTC0,
+        #[doc = "12 - TEMP"] TEMP,
+        #[doc = "13 - RNG"] RNG,
+        #[doc = "14 - ECB"] ECB,
+        #[doc = "15 - CCM_AAR"] CCM_AAR,
+        #[doc = "16 - WDT"] WDT,
+        #[doc = "17 - RTC1"] RTC1,
+        #[doc = "18 - QDEC"] QDEC,
+        #[doc = "19 - LPCOMP"] LPCOMP,
+        #[doc = "20 - SWI0"] SWI0,
+        #[doc = "21 - SWI1"] SWI1,
+        #[doc = "22 - SWI2"] SWI2,
+        #[doc = "23 - SWI3"] SWI3,
+        #[doc = "24 - SWI4"] SWI4,
+        #[doc = "25 - SWI5"] SWI5,
     }
     unsafe impl Nr for Interrupt {
         #[inline]
@@ -354,7 +330,9 @@ pub mod power {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -423,7 +401,9 @@ pub mod power {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -444,10 +424,8 @@ pub mod power {
         #[doc = "Possible values of the field `POFWARN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POFWARNR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl POFWARNR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -490,8 +468,7 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `POFWARN`"]
         pub enum POFWARNW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl POFWARNW {
             #[allow(missing_docs)]
@@ -603,7 +580,9 @@ pub mod power {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -624,10 +603,8 @@ pub mod power {
         #[doc = "Possible values of the field `POFWARN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POFWARNR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl POFWARNR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -670,8 +647,7 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `POFWARN`"]
         pub enum POFWARNW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl POFWARNW {
             #[allow(missing_docs)]
@@ -783,7 +759,9 @@ pub mod power {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -804,10 +782,8 @@ pub mod power {
         #[doc = "Possible values of the field `RESETPIN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RESETPINR {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl RESETPINR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -851,10 +827,8 @@ pub mod power {
         #[doc = "Possible values of the field `DOG`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DOGR {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl DOGR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -898,10 +872,8 @@ pub mod power {
         #[doc = "Possible values of the field `SREQ`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum SREQR {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl SREQR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -945,10 +917,8 @@ pub mod power {
         #[doc = "Possible values of the field `LOCKUP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum LOCKUPR {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl LOCKUPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -992,10 +962,8 @@ pub mod power {
         #[doc = "Possible values of the field `OFF`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OFFR {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl OFFR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -1039,10 +1007,8 @@ pub mod power {
         #[doc = "Possible values of the field `LPCOMP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum LPCOMPR {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl LPCOMPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -1086,10 +1052,8 @@ pub mod power {
         #[doc = "Possible values of the field `DIF`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DIFR {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl DIFR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -1132,10 +1096,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `RESETPIN`"]
         pub enum RESETPINW {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl RESETPINW {
             #[allow(missing_docs)]
@@ -1190,10 +1152,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `DOG`"]
         pub enum DOGW {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl DOGW {
             #[allow(missing_docs)]
@@ -1248,10 +1208,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `SREQ`"]
         pub enum SREQW {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl SREQW {
             #[allow(missing_docs)]
@@ -1306,10 +1264,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `LOCKUP`"]
         pub enum LOCKUPW {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl LOCKUPW {
             #[allow(missing_docs)]
@@ -1364,10 +1320,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `OFF`"]
         pub enum OFFW {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl OFFW {
             #[allow(missing_docs)]
@@ -1422,10 +1376,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `LPCOMP`"]
         pub enum LPCOMPW {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl LPCOMPW {
             #[allow(missing_docs)]
@@ -1480,10 +1432,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `DIF`"]
         pub enum DIFW {
-            #[doc = "Reset not detected."]
-            NOTDETECTED,
-            #[doc = "Reset detected."]
-            DETECTED,
+            #[doc = "Reset not detected."] NOTDETECTED,
+            #[doc = "Reset detected."] DETECTED,
         }
         impl DIFW {
             #[allow(missing_docs)]
@@ -1669,16 +1619,16 @@ pub mod power {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `RAMBLOCK0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RAMBLOCK0R {
-            #[doc = "RAM block 0 is off or powering up."]
-            OFF,
-            #[doc = "RAM block 0 is on."]
-            ON,
+            #[doc = "RAM block 0 is off or powering up."] OFF,
+            #[doc = "RAM block 0 is on."] ON,
         }
         impl RAMBLOCK0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -1722,10 +1672,8 @@ pub mod power {
         #[doc = "Possible values of the field `RAMBLOCK1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RAMBLOCK1R {
-            #[doc = "RAM block 1 is off or powering up."]
-            OFF,
-            #[doc = "RAM block 1 is on."]
-            ON,
+            #[doc = "RAM block 1 is off or powering up."] OFF,
+            #[doc = "RAM block 1 is on."] ON,
         }
         impl RAMBLOCK1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -1769,10 +1717,8 @@ pub mod power {
         #[doc = "Possible values of the field `RAMBLOCK2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RAMBLOCK2R {
-            #[doc = "RAM block 2 is off or powering up."]
-            OFF,
-            #[doc = "RAM block 2 is on."]
-            ON,
+            #[doc = "RAM block 2 is off or powering up."] OFF,
+            #[doc = "RAM block 2 is on."] ON,
         }
         impl RAMBLOCK2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -1816,10 +1762,8 @@ pub mod power {
         #[doc = "Possible values of the field `RAMBLOCK3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RAMBLOCK3R {
-            #[doc = "RAM block 3 is off or powering up."]
-            OFF,
-            #[doc = "RAM block 3 is on."]
-            ON,
+            #[doc = "RAM block 3 is off or powering up."] OFF,
+            #[doc = "RAM block 3 is on."] ON,
         }
         impl RAMBLOCK3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -1928,8 +1872,7 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `SYSTEMOFF`"]
         pub enum SYSTEMOFFW {
-            #[doc = "Enter system off mode."]
-            ENTER,
+            #[doc = "Enter system off mode."] ENTER,
         }
         impl SYSTEMOFFW {
             #[allow(missing_docs)]
@@ -2025,7 +1968,9 @@ pub mod power {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -2046,10 +1991,8 @@ pub mod power {
         #[doc = "Possible values of the field `POF`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POFR {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl POFR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -2093,14 +2036,10 @@ pub mod power {
         #[doc = "Possible values of the field `THRESHOLD`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum THRESHOLDR {
-            #[doc = "Set threshold to 2.1Volts."]
-            V21,
-            #[doc = "Set threshold to 2.3Volts."]
-            V23,
-            #[doc = "Set threshold to 2.5Volts."]
-            V25,
-            #[doc = "Set threshold to 2.7Volts."]
-            V27,
+            #[doc = "Set threshold to 2.1Volts."] V21,
+            #[doc = "Set threshold to 2.3Volts."] V23,
+            #[doc = "Set threshold to 2.5Volts."] V25,
+            #[doc = "Set threshold to 2.7Volts."] V27,
         }
         impl THRESHOLDR {
             #[doc = r" Value of the field as raw bits"]
@@ -2148,10 +2087,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `POF`"]
         pub enum POFW {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl POFW {
             #[allow(missing_docs)]
@@ -2206,14 +2143,10 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `THRESHOLD`"]
         pub enum THRESHOLDW {
-            #[doc = "Set threshold to 2.1Volts."]
-            V21,
-            #[doc = "Set threshold to 2.3Volts."]
-            V23,
-            #[doc = "Set threshold to 2.5Volts."]
-            V25,
-            #[doc = "Set threshold to 2.7Volts."]
-            V27,
+            #[doc = "Set threshold to 2.1Volts."] V21,
+            #[doc = "Set threshold to 2.3Volts."] V23,
+            #[doc = "Set threshold to 2.5Volts."] V25,
+            #[doc = "Set threshold to 2.7Volts."] V27,
         }
         impl THRESHOLDW {
             #[allow(missing_docs)]
@@ -2349,7 +2282,9 @@ pub mod power {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -2459,7 +2394,9 @@ pub mod power {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -2480,10 +2417,8 @@ pub mod power {
         #[doc = "Possible values of the field `ONRAM0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ONRAM0R {
-            #[doc = "RAM block 0 OFF in ON mode."]
-            RAM0OFF,
-            #[doc = "RAM block 0 ON in ON mode."]
-            RAM0ON,
+            #[doc = "RAM block 0 OFF in ON mode."] RAM0OFF,
+            #[doc = "RAM block 0 ON in ON mode."] RAM0ON,
         }
         impl ONRAM0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -2527,10 +2462,8 @@ pub mod power {
         #[doc = "Possible values of the field `ONRAM1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ONRAM1R {
-            #[doc = "RAM block 1 OFF in ON mode."]
-            RAM1OFF,
-            #[doc = "RAM block 1 ON in ON mode."]
-            RAM1ON,
+            #[doc = "RAM block 1 OFF in ON mode."] RAM1OFF,
+            #[doc = "RAM block 1 ON in ON mode."] RAM1ON,
         }
         impl ONRAM1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -2574,10 +2507,8 @@ pub mod power {
         #[doc = "Possible values of the field `OFFRAM0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OFFRAM0R {
-            #[doc = "RAM block 0 OFF in OFF mode."]
-            RAM0OFF,
-            #[doc = "RAM block 0 ON in OFF mode."]
-            RAM0ON,
+            #[doc = "RAM block 0 OFF in OFF mode."] RAM0OFF,
+            #[doc = "RAM block 0 ON in OFF mode."] RAM0ON,
         }
         impl OFFRAM0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -2621,10 +2552,8 @@ pub mod power {
         #[doc = "Possible values of the field `OFFRAM1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OFFRAM1R {
-            #[doc = "RAM block 1 OFF in OFF mode."]
-            RAM1OFF,
-            #[doc = "RAM block 1 ON in OFF mode."]
-            RAM1ON,
+            #[doc = "RAM block 1 OFF in OFF mode."] RAM1OFF,
+            #[doc = "RAM block 1 ON in OFF mode."] RAM1ON,
         }
         impl OFFRAM1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -2667,10 +2596,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `ONRAM0`"]
         pub enum ONRAM0W {
-            #[doc = "RAM block 0 OFF in ON mode."]
-            RAM0OFF,
-            #[doc = "RAM block 0 ON in ON mode."]
-            RAM0ON,
+            #[doc = "RAM block 0 OFF in ON mode."] RAM0OFF,
+            #[doc = "RAM block 0 ON in ON mode."] RAM0ON,
         }
         impl ONRAM0W {
             #[allow(missing_docs)]
@@ -2725,10 +2652,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `ONRAM1`"]
         pub enum ONRAM1W {
-            #[doc = "RAM block 1 OFF in ON mode."]
-            RAM1OFF,
-            #[doc = "RAM block 1 ON in ON mode."]
-            RAM1ON,
+            #[doc = "RAM block 1 OFF in ON mode."] RAM1OFF,
+            #[doc = "RAM block 1 ON in ON mode."] RAM1ON,
         }
         impl ONRAM1W {
             #[allow(missing_docs)]
@@ -2783,10 +2708,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `OFFRAM0`"]
         pub enum OFFRAM0W {
-            #[doc = "RAM block 0 OFF in OFF mode."]
-            RAM0OFF,
-            #[doc = "RAM block 0 ON in OFF mode."]
-            RAM0ON,
+            #[doc = "RAM block 0 OFF in OFF mode."] RAM0OFF,
+            #[doc = "RAM block 0 ON in OFF mode."] RAM0ON,
         }
         impl OFFRAM0W {
             #[allow(missing_docs)]
@@ -2841,10 +2764,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `OFFRAM1`"]
         pub enum OFFRAM1W {
-            #[doc = "RAM block 1 OFF in OFF mode."]
-            RAM1OFF,
-            #[doc = "RAM block 1 ON in OFF mode."]
-            RAM1ON,
+            #[doc = "RAM block 1 OFF in OFF mode."] RAM1OFF,
+            #[doc = "RAM block 1 ON in OFF mode."] RAM1ON,
         }
         impl OFFRAM1W {
             #[allow(missing_docs)]
@@ -3004,7 +2925,9 @@ pub mod power {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -3025,10 +2948,8 @@ pub mod power {
         #[doc = "Possible values of the field `RESET`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RESETR {
-            #[doc = "Pin reset in debug interface mode disabled."]
-            DISABLED,
-            #[doc = "Pin reset in debug interface mode enabled."]
-            ENABLED,
+            #[doc = "Pin reset in debug interface mode disabled."] DISABLED,
+            #[doc = "Pin reset in debug interface mode enabled."] ENABLED,
         }
         impl RESETR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -3071,10 +2992,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `RESET`"]
         pub enum RESETW {
-            #[doc = "Pin reset in debug interface mode disabled."]
-            DISABLED,
-            #[doc = "Pin reset in debug interface mode enabled."]
-            ENABLED,
+            #[doc = "Pin reset in debug interface mode disabled."] DISABLED,
+            #[doc = "Pin reset in debug interface mode enabled."] ENABLED,
         }
         impl RESETW {
             #[allow(missing_docs)]
@@ -3192,7 +3111,9 @@ pub mod power {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -3213,10 +3134,8 @@ pub mod power {
         #[doc = "Possible values of the field `ONRAM2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ONRAM2R {
-            #[doc = "RAM block 2 OFF in ON mode."]
-            RAM2OFF,
-            #[doc = "RAM block 2 ON in ON mode."]
-            RAM2ON,
+            #[doc = "RAM block 2 OFF in ON mode."] RAM2OFF,
+            #[doc = "RAM block 2 ON in ON mode."] RAM2ON,
         }
         impl ONRAM2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -3260,10 +3179,8 @@ pub mod power {
         #[doc = "Possible values of the field `ONRAM3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ONRAM3R {
-            #[doc = "RAM block 33 OFF in ON mode."]
-            RAM3OFF,
-            #[doc = "RAM block 3 ON in ON mode."]
-            RAM3ON,
+            #[doc = "RAM block 33 OFF in ON mode."] RAM3OFF,
+            #[doc = "RAM block 3 ON in ON mode."] RAM3ON,
         }
         impl ONRAM3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -3307,10 +3224,8 @@ pub mod power {
         #[doc = "Possible values of the field `OFFRAM2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OFFRAM2R {
-            #[doc = "RAM block 2 OFF in OFF mode."]
-            RAM2OFF,
-            #[doc = "RAM block 2 ON in OFF mode."]
-            RAM2ON,
+            #[doc = "RAM block 2 OFF in OFF mode."] RAM2OFF,
+            #[doc = "RAM block 2 ON in OFF mode."] RAM2ON,
         }
         impl OFFRAM2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -3354,10 +3269,8 @@ pub mod power {
         #[doc = "Possible values of the field `OFFRAM3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OFFRAM3R {
-            #[doc = "RAM block 3 OFF in OFF mode."]
-            RAM3OFF,
-            #[doc = "RAM block 3 ON in OFF mode."]
-            RAM3ON,
+            #[doc = "RAM block 3 OFF in OFF mode."] RAM3OFF,
+            #[doc = "RAM block 3 ON in OFF mode."] RAM3ON,
         }
         impl OFFRAM3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -3400,10 +3313,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `ONRAM2`"]
         pub enum ONRAM2W {
-            #[doc = "RAM block 2 OFF in ON mode."]
-            RAM2OFF,
-            #[doc = "RAM block 2 ON in ON mode."]
-            RAM2ON,
+            #[doc = "RAM block 2 OFF in ON mode."] RAM2OFF,
+            #[doc = "RAM block 2 ON in ON mode."] RAM2ON,
         }
         impl ONRAM2W {
             #[allow(missing_docs)]
@@ -3458,10 +3369,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `ONRAM3`"]
         pub enum ONRAM3W {
-            #[doc = "RAM block 33 OFF in ON mode."]
-            RAM3OFF,
-            #[doc = "RAM block 3 ON in ON mode."]
-            RAM3ON,
+            #[doc = "RAM block 33 OFF in ON mode."] RAM3OFF,
+            #[doc = "RAM block 3 ON in ON mode."] RAM3ON,
         }
         impl ONRAM3W {
             #[allow(missing_docs)]
@@ -3516,10 +3425,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `OFFRAM2`"]
         pub enum OFFRAM2W {
-            #[doc = "RAM block 2 OFF in OFF mode."]
-            RAM2OFF,
-            #[doc = "RAM block 2 ON in OFF mode."]
-            RAM2ON,
+            #[doc = "RAM block 2 OFF in OFF mode."] RAM2OFF,
+            #[doc = "RAM block 2 ON in OFF mode."] RAM2ON,
         }
         impl OFFRAM2W {
             #[allow(missing_docs)]
@@ -3574,10 +3481,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `OFFRAM3`"]
         pub enum OFFRAM3W {
-            #[doc = "RAM block 3 OFF in OFF mode."]
-            RAM3OFF,
-            #[doc = "RAM block 3 ON in OFF mode."]
-            RAM3ON,
+            #[doc = "RAM block 3 OFF in OFF mode."] RAM3OFF,
+            #[doc = "RAM block 3 ON in OFF mode."] RAM3ON,
         }
         impl OFFRAM3W {
             #[allow(missing_docs)]
@@ -3737,7 +3642,9 @@ pub mod power {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -3758,10 +3665,8 @@ pub mod power {
         #[doc = "Possible values of the field `DCDCEN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DCDCENR {
-            #[doc = "DCDC converter disabled."]
-            DISABLED,
-            #[doc = "DCDC converter enabled."]
-            ENABLED,
+            #[doc = "DCDC converter disabled."] DISABLED,
+            #[doc = "DCDC converter enabled."] ENABLED,
         }
         impl DCDCENR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -3804,10 +3709,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `DCDCEN`"]
         pub enum DCDCENW {
-            #[doc = "DCDC converter disabled."]
-            DISABLED,
-            #[doc = "DCDC converter enabled."]
-            ENABLED,
+            #[doc = "DCDC converter disabled."] DISABLED,
+            #[doc = "DCDC converter enabled."] ENABLED,
         }
         impl DCDCENW {
             #[allow(missing_docs)]
@@ -3925,7 +3828,9 @@ pub mod power {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -3946,10 +3851,8 @@ pub mod power {
         #[doc = "Possible values of the field `FORCEOFF`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum FORCEOFFR {
-            #[doc = "No force."]
-            NOFORCE,
-            #[doc = "Force."]
-            FORCE,
+            #[doc = "No force."] NOFORCE,
+            #[doc = "Force."] FORCE,
         }
         impl FORCEOFFR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -3993,10 +3896,8 @@ pub mod power {
         #[doc = "Possible values of the field `FORCEON`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum FORCEONR {
-            #[doc = "No force."]
-            NOFORCE,
-            #[doc = "Force."]
-            FORCE,
+            #[doc = "No force."] NOFORCE,
+            #[doc = "Force."] FORCE,
         }
         impl FORCEONR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -4039,10 +3940,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `FORCEOFF`"]
         pub enum FORCEOFFW {
-            #[doc = "No force."]
-            NOFORCE,
-            #[doc = "Force."]
-            FORCE,
+            #[doc = "No force."] NOFORCE,
+            #[doc = "Force."] FORCE,
         }
         impl FORCEOFFW {
             #[allow(missing_docs)]
@@ -4097,10 +3996,8 @@ pub mod power {
         }
         #[doc = "Values that can be written to the field `FORCEON`"]
         pub enum FORCEONW {
-            #[doc = "No force."]
-            NOFORCE,
-            #[doc = "Force."]
-            FORCE,
+            #[doc = "No force."] NOFORCE,
+            #[doc = "Force."] FORCE,
         }
         impl FORCEONW {
             #[allow(missing_docs)]
@@ -4559,7 +4456,9 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -4628,7 +4527,9 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -4697,7 +4598,9 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -4766,7 +4669,9 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -4835,7 +4740,9 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -4856,10 +4763,8 @@ pub mod clock {
         #[doc = "Possible values of the field `HFCLKSTARTED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum HFCLKSTARTEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl HFCLKSTARTEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -4903,10 +4808,8 @@ pub mod clock {
         #[doc = "Possible values of the field `LFCLKSTARTED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum LFCLKSTARTEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl LFCLKSTARTEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -4950,10 +4853,8 @@ pub mod clock {
         #[doc = "Possible values of the field `DONE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DONER {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl DONER {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -4997,10 +4898,8 @@ pub mod clock {
         #[doc = "Possible values of the field `CTTO`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CTTOR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl CTTOR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -5043,8 +4942,7 @@ pub mod clock {
         }
         #[doc = "Values that can be written to the field `HFCLKSTARTED`"]
         pub enum HFCLKSTARTEDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl HFCLKSTARTEDW {
             #[allow(missing_docs)]
@@ -5093,8 +4991,7 @@ pub mod clock {
         }
         #[doc = "Values that can be written to the field `LFCLKSTARTED`"]
         pub enum LFCLKSTARTEDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl LFCLKSTARTEDW {
             #[allow(missing_docs)]
@@ -5143,8 +5040,7 @@ pub mod clock {
         }
         #[doc = "Values that can be written to the field `DONE`"]
         pub enum DONEW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl DONEW {
             #[allow(missing_docs)]
@@ -5193,8 +5089,7 @@ pub mod clock {
         }
         #[doc = "Values that can be written to the field `CTTO`"]
         pub enum CTTOW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl CTTOW {
             #[allow(missing_docs)]
@@ -5348,7 +5243,9 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -5369,10 +5266,8 @@ pub mod clock {
         #[doc = "Possible values of the field `HFCLKSTARTED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum HFCLKSTARTEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl HFCLKSTARTEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -5416,10 +5311,8 @@ pub mod clock {
         #[doc = "Possible values of the field `LFCLKSTARTED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum LFCLKSTARTEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl LFCLKSTARTEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -5463,10 +5356,8 @@ pub mod clock {
         #[doc = "Possible values of the field `DONE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DONER {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl DONER {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -5510,10 +5401,8 @@ pub mod clock {
         #[doc = "Possible values of the field `CTTO`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CTTOR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl CTTOR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -5556,8 +5445,7 @@ pub mod clock {
         }
         #[doc = "Values that can be written to the field `HFCLKSTARTED`"]
         pub enum HFCLKSTARTEDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl HFCLKSTARTEDW {
             #[allow(missing_docs)]
@@ -5606,8 +5494,7 @@ pub mod clock {
         }
         #[doc = "Values that can be written to the field `LFCLKSTARTED`"]
         pub enum LFCLKSTARTEDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl LFCLKSTARTEDW {
             #[allow(missing_docs)]
@@ -5656,8 +5543,7 @@ pub mod clock {
         }
         #[doc = "Values that can be written to the field `DONE`"]
         pub enum DONEW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl DONEW {
             #[allow(missing_docs)]
@@ -5706,8 +5592,7 @@ pub mod clock {
         }
         #[doc = "Values that can be written to the field `CTTO`"]
         pub enum CTTOW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl CTTOW {
             #[allow(missing_docs)]
@@ -5845,16 +5730,16 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `STATUS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum STATUSR {
-            #[doc = "Task HFCLKSTART has not been triggered."]
-            NOTTRIGGERED,
-            #[doc = "Task HFCLKSTART has been triggered."]
-            TRIGGERED,
+            #[doc = "Task HFCLKSTART has not been triggered."] NOTTRIGGERED,
+            #[doc = "Task HFCLKSTART has been triggered."] TRIGGERED,
         }
         impl STATUSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -5926,7 +5811,9 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `SRC`"]
@@ -5936,7 +5823,7 @@ pub mod clock {
             RC,
             #[doc = "External 16MHz/32MHz crystal oscillator running and generating the HFCLK clock."]
             XTAL,
-        }
+}
         impl SRCR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
             #[inline]
@@ -5979,10 +5866,8 @@ pub mod clock {
         #[doc = "Possible values of the field `STATE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum STATER {
-            #[doc = "HFCLK clock not running."]
-            NOTRUNNING,
-            #[doc = "HFCLK clock running."]
-            RUNNING,
+            #[doc = "HFCLK clock not running."] NOTRUNNING,
+            #[doc = "HFCLK clock running."] RUNNING,
         }
         impl STATER {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -6063,16 +5948,16 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `STATUS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum STATUSR {
-            #[doc = "Task LFCLKSTART has not been triggered."]
-            NOTTRIGGERED,
-            #[doc = "Task LFCLKSTART has been triggered."]
-            TRIGGERED,
+            #[doc = "Task LFCLKSTART has not been triggered."] NOTTRIGGERED,
+            #[doc = "Task LFCLKSTART has been triggered."] TRIGGERED,
         }
         impl STATUSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -6144,7 +6029,9 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `SRC`"]
@@ -6158,7 +6045,7 @@ pub mod clock {
             SYNTH,
             #[doc = r" Reserved"]
             _Reserved(u8),
-        }
+}
         impl SRCR {
             #[doc = r" Value of the field as raw bits"]
             #[inline]
@@ -6200,10 +6087,8 @@ pub mod clock {
         #[doc = "Possible values of the field `STATE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum STATER {
-            #[doc = "LFCLK clock not running."]
-            NOTRUNNING,
-            #[doc = "LFCLK clock running."]
-            RUNNING,
+            #[doc = "LFCLK clock not running."] NOTRUNNING,
+            #[doc = "LFCLK clock running."] RUNNING,
         }
         impl STATER {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -6284,20 +6169,18 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `SRC`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum SRCR {
-            #[doc = "Internal 32KiHz RC oscillator."]
-            RC,
-            #[doc = "External 32KiHz crystal."]
-            XTAL,
-            #[doc = "Internal 32KiHz synthesizer from HFCLK system clock."]
-            SYNTH,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Internal 32KiHz RC oscillator."] RC,
+            #[doc = "External 32KiHz crystal."] XTAL,
+            #[doc = "Internal 32KiHz synthesizer from HFCLK system clock."] SYNTH,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl SRCR {
             #[doc = r" Value of the field as raw bits"]
@@ -6384,7 +6267,9 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -6405,14 +6290,10 @@ pub mod clock {
         #[doc = "Possible values of the field `SRC`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum SRCR {
-            #[doc = "Internal 32KiHz RC oscillator."]
-            RC,
-            #[doc = "External 32KiHz crystal."]
-            XTAL,
-            #[doc = "Internal 32KiHz synthesizer from HFCLK system clock."]
-            SYNTH,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Internal 32KiHz RC oscillator."] RC,
+            #[doc = "External 32KiHz crystal."] XTAL,
+            #[doc = "Internal 32KiHz synthesizer from HFCLK system clock."] SYNTH,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl SRCR {
             #[doc = r" Value of the field as raw bits"]
@@ -6454,12 +6335,9 @@ pub mod clock {
         }
         #[doc = "Values that can be written to the field `SRC`"]
         pub enum SRCW {
-            #[doc = "Internal 32KiHz RC oscillator."]
-            RC,
-            #[doc = "External 32KiHz crystal."]
-            XTAL,
-            #[doc = "Internal 32KiHz synthesizer from HFCLK system clock."]
-            SYNTH,
+            #[doc = "Internal 32KiHz RC oscillator."] RC,
+            #[doc = "External 32KiHz crystal."] XTAL,
+            #[doc = "Internal 32KiHz synthesizer from HFCLK system clock."] SYNTH,
         }
         impl SRCW {
             #[allow(missing_docs)]
@@ -6573,7 +6451,9 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -6683,7 +6563,9 @@ pub mod clock {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -6704,12 +6586,9 @@ pub mod clock {
         #[doc = "Possible values of the field `XTALFREQ`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum XTALFREQR {
-            #[doc = "16MHz xtal is used as source for the HFCLK oscillator."]
-            _16MHZ,
-            #[doc = "32MHz xtal is used as source for the HFCLK oscillator."]
-            _32MHZ,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "16MHz xtal is used as source for the HFCLK oscillator."] _16MHZ,
+            #[doc = "32MHz xtal is used as source for the HFCLK oscillator."] _32MHZ,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl XTALFREQR {
             #[doc = r" Value of the field as raw bits"]
@@ -6744,10 +6623,8 @@ pub mod clock {
         }
         #[doc = "Values that can be written to the field `XTALFREQ`"]
         pub enum XTALFREQW {
-            #[doc = "16MHz xtal is used as source for the HFCLK oscillator."]
-            _16MHZ,
-            #[doc = "32MHz xtal is used as source for the HFCLK oscillator."]
-            _32MHZ,
+            #[doc = "16MHz xtal is used as source for the HFCLK oscillator."] _16MHZ,
+            #[doc = "32MHz xtal is used as source for the HFCLK oscillator."] _32MHZ,
         }
         impl XTALFREQW {
             #[allow(missing_docs)]
@@ -7326,7 +7203,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -7395,7 +7274,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -7464,7 +7345,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -7533,7 +7416,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -7602,7 +7487,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -7671,7 +7558,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -7740,7 +7629,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -7809,7 +7700,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -7878,7 +7771,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -7947,7 +7842,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -7968,10 +7865,8 @@ pub mod radio {
         #[doc = "Possible values of the field `READY_START`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum READY_STARTR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl READY_STARTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -8015,10 +7910,8 @@ pub mod radio {
         #[doc = "Possible values of the field `END_DISABLE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum END_DISABLER {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl END_DISABLER {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -8062,10 +7955,8 @@ pub mod radio {
         #[doc = "Possible values of the field `DISABLED_TXEN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DISABLED_TXENR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl DISABLED_TXENR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -8109,10 +8000,8 @@ pub mod radio {
         #[doc = "Possible values of the field `DISABLED_RXEN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DISABLED_RXENR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl DISABLED_RXENR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -8156,10 +8045,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ADDRESS_RSSISTART`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ADDRESS_RSSISTARTR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl ADDRESS_RSSISTARTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -8203,10 +8090,8 @@ pub mod radio {
         #[doc = "Possible values of the field `END_START`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum END_STARTR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl END_STARTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -8250,10 +8135,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ADDRESS_BCSTART`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ADDRESS_BCSTARTR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl ADDRESS_BCSTARTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -8297,10 +8180,8 @@ pub mod radio {
         #[doc = "Possible values of the field `DISABLED_RSSISTOP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DISABLED_RSSISTOPR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl DISABLED_RSSISTOPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -8343,10 +8224,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `READY_START`"]
         pub enum READY_STARTW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl READY_STARTW {
             #[allow(missing_docs)]
@@ -8401,10 +8280,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `END_DISABLE`"]
         pub enum END_DISABLEW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl END_DISABLEW {
             #[allow(missing_docs)]
@@ -8459,10 +8336,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `DISABLED_TXEN`"]
         pub enum DISABLED_TXENW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl DISABLED_TXENW {
             #[allow(missing_docs)]
@@ -8517,10 +8392,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `DISABLED_RXEN`"]
         pub enum DISABLED_RXENW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl DISABLED_RXENW {
             #[allow(missing_docs)]
@@ -8575,10 +8448,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ADDRESS_RSSISTART`"]
         pub enum ADDRESS_RSSISTARTW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl ADDRESS_RSSISTARTW {
             #[allow(missing_docs)]
@@ -8633,10 +8504,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `END_START`"]
         pub enum END_STARTW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl END_STARTW {
             #[allow(missing_docs)]
@@ -8691,10 +8560,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ADDRESS_BCSTART`"]
         pub enum ADDRESS_BCSTARTW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl ADDRESS_BCSTARTW {
             #[allow(missing_docs)]
@@ -8749,10 +8616,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `DISABLED_RSSISTOP`"]
         pub enum DISABLED_RSSISTOPW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl DISABLED_RSSISTOPW {
             #[allow(missing_docs)]
@@ -8968,7 +8833,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -8989,10 +8856,8 @@ pub mod radio {
         #[doc = "Possible values of the field `READY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum READYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl READYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -9036,10 +8901,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ADDRESS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ADDRESSR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ADDRESSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -9083,10 +8946,8 @@ pub mod radio {
         #[doc = "Possible values of the field `PAYLOAD`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PAYLOADR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl PAYLOADR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -9130,10 +8991,8 @@ pub mod radio {
         #[doc = "Possible values of the field `END`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -9177,10 +9036,8 @@ pub mod radio {
         #[doc = "Possible values of the field `DISABLED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DISABLEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl DISABLEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -9224,10 +9081,8 @@ pub mod radio {
         #[doc = "Possible values of the field `DEVMATCH`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DEVMATCHR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl DEVMATCHR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -9271,10 +9126,8 @@ pub mod radio {
         #[doc = "Possible values of the field `DEVMISS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DEVMISSR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl DEVMISSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -9318,10 +9171,8 @@ pub mod radio {
         #[doc = "Possible values of the field `RSSIEND`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RSSIENDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl RSSIENDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -9365,10 +9216,8 @@ pub mod radio {
         #[doc = "Possible values of the field `BCMATCH`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum BCMATCHR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl BCMATCHR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -9411,8 +9260,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `READY`"]
         pub enum READYW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl READYW {
             #[allow(missing_docs)]
@@ -9461,8 +9309,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ADDRESS`"]
         pub enum ADDRESSW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ADDRESSW {
             #[allow(missing_docs)]
@@ -9511,8 +9358,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `PAYLOAD`"]
         pub enum PAYLOADW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl PAYLOADW {
             #[allow(missing_docs)]
@@ -9561,8 +9407,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `END`"]
         pub enum ENDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ENDW {
             #[allow(missing_docs)]
@@ -9611,8 +9456,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `DISABLED`"]
         pub enum DISABLEDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl DISABLEDW {
             #[allow(missing_docs)]
@@ -9661,8 +9505,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `DEVMATCH`"]
         pub enum DEVMATCHW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl DEVMATCHW {
             #[allow(missing_docs)]
@@ -9711,8 +9554,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `DEVMISS`"]
         pub enum DEVMISSW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl DEVMISSW {
             #[allow(missing_docs)]
@@ -9761,8 +9603,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `RSSIEND`"]
         pub enum RSSIENDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl RSSIENDW {
             #[allow(missing_docs)]
@@ -9811,8 +9652,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `BCMATCH`"]
         pub enum BCMATCHW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl BCMATCHW {
             #[allow(missing_docs)]
@@ -10036,7 +9876,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -10057,10 +9899,8 @@ pub mod radio {
         #[doc = "Possible values of the field `READY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum READYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl READYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -10104,10 +9944,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ADDRESS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ADDRESSR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ADDRESSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -10151,10 +9989,8 @@ pub mod radio {
         #[doc = "Possible values of the field `PAYLOAD`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PAYLOADR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl PAYLOADR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -10198,10 +10034,8 @@ pub mod radio {
         #[doc = "Possible values of the field `END`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -10245,10 +10079,8 @@ pub mod radio {
         #[doc = "Possible values of the field `DISABLED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DISABLEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl DISABLEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -10292,10 +10124,8 @@ pub mod radio {
         #[doc = "Possible values of the field `DEVMATCH`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DEVMATCHR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl DEVMATCHR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -10339,10 +10169,8 @@ pub mod radio {
         #[doc = "Possible values of the field `DEVMISS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DEVMISSR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl DEVMISSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -10386,10 +10214,8 @@ pub mod radio {
         #[doc = "Possible values of the field `RSSIEND`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RSSIENDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl RSSIENDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -10433,10 +10259,8 @@ pub mod radio {
         #[doc = "Possible values of the field `BCMATCH`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum BCMATCHR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl BCMATCHR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -10479,8 +10303,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `READY`"]
         pub enum READYW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl READYW {
             #[allow(missing_docs)]
@@ -10529,8 +10352,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ADDRESS`"]
         pub enum ADDRESSW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ADDRESSW {
             #[allow(missing_docs)]
@@ -10579,8 +10401,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `PAYLOAD`"]
         pub enum PAYLOADW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl PAYLOADW {
             #[allow(missing_docs)]
@@ -10629,8 +10450,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `END`"]
         pub enum ENDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ENDW {
             #[allow(missing_docs)]
@@ -10679,8 +10499,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `DISABLED`"]
         pub enum DISABLEDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl DISABLEDW {
             #[allow(missing_docs)]
@@ -10729,8 +10548,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `DEVMATCH`"]
         pub enum DEVMATCHW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl DEVMATCHW {
             #[allow(missing_docs)]
@@ -10779,8 +10597,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `DEVMISS`"]
         pub enum DEVMISSW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl DEVMISSW {
             #[allow(missing_docs)]
@@ -10829,8 +10646,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `RSSIEND`"]
         pub enum RSSIENDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl RSSIENDW {
             #[allow(missing_docs)]
@@ -10879,8 +10695,7 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `BCMATCH`"]
         pub enum BCMATCHW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl BCMATCHW {
             #[allow(missing_docs)]
@@ -11088,16 +10903,16 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `CRCSTATUS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CRCSTATUSR {
-            #[doc = "Packet received with CRC error."]
-            CRCERROR,
-            #[doc = "Packet received with CRC ok."]
-            CRCOK,
+            #[doc = "Packet received with CRC error."] CRCERROR,
+            #[doc = "Packet received with CRC ok."] CRCOK,
         }
         impl CRCSTATUSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -11169,7 +10984,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -11215,7 +11032,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -11261,7 +11080,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -11323,7 +11144,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -11392,7 +11215,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -11502,7 +11327,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -11523,24 +11350,15 @@ pub mod radio {
         #[doc = "Possible values of the field `TXPOWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum TXPOWERR {
-            #[doc = "+4dBm."]
-            POS4DBM,
-            #[doc = "0dBm."]
-            _0DBM,
-            #[doc = "-4dBm."]
-            NEG4DBM,
-            #[doc = "-8dBm."]
-            NEG8DBM,
-            #[doc = "-12dBm."]
-            NEG12DBM,
-            #[doc = "-16dBm."]
-            NEG16DBM,
-            #[doc = "-20dBm."]
-            NEG20DBM,
-            #[doc = "-30dBm."]
-            NEG30DBM,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "+4dBm."] POS4DBM,
+            #[doc = "0dBm."] _0DBM,
+            #[doc = "-4dBm."] NEG4DBM,
+            #[doc = "-8dBm."] NEG8DBM,
+            #[doc = "-12dBm."] NEG12DBM,
+            #[doc = "-16dBm."] NEG16DBM,
+            #[doc = "-20dBm."] NEG20DBM,
+            #[doc = "-30dBm."] NEG30DBM,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl TXPOWERR {
             #[doc = r" Value of the field as raw bits"]
@@ -11617,22 +11435,14 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `TXPOWER`"]
         pub enum TXPOWERW {
-            #[doc = "+4dBm."]
-            POS4DBM,
-            #[doc = "0dBm."]
-            _0DBM,
-            #[doc = "-4dBm."]
-            NEG4DBM,
-            #[doc = "-8dBm."]
-            NEG8DBM,
-            #[doc = "-12dBm."]
-            NEG12DBM,
-            #[doc = "-16dBm."]
-            NEG16DBM,
-            #[doc = "-20dBm."]
-            NEG20DBM,
-            #[doc = "-30dBm."]
-            NEG30DBM,
+            #[doc = "+4dBm."] POS4DBM,
+            #[doc = "0dBm."] _0DBM,
+            #[doc = "-4dBm."] NEG4DBM,
+            #[doc = "-8dBm."] NEG8DBM,
+            #[doc = "-12dBm."] NEG12DBM,
+            #[doc = "-16dBm."] NEG16DBM,
+            #[doc = "-20dBm."] NEG20DBM,
+            #[doc = "-30dBm."] NEG30DBM,
         }
         impl TXPOWERW {
             #[allow(missing_docs)]
@@ -11776,7 +11586,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -11797,14 +11609,10 @@ pub mod radio {
         #[doc = "Possible values of the field `MODE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum MODER {
-            #[doc = "1Mbit/s Nordic propietary radio mode."]
-            NRF_1MBIT,
-            #[doc = "2Mbit/s Nordic propietary radio mode."]
-            NRF_2MBIT,
-            #[doc = "250kbit/s Nordic propietary radio mode."]
-            NRF_250KBIT,
-            #[doc = "1Mbit/s Bluetooth Low Energy"]
-            BLE_1MBIT,
+            #[doc = "1Mbit/s Nordic propietary radio mode."] NRF_1MBIT,
+            #[doc = "2Mbit/s Nordic propietary radio mode."] NRF_2MBIT,
+            #[doc = "250kbit/s Nordic propietary radio mode."] NRF_250KBIT,
+            #[doc = "1Mbit/s Bluetooth Low Energy"] BLE_1MBIT,
         }
         impl MODER {
             #[doc = r" Value of the field as raw bits"]
@@ -11852,14 +11660,10 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `MODE`"]
         pub enum MODEW {
-            #[doc = "1Mbit/s Nordic propietary radio mode."]
-            NRF_1MBIT,
-            #[doc = "2Mbit/s Nordic propietary radio mode."]
-            NRF_2MBIT,
-            #[doc = "250kbit/s Nordic propietary radio mode."]
-            NRF_250KBIT,
-            #[doc = "1Mbit/s Bluetooth Low Energy"]
-            BLE_1MBIT,
+            #[doc = "1Mbit/s Nordic propietary radio mode."] NRF_1MBIT,
+            #[doc = "2Mbit/s Nordic propietary radio mode."] NRF_2MBIT,
+            #[doc = "250kbit/s Nordic propietary radio mode."] NRF_250KBIT,
+            #[doc = "1Mbit/s Bluetooth Low Energy"] BLE_1MBIT,
         }
         impl MODEW {
             #[allow(missing_docs)]
@@ -11981,7 +11785,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -12191,7 +11997,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -12245,10 +12053,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ENDIAN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDIANR {
-            #[doc = "Least significant bit on air first"]
-            LITTLE,
-            #[doc = "Most significant bit on air first"]
-            BIG,
+            #[doc = "Least significant bit on air first"] LITTLE,
+            #[doc = "Most significant bit on air first"] BIG,
         }
         impl ENDIANR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -12292,10 +12098,8 @@ pub mod radio {
         #[doc = "Possible values of the field `WHITEEN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum WHITEENR {
-            #[doc = "Whitening disabled."]
-            DISABLED,
-            #[doc = "Whitening enabled."]
-            ENABLED,
+            #[doc = "Whitening disabled."] DISABLED,
+            #[doc = "Whitening enabled."] ENABLED,
         }
         impl WHITEENR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -12383,10 +12187,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ENDIAN`"]
         pub enum ENDIANW {
-            #[doc = "Least significant bit on air first"]
-            LITTLE,
-            #[doc = "Most significant bit on air first"]
-            BIG,
+            #[doc = "Least significant bit on air first"] LITTLE,
+            #[doc = "Most significant bit on air first"] BIG,
         }
         impl ENDIANW {
             #[allow(missing_docs)]
@@ -12441,10 +12243,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `WHITEEN`"]
         pub enum WHITEENW {
-            #[doc = "Whitening disabled."]
-            DISABLED,
-            #[doc = "Whitening enabled."]
-            ENABLED,
+            #[doc = "Whitening disabled."] DISABLED,
+            #[doc = "Whitening enabled."] ENABLED,
         }
         impl WHITEENW {
             #[allow(missing_docs)]
@@ -12621,7 +12421,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -12690,7 +12492,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -12759,7 +12563,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -12992,7 +12798,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -13225,7 +13033,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -13335,7 +13145,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -13356,10 +13168,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ADDR0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ADDR0R {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -13403,10 +13213,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ADDR1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ADDR1R {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -13450,10 +13258,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ADDR2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ADDR2R {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -13497,10 +13303,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ADDR3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ADDR3R {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -13544,10 +13348,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ADDR4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ADDR4R {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -13591,10 +13393,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ADDR5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ADDR5R {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -13638,10 +13438,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ADDR6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ADDR6R {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -13685,10 +13483,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ADDR7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ADDR7R {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -13731,10 +13527,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ADDR0`"]
         pub enum ADDR0W {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR0W {
             #[allow(missing_docs)]
@@ -13789,10 +13583,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ADDR1`"]
         pub enum ADDR1W {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR1W {
             #[allow(missing_docs)]
@@ -13847,10 +13639,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ADDR2`"]
         pub enum ADDR2W {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR2W {
             #[allow(missing_docs)]
@@ -13905,10 +13695,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ADDR3`"]
         pub enum ADDR3W {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR3W {
             #[allow(missing_docs)]
@@ -13963,10 +13751,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ADDR4`"]
         pub enum ADDR4W {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR4W {
             #[allow(missing_docs)]
@@ -14021,10 +13807,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ADDR5`"]
         pub enum ADDR5W {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR5W {
             #[allow(missing_docs)]
@@ -14079,10 +13863,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ADDR6`"]
         pub enum ADDR6W {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR6W {
             #[allow(missing_docs)]
@@ -14137,10 +13919,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ADDR7`"]
         pub enum ADDR7W {
-            #[doc = "Reception disabled."]
-            DISABLED,
-            #[doc = "Reception enabled."]
-            ENABLED,
+            #[doc = "Reception disabled."] DISABLED,
+            #[doc = "Reception enabled."] ENABLED,
         }
         impl ADDR7W {
             #[allow(missing_docs)]
@@ -14356,7 +14136,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -14377,14 +14159,10 @@ pub mod radio {
         #[doc = "Possible values of the field `LEN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum LENR {
-            #[doc = "CRC calculation disabled."]
-            DISABLED,
-            #[doc = "One byte long CRC."]
-            ONE,
-            #[doc = "Two bytes long CRC."]
-            TWO,
-            #[doc = "Three bytes long CRC."]
-            THREE,
+            #[doc = "CRC calculation disabled."] DISABLED,
+            #[doc = "One byte long CRC."] ONE,
+            #[doc = "Two bytes long CRC."] TWO,
+            #[doc = "Three bytes long CRC."] THREE,
         }
         impl LENR {
             #[doc = r" Value of the field as raw bits"]
@@ -14437,7 +14215,7 @@ pub mod radio {
             INCLUDE,
             #[doc = "Packet address is skipped in CRC calculation. The CRC calculation will start at the first byte after the address."]
             SKIP,
-        }
+}
         impl SKIPADDRR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
             #[inline]
@@ -14479,14 +14257,10 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `LEN`"]
         pub enum LENW {
-            #[doc = "CRC calculation disabled."]
-            DISABLED,
-            #[doc = "One byte long CRC."]
-            ONE,
-            #[doc = "Two bytes long CRC."]
-            TWO,
-            #[doc = "Three bytes long CRC."]
-            THREE,
+            #[doc = "CRC calculation disabled."] DISABLED,
+            #[doc = "One byte long CRC."] ONE,
+            #[doc = "Two bytes long CRC."] TWO,
+            #[doc = "Three bytes long CRC."] THREE,
         }
         impl LENW {
             #[allow(missing_docs)]
@@ -14549,7 +14323,7 @@ pub mod radio {
             INCLUDE,
             #[doc = "Packet address is skipped in CRC calculation. The CRC calculation will start at the first byte after the address."]
             SKIP,
-        }
+}
         impl SKIPADDRW {
             #[allow(missing_docs)]
             #[doc(hidden)]
@@ -14680,7 +14454,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -14790,7 +14566,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -14900,7 +14678,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -14921,10 +14701,8 @@ pub mod radio {
         #[doc = "Possible values of the field `CONSTCARRIER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CONSTCARRIERR {
-            #[doc = "Constant carrier disabled."]
-            DISABLED,
-            #[doc = "Constant carrier enabled."]
-            ENABLED,
+            #[doc = "Constant carrier disabled."] DISABLED,
+            #[doc = "Constant carrier enabled."] ENABLED,
         }
         impl CONSTCARRIERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -14968,10 +14746,8 @@ pub mod radio {
         #[doc = "Possible values of the field `PLLLOCK`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PLLLOCKR {
-            #[doc = "PLL lock disabled."]
-            DISABLED,
-            #[doc = "PLL lock enabled."]
-            ENABLED,
+            #[doc = "PLL lock disabled."] DISABLED,
+            #[doc = "PLL lock enabled."] ENABLED,
         }
         impl PLLLOCKR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -15014,10 +14790,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `CONSTCARRIER`"]
         pub enum CONSTCARRIERW {
-            #[doc = "Constant carrier disabled."]
-            DISABLED,
-            #[doc = "Constant carrier enabled."]
-            ENABLED,
+            #[doc = "Constant carrier disabled."] DISABLED,
+            #[doc = "Constant carrier enabled."] ENABLED,
         }
         impl CONSTCARRIERW {
             #[allow(missing_docs)]
@@ -15072,10 +14846,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `PLLLOCK`"]
         pub enum PLLLOCKW {
-            #[doc = "PLL lock disabled."]
-            DISABLED,
-            #[doc = "PLL lock enabled."]
-            ENABLED,
+            #[doc = "PLL lock disabled."] DISABLED,
+            #[doc = "PLL lock enabled."] ENABLED,
         }
         impl PLLLOCKW {
             #[allow(missing_docs)]
@@ -15207,7 +14979,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -15301,7 +15075,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -15347,32 +15123,24 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `STATE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum STATER {
-            #[doc = "Radio is in the Disabled state."]
-            DISABLED,
-            #[doc = "Radio is in the Rx Ramp Up state."]
-            RXRU,
-            #[doc = "Radio is in the Rx Idle state."]
-            RXIDLE,
-            #[doc = "Radio is in the Rx state."]
-            RX,
-            #[doc = "Radio is in the Rx Disable state."]
-            RXDISABLE,
-            #[doc = "Radio is in the Tx Ramp Up state."]
-            TXRU,
-            #[doc = "Radio is in the Tx Idle state."]
-            TXIDLE,
-            #[doc = "Radio is in the Tx state."]
-            TX,
-            #[doc = "Radio is in the Tx Disable state."]
-            TXDISABLE,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Radio is in the Disabled state."] DISABLED,
+            #[doc = "Radio is in the Rx Ramp Up state."] RXRU,
+            #[doc = "Radio is in the Rx Idle state."] RXIDLE,
+            #[doc = "Radio is in the Rx state."] RX,
+            #[doc = "Radio is in the Rx Disable state."] RXDISABLE,
+            #[doc = "Radio is in the Tx Ramp Up state."] TXRU,
+            #[doc = "Radio is in the Tx Idle state."] TXIDLE,
+            #[doc = "Radio is in the Tx state."] TX,
+            #[doc = "Radio is in the Tx Disable state."] TXDISABLE,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl STATER {
             #[doc = r" Value of the field as raw bits"]
@@ -15501,7 +15269,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -15611,7 +15381,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -15680,7 +15452,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -15749,7 +15523,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -15859,7 +15635,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -15880,10 +15658,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ENA0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENA0R {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -15927,10 +15703,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ENA1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENA1R {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -15974,10 +15748,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ENA2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENA2R {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -16021,10 +15793,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ENA3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENA3R {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -16068,10 +15838,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ENA4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENA4R {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -16115,10 +15883,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ENA5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENA5R {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -16162,10 +15928,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ENA6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENA6R {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -16209,10 +15973,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ENA7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENA7R {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -16423,10 +16185,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ENA0`"]
         pub enum ENA0W {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA0W {
             #[allow(missing_docs)]
@@ -16481,10 +16241,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ENA1`"]
         pub enum ENA1W {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA1W {
             #[allow(missing_docs)]
@@ -16539,10 +16297,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ENA2`"]
         pub enum ENA2W {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA2W {
             #[allow(missing_docs)]
@@ -16597,10 +16353,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ENA3`"]
         pub enum ENA3W {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA3W {
             #[allow(missing_docs)]
@@ -16655,10 +16409,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ENA4`"]
         pub enum ENA4W {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA4W {
             #[allow(missing_docs)]
@@ -16713,10 +16465,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ENA5`"]
         pub enum ENA5W {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA5W {
             #[allow(missing_docs)]
@@ -16771,10 +16521,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ENA6`"]
         pub enum ENA6W {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA6W {
             #[allow(missing_docs)]
@@ -16829,10 +16577,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ENA7`"]
         pub enum ENA7W {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENA7W {
             #[allow(missing_docs)]
@@ -17352,7 +17098,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -17462,7 +17210,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -17572,7 +17322,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -17682,7 +17434,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -17792,7 +17546,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -17824,10 +17580,8 @@ pub mod radio {
         #[doc = "Possible values of the field `ENABLE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENABLER {
-            #[doc = "Override trim values disabled."]
-            DISABLED,
-            #[doc = "Override trim values enabled."]
-            ENABLED,
+            #[doc = "Override trim values disabled."] DISABLED,
+            #[doc = "Override trim values enabled."] ENABLED,
         }
         impl ENABLER {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -17885,10 +17639,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `ENABLE`"]
         pub enum ENABLEW {
-            #[doc = "Override trim values disabled."]
-            DISABLED,
-            #[doc = "Override trim values enabled."]
-            ENABLED,
+            #[doc = "Override trim values disabled."] DISABLED,
+            #[doc = "Override trim values enabled."] ENABLED,
         }
         impl ENABLEW {
             #[allow(missing_docs)]
@@ -18021,7 +17773,9 @@ pub mod radio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -18042,10 +17796,8 @@ pub mod radio {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -18088,10 +17840,8 @@ pub mod radio {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -18477,7 +18227,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -18546,7 +18298,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -18615,7 +18369,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -18684,7 +18440,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -18753,7 +18511,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -18822,7 +18582,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -18891,7 +18653,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -18912,10 +18676,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `CTS_STARTRX`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CTS_STARTRXR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl CTS_STARTRXR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -18959,10 +18721,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `NCTS_STOPRX`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum NCTS_STOPRXR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl NCTS_STOPRXR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -19005,10 +18765,8 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `CTS_STARTRX`"]
         pub enum CTS_STARTRXW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl CTS_STARTRXW {
             #[allow(missing_docs)]
@@ -19063,10 +18821,8 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `NCTS_STOPRX`"]
         pub enum NCTS_STOPRXW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl NCTS_STOPRXW {
             #[allow(missing_docs)]
@@ -19198,7 +18954,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -19219,10 +18977,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `CTS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CTSR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl CTSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -19266,10 +19022,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `NCTS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum NCTSR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl NCTSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -19313,10 +19067,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `RXDRDY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RXDRDYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl RXDRDYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -19360,10 +19112,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `TXDRDY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum TXDRDYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl TXDRDYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -19407,10 +19157,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `ERROR`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ERRORR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ERRORR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -19454,10 +19202,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `RXTO`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RXTOR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl RXTOR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -19500,8 +19246,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `CTS`"]
         pub enum CTSW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl CTSW {
             #[allow(missing_docs)]
@@ -19550,8 +19295,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `NCTS`"]
         pub enum NCTSW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl NCTSW {
             #[allow(missing_docs)]
@@ -19600,8 +19344,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `RXDRDY`"]
         pub enum RXDRDYW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl RXDRDYW {
             #[allow(missing_docs)]
@@ -19650,8 +19393,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `TXDRDY`"]
         pub enum TXDRDYW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl TXDRDYW {
             #[allow(missing_docs)]
@@ -19700,8 +19442,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `ERROR`"]
         pub enum ERRORW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ERRORW {
             #[allow(missing_docs)]
@@ -19750,8 +19491,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `RXTO`"]
         pub enum RXTOW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl RXTOW {
             #[allow(missing_docs)]
@@ -19933,7 +19673,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -19954,10 +19696,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `CTS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CTSR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl CTSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -20001,10 +19741,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `NCTS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum NCTSR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl NCTSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -20048,10 +19786,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `RXDRDY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RXDRDYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl RXDRDYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -20095,10 +19831,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `TXDRDY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum TXDRDYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl TXDRDYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -20142,10 +19876,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `ERROR`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ERRORR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ERRORR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -20189,10 +19921,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `RXTO`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RXTOR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl RXTOR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -20235,8 +19965,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `CTS`"]
         pub enum CTSW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl CTSW {
             #[allow(missing_docs)]
@@ -20285,8 +20014,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `NCTS`"]
         pub enum NCTSW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl NCTSW {
             #[allow(missing_docs)]
@@ -20335,8 +20063,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `RXDRDY`"]
         pub enum RXDRDYW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl RXDRDYW {
             #[allow(missing_docs)]
@@ -20385,8 +20112,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `TXDRDY`"]
         pub enum TXDRDYW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl TXDRDYW {
             #[allow(missing_docs)]
@@ -20435,8 +20161,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `ERROR`"]
         pub enum ERRORW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ERRORW {
             #[allow(missing_docs)]
@@ -20485,8 +20210,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `RXTO`"]
         pub enum RXTOW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl RXTOW {
             #[allow(missing_docs)]
@@ -20668,7 +20392,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -20689,10 +20415,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `OVERRUN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OVERRUNR {
-            #[doc = "Error not present."]
-            NOTPRESENT,
-            #[doc = "Error present."]
-            PRESENT,
+            #[doc = "Error not present."] NOTPRESENT,
+            #[doc = "Error present."] PRESENT,
         }
         impl OVERRUNR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -20736,10 +20460,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `PARITY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PARITYR {
-            #[doc = "Error not present."]
-            NOTPRESENT,
-            #[doc = "Error present."]
-            PRESENT,
+            #[doc = "Error not present."] NOTPRESENT,
+            #[doc = "Error present."] PRESENT,
         }
         impl PARITYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -20783,10 +20505,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `FRAMING`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum FRAMINGR {
-            #[doc = "Error not present."]
-            NOTPRESENT,
-            #[doc = "Error present."]
-            PRESENT,
+            #[doc = "Error not present."] NOTPRESENT,
+            #[doc = "Error present."] PRESENT,
         }
         impl FRAMINGR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -20830,10 +20550,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `BREAK`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum BREAKR {
-            #[doc = "Error not present."]
-            NOTPRESENT,
-            #[doc = "Error present."]
-            PRESENT,
+            #[doc = "Error not present."] NOTPRESENT,
+            #[doc = "Error present."] PRESENT,
         }
         impl BREAKR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -20876,8 +20594,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `OVERRUN`"]
         pub enum OVERRUNW {
-            #[doc = "Clear error on write."]
-            CLEAR,
+            #[doc = "Clear error on write."] CLEAR,
         }
         impl OVERRUNW {
             #[allow(missing_docs)]
@@ -20926,8 +20643,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `PARITY`"]
         pub enum PARITYW {
-            #[doc = "Clear error on write."]
-            CLEAR,
+            #[doc = "Clear error on write."] CLEAR,
         }
         impl PARITYW {
             #[allow(missing_docs)]
@@ -20976,8 +20692,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `FRAMING`"]
         pub enum FRAMINGW {
-            #[doc = "Clear error on write."]
-            CLEAR,
+            #[doc = "Clear error on write."] CLEAR,
         }
         impl FRAMINGW {
             #[allow(missing_docs)]
@@ -21026,8 +20741,7 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `BREAK`"]
         pub enum BREAKW {
-            #[doc = "Clear error on write."]
-            CLEAR,
+            #[doc = "Clear error on write."] CLEAR,
         }
         impl BREAKW {
             #[allow(missing_docs)]
@@ -21181,7 +20895,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -21202,12 +20918,9 @@ pub mod uart0 {
         #[doc = "Possible values of the field `ENABLE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENABLER {
-            #[doc = "UART disabled."]
-            DISABLED,
-            #[doc = "UART enabled."]
-            ENABLED,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "UART disabled."] DISABLED,
+            #[doc = "UART enabled."] ENABLED,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl ENABLER {
             #[doc = r" Value of the field as raw bits"]
@@ -21242,10 +20955,8 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `ENABLE`"]
         pub enum ENABLEW {
-            #[doc = "UART disabled."]
-            DISABLED,
-            #[doc = "UART enabled."]
-            ENABLED,
+            #[doc = "UART disabled."] DISABLED,
+            #[doc = "UART enabled."] ENABLED,
         }
         impl ENABLEW {
             #[allow(missing_docs)]
@@ -21353,7 +21064,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -21422,7 +21135,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -21491,7 +21206,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -21560,7 +21277,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -21613,7 +21332,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -21731,7 +21452,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -21752,40 +21475,23 @@ pub mod uart0 {
         #[doc = "Possible values of the field `BAUDRATE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum BAUDRATER {
-            #[doc = "1200 baud."]
-            BAUD1200,
-            #[doc = "2400 baud."]
-            BAUD2400,
-            #[doc = "4800 baud."]
-            BAUD4800,
-            #[doc = "9600 baud."]
-            BAUD9600,
-            #[doc = "14400 baud."]
-            BAUD14400,
-            #[doc = "19200 baud."]
-            BAUD19200,
-            #[doc = "28800 baud."]
-            BAUD28800,
-            #[doc = "38400 baud."]
-            BAUD38400,
-            #[doc = "57600 baud."]
-            BAUD57600,
-            #[doc = "76800 baud."]
-            BAUD76800,
-            #[doc = "115200 baud."]
-            BAUD115200,
-            #[doc = "230400 baud."]
-            BAUD230400,
-            #[doc = "250000 baud."]
-            BAUD250000,
-            #[doc = "460800 baud."]
-            BAUD460800,
-            #[doc = "921600 baud."]
-            BAUD921600,
-            #[doc = "1M baud."]
-            BAUD1M,
-            #[doc = r" Reserved"]
-            _Reserved(u32),
+            #[doc = "1200 baud."] BAUD1200,
+            #[doc = "2400 baud."] BAUD2400,
+            #[doc = "4800 baud."] BAUD4800,
+            #[doc = "9600 baud."] BAUD9600,
+            #[doc = "14400 baud."] BAUD14400,
+            #[doc = "19200 baud."] BAUD19200,
+            #[doc = "28800 baud."] BAUD28800,
+            #[doc = "38400 baud."] BAUD38400,
+            #[doc = "57600 baud."] BAUD57600,
+            #[doc = "76800 baud."] BAUD76800,
+            #[doc = "115200 baud."] BAUD115200,
+            #[doc = "230400 baud."] BAUD230400,
+            #[doc = "250000 baud."] BAUD250000,
+            #[doc = "460800 baud."] BAUD460800,
+            #[doc = "921600 baud."] BAUD921600,
+            #[doc = "1M baud."] BAUD1M,
+            #[doc = r" Reserved"] _Reserved(u32),
         }
         impl BAUDRATER {
             #[doc = r" Value of the field as raw bits"]
@@ -21918,38 +21624,22 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `BAUDRATE`"]
         pub enum BAUDRATEW {
-            #[doc = "1200 baud."]
-            BAUD1200,
-            #[doc = "2400 baud."]
-            BAUD2400,
-            #[doc = "4800 baud."]
-            BAUD4800,
-            #[doc = "9600 baud."]
-            BAUD9600,
-            #[doc = "14400 baud."]
-            BAUD14400,
-            #[doc = "19200 baud."]
-            BAUD19200,
-            #[doc = "28800 baud."]
-            BAUD28800,
-            #[doc = "38400 baud."]
-            BAUD38400,
-            #[doc = "57600 baud."]
-            BAUD57600,
-            #[doc = "76800 baud."]
-            BAUD76800,
-            #[doc = "115200 baud."]
-            BAUD115200,
-            #[doc = "230400 baud."]
-            BAUD230400,
-            #[doc = "250000 baud."]
-            BAUD250000,
-            #[doc = "460800 baud."]
-            BAUD460800,
-            #[doc = "921600 baud."]
-            BAUD921600,
-            #[doc = "1M baud."]
-            BAUD1M,
+            #[doc = "1200 baud."] BAUD1200,
+            #[doc = "2400 baud."] BAUD2400,
+            #[doc = "4800 baud."] BAUD4800,
+            #[doc = "9600 baud."] BAUD9600,
+            #[doc = "14400 baud."] BAUD14400,
+            #[doc = "19200 baud."] BAUD19200,
+            #[doc = "28800 baud."] BAUD28800,
+            #[doc = "38400 baud."] BAUD38400,
+            #[doc = "57600 baud."] BAUD57600,
+            #[doc = "76800 baud."] BAUD76800,
+            #[doc = "115200 baud."] BAUD115200,
+            #[doc = "230400 baud."] BAUD230400,
+            #[doc = "250000 baud."] BAUD250000,
+            #[doc = "460800 baud."] BAUD460800,
+            #[doc = "921600 baud."] BAUD921600,
+            #[doc = "1M baud."] BAUD1M,
         }
         impl BAUDRATEW {
             #[allow(missing_docs)]
@@ -22141,7 +21831,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -22162,10 +21854,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `HWFC`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum HWFCR {
-            #[doc = "Hardware flow control disabled."]
-            DISABLED,
-            #[doc = "Hardware flow control enabled."]
-            ENABLED,
+            #[doc = "Hardware flow control disabled."] DISABLED,
+            #[doc = "Hardware flow control enabled."] ENABLED,
         }
         impl HWFCR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -22209,12 +21899,9 @@ pub mod uart0 {
         #[doc = "Possible values of the field `PARITY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PARITYR {
-            #[doc = "Parity bit excluded."]
-            EXCLUDED,
-            #[doc = "Parity bit included."]
-            INCLUDED,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Parity bit excluded."] EXCLUDED,
+            #[doc = "Parity bit included."] INCLUDED,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl PARITYR {
             #[doc = r" Value of the field as raw bits"]
@@ -22249,10 +21936,8 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `HWFC`"]
         pub enum HWFCW {
-            #[doc = "Hardware flow control disabled."]
-            DISABLED,
-            #[doc = "Hardware flow control enabled."]
-            ENABLED,
+            #[doc = "Hardware flow control disabled."] DISABLED,
+            #[doc = "Hardware flow control enabled."] ENABLED,
         }
         impl HWFCW {
             #[allow(missing_docs)]
@@ -22307,10 +21992,8 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `PARITY`"]
         pub enum PARITYW {
-            #[doc = "Parity bit excluded."]
-            EXCLUDED,
-            #[doc = "Parity bit included."]
-            INCLUDED,
+            #[doc = "Parity bit excluded."] EXCLUDED,
+            #[doc = "Parity bit included."] INCLUDED,
         }
         impl PARITYW {
             #[allow(missing_docs)]
@@ -22432,7 +22115,9 @@ pub mod uart0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -22453,10 +22138,8 @@ pub mod uart0 {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -22499,10 +22182,8 @@ pub mod uart0 {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -22677,7 +22358,9 @@ pub mod spi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -22746,7 +22429,9 @@ pub mod spi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -22767,10 +22452,8 @@ pub mod spi0 {
         #[doc = "Possible values of the field `READY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum READYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl READYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -22813,8 +22496,7 @@ pub mod spi0 {
         }
         #[doc = "Values that can be written to the field `READY`"]
         pub enum READYW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl READYW {
             #[allow(missing_docs)]
@@ -22926,7 +22608,9 @@ pub mod spi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -22947,10 +22631,8 @@ pub mod spi0 {
         #[doc = "Possible values of the field `READY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum READYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl READYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -22993,8 +22675,7 @@ pub mod spi0 {
         }
         #[doc = "Values that can be written to the field `READY`"]
         pub enum READYW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl READYW {
             #[allow(missing_docs)]
@@ -23106,7 +22787,9 @@ pub mod spi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -23127,12 +22810,9 @@ pub mod spi0 {
         #[doc = "Possible values of the field `ENABLE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENABLER {
-            #[doc = "Disabled SPI."]
-            DISABLED,
-            #[doc = "Enable SPI."]
-            ENABLED,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Disabled SPI."] DISABLED,
+            #[doc = "Enable SPI."] ENABLED,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl ENABLER {
             #[doc = r" Value of the field as raw bits"]
@@ -23167,10 +22847,8 @@ pub mod spi0 {
         }
         #[doc = "Values that can be written to the field `ENABLE`"]
         pub enum ENABLEW {
-            #[doc = "Disabled SPI."]
-            DISABLED,
-            #[doc = "Enable SPI."]
-            ENABLED,
+            #[doc = "Disabled SPI."] DISABLED,
+            #[doc = "Enable SPI."] ENABLED,
         }
         impl ENABLEW {
             #[allow(missing_docs)]
@@ -23278,7 +22956,9 @@ pub mod spi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -23347,7 +23027,9 @@ pub mod spi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -23416,7 +23098,9 @@ pub mod spi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -23469,7 +23153,9 @@ pub mod spi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -23531,7 +23217,9 @@ pub mod spi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -23641,7 +23329,9 @@ pub mod spi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -23662,22 +23352,14 @@ pub mod spi0 {
         #[doc = "Possible values of the field `FREQUENCY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum FREQUENCYR {
-            #[doc = "125kbps."]
-            K125,
-            #[doc = "250kbps."]
-            K250,
-            #[doc = "500kbps."]
-            K500,
-            #[doc = "1Mbps."]
-            M1,
-            #[doc = "2Mbps."]
-            M2,
-            #[doc = "4Mbps."]
-            M4,
-            #[doc = "8Mbps."]
-            M8,
-            #[doc = r" Reserved"]
-            _Reserved(u32),
+            #[doc = "125kbps."] K125,
+            #[doc = "250kbps."] K250,
+            #[doc = "500kbps."] K500,
+            #[doc = "1Mbps."] M1,
+            #[doc = "2Mbps."] M2,
+            #[doc = "4Mbps."] M4,
+            #[doc = "8Mbps."] M8,
+            #[doc = r" Reserved"] _Reserved(u32),
         }
         impl FREQUENCYR {
             #[doc = r" Value of the field as raw bits"]
@@ -23747,20 +23429,13 @@ pub mod spi0 {
         }
         #[doc = "Values that can be written to the field `FREQUENCY`"]
         pub enum FREQUENCYW {
-            #[doc = "125kbps."]
-            K125,
-            #[doc = "250kbps."]
-            K250,
-            #[doc = "500kbps."]
-            K500,
-            #[doc = "1Mbps."]
-            M1,
-            #[doc = "2Mbps."]
-            M2,
-            #[doc = "4Mbps."]
-            M4,
-            #[doc = "8Mbps."]
-            M8,
+            #[doc = "125kbps."] K125,
+            #[doc = "250kbps."] K250,
+            #[doc = "500kbps."] K500,
+            #[doc = "1Mbps."] M1,
+            #[doc = "2Mbps."] M2,
+            #[doc = "4Mbps."] M4,
+            #[doc = "8Mbps."] M8,
         }
         impl FREQUENCYW {
             #[allow(missing_docs)]
@@ -23898,7 +23573,9 @@ pub mod spi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -23919,10 +23596,8 @@ pub mod spi0 {
         #[doc = "Possible values of the field `ORDER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ORDERR {
-            #[doc = "Most significant bit transmitted out first."]
-            MSBFIRST,
-            #[doc = "Least significant bit transmitted out first."]
-            LSBFIRST,
+            #[doc = "Most significant bit transmitted out first."] MSBFIRST,
+            #[doc = "Least significant bit transmitted out first."] LSBFIRST,
         }
         impl ORDERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -24013,10 +23688,8 @@ pub mod spi0 {
         #[doc = "Possible values of the field `CPOL`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CPOLR {
-            #[doc = "Active high."]
-            ACTIVEHIGH,
-            #[doc = "Active low."]
-            ACTIVELOW,
+            #[doc = "Active high."] ACTIVEHIGH,
+            #[doc = "Active low."] ACTIVELOW,
         }
         impl CPOLR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -24059,10 +23732,8 @@ pub mod spi0 {
         }
         #[doc = "Values that can be written to the field `ORDER`"]
         pub enum ORDERW {
-            #[doc = "Most significant bit transmitted out first."]
-            MSBFIRST,
-            #[doc = "Least significant bit transmitted out first."]
-            LSBFIRST,
+            #[doc = "Most significant bit transmitted out first."] MSBFIRST,
+            #[doc = "Least significant bit transmitted out first."] LSBFIRST,
         }
         impl ORDERW {
             #[allow(missing_docs)]
@@ -24175,10 +23846,8 @@ pub mod spi0 {
         }
         #[doc = "Values that can be written to the field `CPOL`"]
         pub enum CPOLW {
-            #[doc = "Active high."]
-            ACTIVEHIGH,
-            #[doc = "Active low."]
-            ACTIVELOW,
+            #[doc = "Active high."] ACTIVEHIGH,
+            #[doc = "Active low."] ACTIVELOW,
         }
         impl CPOLW {
             #[allow(missing_docs)]
@@ -24324,7 +23993,9 @@ pub mod spi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -24345,10 +24016,8 @@ pub mod spi0 {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -24391,10 +24060,8 @@ pub mod spi0 {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -24780,7 +24447,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -24849,7 +24518,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -24918,7 +24589,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -24987,7 +24660,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -25056,7 +24731,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -25125,7 +24802,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -25194,7 +24873,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -25215,10 +24896,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `BB_SUSPEND`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum BB_SUSPENDR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl BB_SUSPENDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -25262,10 +24941,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `BB_STOP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum BB_STOPR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl BB_STOPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -25308,10 +24985,8 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `BB_SUSPEND`"]
         pub enum BB_SUSPENDW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl BB_SUSPENDW {
             #[allow(missing_docs)]
@@ -25366,10 +25041,8 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `BB_STOP`"]
         pub enum BB_STOPW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl BB_STOPW {
             #[allow(missing_docs)]
@@ -25501,7 +25174,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -25522,10 +25197,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `STOPPED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum STOPPEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl STOPPEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -25569,10 +25242,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `RXDREADY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RXDREADYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl RXDREADYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -25616,10 +25287,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `TXDSENT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum TXDSENTR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl TXDSENTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -25663,10 +25332,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `ERROR`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ERRORR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ERRORR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -25710,10 +25377,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `BB`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum BBR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl BBR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -25757,10 +25422,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `SUSPENDED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum SUSPENDEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl SUSPENDEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -25803,8 +25466,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `STOPPED`"]
         pub enum STOPPEDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl STOPPEDW {
             #[allow(missing_docs)]
@@ -25853,8 +25515,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `RXDREADY`"]
         pub enum RXDREADYW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl RXDREADYW {
             #[allow(missing_docs)]
@@ -25903,8 +25564,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `TXDSENT`"]
         pub enum TXDSENTW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl TXDSENTW {
             #[allow(missing_docs)]
@@ -25953,8 +25613,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `ERROR`"]
         pub enum ERRORW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ERRORW {
             #[allow(missing_docs)]
@@ -26003,8 +25662,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `BB`"]
         pub enum BBW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl BBW {
             #[allow(missing_docs)]
@@ -26053,8 +25711,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `SUSPENDED`"]
         pub enum SUSPENDEDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl SUSPENDEDW {
             #[allow(missing_docs)]
@@ -26236,7 +25893,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -26257,10 +25916,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `STOPPED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum STOPPEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl STOPPEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -26304,10 +25961,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `RXDREADY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RXDREADYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl RXDREADYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -26351,10 +26006,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `TXDSENT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum TXDSENTR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl TXDSENTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -26398,10 +26051,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `ERROR`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ERRORR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ERRORR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -26445,10 +26096,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `BB`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum BBR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl BBR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -26492,10 +26141,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `SUSPENDED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum SUSPENDEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl SUSPENDEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -26538,8 +26185,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `STOPPED`"]
         pub enum STOPPEDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl STOPPEDW {
             #[allow(missing_docs)]
@@ -26588,8 +26234,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `RXDREADY`"]
         pub enum RXDREADYW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl RXDREADYW {
             #[allow(missing_docs)]
@@ -26638,8 +26283,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `TXDSENT`"]
         pub enum TXDSENTW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl TXDSENTW {
             #[allow(missing_docs)]
@@ -26688,8 +26332,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `ERROR`"]
         pub enum ERRORW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ERRORW {
             #[allow(missing_docs)]
@@ -26738,8 +26381,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `BB`"]
         pub enum BBW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl BBW {
             #[allow(missing_docs)]
@@ -26788,8 +26430,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `SUSPENDED`"]
         pub enum SUSPENDEDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl SUSPENDEDW {
             #[allow(missing_docs)]
@@ -26971,7 +26612,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -26992,10 +26635,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `OVERRUN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OVERRUNR {
-            #[doc = "Error not present."]
-            NOTPRESENT,
-            #[doc = "Error present."]
-            PRESENT,
+            #[doc = "Error not present."] NOTPRESENT,
+            #[doc = "Error present."] PRESENT,
         }
         impl OVERRUNR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -27039,10 +26680,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `ANACK`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ANACKR {
-            #[doc = "Error not present."]
-            NOTPRESENT,
-            #[doc = "Error present."]
-            PRESENT,
+            #[doc = "Error not present."] NOTPRESENT,
+            #[doc = "Error present."] PRESENT,
         }
         impl ANACKR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -27086,10 +26725,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `DNACK`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DNACKR {
-            #[doc = "Error not present."]
-            NOTPRESENT,
-            #[doc = "Error present."]
-            PRESENT,
+            #[doc = "Error not present."] NOTPRESENT,
+            #[doc = "Error present."] PRESENT,
         }
         impl DNACKR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -27132,8 +26769,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `OVERRUN`"]
         pub enum OVERRUNW {
-            #[doc = "Clear error on write."]
-            CLEAR,
+            #[doc = "Clear error on write."] CLEAR,
         }
         impl OVERRUNW {
             #[allow(missing_docs)]
@@ -27182,8 +26818,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `ANACK`"]
         pub enum ANACKW {
-            #[doc = "Clear error on write."]
-            CLEAR,
+            #[doc = "Clear error on write."] CLEAR,
         }
         impl ANACKW {
             #[allow(missing_docs)]
@@ -27232,8 +26867,7 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `DNACK`"]
         pub enum DNACKW {
-            #[doc = "Clear error on write."]
-            CLEAR,
+            #[doc = "Clear error on write."] CLEAR,
         }
         impl DNACKW {
             #[allow(missing_docs)]
@@ -27373,7 +27007,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -27394,12 +27030,9 @@ pub mod twi0 {
         #[doc = "Possible values of the field `ENABLE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENABLER {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl ENABLER {
             #[doc = r" Value of the field as raw bits"]
@@ -27434,10 +27067,8 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `ENABLE`"]
         pub enum ENABLEW {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl ENABLEW {
             #[allow(missing_docs)]
@@ -27545,7 +27176,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -27614,7 +27247,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -27667,7 +27302,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -27729,7 +27366,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -27839,7 +27478,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -27860,14 +27501,10 @@ pub mod twi0 {
         #[doc = "Possible values of the field `FREQUENCY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum FREQUENCYR {
-            #[doc = "100 kbps."]
-            K100,
-            #[doc = "250 kbps."]
-            K250,
-            #[doc = "400 kbps."]
-            K400,
-            #[doc = r" Reserved"]
-            _Reserved(u32),
+            #[doc = "100 kbps."] K100,
+            #[doc = "250 kbps."] K250,
+            #[doc = "400 kbps."] K400,
+            #[doc = r" Reserved"] _Reserved(u32),
         }
         impl FREQUENCYR {
             #[doc = r" Value of the field as raw bits"]
@@ -27909,12 +27546,9 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `FREQUENCY`"]
         pub enum FREQUENCYW {
-            #[doc = "100 kbps."]
-            K100,
-            #[doc = "250 kbps."]
-            K250,
-            #[doc = "400 kbps."]
-            K400,
+            #[doc = "100 kbps."] K100,
+            #[doc = "250 kbps."] K250,
+            #[doc = "400 kbps."] K400,
         }
         impl FREQUENCYW {
             #[allow(missing_docs)]
@@ -28028,7 +27662,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -28138,7 +27774,9 @@ pub mod twi0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -28159,10 +27797,8 @@ pub mod twi0 {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -28205,10 +27841,8 @@ pub mod twi0 {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -28520,7 +28154,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -28589,7 +28225,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -28658,7 +28296,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -28679,10 +28319,8 @@ pub mod spis1 {
         #[doc = "Possible values of the field `END_ACQUIRE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum END_ACQUIRER {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl END_ACQUIRER {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -28725,10 +28363,8 @@ pub mod spis1 {
         }
         #[doc = "Values that can be written to the field `END_ACQUIRE`"]
         pub enum END_ACQUIREW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl END_ACQUIREW {
             #[allow(missing_docs)]
@@ -28846,7 +28482,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -28867,10 +28505,8 @@ pub mod spis1 {
         #[doc = "Possible values of the field `END`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -28914,10 +28550,8 @@ pub mod spis1 {
         #[doc = "Possible values of the field `ACQUIRED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ACQUIREDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ACQUIREDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -28960,8 +28594,7 @@ pub mod spis1 {
         }
         #[doc = "Values that can be written to the field `END`"]
         pub enum ENDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ENDW {
             #[allow(missing_docs)]
@@ -29010,8 +28643,7 @@ pub mod spis1 {
         }
         #[doc = "Values that can be written to the field `ACQUIRED`"]
         pub enum ACQUIREDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ACQUIREDW {
             #[allow(missing_docs)]
@@ -29137,7 +28769,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -29158,10 +28792,8 @@ pub mod spis1 {
         #[doc = "Possible values of the field `END`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -29205,10 +28837,8 @@ pub mod spis1 {
         #[doc = "Possible values of the field `ACQUIRED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ACQUIREDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ACQUIREDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -29251,8 +28881,7 @@ pub mod spis1 {
         }
         #[doc = "Values that can be written to the field `END`"]
         pub enum ENDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ENDW {
             #[allow(missing_docs)]
@@ -29301,8 +28930,7 @@ pub mod spis1 {
         }
         #[doc = "Values that can be written to the field `ACQUIRED`"]
         pub enum ACQUIREDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ACQUIREDW {
             #[allow(missing_docs)]
@@ -29412,18 +29040,17 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `SEMSTAT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum SEMSTATR {
-            #[doc = "Semaphore is free."]
-            FREE,
-            #[doc = "Semaphore is assigned to the CPU."]
-            CPU,
-            #[doc = "Semaphore is assigned to the SPIS."]
-            SPIS,
+            #[doc = "Semaphore is free."] FREE,
+            #[doc = "Semaphore is assigned to the CPU."] CPU,
+            #[doc = "Semaphore is assigned to the SPIS."] SPIS,
             #[doc = "Semaphore is assigned to the SPIS, but a handover to the CPU is pending."]
             CPUPENDING,
         }
@@ -29518,7 +29145,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -29539,10 +29168,8 @@ pub mod spis1 {
         #[doc = "Possible values of the field `OVERREAD`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OVERREADR {
-            #[doc = "Error not present."]
-            NOTPRESENT,
-            #[doc = "Error present."]
-            PRESENT,
+            #[doc = "Error not present."] NOTPRESENT,
+            #[doc = "Error present."] PRESENT,
         }
         impl OVERREADR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -29586,10 +29213,8 @@ pub mod spis1 {
         #[doc = "Possible values of the field `OVERFLOW`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OVERFLOWR {
-            #[doc = "Error not present."]
-            NOTPRESENT,
-            #[doc = "Error present."]
-            PRESENT,
+            #[doc = "Error not present."] NOTPRESENT,
+            #[doc = "Error present."] PRESENT,
         }
         impl OVERFLOWR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -29632,8 +29257,7 @@ pub mod spis1 {
         }
         #[doc = "Values that can be written to the field `OVERREAD`"]
         pub enum OVERREADW {
-            #[doc = "Clear on write."]
-            CLEAR,
+            #[doc = "Clear on write."] CLEAR,
         }
         impl OVERREADW {
             #[allow(missing_docs)]
@@ -29682,8 +29306,7 @@ pub mod spis1 {
         }
         #[doc = "Values that can be written to the field `OVERFLOW`"]
         pub enum OVERFLOWW {
-            #[doc = "Clear on write."]
-            CLEAR,
+            #[doc = "Clear on write."] CLEAR,
         }
         impl OVERFLOWW {
             #[allow(missing_docs)]
@@ -29809,7 +29432,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -29830,12 +29455,9 @@ pub mod spis1 {
         #[doc = "Possible values of the field `ENABLE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENABLER {
-            #[doc = "Disabled SPIS."]
-            DISABLED,
-            #[doc = "Enable SPIS."]
-            ENABLED,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Disabled SPIS."] DISABLED,
+            #[doc = "Enable SPIS."] ENABLED,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl ENABLER {
             #[doc = r" Value of the field as raw bits"]
@@ -29870,10 +29492,8 @@ pub mod spis1 {
         }
         #[doc = "Values that can be written to the field `ENABLE`"]
         pub enum ENABLEW {
-            #[doc = "Disabled SPIS."]
-            DISABLED,
-            #[doc = "Enable SPIS."]
-            ENABLED,
+            #[doc = "Disabled SPIS."] DISABLED,
+            #[doc = "Enable SPIS."] ENABLED,
         }
         impl ENABLEW {
             #[allow(missing_docs)]
@@ -29981,7 +29601,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -30050,7 +29672,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -30119,7 +29743,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -30188,7 +29814,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -30257,7 +29885,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -30326,7 +29956,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -30420,7 +30052,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -30482,7 +30116,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -30551,7 +30187,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -30645,7 +30283,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -30707,7 +30347,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -30728,10 +30370,8 @@ pub mod spis1 {
         #[doc = "Possible values of the field `ORDER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ORDERR {
-            #[doc = "Most significant bit transmitted out first."]
-            MSBFIRST,
-            #[doc = "Least significant bit transmitted out first."]
-            LSBFIRST,
+            #[doc = "Most significant bit transmitted out first."] MSBFIRST,
+            #[doc = "Least significant bit transmitted out first."] LSBFIRST,
         }
         impl ORDERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -30822,10 +30462,8 @@ pub mod spis1 {
         #[doc = "Possible values of the field `CPOL`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CPOLR {
-            #[doc = "Active high."]
-            ACTIVEHIGH,
-            #[doc = "Active low."]
-            ACTIVELOW,
+            #[doc = "Active high."] ACTIVEHIGH,
+            #[doc = "Active low."] ACTIVELOW,
         }
         impl CPOLR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -30868,10 +30506,8 @@ pub mod spis1 {
         }
         #[doc = "Values that can be written to the field `ORDER`"]
         pub enum ORDERW {
-            #[doc = "Most significant bit transmitted out first."]
-            MSBFIRST,
-            #[doc = "Least significant bit transmitted out first."]
-            LSBFIRST,
+            #[doc = "Most significant bit transmitted out first."] MSBFIRST,
+            #[doc = "Least significant bit transmitted out first."] LSBFIRST,
         }
         impl ORDERW {
             #[allow(missing_docs)]
@@ -30984,10 +30620,8 @@ pub mod spis1 {
         }
         #[doc = "Values that can be written to the field `CPOL`"]
         pub enum CPOLW {
-            #[doc = "Active high."]
-            ACTIVEHIGH,
-            #[doc = "Active low."]
-            ACTIVELOW,
+            #[doc = "Active high."] ACTIVEHIGH,
+            #[doc = "Active low."] ACTIVELOW,
         }
         impl CPOLW {
             #[allow(missing_docs)]
@@ -31133,7 +30767,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -31243,7 +30879,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -31353,7 +30991,9 @@ pub mod spis1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -31374,10 +31014,8 @@ pub mod spis1 {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -31420,10 +31058,8 @@ pub mod spis1 {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -31752,7 +31388,9 @@ pub mod spim1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -31821,7 +31459,9 @@ pub mod spim1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -31890,7 +31530,9 @@ pub mod spim1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -31959,7 +31601,9 @@ pub mod spim1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -32028,7 +31672,9 @@ pub mod spim1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -32049,10 +31695,8 @@ pub mod spim1 {
         #[doc = "Possible values of the field `STOPPED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum STOPPEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl STOPPEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -32096,10 +31740,8 @@ pub mod spim1 {
         #[doc = "Possible values of the field `ENDRX`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDRXR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDRXR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -32143,10 +31785,8 @@ pub mod spim1 {
         #[doc = "Possible values of the field `ENDTX`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDTXR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDTXR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -32190,10 +31830,8 @@ pub mod spim1 {
         #[doc = "Possible values of the field `STARTED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum STARTEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl STARTEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -32236,8 +31874,7 @@ pub mod spim1 {
         }
         #[doc = "Values that can be written to the field `STOPPED`"]
         pub enum STOPPEDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl STOPPEDW {
             #[allow(missing_docs)]
@@ -32286,8 +31923,7 @@ pub mod spim1 {
         }
         #[doc = "Values that can be written to the field `ENDRX`"]
         pub enum ENDRXW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ENDRXW {
             #[allow(missing_docs)]
@@ -32336,8 +31972,7 @@ pub mod spim1 {
         }
         #[doc = "Values that can be written to the field `ENDTX`"]
         pub enum ENDTXW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ENDTXW {
             #[allow(missing_docs)]
@@ -32386,8 +32021,7 @@ pub mod spim1 {
         }
         #[doc = "Values that can be written to the field `STARTED`"]
         pub enum STARTEDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl STARTEDW {
             #[allow(missing_docs)]
@@ -32541,7 +32175,9 @@ pub mod spim1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -32562,10 +32198,8 @@ pub mod spim1 {
         #[doc = "Possible values of the field `STOPPED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum STOPPEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl STOPPEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -32609,10 +32243,8 @@ pub mod spim1 {
         #[doc = "Possible values of the field `ENDRX`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDRXR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDRXR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -32656,10 +32288,8 @@ pub mod spim1 {
         #[doc = "Possible values of the field `ENDTX`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDTXR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDTXR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -32703,10 +32333,8 @@ pub mod spim1 {
         #[doc = "Possible values of the field `STARTED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum STARTEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl STARTEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -32749,8 +32377,7 @@ pub mod spim1 {
         }
         #[doc = "Values that can be written to the field `STOPPED`"]
         pub enum STOPPEDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl STOPPEDW {
             #[allow(missing_docs)]
@@ -32799,8 +32426,7 @@ pub mod spim1 {
         }
         #[doc = "Values that can be written to the field `ENDRX`"]
         pub enum ENDRXW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ENDRXW {
             #[allow(missing_docs)]
@@ -32849,8 +32475,7 @@ pub mod spim1 {
         }
         #[doc = "Values that can be written to the field `ENDTX`"]
         pub enum ENDTXW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ENDTXW {
             #[allow(missing_docs)]
@@ -32899,8 +32524,7 @@ pub mod spim1 {
         }
         #[doc = "Values that can be written to the field `STARTED`"]
         pub enum STARTEDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl STARTEDW {
             #[allow(missing_docs)]
@@ -33054,7 +32678,9 @@ pub mod spim1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -33075,12 +32701,9 @@ pub mod spim1 {
         #[doc = "Possible values of the field `ENABLE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENABLER {
-            #[doc = "Disabled SPIM."]
-            DISABLED,
-            #[doc = "Enable SPIM."]
-            ENABLED,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Disabled SPIM."] DISABLED,
+            #[doc = "Enable SPIM."] ENABLED,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl ENABLER {
             #[doc = r" Value of the field as raw bits"]
@@ -33115,10 +32738,8 @@ pub mod spim1 {
         }
         #[doc = "Values that can be written to the field `ENABLE`"]
         pub enum ENABLEW {
-            #[doc = "Disabled SPIM."]
-            DISABLED,
-            #[doc = "Enable SPIM."]
-            ENABLED,
+            #[doc = "Disabled SPIM."] DISABLED,
+            #[doc = "Enable SPIM."] ENABLED,
         }
         impl ENABLEW {
             #[allow(missing_docs)]
@@ -33226,7 +32847,9 @@ pub mod spim1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -33247,22 +32870,14 @@ pub mod spim1 {
         #[doc = "Possible values of the field `FREQUENCY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum FREQUENCYR {
-            #[doc = "125 kbps."]
-            K125,
-            #[doc = "250 kbps."]
-            K250,
-            #[doc = "500 kbps."]
-            K500,
-            #[doc = "1 Mbps."]
-            M1,
-            #[doc = "2 Mbps."]
-            M2,
-            #[doc = "4 Mbps."]
-            M4,
-            #[doc = "8 Mbps."]
-            M8,
-            #[doc = r" Reserved"]
-            _Reserved(u32),
+            #[doc = "125 kbps."] K125,
+            #[doc = "250 kbps."] K250,
+            #[doc = "500 kbps."] K500,
+            #[doc = "1 Mbps."] M1,
+            #[doc = "2 Mbps."] M2,
+            #[doc = "4 Mbps."] M4,
+            #[doc = "8 Mbps."] M8,
+            #[doc = r" Reserved"] _Reserved(u32),
         }
         impl FREQUENCYR {
             #[doc = r" Value of the field as raw bits"]
@@ -33332,20 +32947,13 @@ pub mod spim1 {
         }
         #[doc = "Values that can be written to the field `FREQUENCY`"]
         pub enum FREQUENCYW {
-            #[doc = "125 kbps."]
-            K125,
-            #[doc = "250 kbps."]
-            K250,
-            #[doc = "500 kbps."]
-            K500,
-            #[doc = "1 Mbps."]
-            M1,
-            #[doc = "2 Mbps."]
-            M2,
-            #[doc = "4 Mbps."]
-            M4,
-            #[doc = "8 Mbps."]
-            M8,
+            #[doc = "125 kbps."] K125,
+            #[doc = "250 kbps."] K250,
+            #[doc = "500 kbps."] K500,
+            #[doc = "1 Mbps."] M1,
+            #[doc = "2 Mbps."] M2,
+            #[doc = "4 Mbps."] M4,
+            #[doc = "8 Mbps."] M8,
         }
         impl FREQUENCYW {
             #[allow(missing_docs)]
@@ -33483,7 +33091,9 @@ pub mod spim1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -33504,10 +33114,8 @@ pub mod spim1 {
         #[doc = "Possible values of the field `ORDER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ORDERR {
-            #[doc = "Most significant bit transmitted out first."]
-            MSBFIRST,
-            #[doc = "Least significant bit transmitted out first."]
-            LSBFIRST,
+            #[doc = "Most significant bit transmitted out first."] MSBFIRST,
+            #[doc = "Least significant bit transmitted out first."] LSBFIRST,
         }
         impl ORDERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -33598,10 +33206,8 @@ pub mod spim1 {
         #[doc = "Possible values of the field `CPOL`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CPOLR {
-            #[doc = "Active high."]
-            ACTIVEHIGH,
-            #[doc = "Active low."]
-            ACTIVELOW,
+            #[doc = "Active high."] ACTIVEHIGH,
+            #[doc = "Active low."] ACTIVELOW,
         }
         impl CPOLR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -33644,10 +33250,8 @@ pub mod spim1 {
         }
         #[doc = "Values that can be written to the field `ORDER`"]
         pub enum ORDERW {
-            #[doc = "Most significant bit transmitted out first."]
-            MSBFIRST,
-            #[doc = "Least significant bit transmitted out first."]
-            LSBFIRST,
+            #[doc = "Most significant bit transmitted out first."] MSBFIRST,
+            #[doc = "Least significant bit transmitted out first."] LSBFIRST,
         }
         impl ORDERW {
             #[allow(missing_docs)]
@@ -33760,10 +33364,8 @@ pub mod spim1 {
         }
         #[doc = "Values that can be written to the field `CPOL`"]
         pub enum CPOLW {
-            #[doc = "Active high."]
-            ACTIVEHIGH,
-            #[doc = "Active low."]
-            ACTIVELOW,
+            #[doc = "Active high."] ACTIVEHIGH,
+            #[doc = "Active low."] ACTIVELOW,
         }
         impl CPOLW {
             #[allow(missing_docs)]
@@ -33909,7 +33511,9 @@ pub mod spim1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -34019,7 +33623,9 @@ pub mod spim1 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -34040,10 +33646,8 @@ pub mod spim1 {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -34086,10 +33690,8 @@ pub mod spim1 {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -34287,7 +33889,9 @@ pub mod gpiote {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -34356,7 +33960,9 @@ pub mod gpiote {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -34425,7 +34031,9 @@ pub mod gpiote {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -34446,10 +34054,8 @@ pub mod gpiote {
         #[doc = "Possible values of the field `IN0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum IN0R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl IN0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -34493,10 +34099,8 @@ pub mod gpiote {
         #[doc = "Possible values of the field `IN1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum IN1R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl IN1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -34540,10 +34144,8 @@ pub mod gpiote {
         #[doc = "Possible values of the field `IN2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum IN2R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl IN2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -34587,10 +34189,8 @@ pub mod gpiote {
         #[doc = "Possible values of the field `IN3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum IN3R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl IN3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -34634,10 +34234,8 @@ pub mod gpiote {
         #[doc = "Possible values of the field `PORT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PORTR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl PORTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -34680,8 +34278,7 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `IN0`"]
         pub enum IN0W {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl IN0W {
             #[allow(missing_docs)]
@@ -34730,8 +34327,7 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `IN1`"]
         pub enum IN1W {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl IN1W {
             #[allow(missing_docs)]
@@ -34780,8 +34376,7 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `IN2`"]
         pub enum IN2W {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl IN2W {
             #[allow(missing_docs)]
@@ -34830,8 +34425,7 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `IN3`"]
         pub enum IN3W {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl IN3W {
             #[allow(missing_docs)]
@@ -34880,8 +34474,7 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `PORT`"]
         pub enum PORTW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl PORTW {
             #[allow(missing_docs)]
@@ -35049,7 +34642,9 @@ pub mod gpiote {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -35070,10 +34665,8 @@ pub mod gpiote {
         #[doc = "Possible values of the field `IN0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum IN0R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl IN0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -35117,10 +34710,8 @@ pub mod gpiote {
         #[doc = "Possible values of the field `IN1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum IN1R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl IN1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -35164,10 +34755,8 @@ pub mod gpiote {
         #[doc = "Possible values of the field `IN2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum IN2R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl IN2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -35211,10 +34800,8 @@ pub mod gpiote {
         #[doc = "Possible values of the field `IN3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum IN3R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl IN3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -35258,10 +34845,8 @@ pub mod gpiote {
         #[doc = "Possible values of the field `PORT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PORTR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl PORTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -35304,8 +34889,7 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `IN0`"]
         pub enum IN0W {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl IN0W {
             #[allow(missing_docs)]
@@ -35354,8 +34938,7 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `IN1`"]
         pub enum IN1W {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl IN1W {
             #[allow(missing_docs)]
@@ -35404,8 +34987,7 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `IN2`"]
         pub enum IN2W {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl IN2W {
             #[allow(missing_docs)]
@@ -35454,8 +35036,7 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `IN3`"]
         pub enum IN3W {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl IN3W {
             #[allow(missing_docs)]
@@ -35504,8 +35085,7 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `PORT`"]
         pub enum PORTW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl PORTW {
             #[allow(missing_docs)]
@@ -35673,7 +35253,9 @@ pub mod gpiote {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -35694,14 +35276,10 @@ pub mod gpiote {
         #[doc = "Possible values of the field `MODE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum MODER {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Channel configure in event mode."]
-            EVENT,
-            #[doc = "Channel configure in task mode."]
-            TASK,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Channel configure in event mode."] EVENT,
+            #[doc = "Channel configure in task mode."] TASK,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl MODER {
             #[doc = r" Value of the field as raw bits"]
@@ -35755,14 +35333,10 @@ pub mod gpiote {
         #[doc = "Possible values of the field `POLARITY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POLARITYR {
-            #[doc = "No task or event."]
-            NONE,
-            #[doc = "Low to high."]
-            LOTOHI,
-            #[doc = "High to low."]
-            HITOLO,
-            #[doc = "Toggle."]
-            TOGGLE,
+            #[doc = "No task or event."] NONE,
+            #[doc = "Low to high."] LOTOHI,
+            #[doc = "High to low."] HITOLO,
+            #[doc = "Toggle."] TOGGLE,
         }
         impl POLARITYR {
             #[doc = r" Value of the field as raw bits"]
@@ -35811,10 +35385,8 @@ pub mod gpiote {
         #[doc = "Possible values of the field `OUTINIT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OUTINITR {
-            #[doc = "Initial low output when in task mode."]
-            LOW,
-            #[doc = "Initial high output when in task mode."]
-            HIGH,
+            #[doc = "Initial low output when in task mode."] LOW,
+            #[doc = "Initial high output when in task mode."] HIGH,
         }
         impl OUTINITR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -35857,12 +35429,9 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `MODE`"]
         pub enum MODEW {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Channel configure in event mode."]
-            EVENT,
-            #[doc = "Channel configure in task mode."]
-            TASK,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Channel configure in event mode."] EVENT,
+            #[doc = "Channel configure in task mode."] TASK,
         }
         impl MODEW {
             #[allow(missing_docs)]
@@ -35928,14 +35497,10 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `POLARITY`"]
         pub enum POLARITYW {
-            #[doc = "No task or event."]
-            NONE,
-            #[doc = "Low to high."]
-            LOTOHI,
-            #[doc = "High to low."]
-            HITOLO,
-            #[doc = "Toggle."]
-            TOGGLE,
+            #[doc = "No task or event."] NONE,
+            #[doc = "Low to high."] LOTOHI,
+            #[doc = "High to low."] HITOLO,
+            #[doc = "Toggle."] TOGGLE,
         }
         impl POLARITYW {
             #[allow(missing_docs)]
@@ -35994,10 +35559,8 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `OUTINIT`"]
         pub enum OUTINITW {
-            #[doc = "Initial low output when in task mode."]
-            LOW,
-            #[doc = "Initial high output when in task mode."]
-            HIGH,
+            #[doc = "Initial low output when in task mode."] LOW,
+            #[doc = "Initial high output when in task mode."] HIGH,
         }
         impl OUTINITW {
             #[allow(missing_docs)]
@@ -36158,7 +35721,9 @@ pub mod gpiote {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -36179,10 +35744,8 @@ pub mod gpiote {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -36225,10 +35788,8 @@ pub mod gpiote {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -36468,7 +36029,9 @@ pub mod adc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -36537,7 +36100,9 @@ pub mod adc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -36558,10 +36123,8 @@ pub mod adc {
         #[doc = "Possible values of the field `END`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -36604,8 +36167,7 @@ pub mod adc {
         }
         #[doc = "Values that can be written to the field `END`"]
         pub enum ENDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ENDW {
             #[allow(missing_docs)]
@@ -36717,7 +36279,9 @@ pub mod adc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -36738,10 +36302,8 @@ pub mod adc {
         #[doc = "Possible values of the field `END`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -36784,8 +36346,7 @@ pub mod adc {
         }
         #[doc = "Values that can be written to the field `END`"]
         pub enum ENDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ENDW {
             #[allow(missing_docs)]
@@ -36881,16 +36442,16 @@ pub mod adc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `BUSY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum BUSYR {
-            #[doc = "No ongoing ADC conversion is taking place. ADC is ready."]
-            READY,
-            #[doc = "An ADC conversion is taking place. ADC is busy."]
-            BUSY,
+            #[doc = "No ongoing ADC conversion is taking place. ADC is ready."] READY,
+            #[doc = "An ADC conversion is taking place. ADC is busy."] BUSY,
         }
         impl BUSYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -36978,7 +36539,9 @@ pub mod adc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -37005,7 +36568,7 @@ pub mod adc {
             ENABLED,
             #[doc = r" Reserved"]
             _Reserved(u8),
-        }
+}
         impl ENABLER {
             #[doc = r" Value of the field as raw bits"]
             #[inline]
@@ -37043,7 +36606,7 @@ pub mod adc {
             DISABLED,
             #[doc = "ADC is enabled. If an analog input pin is selected as source of the conversion, the selected pin is configured as an analog input."]
             ENABLED,
-        }
+}
         impl ENABLEW {
             #[allow(missing_docs)]
             #[doc(hidden)]
@@ -37150,7 +36713,9 @@ pub mod adc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -37171,14 +36736,10 @@ pub mod adc {
         #[doc = "Possible values of the field `RES`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RESR {
-            #[doc = "8bit ADC resolution."]
-            _8BIT,
-            #[doc = "9bit ADC resolution."]
-            _9BIT,
-            #[doc = "10bit ADC resolution."]
-            _10BIT,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "8bit ADC resolution."] _8BIT,
+            #[doc = "9bit ADC resolution."] _9BIT,
+            #[doc = "10bit ADC resolution."] _10BIT,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl RESR {
             #[doc = r" Value of the field as raw bits"]
@@ -37233,7 +36794,7 @@ pub mod adc {
             SUPPLYONETHIRDPRESCALING,
             #[doc = r" Reserved"]
             _Reserved(u8),
-        }
+}
         impl INPSELR {
             #[doc = r" Value of the field as raw bits"]
             #[inline]
@@ -37297,7 +36858,7 @@ pub mod adc {
             SUPPLYONEHALFPRESCALING,
             #[doc = "Use supply voltage with 1/3 prescaling as reference for conversion. Only usable when supply voltage is between 2.5V and 3.6V."]
             SUPPLYONETHIRDPRESCALING,
-        }
+}
         impl REFSELR {
             #[doc = r" Value of the field as raw bits"]
             #[inline]
@@ -37345,26 +36906,16 @@ pub mod adc {
         #[doc = "Possible values of the field `PSEL`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PSELR {
-            #[doc = "Analog input pins disabled."]
-            DISABLED,
-            #[doc = "Use analog input 0 as analog input."]
-            ANALOGINPUT0,
-            #[doc = "Use analog input 1 as analog input."]
-            ANALOGINPUT1,
-            #[doc = "Use analog input 2 as analog input."]
-            ANALOGINPUT2,
-            #[doc = "Use analog input 3 as analog input."]
-            ANALOGINPUT3,
-            #[doc = "Use analog input 4 as analog input."]
-            ANALOGINPUT4,
-            #[doc = "Use analog input 5 as analog input."]
-            ANALOGINPUT5,
-            #[doc = "Use analog input 6 as analog input."]
-            ANALOGINPUT6,
-            #[doc = "Use analog input 7 as analog input."]
-            ANALOGINPUT7,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Analog input pins disabled."] DISABLED,
+            #[doc = "Use analog input 0 as analog input."] ANALOGINPUT0,
+            #[doc = "Use analog input 1 as analog input."] ANALOGINPUT1,
+            #[doc = "Use analog input 2 as analog input."] ANALOGINPUT2,
+            #[doc = "Use analog input 3 as analog input."] ANALOGINPUT3,
+            #[doc = "Use analog input 4 as analog input."] ANALOGINPUT4,
+            #[doc = "Use analog input 5 as analog input."] ANALOGINPUT5,
+            #[doc = "Use analog input 6 as analog input."] ANALOGINPUT6,
+            #[doc = "Use analog input 7 as analog input."] ANALOGINPUT7,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl PSELR {
             #[doc = r" Value of the field as raw bits"]
@@ -37449,14 +37000,10 @@ pub mod adc {
         #[doc = "Possible values of the field `EXTREFSEL`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum EXTREFSELR {
-            #[doc = "Analog external reference inputs disabled."]
-            NONE,
-            #[doc = "Use analog reference 0 as reference."]
-            ANALOGREFERENCE0,
-            #[doc = "Use analog reference 1 as reference."]
-            ANALOGREFERENCE1,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Analog external reference inputs disabled."] NONE,
+            #[doc = "Use analog reference 0 as reference."] ANALOGREFERENCE0,
+            #[doc = "Use analog reference 1 as reference."] ANALOGREFERENCE1,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl EXTREFSELR {
             #[doc = r" Value of the field as raw bits"]
@@ -37498,12 +37045,9 @@ pub mod adc {
         }
         #[doc = "Values that can be written to the field `RES`"]
         pub enum RESW {
-            #[doc = "8bit ADC resolution."]
-            _8BIT,
-            #[doc = "9bit ADC resolution."]
-            _9BIT,
-            #[doc = "10bit ADC resolution."]
-            _10BIT,
+            #[doc = "8bit ADC resolution."] _8BIT,
+            #[doc = "9bit ADC resolution."] _9BIT,
+            #[doc = "10bit ADC resolution."] _10BIT,
         }
         impl RESW {
             #[allow(missing_docs)]
@@ -37564,7 +37108,7 @@ pub mod adc {
             SUPPLYTWOTHIRDSPRESCALING,
             #[doc = "Supply voltage with 1/3 prescaling used as input for the conversion."]
             SUPPLYONETHIRDPRESCALING,
-        }
+}
         impl INPSELW {
             #[allow(missing_docs)]
             #[doc(hidden)]
@@ -37634,7 +37178,7 @@ pub mod adc {
             SUPPLYONEHALFPRESCALING,
             #[doc = "Use supply voltage with 1/3 prescaling as reference for conversion. Only usable when supply voltage is between 2.5V and 3.6V."]
             SUPPLYONETHIRDPRESCALING,
-        }
+}
         impl REFSELW {
             #[allow(missing_docs)]
             #[doc(hidden)]
@@ -37692,24 +37236,15 @@ pub mod adc {
         }
         #[doc = "Values that can be written to the field `PSEL`"]
         pub enum PSELW {
-            #[doc = "Analog input pins disabled."]
-            DISABLED,
-            #[doc = "Use analog input 0 as analog input."]
-            ANALOGINPUT0,
-            #[doc = "Use analog input 1 as analog input."]
-            ANALOGINPUT1,
-            #[doc = "Use analog input 2 as analog input."]
-            ANALOGINPUT2,
-            #[doc = "Use analog input 3 as analog input."]
-            ANALOGINPUT3,
-            #[doc = "Use analog input 4 as analog input."]
-            ANALOGINPUT4,
-            #[doc = "Use analog input 5 as analog input."]
-            ANALOGINPUT5,
-            #[doc = "Use analog input 6 as analog input."]
-            ANALOGINPUT6,
-            #[doc = "Use analog input 7 as analog input."]
-            ANALOGINPUT7,
+            #[doc = "Analog input pins disabled."] DISABLED,
+            #[doc = "Use analog input 0 as analog input."] ANALOGINPUT0,
+            #[doc = "Use analog input 1 as analog input."] ANALOGINPUT1,
+            #[doc = "Use analog input 2 as analog input."] ANALOGINPUT2,
+            #[doc = "Use analog input 3 as analog input."] ANALOGINPUT3,
+            #[doc = "Use analog input 4 as analog input."] ANALOGINPUT4,
+            #[doc = "Use analog input 5 as analog input."] ANALOGINPUT5,
+            #[doc = "Use analog input 6 as analog input."] ANALOGINPUT6,
+            #[doc = "Use analog input 7 as analog input."] ANALOGINPUT7,
         }
         impl PSELW {
             #[allow(missing_docs)]
@@ -37796,12 +37331,9 @@ pub mod adc {
         }
         #[doc = "Values that can be written to the field `EXTREFSEL`"]
         pub enum EXTREFSELW {
-            #[doc = "Analog external reference inputs disabled."]
-            NONE,
-            #[doc = "Use analog reference 0 as reference."]
-            ANALOGREFERENCE0,
-            #[doc = "Use analog reference 1 as reference."]
-            ANALOGREFERENCE1,
+            #[doc = "Analog external reference inputs disabled."] NONE,
+            #[doc = "Use analog reference 0 as reference."] ANALOGREFERENCE0,
+            #[doc = "Use analog reference 1 as reference."] ANALOGREFERENCE1,
         }
         impl EXTREFSELW {
             #[allow(missing_docs)]
@@ -37955,7 +37487,9 @@ pub mod adc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -38017,7 +37551,9 @@ pub mod adc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -38038,10 +37574,8 @@ pub mod adc {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -38084,10 +37618,8 @@ pub mod adc {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -38484,7 +38016,9 @@ pub mod timer0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -38553,7 +38087,9 @@ pub mod timer0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -38574,10 +38110,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE0_CLEAR`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE0_CLEARR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE0_CLEARR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -38621,10 +38155,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE1_CLEAR`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE1_CLEARR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE1_CLEARR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -38668,10 +38200,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE2_CLEAR`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE2_CLEARR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE2_CLEARR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -38715,10 +38245,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE3_CLEAR`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE3_CLEARR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE3_CLEARR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -38762,10 +38290,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE0_STOP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE0_STOPR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE0_STOPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -38809,10 +38335,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE1_STOP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE1_STOPR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE1_STOPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -38856,10 +38380,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE2_STOP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE2_STOPR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE2_STOPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -38903,10 +38425,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE3_STOP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE3_STOPR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE3_STOPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -38949,10 +38469,8 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE0_CLEAR`"]
         pub enum COMPARE0_CLEARW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE0_CLEARW {
             #[allow(missing_docs)]
@@ -39007,10 +38525,8 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE1_CLEAR`"]
         pub enum COMPARE1_CLEARW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE1_CLEARW {
             #[allow(missing_docs)]
@@ -39065,10 +38581,8 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE2_CLEAR`"]
         pub enum COMPARE2_CLEARW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE2_CLEARW {
             #[allow(missing_docs)]
@@ -39123,10 +38637,8 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE3_CLEAR`"]
         pub enum COMPARE3_CLEARW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE3_CLEARW {
             #[allow(missing_docs)]
@@ -39181,10 +38693,8 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE0_STOP`"]
         pub enum COMPARE0_STOPW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE0_STOPW {
             #[allow(missing_docs)]
@@ -39239,10 +38749,8 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE1_STOP`"]
         pub enum COMPARE1_STOPW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE1_STOPW {
             #[allow(missing_docs)]
@@ -39297,10 +38805,8 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE2_STOP`"]
         pub enum COMPARE2_STOPW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE2_STOPW {
             #[allow(missing_docs)]
@@ -39355,10 +38861,8 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE3_STOP`"]
         pub enum COMPARE3_STOPW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl COMPARE3_STOPW {
             #[allow(missing_docs)]
@@ -39574,7 +39078,9 @@ pub mod timer0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -39595,10 +39101,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE0R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -39642,10 +39146,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE1R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -39689,10 +39191,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE2R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -39736,10 +39236,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE3R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -39782,8 +39280,7 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE0`"]
         pub enum COMPARE0W {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl COMPARE0W {
             #[allow(missing_docs)]
@@ -39832,8 +39329,7 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE1`"]
         pub enum COMPARE1W {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl COMPARE1W {
             #[allow(missing_docs)]
@@ -39882,8 +39378,7 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE2`"]
         pub enum COMPARE2W {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl COMPARE2W {
             #[allow(missing_docs)]
@@ -39932,8 +39427,7 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE3`"]
         pub enum COMPARE3W {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl COMPARE3W {
             #[allow(missing_docs)]
@@ -40087,7 +39581,9 @@ pub mod timer0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -40108,10 +39604,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE0R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -40155,10 +39649,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE1R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -40202,10 +39694,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE2R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -40249,10 +39739,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `COMPARE3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE3R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -40295,8 +39783,7 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE0`"]
         pub enum COMPARE0W {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl COMPARE0W {
             #[allow(missing_docs)]
@@ -40345,8 +39832,7 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE1`"]
         pub enum COMPARE1W {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl COMPARE1W {
             #[allow(missing_docs)]
@@ -40395,8 +39881,7 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE2`"]
         pub enum COMPARE2W {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl COMPARE2W {
             #[allow(missing_docs)]
@@ -40445,8 +39930,7 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `COMPARE3`"]
         pub enum COMPARE3W {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl COMPARE3W {
             #[allow(missing_docs)]
@@ -40600,7 +40084,9 @@ pub mod timer0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -40621,10 +40107,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `MODE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum MODER {
-            #[doc = "Timer in Counter mode."]
-            COUNTER,
-            #[doc = "Timer in Normal mode."]
-            TIMER,
+            #[doc = "Timer in Counter mode."] COUNTER,
+            #[doc = "Timer in Normal mode."] TIMER,
         }
         impl MODER {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -40667,10 +40151,8 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `MODE`"]
         pub enum MODEW {
-            #[doc = "Timer in Counter mode."]
-            COUNTER,
-            #[doc = "Timer in Normal mode."]
-            TIMER,
+            #[doc = "Timer in Counter mode."] COUNTER,
+            #[doc = "Timer in Normal mode."] TIMER,
         }
         impl MODEW {
             #[allow(missing_docs)]
@@ -40788,7 +40270,9 @@ pub mod timer0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -40809,14 +40293,10 @@ pub mod timer0 {
         #[doc = "Possible values of the field `BITMODE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum BITMODER {
-            #[doc = "16-bit timer behaviour."]
-            _16BIT,
-            #[doc = "8-bit timer behaviour."]
-            _08BIT,
-            #[doc = "24-bit timer behaviour."]
-            _24BIT,
-            #[doc = "32-bit timer behaviour."]
-            _32BIT,
+            #[doc = "16-bit timer behaviour."] _16BIT,
+            #[doc = "8-bit timer behaviour."] _08BIT,
+            #[doc = "24-bit timer behaviour."] _24BIT,
+            #[doc = "32-bit timer behaviour."] _32BIT,
         }
         impl BITMODER {
             #[doc = r" Value of the field as raw bits"]
@@ -40864,14 +40344,10 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `BITMODE`"]
         pub enum BITMODEW {
-            #[doc = "16-bit timer behaviour."]
-            _16BIT,
-            #[doc = "8-bit timer behaviour."]
-            _08BIT,
-            #[doc = "24-bit timer behaviour."]
-            _24BIT,
-            #[doc = "32-bit timer behaviour."]
-            _32BIT,
+            #[doc = "16-bit timer behaviour."] _16BIT,
+            #[doc = "8-bit timer behaviour."] _08BIT,
+            #[doc = "24-bit timer behaviour."] _24BIT,
+            #[doc = "32-bit timer behaviour."] _32BIT,
         }
         impl BITMODEW {
             #[allow(missing_docs)]
@@ -40993,7 +40469,9 @@ pub mod timer0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -41103,7 +40581,9 @@ pub mod timer0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -41172,7 +40652,9 @@ pub mod timer0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -41193,10 +40675,8 @@ pub mod timer0 {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -41239,10 +40719,8 @@ pub mod timer0 {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -41602,7 +41080,9 @@ pub mod rtc0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -41671,7 +41151,9 @@ pub mod rtc0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -41740,7 +41222,9 @@ pub mod rtc0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -41809,7 +41293,9 @@ pub mod rtc0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -41830,10 +41316,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `TICK`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum TICKR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl TICKR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -41877,10 +41361,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `OVRFLW`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OVRFLWR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl OVRFLWR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -41924,10 +41406,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE0R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -41971,10 +41451,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE1R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -42018,10 +41496,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE2R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -42065,10 +41541,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE3R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -42111,8 +41585,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `TICK`"]
         pub enum TICKW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl TICKW {
             #[allow(missing_docs)]
@@ -42161,8 +41634,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `OVRFLW`"]
         pub enum OVRFLWW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl OVRFLWW {
             #[allow(missing_docs)]
@@ -42211,8 +41683,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE0`"]
         pub enum COMPARE0W {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl COMPARE0W {
             #[allow(missing_docs)]
@@ -42261,8 +41732,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE1`"]
         pub enum COMPARE1W {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl COMPARE1W {
             #[allow(missing_docs)]
@@ -42311,8 +41781,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE2`"]
         pub enum COMPARE2W {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl COMPARE2W {
             #[allow(missing_docs)]
@@ -42361,8 +41830,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE3`"]
         pub enum COMPARE3W {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl COMPARE3W {
             #[allow(missing_docs)]
@@ -42544,7 +42012,9 @@ pub mod rtc0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -42565,10 +42035,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `TICK`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum TICKR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl TICKR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -42612,10 +42080,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `OVRFLW`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OVRFLWR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl OVRFLWR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -42659,10 +42125,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE0R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -42706,10 +42170,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE1R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -42753,10 +42215,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE2R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -42800,10 +42260,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE3R {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl COMPARE3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -42846,8 +42304,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `TICK`"]
         pub enum TICKW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl TICKW {
             #[allow(missing_docs)]
@@ -42896,8 +42353,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `OVRFLW`"]
         pub enum OVRFLWW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl OVRFLWW {
             #[allow(missing_docs)]
@@ -42946,8 +42402,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE0`"]
         pub enum COMPARE0W {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl COMPARE0W {
             #[allow(missing_docs)]
@@ -42996,8 +42451,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE1`"]
         pub enum COMPARE1W {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl COMPARE1W {
             #[allow(missing_docs)]
@@ -43046,8 +42500,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE2`"]
         pub enum COMPARE2W {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl COMPARE2W {
             #[allow(missing_docs)]
@@ -43096,8 +42549,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE3`"]
         pub enum COMPARE3W {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl COMPARE3W {
             #[allow(missing_docs)]
@@ -43279,7 +42731,9 @@ pub mod rtc0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -43300,10 +42754,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `TICK`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum TICKR {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl TICKR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -43347,10 +42799,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `OVRFLW`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OVRFLWR {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl OVRFLWR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -43394,10 +42844,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE0R {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -43441,10 +42889,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE1R {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -43488,10 +42934,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE2R {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -43535,10 +42979,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE3R {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -43581,10 +43023,8 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `TICK`"]
         pub enum TICKW {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl TICKW {
             #[allow(missing_docs)]
@@ -43639,10 +43079,8 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `OVRFLW`"]
         pub enum OVRFLWW {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl OVRFLWW {
             #[allow(missing_docs)]
@@ -43697,10 +43135,8 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE0`"]
         pub enum COMPARE0W {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE0W {
             #[allow(missing_docs)]
@@ -43755,10 +43191,8 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE1`"]
         pub enum COMPARE1W {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE1W {
             #[allow(missing_docs)]
@@ -43813,10 +43247,8 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE2`"]
         pub enum COMPARE2W {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE2W {
             #[allow(missing_docs)]
@@ -43871,10 +43303,8 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE3`"]
         pub enum COMPARE3W {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE3W {
             #[allow(missing_docs)]
@@ -44062,7 +43492,9 @@ pub mod rtc0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -44083,10 +43515,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `TICK`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum TICKR {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl TICKR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -44130,10 +43560,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `OVRFLW`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OVRFLWR {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl OVRFLWR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -44177,10 +43605,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE0R {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -44224,10 +43650,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE1R {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -44271,10 +43695,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE2R {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -44318,10 +43740,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE3R {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -44364,8 +43784,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `TICK`"]
         pub enum TICKW {
-            #[doc = "Enable event on write."]
-            SET,
+            #[doc = "Enable event on write."] SET,
         }
         impl TICKW {
             #[allow(missing_docs)]
@@ -44414,8 +43833,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `OVRFLW`"]
         pub enum OVRFLWW {
-            #[doc = "Enable event on write."]
-            SET,
+            #[doc = "Enable event on write."] SET,
         }
         impl OVRFLWW {
             #[allow(missing_docs)]
@@ -44464,8 +43882,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE0`"]
         pub enum COMPARE0W {
-            #[doc = "Enable event on write."]
-            SET,
+            #[doc = "Enable event on write."] SET,
         }
         impl COMPARE0W {
             #[allow(missing_docs)]
@@ -44514,8 +43931,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE1`"]
         pub enum COMPARE1W {
-            #[doc = "Enable event on write."]
-            SET,
+            #[doc = "Enable event on write."] SET,
         }
         impl COMPARE1W {
             #[allow(missing_docs)]
@@ -44564,8 +43980,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE2`"]
         pub enum COMPARE2W {
-            #[doc = "Enable event on write."]
-            SET,
+            #[doc = "Enable event on write."] SET,
         }
         impl COMPARE2W {
             #[allow(missing_docs)]
@@ -44614,8 +44029,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE3`"]
         pub enum COMPARE3W {
-            #[doc = "Enable event on write."]
-            SET,
+            #[doc = "Enable event on write."] SET,
         }
         impl COMPARE3W {
             #[allow(missing_docs)]
@@ -44797,7 +44211,9 @@ pub mod rtc0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -44818,10 +44234,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `TICK`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum TICKR {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl TICKR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -44865,10 +44279,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `OVRFLW`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum OVRFLWR {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl OVRFLWR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -44912,10 +44324,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE0R {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -44959,10 +44369,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE1R {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -45006,10 +44414,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE2R {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -45053,10 +44459,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `COMPARE3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum COMPARE3R {
-            #[doc = "Event disabled."]
-            DISABLED,
-            #[doc = "Event enabled."]
-            ENABLED,
+            #[doc = "Event disabled."] DISABLED,
+            #[doc = "Event enabled."] ENABLED,
         }
         impl COMPARE3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -45099,8 +44503,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `TICK`"]
         pub enum TICKW {
-            #[doc = "Disable event on write."]
-            CLEAR,
+            #[doc = "Disable event on write."] CLEAR,
         }
         impl TICKW {
             #[allow(missing_docs)]
@@ -45149,8 +44552,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `OVRFLW`"]
         pub enum OVRFLWW {
-            #[doc = "Disable event on write."]
-            CLEAR,
+            #[doc = "Disable event on write."] CLEAR,
         }
         impl OVRFLWW {
             #[allow(missing_docs)]
@@ -45199,8 +44601,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE0`"]
         pub enum COMPARE0W {
-            #[doc = "Disable event on write."]
-            CLEAR,
+            #[doc = "Disable event on write."] CLEAR,
         }
         impl COMPARE0W {
             #[allow(missing_docs)]
@@ -45249,8 +44650,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE1`"]
         pub enum COMPARE1W {
-            #[doc = "Disable event on write."]
-            CLEAR,
+            #[doc = "Disable event on write."] CLEAR,
         }
         impl COMPARE1W {
             #[allow(missing_docs)]
@@ -45299,8 +44699,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE2`"]
         pub enum COMPARE2W {
-            #[doc = "Disable event on write."]
-            CLEAR,
+            #[doc = "Disable event on write."] CLEAR,
         }
         impl COMPARE2W {
             #[allow(missing_docs)]
@@ -45349,8 +44748,7 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `COMPARE3`"]
         pub enum COMPARE3W {
-            #[doc = "Disable event on write."]
-            CLEAR,
+            #[doc = "Disable event on write."] CLEAR,
         }
         impl COMPARE3W {
             #[allow(missing_docs)]
@@ -45516,7 +44914,9 @@ pub mod rtc0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -45578,7 +44978,9 @@ pub mod rtc0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -45688,7 +45090,9 @@ pub mod rtc0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -45798,7 +45202,9 @@ pub mod rtc0 {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -45819,10 +45225,8 @@ pub mod rtc0 {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -45865,10 +45269,8 @@ pub mod rtc0 {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -46101,7 +45503,9 @@ pub mod temp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -46170,7 +45574,9 @@ pub mod temp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -46191,10 +45597,8 @@ pub mod temp {
         #[doc = "Possible values of the field `DATARDY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DATARDYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl DATARDYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -46237,8 +45641,7 @@ pub mod temp {
         }
         #[doc = "Values that can be written to the field `DATARDY`"]
         pub enum DATARDYW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl DATARDYW {
             #[allow(missing_docs)]
@@ -46350,7 +45753,9 @@ pub mod temp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -46371,10 +45776,8 @@ pub mod temp {
         #[doc = "Possible values of the field `DATARDY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DATARDYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl DATARDYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -46417,8 +45820,7 @@ pub mod temp {
         }
         #[doc = "Values that can be written to the field `DATARDY`"]
         pub enum DATARDYW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl DATARDYW {
             #[allow(missing_docs)]
@@ -46514,7 +45916,9 @@ pub mod temp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         impl R {
@@ -46555,7 +45959,9 @@ pub mod temp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -46576,10 +45982,8 @@ pub mod temp {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -46622,10 +46026,8 @@ pub mod temp {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -46863,7 +46265,9 @@ pub mod rng {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -46932,7 +46336,9 @@ pub mod rng {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -46953,10 +46359,8 @@ pub mod rng {
         #[doc = "Possible values of the field `VALRDY_STOP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum VALRDY_STOPR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl VALRDY_STOPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -46999,10 +46403,8 @@ pub mod rng {
         }
         #[doc = "Values that can be written to the field `VALRDY_STOP`"]
         pub enum VALRDY_STOPW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl VALRDY_STOPW {
             #[allow(missing_docs)]
@@ -47120,7 +46522,9 @@ pub mod rng {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -47141,10 +46545,8 @@ pub mod rng {
         #[doc = "Possible values of the field `VALRDY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum VALRDYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl VALRDYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -47187,8 +46589,7 @@ pub mod rng {
         }
         #[doc = "Values that can be written to the field `VALRDY`"]
         pub enum VALRDYW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl VALRDYW {
             #[allow(missing_docs)]
@@ -47300,7 +46701,9 @@ pub mod rng {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -47321,10 +46724,8 @@ pub mod rng {
         #[doc = "Possible values of the field `VALRDY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum VALRDYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl VALRDYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -47367,8 +46768,7 @@ pub mod rng {
         }
         #[doc = "Values that can be written to the field `VALRDY`"]
         pub enum VALRDYW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl VALRDYW {
             #[allow(missing_docs)]
@@ -47480,7 +46880,9 @@ pub mod rng {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -47501,10 +46903,8 @@ pub mod rng {
         #[doc = "Possible values of the field `DERCEN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DERCENR {
-            #[doc = "Digital error correction disabled."]
-            DISABLED,
-            #[doc = "Digital error correction enabled."]
-            ENABLED,
+            #[doc = "Digital error correction disabled."] DISABLED,
+            #[doc = "Digital error correction enabled."] ENABLED,
         }
         impl DERCENR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -47547,10 +46947,8 @@ pub mod rng {
         }
         #[doc = "Values that can be written to the field `DERCEN`"]
         pub enum DERCENW {
-            #[doc = "Digital error correction disabled."]
-            DISABLED,
-            #[doc = "Digital error correction enabled."]
-            ENABLED,
+            #[doc = "Digital error correction disabled."] DISABLED,
+            #[doc = "Digital error correction enabled."] ENABLED,
         }
         impl DERCENW {
             #[allow(missing_docs)]
@@ -47652,7 +47050,9 @@ pub mod rng {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -47714,7 +47114,9 @@ pub mod rng {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -47735,10 +47137,8 @@ pub mod rng {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -47781,10 +47181,8 @@ pub mod rng {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -48019,7 +47417,9 @@ pub mod ecb {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -48088,7 +47488,9 @@ pub mod ecb {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -48157,7 +47559,9 @@ pub mod ecb {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -48178,10 +47582,8 @@ pub mod ecb {
         #[doc = "Possible values of the field `ENDECB`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDECBR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDECBR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -48225,10 +47627,8 @@ pub mod ecb {
         #[doc = "Possible values of the field `ERRORECB`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ERRORECBR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ERRORECBR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -48271,8 +47671,7 @@ pub mod ecb {
         }
         #[doc = "Values that can be written to the field `ENDECB`"]
         pub enum ENDECBW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ENDECBW {
             #[allow(missing_docs)]
@@ -48321,8 +47720,7 @@ pub mod ecb {
         }
         #[doc = "Values that can be written to the field `ERRORECB`"]
         pub enum ERRORECBW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ERRORECBW {
             #[allow(missing_docs)]
@@ -48448,7 +47846,9 @@ pub mod ecb {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -48469,10 +47869,8 @@ pub mod ecb {
         #[doc = "Possible values of the field `ENDECB`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDECBR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDECBR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -48516,10 +47914,8 @@ pub mod ecb {
         #[doc = "Possible values of the field `ERRORECB`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ERRORECBR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ERRORECBR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -48562,8 +47958,7 @@ pub mod ecb {
         }
         #[doc = "Values that can be written to the field `ENDECB`"]
         pub enum ENDECBW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ENDECBW {
             #[allow(missing_docs)]
@@ -48612,8 +48007,7 @@ pub mod ecb {
         }
         #[doc = "Values that can be written to the field `ERRORECB`"]
         pub enum ERRORECBW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ERRORECBW {
             #[allow(missing_docs)]
@@ -48739,7 +48133,9 @@ pub mod ecb {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -48808,7 +48204,9 @@ pub mod ecb {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -48829,10 +48227,8 @@ pub mod ecb {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -48875,10 +48271,8 @@ pub mod ecb {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -49128,7 +48522,9 @@ pub mod aar {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -49197,7 +48593,9 @@ pub mod aar {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -49266,7 +48664,9 @@ pub mod aar {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -49335,7 +48735,9 @@ pub mod aar {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -49356,10 +48758,8 @@ pub mod aar {
         #[doc = "Possible values of the field `END`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -49403,10 +48803,8 @@ pub mod aar {
         #[doc = "Possible values of the field `RESOLVED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RESOLVEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl RESOLVEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -49450,10 +48848,8 @@ pub mod aar {
         #[doc = "Possible values of the field `NOTRESOLVED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum NOTRESOLVEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl NOTRESOLVEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -49496,8 +48892,7 @@ pub mod aar {
         }
         #[doc = "Values that can be written to the field `END`"]
         pub enum ENDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ENDW {
             #[allow(missing_docs)]
@@ -49546,8 +48941,7 @@ pub mod aar {
         }
         #[doc = "Values that can be written to the field `RESOLVED`"]
         pub enum RESOLVEDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl RESOLVEDW {
             #[allow(missing_docs)]
@@ -49596,8 +48990,7 @@ pub mod aar {
         }
         #[doc = "Values that can be written to the field `NOTRESOLVED`"]
         pub enum NOTRESOLVEDW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl NOTRESOLVEDW {
             #[allow(missing_docs)]
@@ -49737,7 +49130,9 @@ pub mod aar {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -49758,10 +49153,8 @@ pub mod aar {
         #[doc = "Possible values of the field `END`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -49805,10 +49198,8 @@ pub mod aar {
         #[doc = "Possible values of the field `RESOLVED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RESOLVEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl RESOLVEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -49852,10 +49243,8 @@ pub mod aar {
         #[doc = "Possible values of the field `NOTRESOLVED`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum NOTRESOLVEDR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl NOTRESOLVEDR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -49898,8 +49287,7 @@ pub mod aar {
         }
         #[doc = "Values that can be written to the field `END`"]
         pub enum ENDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ENDW {
             #[allow(missing_docs)]
@@ -49948,8 +49336,7 @@ pub mod aar {
         }
         #[doc = "Values that can be written to the field `RESOLVED`"]
         pub enum RESOLVEDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl RESOLVEDW {
             #[allow(missing_docs)]
@@ -49998,8 +49385,7 @@ pub mod aar {
         }
         #[doc = "Values that can be written to the field `NOTRESOLVED`"]
         pub enum NOTRESOLVEDW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl NOTRESOLVEDW {
             #[allow(missing_docs)]
@@ -50123,7 +49509,9 @@ pub mod aar {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -50185,7 +49573,9 @@ pub mod aar {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -50206,12 +49596,9 @@ pub mod aar {
         #[doc = "Possible values of the field `ENABLE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENABLER {
-            #[doc = "Disabled AAR."]
-            DISABLED,
-            #[doc = "Enable AAR."]
-            ENABLED,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Disabled AAR."] DISABLED,
+            #[doc = "Enable AAR."] ENABLED,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl ENABLER {
             #[doc = r" Value of the field as raw bits"]
@@ -50246,10 +49633,8 @@ pub mod aar {
         }
         #[doc = "Values that can be written to the field `ENABLE`"]
         pub enum ENABLEW {
-            #[doc = "Disabled AAR."]
-            DISABLED,
-            #[doc = "Enable AAR."]
-            ENABLED,
+            #[doc = "Disabled AAR."] DISABLED,
+            #[doc = "Enable AAR."] ENABLED,
         }
         impl ENABLEW {
             #[allow(missing_docs)]
@@ -50357,7 +49742,9 @@ pub mod aar {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -50467,7 +49854,9 @@ pub mod aar {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -50536,7 +49925,9 @@ pub mod aar {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -50605,7 +49996,9 @@ pub mod aar {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -50674,7 +50067,9 @@ pub mod aar {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -50695,10 +50090,8 @@ pub mod aar {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -50741,10 +50134,8 @@ pub mod aar {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -51035,7 +50426,9 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -51104,7 +50497,9 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -51173,7 +50568,9 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -51242,7 +50639,9 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -51263,10 +50662,8 @@ pub mod ccm {
         #[doc = "Possible values of the field `ENDKSGEN_CRYPT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDKSGEN_CRYPTR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl ENDKSGEN_CRYPTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -51309,10 +50706,8 @@ pub mod ccm {
         }
         #[doc = "Values that can be written to the field `ENDKSGEN_CRYPT`"]
         pub enum ENDKSGEN_CRYPTW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl ENDKSGEN_CRYPTW {
             #[allow(missing_docs)]
@@ -51430,7 +50825,9 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -51451,10 +50848,8 @@ pub mod ccm {
         #[doc = "Possible values of the field `ENDKSGEN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDKSGENR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDKSGENR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -51498,10 +50893,8 @@ pub mod ccm {
         #[doc = "Possible values of the field `ENDCRYPT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDCRYPTR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDCRYPTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -51545,10 +50938,8 @@ pub mod ccm {
         #[doc = "Possible values of the field `ERROR`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ERRORR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ERRORR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -51591,8 +50982,7 @@ pub mod ccm {
         }
         #[doc = "Values that can be written to the field `ENDKSGEN`"]
         pub enum ENDKSGENW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ENDKSGENW {
             #[allow(missing_docs)]
@@ -51641,8 +51031,7 @@ pub mod ccm {
         }
         #[doc = "Values that can be written to the field `ENDCRYPT`"]
         pub enum ENDCRYPTW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ENDCRYPTW {
             #[allow(missing_docs)]
@@ -51691,8 +51080,7 @@ pub mod ccm {
         }
         #[doc = "Values that can be written to the field `ERROR`"]
         pub enum ERRORW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ERRORW {
             #[allow(missing_docs)]
@@ -51832,7 +51220,9 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -51853,10 +51243,8 @@ pub mod ccm {
         #[doc = "Possible values of the field `ENDKSGEN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDKSGENR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDKSGENR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -51900,10 +51288,8 @@ pub mod ccm {
         #[doc = "Possible values of the field `ENDCRYPT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENDCRYPTR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ENDCRYPTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -51947,10 +51333,8 @@ pub mod ccm {
         #[doc = "Possible values of the field `ERROR`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ERRORR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ERRORR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -51993,8 +51377,7 @@ pub mod ccm {
         }
         #[doc = "Values that can be written to the field `ENDKSGEN`"]
         pub enum ENDKSGENW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ENDKSGENW {
             #[allow(missing_docs)]
@@ -52043,8 +51426,7 @@ pub mod ccm {
         }
         #[doc = "Values that can be written to the field `ENDCRYPT`"]
         pub enum ENDCRYPTW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ENDCRYPTW {
             #[allow(missing_docs)]
@@ -52093,8 +51475,7 @@ pub mod ccm {
         }
         #[doc = "Values that can be written to the field `ERROR`"]
         pub enum ERRORW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ERRORW {
             #[allow(missing_docs)]
@@ -52218,16 +51599,16 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `MICSTATUS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum MICSTATUSR {
-            #[doc = "MIC check failed."]
-            CHECKFAILED,
-            #[doc = "MIC check passed."]
-            CHECKPASSED,
+            #[doc = "MIC check failed."] CHECKFAILED,
+            #[doc = "MIC check passed."] CHECKPASSED,
         }
         impl MICSTATUSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -52315,7 +51696,9 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -52336,12 +51719,9 @@ pub mod ccm {
         #[doc = "Possible values of the field `ENABLE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENABLER {
-            #[doc = "CCM is disabled."]
-            DISABLED,
-            #[doc = "CCM is enabled."]
-            ENABLED,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "CCM is disabled."] DISABLED,
+            #[doc = "CCM is enabled."] ENABLED,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl ENABLER {
             #[doc = r" Value of the field as raw bits"]
@@ -52376,10 +51756,8 @@ pub mod ccm {
         }
         #[doc = "Values that can be written to the field `ENABLE`"]
         pub enum ENABLEW {
-            #[doc = "CCM is disabled."]
-            DISABLED,
-            #[doc = "CCM is enabled."]
-            ENABLED,
+            #[doc = "CCM is disabled."] DISABLED,
+            #[doc = "CCM is enabled."] ENABLED,
         }
         impl ENABLEW {
             #[allow(missing_docs)]
@@ -52487,7 +51865,9 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -52508,10 +51888,8 @@ pub mod ccm {
         #[doc = "Possible values of the field `MODE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum MODER {
-            #[doc = "CCM mode TX"]
-            ENCRYPTION,
-            #[doc = "CCM mode TX"]
-            DECRYPTION,
+            #[doc = "CCM mode TX"] ENCRYPTION,
+            #[doc = "CCM mode TX"] DECRYPTION,
         }
         impl MODER {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -52554,10 +51932,8 @@ pub mod ccm {
         }
         #[doc = "Values that can be written to the field `MODE`"]
         pub enum MODEW {
-            #[doc = "CCM mode TX"]
-            ENCRYPTION,
-            #[doc = "CCM mode TX"]
-            DECRYPTION,
+            #[doc = "CCM mode TX"] ENCRYPTION,
+            #[doc = "CCM mode TX"] DECRYPTION,
         }
         impl MODEW {
             #[allow(missing_docs)]
@@ -52675,7 +52051,9 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -52744,7 +52122,9 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -52813,7 +52193,9 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -52882,7 +52264,9 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -52951,7 +52335,9 @@ pub mod ccm {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -52972,10 +52358,8 @@ pub mod ccm {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -53018,10 +52402,8 @@ pub mod ccm {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -53228,7 +52610,9 @@ pub mod wdt {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -53297,7 +52681,9 @@ pub mod wdt {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -53318,10 +52704,8 @@ pub mod wdt {
         #[doc = "Possible values of the field `TIMEOUT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum TIMEOUTR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl TIMEOUTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -53364,8 +52748,7 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `TIMEOUT`"]
         pub enum TIMEOUTW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl TIMEOUTW {
             #[allow(missing_docs)]
@@ -53477,7 +52860,9 @@ pub mod wdt {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -53498,10 +52883,8 @@ pub mod wdt {
         #[doc = "Possible values of the field `TIMEOUT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum TIMEOUTR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl TIMEOUTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -53544,8 +52927,7 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `TIMEOUT`"]
         pub enum TIMEOUTW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl TIMEOUTW {
             #[allow(missing_docs)]
@@ -53641,16 +53023,16 @@ pub mod wdt {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `RUNSTATUS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RUNSTATUSR {
-            #[doc = "Watchdog timer is not running."]
-            NOTRUNNING,
-            #[doc = "Watchdog timer is running."]
-            RUNNING,
+            #[doc = "Watchdog timer is not running."] NOTRUNNING,
+            #[doc = "Watchdog timer is running."] RUNNING,
         }
         impl RUNSTATUSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -53722,7 +53104,9 @@ pub mod wdt {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `RR0`"]
@@ -53730,8 +53114,7 @@ pub mod wdt {
         pub enum RR0R {
             #[doc = "RR[0] register is not enabled or has already requested reload."]
             DISABLEDORREQUESTED,
-            #[doc = "RR[0] register is enabled and has not jet requested."]
-            ENABLEDANDUNREQUESTED,
+            #[doc = "RR[0] register is enabled and has not jet requested."] ENABLEDANDUNREQUESTED,
         }
         impl RR0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -53777,8 +53160,7 @@ pub mod wdt {
         pub enum RR1R {
             #[doc = "RR[1] register is not enabled or has already requested reload."]
             DISABLEDORREQUESTED,
-            #[doc = "RR[1] register is enabled and has not jet requested."]
-            ENABLEDANDUNREQUESTED,
+            #[doc = "RR[1] register is enabled and has not jet requested."] ENABLEDANDUNREQUESTED,
         }
         impl RR1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -53824,8 +53206,7 @@ pub mod wdt {
         pub enum RR2R {
             #[doc = "RR[2] register is not enabled or has already requested reload."]
             DISABLEDORREQUESTED,
-            #[doc = "RR[2] register is enabled and has not jet requested."]
-            ENABLEDANDUNREQUESTED,
+            #[doc = "RR[2] register is enabled and has not jet requested."] ENABLEDANDUNREQUESTED,
         }
         impl RR2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -53871,8 +53252,7 @@ pub mod wdt {
         pub enum RR3R {
             #[doc = "RR[3] register is not enabled or has already requested reload."]
             DISABLEDORREQUESTED,
-            #[doc = "RR[3] register is enabled and has not jet requested."]
-            ENABLEDANDUNREQUESTED,
+            #[doc = "RR[3] register is enabled and has not jet requested."] ENABLEDANDUNREQUESTED,
         }
         impl RR3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -53918,8 +53298,7 @@ pub mod wdt {
         pub enum RR4R {
             #[doc = "RR[4] register is not enabled or has already requested reload."]
             DISABLEDORREQUESTED,
-            #[doc = "RR[4] register is enabled and has not jet requested."]
-            ENABLEDANDUNREQUESTED,
+            #[doc = "RR[4] register is enabled and has not jet requested."] ENABLEDANDUNREQUESTED,
         }
         impl RR4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -53965,8 +53344,7 @@ pub mod wdt {
         pub enum RR5R {
             #[doc = "RR[5] register is not enabled or has already requested reload."]
             DISABLEDORREQUESTED,
-            #[doc = "RR[5] register is enabled and has not jet requested."]
-            ENABLEDANDUNREQUESTED,
+            #[doc = "RR[5] register is enabled and has not jet requested."] ENABLEDANDUNREQUESTED,
         }
         impl RR5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -54012,8 +53390,7 @@ pub mod wdt {
         pub enum RR6R {
             #[doc = "RR[6] register is not enabled or has already requested reload."]
             DISABLEDORREQUESTED,
-            #[doc = "RR[6] register is enabled and has not jet requested."]
-            ENABLEDANDUNREQUESTED,
+            #[doc = "RR[6] register is enabled and has not jet requested."] ENABLEDANDUNREQUESTED,
         }
         impl RR6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -54059,8 +53436,7 @@ pub mod wdt {
         pub enum RR7R {
             #[doc = "RR[7] register is not enabled or has already requested reload."]
             DISABLEDORREQUESTED,
-            #[doc = "RR[7] register is enabled and has not jet requested."]
-            ENABLEDANDUNREQUESTED,
+            #[doc = "RR[7] register is enabled and has not jet requested."] ENABLEDANDUNREQUESTED,
         }
         impl RR7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -54211,7 +53587,9 @@ pub mod wdt {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -54280,7 +53658,9 @@ pub mod wdt {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -54301,10 +53681,8 @@ pub mod wdt {
         #[doc = "Possible values of the field `RR0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RR0R {
-            #[doc = "RR[0] register is disabled."]
-            DISABLED,
-            #[doc = "RR[0] register is enabled."]
-            ENABLED,
+            #[doc = "RR[0] register is disabled."] DISABLED,
+            #[doc = "RR[0] register is enabled."] ENABLED,
         }
         impl RR0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -54348,10 +53726,8 @@ pub mod wdt {
         #[doc = "Possible values of the field `RR1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RR1R {
-            #[doc = "RR[1] register is disabled."]
-            DISABLED,
-            #[doc = "RR[1] register is enabled."]
-            ENABLED,
+            #[doc = "RR[1] register is disabled."] DISABLED,
+            #[doc = "RR[1] register is enabled."] ENABLED,
         }
         impl RR1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -54395,10 +53771,8 @@ pub mod wdt {
         #[doc = "Possible values of the field `RR2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RR2R {
-            #[doc = "RR[2] register is disabled."]
-            DISABLED,
-            #[doc = "RR[2] register is enabled."]
-            ENABLED,
+            #[doc = "RR[2] register is disabled."] DISABLED,
+            #[doc = "RR[2] register is enabled."] ENABLED,
         }
         impl RR2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -54442,10 +53816,8 @@ pub mod wdt {
         #[doc = "Possible values of the field `RR3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RR3R {
-            #[doc = "RR[3] register is disabled."]
-            DISABLED,
-            #[doc = "RR[3] register is enabled."]
-            ENABLED,
+            #[doc = "RR[3] register is disabled."] DISABLED,
+            #[doc = "RR[3] register is enabled."] ENABLED,
         }
         impl RR3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -54489,10 +53861,8 @@ pub mod wdt {
         #[doc = "Possible values of the field `RR4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RR4R {
-            #[doc = "RR[4] register is disabled."]
-            DISABLED,
-            #[doc = "RR[4] register is enabled."]
-            ENABLED,
+            #[doc = "RR[4] register is disabled."] DISABLED,
+            #[doc = "RR[4] register is enabled."] ENABLED,
         }
         impl RR4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -54536,10 +53906,8 @@ pub mod wdt {
         #[doc = "Possible values of the field `RR5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RR5R {
-            #[doc = "RR[5] register is disabled."]
-            DISABLED,
-            #[doc = "RR[5] register is enabled."]
-            ENABLED,
+            #[doc = "RR[5] register is disabled."] DISABLED,
+            #[doc = "RR[5] register is enabled."] ENABLED,
         }
         impl RR5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -54583,10 +53951,8 @@ pub mod wdt {
         #[doc = "Possible values of the field `RR6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RR6R {
-            #[doc = "RR[6] register is disabled."]
-            DISABLED,
-            #[doc = "RR[6] register is enabled."]
-            ENABLED,
+            #[doc = "RR[6] register is disabled."] DISABLED,
+            #[doc = "RR[6] register is enabled."] ENABLED,
         }
         impl RR6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -54630,10 +53996,8 @@ pub mod wdt {
         #[doc = "Possible values of the field `RR7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RR7R {
-            #[doc = "RR[7] register is disabled."]
-            DISABLED,
-            #[doc = "RR[7] register is enabled."]
-            ENABLED,
+            #[doc = "RR[7] register is disabled."] DISABLED,
+            #[doc = "RR[7] register is enabled."] ENABLED,
         }
         impl RR7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -54676,10 +54040,8 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `RR0`"]
         pub enum RR0W {
-            #[doc = "RR[0] register is disabled."]
-            DISABLED,
-            #[doc = "RR[0] register is enabled."]
-            ENABLED,
+            #[doc = "RR[0] register is disabled."] DISABLED,
+            #[doc = "RR[0] register is enabled."] ENABLED,
         }
         impl RR0W {
             #[allow(missing_docs)]
@@ -54734,10 +54096,8 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `RR1`"]
         pub enum RR1W {
-            #[doc = "RR[1] register is disabled."]
-            DISABLED,
-            #[doc = "RR[1] register is enabled."]
-            ENABLED,
+            #[doc = "RR[1] register is disabled."] DISABLED,
+            #[doc = "RR[1] register is enabled."] ENABLED,
         }
         impl RR1W {
             #[allow(missing_docs)]
@@ -54792,10 +54152,8 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `RR2`"]
         pub enum RR2W {
-            #[doc = "RR[2] register is disabled."]
-            DISABLED,
-            #[doc = "RR[2] register is enabled."]
-            ENABLED,
+            #[doc = "RR[2] register is disabled."] DISABLED,
+            #[doc = "RR[2] register is enabled."] ENABLED,
         }
         impl RR2W {
             #[allow(missing_docs)]
@@ -54850,10 +54208,8 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `RR3`"]
         pub enum RR3W {
-            #[doc = "RR[3] register is disabled."]
-            DISABLED,
-            #[doc = "RR[3] register is enabled."]
-            ENABLED,
+            #[doc = "RR[3] register is disabled."] DISABLED,
+            #[doc = "RR[3] register is enabled."] ENABLED,
         }
         impl RR3W {
             #[allow(missing_docs)]
@@ -54908,10 +54264,8 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `RR4`"]
         pub enum RR4W {
-            #[doc = "RR[4] register is disabled."]
-            DISABLED,
-            #[doc = "RR[4] register is enabled."]
-            ENABLED,
+            #[doc = "RR[4] register is disabled."] DISABLED,
+            #[doc = "RR[4] register is enabled."] ENABLED,
         }
         impl RR4W {
             #[allow(missing_docs)]
@@ -54966,10 +54320,8 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `RR5`"]
         pub enum RR5W {
-            #[doc = "RR[5] register is disabled."]
-            DISABLED,
-            #[doc = "RR[5] register is enabled."]
-            ENABLED,
+            #[doc = "RR[5] register is disabled."] DISABLED,
+            #[doc = "RR[5] register is enabled."] ENABLED,
         }
         impl RR5W {
             #[allow(missing_docs)]
@@ -55024,10 +54376,8 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `RR6`"]
         pub enum RR6W {
-            #[doc = "RR[6] register is disabled."]
-            DISABLED,
-            #[doc = "RR[6] register is enabled."]
-            ENABLED,
+            #[doc = "RR[6] register is disabled."] DISABLED,
+            #[doc = "RR[6] register is enabled."] ENABLED,
         }
         impl RR6W {
             #[allow(missing_docs)]
@@ -55082,10 +54432,8 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `RR7`"]
         pub enum RR7W {
-            #[doc = "RR[7] register is disabled."]
-            DISABLED,
-            #[doc = "RR[7] register is enabled."]
-            ENABLED,
+            #[doc = "RR[7] register is disabled."] DISABLED,
+            #[doc = "RR[7] register is enabled."] ENABLED,
         }
         impl RR7W {
             #[allow(missing_docs)]
@@ -55301,7 +54649,9 @@ pub mod wdt {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -55322,10 +54672,8 @@ pub mod wdt {
         #[doc = "Possible values of the field `SLEEP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum SLEEPR {
-            #[doc = "Pause watchdog while the CPU is asleep."]
-            PAUSE,
-            #[doc = "Do not pause watchdog while the CPU is asleep."]
-            RUN,
+            #[doc = "Pause watchdog while the CPU is asleep."] PAUSE,
+            #[doc = "Do not pause watchdog while the CPU is asleep."] RUN,
         }
         impl SLEEPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -55369,10 +54717,8 @@ pub mod wdt {
         #[doc = "Possible values of the field `HALT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum HALTR {
-            #[doc = "Pause watchdog while the CPU is halted by the debugger."]
-            PAUSE,
-            #[doc = "Do not pause watchdog while the CPU is halted by the debugger."]
-            RUN,
+            #[doc = "Pause watchdog while the CPU is halted by the debugger."] PAUSE,
+            #[doc = "Do not pause watchdog while the CPU is halted by the debugger."] RUN,
         }
         impl HALTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -55415,10 +54761,8 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `SLEEP`"]
         pub enum SLEEPW {
-            #[doc = "Pause watchdog while the CPU is asleep."]
-            PAUSE,
-            #[doc = "Do not pause watchdog while the CPU is asleep."]
-            RUN,
+            #[doc = "Pause watchdog while the CPU is asleep."] PAUSE,
+            #[doc = "Do not pause watchdog while the CPU is asleep."] RUN,
         }
         impl SLEEPW {
             #[allow(missing_docs)]
@@ -55473,10 +54817,8 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `HALT`"]
         pub enum HALTW {
-            #[doc = "Pause watchdog while the CPU is halted by the debugger."]
-            PAUSE,
-            #[doc = "Do not pause watchdog while the CPU is halted by the debugger."]
-            RUN,
+            #[doc = "Pause watchdog while the CPU is halted by the debugger."] PAUSE,
+            #[doc = "Do not pause watchdog while the CPU is halted by the debugger."] RUN,
         }
         impl HALTW {
             #[allow(missing_docs)]
@@ -55602,8 +54944,7 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `RR`"]
         pub enum RRW {
-            #[doc = "Value to request a reload of the watchdog timer."]
-            RELOAD,
+            #[doc = "Value to request a reload of the watchdog timer."] RELOAD,
         }
         impl RRW {
             #[allow(missing_docs)]
@@ -55689,7 +55030,9 @@ pub mod wdt {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -55710,10 +55053,8 @@ pub mod wdt {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -55756,10 +55097,8 @@ pub mod wdt {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -56081,7 +55420,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -56150,7 +55491,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -56219,7 +55562,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -56288,7 +55633,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -56309,10 +55656,8 @@ pub mod qdec {
         #[doc = "Possible values of the field `REPORTRDY_READCLRACC`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum REPORTRDY_READCLRACCR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl REPORTRDY_READCLRACCR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -56356,10 +55701,8 @@ pub mod qdec {
         #[doc = "Possible values of the field `SAMPLERDY_STOP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum SAMPLERDY_STOPR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl SAMPLERDY_STOPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -56402,10 +55745,8 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `REPORTRDY_READCLRACC`"]
         pub enum REPORTRDY_READCLRACCW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl REPORTRDY_READCLRACCW {
             #[allow(missing_docs)]
@@ -56460,10 +55801,8 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `SAMPLERDY_STOP`"]
         pub enum SAMPLERDY_STOPW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl SAMPLERDY_STOPW {
             #[allow(missing_docs)]
@@ -56595,7 +55934,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -56616,10 +55957,8 @@ pub mod qdec {
         #[doc = "Possible values of the field `SAMPLERDY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum SAMPLERDYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl SAMPLERDYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -56663,10 +56002,8 @@ pub mod qdec {
         #[doc = "Possible values of the field `REPORTRDY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum REPORTRDYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl REPORTRDYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -56710,10 +56047,8 @@ pub mod qdec {
         #[doc = "Possible values of the field `ACCOF`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ACCOFR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ACCOFR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -56756,8 +56091,7 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `SAMPLERDY`"]
         pub enum SAMPLERDYW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl SAMPLERDYW {
             #[allow(missing_docs)]
@@ -56806,8 +56140,7 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `REPORTRDY`"]
         pub enum REPORTRDYW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl REPORTRDYW {
             #[allow(missing_docs)]
@@ -56856,8 +56189,7 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `ACCOF`"]
         pub enum ACCOFW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl ACCOFW {
             #[allow(missing_docs)]
@@ -56997,7 +56329,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -57018,10 +56352,8 @@ pub mod qdec {
         #[doc = "Possible values of the field `SAMPLERDY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum SAMPLERDYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl SAMPLERDYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -57065,10 +56397,8 @@ pub mod qdec {
         #[doc = "Possible values of the field `REPORTRDY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum REPORTRDYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl REPORTRDYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -57112,10 +56442,8 @@ pub mod qdec {
         #[doc = "Possible values of the field `ACCOF`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ACCOFR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl ACCOFR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -57158,8 +56486,7 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `SAMPLERDY`"]
         pub enum SAMPLERDYW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl SAMPLERDYW {
             #[allow(missing_docs)]
@@ -57208,8 +56535,7 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `REPORTRDY`"]
         pub enum REPORTRDYW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl REPORTRDYW {
             #[allow(missing_docs)]
@@ -57258,8 +56584,7 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `ACCOF`"]
         pub enum ACCOFW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl ACCOFW {
             #[allow(missing_docs)]
@@ -57399,7 +56724,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -57420,10 +56747,8 @@ pub mod qdec {
         #[doc = "Possible values of the field `ENABLE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENABLER {
-            #[doc = "Disabled QDEC."]
-            DISABLED,
-            #[doc = "Enable QDEC."]
-            ENABLED,
+            #[doc = "Disabled QDEC."] DISABLED,
+            #[doc = "Enable QDEC."] ENABLED,
         }
         impl ENABLER {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -57466,10 +56791,8 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `ENABLE`"]
         pub enum ENABLEW {
-            #[doc = "Disabled QDEC."]
-            DISABLED,
-            #[doc = "Enable QDEC."]
-            ENABLED,
+            #[doc = "Disabled QDEC."] DISABLED,
+            #[doc = "Enable QDEC."] ENABLED,
         }
         impl ENABLEW {
             #[allow(missing_docs)]
@@ -57587,7 +56910,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -57608,10 +56933,8 @@ pub mod qdec {
         #[doc = "Possible values of the field `LEDPOL`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum LEDPOLR {
-            #[doc = "LED output is active low."]
-            ACTIVELOW,
-            #[doc = "LED output is active high."]
-            ACTIVEHIGH,
+            #[doc = "LED output is active low."] ACTIVELOW,
+            #[doc = "LED output is active high."] ACTIVEHIGH,
         }
         impl LEDPOLR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -57654,10 +56977,8 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `LEDPOL`"]
         pub enum LEDPOLW {
-            #[doc = "LED output is active low."]
-            ACTIVELOW,
-            #[doc = "LED output is active high."]
-            ACTIVEHIGH,
+            #[doc = "LED output is active low."] ACTIVELOW,
+            #[doc = "LED output is active high."] ACTIVEHIGH,
         }
         impl LEDPOLW {
             #[allow(missing_docs)]
@@ -57775,7 +57096,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -57796,22 +57119,14 @@ pub mod qdec {
         #[doc = "Possible values of the field `SAMPLEPER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum SAMPLEPERR {
-            #[doc = "128us sample period."]
-            _128US,
-            #[doc = "256us sample period."]
-            _256US,
-            #[doc = "512us sample period."]
-            _512US,
-            #[doc = "1024us sample period."]
-            _1024US,
-            #[doc = "2048us sample period."]
-            _2048US,
-            #[doc = "4096us sample period."]
-            _4096US,
-            #[doc = "8192us sample period."]
-            _8192US,
-            #[doc = "16384us sample period."]
-            _16384US,
+            #[doc = "128us sample period."] _128US,
+            #[doc = "256us sample period."] _256US,
+            #[doc = "512us sample period."] _512US,
+            #[doc = "1024us sample period."] _1024US,
+            #[doc = "2048us sample period."] _2048US,
+            #[doc = "4096us sample period."] _4096US,
+            #[doc = "8192us sample period."] _8192US,
+            #[doc = "16384us sample period."] _16384US,
         }
         impl SAMPLEPERR {
             #[doc = r" Value of the field as raw bits"]
@@ -57887,22 +57202,14 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `SAMPLEPER`"]
         pub enum SAMPLEPERW {
-            #[doc = "128us sample period."]
-            _128US,
-            #[doc = "256us sample period."]
-            _256US,
-            #[doc = "512us sample period."]
-            _512US,
-            #[doc = "1024us sample period."]
-            _1024US,
-            #[doc = "2048us sample period."]
-            _2048US,
-            #[doc = "4096us sample period."]
-            _4096US,
-            #[doc = "8192us sample period."]
-            _8192US,
-            #[doc = "16384us sample period."]
-            _16384US,
+            #[doc = "128us sample period."] _128US,
+            #[doc = "256us sample period."] _256US,
+            #[doc = "512us sample period."] _512US,
+            #[doc = "1024us sample period."] _1024US,
+            #[doc = "2048us sample period."] _2048US,
+            #[doc = "4096us sample period."] _4096US,
+            #[doc = "8192us sample period."] _8192US,
+            #[doc = "16384us sample period."] _16384US,
         }
         impl SAMPLEPERW {
             #[allow(missing_docs)]
@@ -58032,7 +57339,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -58094,7 +57403,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -58115,22 +57426,14 @@ pub mod qdec {
         #[doc = "Possible values of the field `REPORTPER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum REPORTPERR {
-            #[doc = "10 samples per report."]
-            _10SMPL,
-            #[doc = "40 samples per report."]
-            _40SMPL,
-            #[doc = "80 samples per report."]
-            _80SMPL,
-            #[doc = "120 samples per report."]
-            _120SMPL,
-            #[doc = "160 samples per report."]
-            _160SMPL,
-            #[doc = "200 samples per report."]
-            _200SMPL,
-            #[doc = "240 samples per report."]
-            _240SMPL,
-            #[doc = "280 samples per report."]
-            _280SMPL,
+            #[doc = "10 samples per report."] _10SMPL,
+            #[doc = "40 samples per report."] _40SMPL,
+            #[doc = "80 samples per report."] _80SMPL,
+            #[doc = "120 samples per report."] _120SMPL,
+            #[doc = "160 samples per report."] _160SMPL,
+            #[doc = "200 samples per report."] _200SMPL,
+            #[doc = "240 samples per report."] _240SMPL,
+            #[doc = "280 samples per report."] _280SMPL,
         }
         impl REPORTPERR {
             #[doc = r" Value of the field as raw bits"]
@@ -58206,22 +57509,14 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `REPORTPER`"]
         pub enum REPORTPERW {
-            #[doc = "10 samples per report."]
-            _10SMPL,
-            #[doc = "40 samples per report."]
-            _40SMPL,
-            #[doc = "80 samples per report."]
-            _80SMPL,
-            #[doc = "120 samples per report."]
-            _120SMPL,
-            #[doc = "160 samples per report."]
-            _160SMPL,
-            #[doc = "200 samples per report."]
-            _200SMPL,
-            #[doc = "240 samples per report."]
-            _240SMPL,
-            #[doc = "280 samples per report."]
-            _280SMPL,
+            #[doc = "10 samples per report."] _10SMPL,
+            #[doc = "40 samples per report."] _40SMPL,
+            #[doc = "80 samples per report."] _80SMPL,
+            #[doc = "120 samples per report."] _120SMPL,
+            #[doc = "160 samples per report."] _160SMPL,
+            #[doc = "200 samples per report."] _200SMPL,
+            #[doc = "240 samples per report."] _240SMPL,
+            #[doc = "280 samples per report."] _280SMPL,
         }
         impl REPORTPERW {
             #[allow(missing_docs)]
@@ -58351,7 +57646,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         impl R {
@@ -58376,7 +57673,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         impl R {
@@ -58417,7 +57716,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -58486,7 +57787,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -58555,7 +57858,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -58624,7 +57929,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -58645,10 +57952,8 @@ pub mod qdec {
         #[doc = "Possible values of the field `DBFEN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DBFENR {
-            #[doc = "Debounce input filters disabled."]
-            DISABLED,
-            #[doc = "Debounce input filters enabled."]
-            ENABLED,
+            #[doc = "Debounce input filters disabled."] DISABLED,
+            #[doc = "Debounce input filters enabled."] ENABLED,
         }
         impl DBFENR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -58691,10 +57996,8 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `DBFEN`"]
         pub enum DBFENW {
-            #[doc = "Debounce input filters disabled."]
-            DISABLED,
-            #[doc = "Debounce input filters enabled."]
-            ENABLED,
+            #[doc = "Debounce input filters disabled."] DISABLED,
+            #[doc = "Debounce input filters enabled."] ENABLED,
         }
         impl DBFENW {
             #[allow(missing_docs)]
@@ -58812,7 +58115,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -58906,7 +58211,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -58952,7 +58259,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -59014,7 +58323,9 @@ pub mod qdec {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -59035,10 +58346,8 @@ pub mod qdec {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -59081,10 +58390,8 @@ pub mod qdec {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -59376,7 +58683,9 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -59445,7 +58754,9 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -59514,7 +58825,9 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -59583,7 +58896,9 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -59652,7 +58967,9 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -59673,10 +58990,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `READY_SAMPLE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum READY_SAMPLER {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl READY_SAMPLER {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -59720,10 +59035,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `READY_STOP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum READY_STOPR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl READY_STOPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -59767,10 +59080,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `DOWN_STOP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DOWN_STOPR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl DOWN_STOPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -59814,10 +59125,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `UP_STOP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum UP_STOPR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl UP_STOPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -59861,10 +59170,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `CROSS_STOP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CROSS_STOPR {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl CROSS_STOPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -59907,10 +59214,8 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `READY_SAMPLE`"]
         pub enum READY_SAMPLEW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl READY_SAMPLEW {
             #[allow(missing_docs)]
@@ -59965,10 +59270,8 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `READY_STOP`"]
         pub enum READY_STOPW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl READY_STOPW {
             #[allow(missing_docs)]
@@ -60023,10 +59326,8 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `DOWN_STOP`"]
         pub enum DOWN_STOPW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl DOWN_STOPW {
             #[allow(missing_docs)]
@@ -60081,10 +59382,8 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `UP_STOP`"]
         pub enum UP_STOPW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl UP_STOPW {
             #[allow(missing_docs)]
@@ -60139,10 +59438,8 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `CROSS_STOP`"]
         pub enum CROSS_STOPW {
-            #[doc = "Shortcut disabled."]
-            DISABLED,
-            #[doc = "Shortcut enabled."]
-            ENABLED,
+            #[doc = "Shortcut disabled."] DISABLED,
+            #[doc = "Shortcut enabled."] ENABLED,
         }
         impl CROSS_STOPW {
             #[allow(missing_docs)]
@@ -60316,7 +59613,9 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -60337,10 +59636,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `READY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum READYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl READYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -60384,10 +59681,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `DOWN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DOWNR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl DOWNR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -60431,10 +59726,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `UP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum UPR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl UPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -60478,10 +59771,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `CROSS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CROSSR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl CROSSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -60524,8 +59815,7 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `READY`"]
         pub enum READYW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl READYW {
             #[allow(missing_docs)]
@@ -60574,8 +59864,7 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `DOWN`"]
         pub enum DOWNW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl DOWNW {
             #[allow(missing_docs)]
@@ -60624,8 +59913,7 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `UP`"]
         pub enum UPW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl UPW {
             #[allow(missing_docs)]
@@ -60674,8 +59962,7 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `CROSS`"]
         pub enum CROSSW {
-            #[doc = "Enable interrupt on write."]
-            SET,
+            #[doc = "Enable interrupt on write."] SET,
         }
         impl CROSSW {
             #[allow(missing_docs)]
@@ -60829,7 +60116,9 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -60850,10 +60139,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `READY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum READYR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl READYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -60897,10 +60184,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `DOWN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DOWNR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl DOWNR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -60944,10 +60229,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `UP`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum UPR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl UPR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -60991,10 +60274,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `CROSS`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CROSSR {
-            #[doc = "Interrupt disabled."]
-            DISABLED,
-            #[doc = "Interrupt enabled."]
-            ENABLED,
+            #[doc = "Interrupt disabled."] DISABLED,
+            #[doc = "Interrupt enabled."] ENABLED,
         }
         impl CROSSR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -61037,8 +60318,7 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `READY`"]
         pub enum READYW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl READYW {
             #[allow(missing_docs)]
@@ -61087,8 +60367,7 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `DOWN`"]
         pub enum DOWNW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl DOWNW {
             #[allow(missing_docs)]
@@ -61137,8 +60416,7 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `UP`"]
         pub enum UPW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl UPW {
             #[allow(missing_docs)]
@@ -61187,8 +60465,7 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `CROSS`"]
         pub enum CROSSW {
-            #[doc = "Disable interrupt on write."]
-            CLEAR,
+            #[doc = "Disable interrupt on write."] CLEAR,
         }
         impl CROSSW {
             #[allow(missing_docs)]
@@ -61326,16 +60603,16 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `RESULT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum RESULTR {
-            #[doc = "Input voltage is bellow the reference threshold."]
-            BELLOW,
-            #[doc = "Input voltage is above the reference threshold."]
-            ABOVE,
+            #[doc = "Input voltage is bellow the reference threshold."] BELLOW,
+            #[doc = "Input voltage is above the reference threshold."] ABOVE,
         }
         impl RESULTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -61423,7 +60700,9 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -61444,12 +60723,9 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `ENABLE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ENABLER {
-            #[doc = "Disabled LPCOMP."]
-            DISABLED,
-            #[doc = "Enable LPCOMP."]
-            ENABLED,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Disabled LPCOMP."] DISABLED,
+            #[doc = "Enable LPCOMP."] ENABLED,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl ENABLER {
             #[doc = r" Value of the field as raw bits"]
@@ -61484,10 +60760,8 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `ENABLE`"]
         pub enum ENABLEW {
-            #[doc = "Disabled LPCOMP."]
-            DISABLED,
-            #[doc = "Enable LPCOMP."]
-            ENABLED,
+            #[doc = "Disabled LPCOMP."] DISABLED,
+            #[doc = "Enable LPCOMP."] ENABLED,
         }
         impl ENABLEW {
             #[allow(missing_docs)]
@@ -61595,7 +60869,9 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -61616,22 +60892,14 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `PSEL`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PSELR {
-            #[doc = "Use analog input 0 as analog input."]
-            ANALOGINPUT0,
-            #[doc = "Use analog input 1 as analog input."]
-            ANALOGINPUT1,
-            #[doc = "Use analog input 2 as analog input."]
-            ANALOGINPUT2,
-            #[doc = "Use analog input 3 as analog input."]
-            ANALOGINPUT3,
-            #[doc = "Use analog input 4 as analog input."]
-            ANALOGINPUT4,
-            #[doc = "Use analog input 5 as analog input."]
-            ANALOGINPUT5,
-            #[doc = "Use analog input 6 as analog input."]
-            ANALOGINPUT6,
-            #[doc = "Use analog input 7 as analog input."]
-            ANALOGINPUT7,
+            #[doc = "Use analog input 0 as analog input."] ANALOGINPUT0,
+            #[doc = "Use analog input 1 as analog input."] ANALOGINPUT1,
+            #[doc = "Use analog input 2 as analog input."] ANALOGINPUT2,
+            #[doc = "Use analog input 3 as analog input."] ANALOGINPUT3,
+            #[doc = "Use analog input 4 as analog input."] ANALOGINPUT4,
+            #[doc = "Use analog input 5 as analog input."] ANALOGINPUT5,
+            #[doc = "Use analog input 6 as analog input."] ANALOGINPUT6,
+            #[doc = "Use analog input 7 as analog input."] ANALOGINPUT7,
         }
         impl PSELR {
             #[doc = r" Value of the field as raw bits"]
@@ -61707,22 +60975,14 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `PSEL`"]
         pub enum PSELW {
-            #[doc = "Use analog input 0 as analog input."]
-            ANALOGINPUT0,
-            #[doc = "Use analog input 1 as analog input."]
-            ANALOGINPUT1,
-            #[doc = "Use analog input 2 as analog input."]
-            ANALOGINPUT2,
-            #[doc = "Use analog input 3 as analog input."]
-            ANALOGINPUT3,
-            #[doc = "Use analog input 4 as analog input."]
-            ANALOGINPUT4,
-            #[doc = "Use analog input 5 as analog input."]
-            ANALOGINPUT5,
-            #[doc = "Use analog input 6 as analog input."]
-            ANALOGINPUT6,
-            #[doc = "Use analog input 7 as analog input."]
-            ANALOGINPUT7,
+            #[doc = "Use analog input 0 as analog input."] ANALOGINPUT0,
+            #[doc = "Use analog input 1 as analog input."] ANALOGINPUT1,
+            #[doc = "Use analog input 2 as analog input."] ANALOGINPUT2,
+            #[doc = "Use analog input 3 as analog input."] ANALOGINPUT3,
+            #[doc = "Use analog input 4 as analog input."] ANALOGINPUT4,
+            #[doc = "Use analog input 5 as analog input."] ANALOGINPUT5,
+            #[doc = "Use analog input 6 as analog input."] ANALOGINPUT6,
+            #[doc = "Use analog input 7 as analog input."] ANALOGINPUT7,
         }
         impl PSELW {
             #[allow(missing_docs)]
@@ -61868,7 +61128,9 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -61889,22 +61151,14 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `REFSEL`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum REFSELR {
-            #[doc = "Use supply with a 1/8 prescaler as reference."]
-            SUPPLYONEEIGHTHPRESCALING,
-            #[doc = "Use supply with a 2/8 prescaler as reference."]
-            SUPPLYTWOEIGHTHSPRESCALING,
-            #[doc = "Use supply with a 3/8 prescaler as reference."]
-            SUPPLYTHREEEIGHTHSPRESCALING,
-            #[doc = "Use supply with a 4/8 prescaler as reference."]
-            SUPPLYFOUREIGHTHSPRESCALING,
-            #[doc = "Use supply with a 5/8 prescaler as reference."]
-            SUPPLYFIVEEIGHTHSPRESCALING,
-            #[doc = "Use supply with a 6/8 prescaler as reference."]
-            SUPPLYSIXEIGHTHSPRESCALING,
-            #[doc = "Use supply with a 7/8 prescaler as reference."]
-            SUPPLYSEVENEIGHTHSPRESCALING,
-            #[doc = "Use external analog reference as reference."]
-            AREF,
+            #[doc = "Use supply with a 1/8 prescaler as reference."] SUPPLYONEEIGHTHPRESCALING,
+            #[doc = "Use supply with a 2/8 prescaler as reference."] SUPPLYTWOEIGHTHSPRESCALING,
+            #[doc = "Use supply with a 3/8 prescaler as reference."] SUPPLYTHREEEIGHTHSPRESCALING,
+            #[doc = "Use supply with a 4/8 prescaler as reference."] SUPPLYFOUREIGHTHSPRESCALING,
+            #[doc = "Use supply with a 5/8 prescaler as reference."] SUPPLYFIVEEIGHTHSPRESCALING,
+            #[doc = "Use supply with a 6/8 prescaler as reference."] SUPPLYSIXEIGHTHSPRESCALING,
+            #[doc = "Use supply with a 7/8 prescaler as reference."] SUPPLYSEVENEIGHTHSPRESCALING,
+            #[doc = "Use external analog reference as reference."] AREF,
         }
         impl REFSELR {
             #[doc = r" Value of the field as raw bits"]
@@ -61980,22 +61234,14 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `REFSEL`"]
         pub enum REFSELW {
-            #[doc = "Use supply with a 1/8 prescaler as reference."]
-            SUPPLYONEEIGHTHPRESCALING,
-            #[doc = "Use supply with a 2/8 prescaler as reference."]
-            SUPPLYTWOEIGHTHSPRESCALING,
-            #[doc = "Use supply with a 3/8 prescaler as reference."]
-            SUPPLYTHREEEIGHTHSPRESCALING,
-            #[doc = "Use supply with a 4/8 prescaler as reference."]
-            SUPPLYFOUREIGHTHSPRESCALING,
-            #[doc = "Use supply with a 5/8 prescaler as reference."]
-            SUPPLYFIVEEIGHTHSPRESCALING,
-            #[doc = "Use supply with a 6/8 prescaler as reference."]
-            SUPPLYSIXEIGHTHSPRESCALING,
-            #[doc = "Use supply with a 7/8 prescaler as reference."]
-            SUPPLYSEVENEIGHTHSPRESCALING,
-            #[doc = "Use external analog reference as reference."]
-            AREF,
+            #[doc = "Use supply with a 1/8 prescaler as reference."] SUPPLYONEEIGHTHPRESCALING,
+            #[doc = "Use supply with a 2/8 prescaler as reference."] SUPPLYTWOEIGHTHSPRESCALING,
+            #[doc = "Use supply with a 3/8 prescaler as reference."] SUPPLYTHREEEIGHTHSPRESCALING,
+            #[doc = "Use supply with a 4/8 prescaler as reference."] SUPPLYFOUREIGHTHSPRESCALING,
+            #[doc = "Use supply with a 5/8 prescaler as reference."] SUPPLYFIVEEIGHTHSPRESCALING,
+            #[doc = "Use supply with a 6/8 prescaler as reference."] SUPPLYSIXEIGHTHSPRESCALING,
+            #[doc = "Use supply with a 7/8 prescaler as reference."] SUPPLYSEVENEIGHTHSPRESCALING,
+            #[doc = "Use external analog reference as reference."] AREF,
         }
         impl REFSELW {
             #[allow(missing_docs)]
@@ -62141,7 +61387,9 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -62162,10 +61410,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `EXTREFSEL`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum EXTREFSELR {
-            #[doc = "Use analog reference 0 as reference."]
-            ANALOGREFERENCE0,
-            #[doc = "Use analog reference 1 as reference."]
-            ANALOGREFERENCE1,
+            #[doc = "Use analog reference 0 as reference."] ANALOGREFERENCE0,
+            #[doc = "Use analog reference 1 as reference."] ANALOGREFERENCE1,
         }
         impl EXTREFSELR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -62208,10 +61454,8 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `EXTREFSEL`"]
         pub enum EXTREFSELW {
-            #[doc = "Use analog reference 0 as reference."]
-            ANALOGREFERENCE0,
-            #[doc = "Use analog reference 1 as reference."]
-            ANALOGREFERENCE1,
+            #[doc = "Use analog reference 0 as reference."] ANALOGREFERENCE0,
+            #[doc = "Use analog reference 1 as reference."] ANALOGREFERENCE1,
         }
         impl EXTREFSELW {
             #[allow(missing_docs)]
@@ -62329,7 +61573,9 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -62350,14 +61596,10 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `ANADETECT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ANADETECTR {
-            #[doc = "Generate ANADETEC on crossing, both upwards and downwards crossing."]
-            CROSS,
-            #[doc = "Generate ANADETEC on upwards crossing only."]
-            UP,
-            #[doc = "Generate ANADETEC on downwards crossing only."]
-            DOWN,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Generate ANADETEC on crossing, both upwards and downwards crossing."] CROSS,
+            #[doc = "Generate ANADETEC on upwards crossing only."] UP,
+            #[doc = "Generate ANADETEC on downwards crossing only."] DOWN,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl ANADETECTR {
             #[doc = r" Value of the field as raw bits"]
@@ -62399,12 +61641,9 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `ANADETECT`"]
         pub enum ANADETECTW {
-            #[doc = "Generate ANADETEC on crossing, both upwards and downwards crossing."]
-            CROSS,
-            #[doc = "Generate ANADETEC on upwards crossing only."]
-            UP,
-            #[doc = "Generate ANADETEC on downwards crossing only."]
-            DOWN,
+            #[doc = "Generate ANADETEC on crossing, both upwards and downwards crossing."] CROSS,
+            #[doc = "Generate ANADETEC on upwards crossing only."] UP,
+            #[doc = "Generate ANADETEC on downwards crossing only."] DOWN,
         }
         impl ANADETECTW {
             #[allow(missing_docs)]
@@ -62518,7 +61757,9 @@ pub mod lpcomp {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -62539,10 +61780,8 @@ pub mod lpcomp {
         #[doc = "Possible values of the field `POWER`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum POWERR {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -62585,10 +61824,8 @@ pub mod lpcomp {
         }
         #[doc = "Values that can be written to the field `POWER`"]
         pub enum POWERW {
-            #[doc = "Module power disabled."]
-            DISABLED,
-            #[doc = "Module power enabled."]
-            ENABLED,
+            #[doc = "Module power disabled."] DISABLED,
+            #[doc = "Module power enabled."] ENABLED,
         }
         impl POWERW {
             #[allow(missing_docs)]
@@ -62717,7 +61954,9 @@ pub mod swi {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         impl R {
@@ -62781,16 +62020,16 @@ pub mod nvmc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `READY`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum READYR {
-            #[doc = "NVMC is busy (on-going write or erase operation)."]
-            BUSY,
-            #[doc = "NVMC is ready."]
-            READY,
+            #[doc = "NVMC is busy (on-going write or erase operation)."] BUSY,
+            #[doc = "NVMC is ready."] READY,
         }
         impl READYR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -62878,7 +62117,9 @@ pub mod nvmc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -62899,14 +62140,10 @@ pub mod nvmc {
         #[doc = "Possible values of the field `WEN`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum WENR {
-            #[doc = "Read only access."]
-            REN,
-            #[doc = "Write enabled."]
-            WEN,
-            #[doc = "Erase enabled."]
-            EEN,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Read only access."] REN,
+            #[doc = "Write enabled."] WEN,
+            #[doc = "Erase enabled."] EEN,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl WENR {
             #[doc = r" Value of the field as raw bits"]
@@ -62948,12 +62185,9 @@ pub mod nvmc {
         }
         #[doc = "Values that can be written to the field `WEN`"]
         pub enum WENW {
-            #[doc = "Read only access."]
-            REN,
-            #[doc = "Write enabled."]
-            WEN,
-            #[doc = "Erase enabled."]
-            EEN,
+            #[doc = "Read only access."] REN,
+            #[doc = "Write enabled."] WEN,
+            #[doc = "Erase enabled."] EEN,
         }
         impl WENW {
             #[allow(missing_docs)]
@@ -63067,7 +62301,9 @@ pub mod nvmc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -63136,7 +62372,9 @@ pub mod nvmc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -63205,7 +62443,9 @@ pub mod nvmc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -63226,10 +62466,8 @@ pub mod nvmc {
         #[doc = "Possible values of the field `ERASEALL`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ERASEALLR {
-            #[doc = "No operation."]
-            NOOPERATION,
-            #[doc = "Start chip erase."]
-            ERASE,
+            #[doc = "No operation."] NOOPERATION,
+            #[doc = "Start chip erase."] ERASE,
         }
         impl ERASEALLR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -63272,10 +62510,8 @@ pub mod nvmc {
         }
         #[doc = "Values that can be written to the field `ERASEALL`"]
         pub enum ERASEALLW {
-            #[doc = "No operation."]
-            NOOPERATION,
-            #[doc = "Start chip erase."]
-            ERASE,
+            #[doc = "No operation."] NOOPERATION,
+            #[doc = "Start chip erase."] ERASE,
         }
         impl ERASEALLW {
             #[allow(missing_docs)]
@@ -63393,7 +62629,9 @@ pub mod nvmc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -63462,7 +62700,9 @@ pub mod nvmc {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -63483,10 +62723,8 @@ pub mod nvmc {
         #[doc = "Possible values of the field `ERASEUICR`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum ERASEUICRR {
-            #[doc = "No operation."]
-            NOOPERATION,
-            #[doc = "Start UICR erase."]
-            ERASE,
+            #[doc = "No operation."] NOOPERATION,
+            #[doc = "Start UICR erase."] ERASE,
         }
         impl ERASEUICRR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -63529,10 +62767,8 @@ pub mod nvmc {
         }
         #[doc = "Values that can be written to the field `ERASEUICR`"]
         pub enum ERASEUICRW {
-            #[doc = "No operation."]
-            NOOPERATION,
-            #[doc = "Start UICR erase."]
-            ERASE,
+            #[doc = "No operation."] NOOPERATION,
+            #[doc = "Start UICR erase."] ERASE,
         }
         impl ERASEUICRW {
             #[allow(missing_docs)]
@@ -63685,7 +62921,9 @@ pub mod ppi {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -63706,10 +62944,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH0R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -63753,10 +62989,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH1R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -63800,10 +63034,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH2R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -63847,10 +63079,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH3R {
-            #[doc = "Channel disabled"]
-            DISABLED,
-            #[doc = "Channel enabled"]
-            ENABLED,
+            #[doc = "Channel disabled"] DISABLED,
+            #[doc = "Channel enabled"] ENABLED,
         }
         impl CH3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -63894,10 +63124,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH4R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -63941,10 +63169,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH5R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -63988,10 +63214,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH6R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64035,10 +63259,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH7R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64082,10 +63304,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH8`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH8R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH8R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64129,10 +63349,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH9`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH9R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH9R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64176,10 +63394,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH10`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH10R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH10R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64223,10 +63439,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH11`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH11R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH11R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64270,10 +63484,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH12`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH12R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH12R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64317,10 +63529,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH13`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH13R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH13R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64364,10 +63574,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH14`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH14R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH14R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64411,10 +63619,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH15`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH15R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH15R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64458,10 +63664,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH20`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH20R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH20R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64505,10 +63709,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH21`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH21R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH21R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64552,10 +63754,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH22`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH22R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH22R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64599,10 +63799,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH23`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH23R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH23R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64646,10 +63844,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH24`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH24R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH24R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64693,10 +63889,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH25`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH25R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH25R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64740,10 +63934,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH26`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH26R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH26R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64787,10 +63979,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH27`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH27R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH27R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64834,10 +64024,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH28`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH28R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH28R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64881,10 +64069,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH29`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH29R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH29R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64928,10 +64114,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH30`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH30R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH30R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -64975,10 +64159,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH31`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH31R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH31R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -65021,10 +64203,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH0`"]
         pub enum CH0W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH0W {
             #[allow(missing_docs)]
@@ -65079,10 +64259,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH1`"]
         pub enum CH1W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH1W {
             #[allow(missing_docs)]
@@ -65137,10 +64315,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH2`"]
         pub enum CH2W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH2W {
             #[allow(missing_docs)]
@@ -65195,10 +64371,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH3`"]
         pub enum CH3W {
-            #[doc = "Channel disabled"]
-            DISABLED,
-            #[doc = "Channel enabled"]
-            ENABLED,
+            #[doc = "Channel disabled"] DISABLED,
+            #[doc = "Channel enabled"] ENABLED,
         }
         impl CH3W {
             #[allow(missing_docs)]
@@ -65253,10 +64427,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH4`"]
         pub enum CH4W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH4W {
             #[allow(missing_docs)]
@@ -65311,10 +64483,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH5`"]
         pub enum CH5W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH5W {
             #[allow(missing_docs)]
@@ -65369,10 +64539,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH6`"]
         pub enum CH6W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH6W {
             #[allow(missing_docs)]
@@ -65427,10 +64595,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH7`"]
         pub enum CH7W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH7W {
             #[allow(missing_docs)]
@@ -65485,10 +64651,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH8`"]
         pub enum CH8W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH8W {
             #[allow(missing_docs)]
@@ -65543,10 +64707,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH9`"]
         pub enum CH9W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH9W {
             #[allow(missing_docs)]
@@ -65601,10 +64763,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH10`"]
         pub enum CH10W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH10W {
             #[allow(missing_docs)]
@@ -65659,10 +64819,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH11`"]
         pub enum CH11W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH11W {
             #[allow(missing_docs)]
@@ -65717,10 +64875,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH12`"]
         pub enum CH12W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH12W {
             #[allow(missing_docs)]
@@ -65775,10 +64931,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH13`"]
         pub enum CH13W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH13W {
             #[allow(missing_docs)]
@@ -65833,10 +64987,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH14`"]
         pub enum CH14W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH14W {
             #[allow(missing_docs)]
@@ -65891,10 +65043,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH15`"]
         pub enum CH15W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH15W {
             #[allow(missing_docs)]
@@ -65949,10 +65099,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH20`"]
         pub enum CH20W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH20W {
             #[allow(missing_docs)]
@@ -66007,10 +65155,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH21`"]
         pub enum CH21W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH21W {
             #[allow(missing_docs)]
@@ -66065,10 +65211,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH22`"]
         pub enum CH22W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH22W {
             #[allow(missing_docs)]
@@ -66123,10 +65267,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH23`"]
         pub enum CH23W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH23W {
             #[allow(missing_docs)]
@@ -66181,10 +65323,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH24`"]
         pub enum CH24W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH24W {
             #[allow(missing_docs)]
@@ -66239,10 +65379,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH25`"]
         pub enum CH25W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH25W {
             #[allow(missing_docs)]
@@ -66297,10 +65435,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH26`"]
         pub enum CH26W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH26W {
             #[allow(missing_docs)]
@@ -66355,10 +65491,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH27`"]
         pub enum CH27W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH27W {
             #[allow(missing_docs)]
@@ -66413,10 +65547,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH28`"]
         pub enum CH28W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH28W {
             #[allow(missing_docs)]
@@ -66471,10 +65603,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH29`"]
         pub enum CH29W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH29W {
             #[allow(missing_docs)]
@@ -66529,10 +65659,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH30`"]
         pub enum CH30W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH30W {
             #[allow(missing_docs)]
@@ -66587,10 +65715,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH31`"]
         pub enum CH31W {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH31W {
             #[allow(missing_docs)]
@@ -67086,7 +66212,9 @@ pub mod ppi {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -67107,10 +66235,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH0R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67154,10 +66280,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH1R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67201,10 +66325,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH2R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67248,10 +66370,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH3R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67295,10 +66415,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH4R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67342,10 +66460,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH5R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67389,10 +66505,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH6R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67436,10 +66550,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH7R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67483,10 +66595,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH8`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH8R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH8R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67530,10 +66640,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH9`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH9R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH9R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67577,10 +66685,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH10`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH10R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH10R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67624,10 +66730,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH11`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH11R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH11R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67671,10 +66775,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH12`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH12R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH12R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67718,10 +66820,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH13`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH13R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH13R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67765,10 +66865,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH14`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH14R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH14R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67812,10 +66910,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH15`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH15R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH15R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67859,10 +66955,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH20`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH20R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH20R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67906,10 +67000,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH21`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH21R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH21R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -67953,10 +67045,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH22`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH22R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH22R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -68000,10 +67090,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH23`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH23R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH23R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -68047,10 +67135,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH24`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH24R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH24R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -68094,10 +67180,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH25`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH25R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH25R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -68141,10 +67225,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH26`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH26R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH26R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -68188,10 +67270,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH27`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH27R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH27R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -68235,10 +67315,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH28`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH28R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH28R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -68282,10 +67360,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH29`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH29R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH29R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -68329,10 +67405,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH30`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH30R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH30R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -68376,10 +67450,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH31`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH31R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH31R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -68422,8 +67494,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH0`"]
         pub enum CH0W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH0W {
             #[allow(missing_docs)]
@@ -68472,8 +67543,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH1`"]
         pub enum CH1W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH1W {
             #[allow(missing_docs)]
@@ -68522,8 +67592,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH2`"]
         pub enum CH2W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH2W {
             #[allow(missing_docs)]
@@ -68572,8 +67641,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH3`"]
         pub enum CH3W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH3W {
             #[allow(missing_docs)]
@@ -68622,8 +67690,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH4`"]
         pub enum CH4W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH4W {
             #[allow(missing_docs)]
@@ -68672,8 +67739,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH5`"]
         pub enum CH5W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH5W {
             #[allow(missing_docs)]
@@ -68722,8 +67788,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH6`"]
         pub enum CH6W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH6W {
             #[allow(missing_docs)]
@@ -68772,8 +67837,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH7`"]
         pub enum CH7W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH7W {
             #[allow(missing_docs)]
@@ -68822,8 +67886,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH8`"]
         pub enum CH8W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH8W {
             #[allow(missing_docs)]
@@ -68872,8 +67935,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH9`"]
         pub enum CH9W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH9W {
             #[allow(missing_docs)]
@@ -68922,8 +67984,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH10`"]
         pub enum CH10W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH10W {
             #[allow(missing_docs)]
@@ -68972,8 +68033,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH11`"]
         pub enum CH11W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH11W {
             #[allow(missing_docs)]
@@ -69022,8 +68082,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH12`"]
         pub enum CH12W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH12W {
             #[allow(missing_docs)]
@@ -69072,8 +68131,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH13`"]
         pub enum CH13W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH13W {
             #[allow(missing_docs)]
@@ -69122,8 +68180,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH14`"]
         pub enum CH14W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH14W {
             #[allow(missing_docs)]
@@ -69172,8 +68229,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH15`"]
         pub enum CH15W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH15W {
             #[allow(missing_docs)]
@@ -69222,8 +68278,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH20`"]
         pub enum CH20W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH20W {
             #[allow(missing_docs)]
@@ -69272,8 +68327,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH21`"]
         pub enum CH21W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH21W {
             #[allow(missing_docs)]
@@ -69322,8 +68376,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH22`"]
         pub enum CH22W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH22W {
             #[allow(missing_docs)]
@@ -69372,8 +68425,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH23`"]
         pub enum CH23W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH23W {
             #[allow(missing_docs)]
@@ -69422,8 +68474,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH24`"]
         pub enum CH24W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH24W {
             #[allow(missing_docs)]
@@ -69472,8 +68523,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH25`"]
         pub enum CH25W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH25W {
             #[allow(missing_docs)]
@@ -69522,8 +68572,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH26`"]
         pub enum CH26W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH26W {
             #[allow(missing_docs)]
@@ -69572,8 +68621,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH27`"]
         pub enum CH27W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH27W {
             #[allow(missing_docs)]
@@ -69622,8 +68670,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH28`"]
         pub enum CH28W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH28W {
             #[allow(missing_docs)]
@@ -69672,8 +68719,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH29`"]
         pub enum CH29W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH29W {
             #[allow(missing_docs)]
@@ -69722,8 +68768,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH30`"]
         pub enum CH30W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH30W {
             #[allow(missing_docs)]
@@ -69772,8 +68817,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH31`"]
         pub enum CH31W {
-            #[doc = "Enable channel on write."]
-            SET,
+            #[doc = "Enable channel on write."] SET,
         }
         impl CH31W {
             #[allow(missing_docs)]
@@ -70263,7 +69307,9 @@ pub mod ppi {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -70284,10 +69330,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH0R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70331,10 +69375,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH1R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70378,10 +69420,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH2R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70425,10 +69465,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH3R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70472,10 +69510,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH4R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70519,10 +69555,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH5R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70566,10 +69600,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH6R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70613,10 +69645,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH7R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70660,10 +69690,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH8`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH8R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH8R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70707,10 +69735,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH9`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH9R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH9R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70754,10 +69780,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH10`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH10R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH10R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70801,10 +69825,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH11`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH11R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH11R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70848,10 +69870,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH12`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH12R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH12R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70895,10 +69915,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH13`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH13R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH13R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70942,10 +69960,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH14`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH14R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH14R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -70989,10 +70005,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH15`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH15R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH15R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -71036,10 +70050,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH20`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH20R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH20R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -71083,10 +70095,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH21`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH21R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH21R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -71130,10 +70140,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH22`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH22R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH22R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -71177,10 +70185,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH23`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH23R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH23R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -71224,10 +70230,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH24`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH24R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH24R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -71271,10 +70275,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH25`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH25R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH25R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -71318,10 +70320,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH26`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH26R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH26R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -71365,10 +70365,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH27`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH27R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH27R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -71412,10 +70410,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH28`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH28R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH28R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -71459,10 +70455,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH29`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH29R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH29R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -71506,10 +70500,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH30`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH30R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH30R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -71553,10 +70545,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH31`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH31R {
-            #[doc = "Channel disabled."]
-            DISABLED,
-            #[doc = "Channel enabled."]
-            ENABLED,
+            #[doc = "Channel disabled."] DISABLED,
+            #[doc = "Channel enabled."] ENABLED,
         }
         impl CH31R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -71599,8 +70589,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH0`"]
         pub enum CH0W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH0W {
             #[allow(missing_docs)]
@@ -71649,8 +70638,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH1`"]
         pub enum CH1W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH1W {
             #[allow(missing_docs)]
@@ -71699,8 +70687,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH2`"]
         pub enum CH2W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH2W {
             #[allow(missing_docs)]
@@ -71749,8 +70736,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH3`"]
         pub enum CH3W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH3W {
             #[allow(missing_docs)]
@@ -71799,8 +70785,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH4`"]
         pub enum CH4W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH4W {
             #[allow(missing_docs)]
@@ -71849,8 +70834,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH5`"]
         pub enum CH5W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH5W {
             #[allow(missing_docs)]
@@ -71899,8 +70883,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH6`"]
         pub enum CH6W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH6W {
             #[allow(missing_docs)]
@@ -71949,8 +70932,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH7`"]
         pub enum CH7W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH7W {
             #[allow(missing_docs)]
@@ -71999,8 +70981,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH8`"]
         pub enum CH8W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH8W {
             #[allow(missing_docs)]
@@ -72049,8 +71030,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH9`"]
         pub enum CH9W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH9W {
             #[allow(missing_docs)]
@@ -72099,8 +71079,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH10`"]
         pub enum CH10W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH10W {
             #[allow(missing_docs)]
@@ -72149,8 +71128,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH11`"]
         pub enum CH11W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH11W {
             #[allow(missing_docs)]
@@ -72199,8 +71177,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH12`"]
         pub enum CH12W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH12W {
             #[allow(missing_docs)]
@@ -72249,8 +71226,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH13`"]
         pub enum CH13W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH13W {
             #[allow(missing_docs)]
@@ -72299,8 +71275,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH14`"]
         pub enum CH14W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH14W {
             #[allow(missing_docs)]
@@ -72349,8 +71324,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH15`"]
         pub enum CH15W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH15W {
             #[allow(missing_docs)]
@@ -72399,8 +71373,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH20`"]
         pub enum CH20W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH20W {
             #[allow(missing_docs)]
@@ -72449,8 +71422,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH21`"]
         pub enum CH21W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH21W {
             #[allow(missing_docs)]
@@ -72499,8 +71471,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH22`"]
         pub enum CH22W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH22W {
             #[allow(missing_docs)]
@@ -72549,8 +71520,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH23`"]
         pub enum CH23W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH23W {
             #[allow(missing_docs)]
@@ -72599,8 +71569,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH24`"]
         pub enum CH24W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH24W {
             #[allow(missing_docs)]
@@ -72649,8 +71618,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH25`"]
         pub enum CH25W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH25W {
             #[allow(missing_docs)]
@@ -72699,8 +71667,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH26`"]
         pub enum CH26W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH26W {
             #[allow(missing_docs)]
@@ -72749,8 +71716,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH27`"]
         pub enum CH27W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH27W {
             #[allow(missing_docs)]
@@ -72799,8 +71765,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH28`"]
         pub enum CH28W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH28W {
             #[allow(missing_docs)]
@@ -72849,8 +71814,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH29`"]
         pub enum CH29W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH29W {
             #[allow(missing_docs)]
@@ -72899,8 +71863,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH30`"]
         pub enum CH30W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH30W {
             #[allow(missing_docs)]
@@ -72949,8 +71912,7 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH31`"]
         pub enum CH31W {
-            #[doc = "Disable channel on write."]
-            CLEAR,
+            #[doc = "Disable channel on write."] CLEAR,
         }
         impl CH31W {
             #[allow(missing_docs)]
@@ -73440,7 +72402,9 @@ pub mod ppi {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -73461,10 +72425,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH0R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -73508,10 +72470,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH1R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -73555,10 +72515,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH2R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -73602,10 +72560,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH3R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -73649,10 +72605,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH4R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -73696,10 +72650,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH5R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -73743,10 +72695,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH6R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -73790,10 +72740,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH7R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -73837,10 +72785,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH8`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH8R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH8R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -73884,10 +72830,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH9`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH9R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH9R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -73931,10 +72875,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH10`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH10R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH10R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -73978,10 +72920,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH11`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH11R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH11R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74025,10 +72965,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH12`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH12R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH12R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74072,10 +73010,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH13`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH13R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH13R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74119,10 +73055,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH14`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH14R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH14R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74166,10 +73100,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH15`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH15R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH15R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74213,10 +73145,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH20`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH20R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH20R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74260,10 +73190,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH21`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH21R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH21R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74307,10 +73235,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH22`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH22R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH22R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74354,10 +73280,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH23`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH23R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH23R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74401,10 +73325,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH24`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH24R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH24R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74448,10 +73370,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH25`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH25R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH25R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74495,10 +73415,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH26`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH26R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH26R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74542,10 +73460,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH27`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH27R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH27R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74589,10 +73505,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH28`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH28R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH28R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74636,10 +73550,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH29`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH29R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH29R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74683,10 +73595,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH30`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH30R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH30R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74730,10 +73640,8 @@ pub mod ppi {
         #[doc = "Possible values of the field `CH31`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum CH31R {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH31R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -74776,10 +73684,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH0`"]
         pub enum CH0W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH0W {
             #[allow(missing_docs)]
@@ -74834,10 +73740,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH1`"]
         pub enum CH1W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH1W {
             #[allow(missing_docs)]
@@ -74892,10 +73796,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH2`"]
         pub enum CH2W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH2W {
             #[allow(missing_docs)]
@@ -74950,10 +73852,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH3`"]
         pub enum CH3W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH3W {
             #[allow(missing_docs)]
@@ -75008,10 +73908,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH4`"]
         pub enum CH4W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH4W {
             #[allow(missing_docs)]
@@ -75066,10 +73964,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH5`"]
         pub enum CH5W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH5W {
             #[allow(missing_docs)]
@@ -75124,10 +74020,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH6`"]
         pub enum CH6W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH6W {
             #[allow(missing_docs)]
@@ -75182,10 +74076,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH7`"]
         pub enum CH7W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH7W {
             #[allow(missing_docs)]
@@ -75240,10 +74132,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH8`"]
         pub enum CH8W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH8W {
             #[allow(missing_docs)]
@@ -75298,10 +74188,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH9`"]
         pub enum CH9W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH9W {
             #[allow(missing_docs)]
@@ -75356,10 +74244,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH10`"]
         pub enum CH10W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH10W {
             #[allow(missing_docs)]
@@ -75414,10 +74300,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH11`"]
         pub enum CH11W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH11W {
             #[allow(missing_docs)]
@@ -75472,10 +74356,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH12`"]
         pub enum CH12W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH12W {
             #[allow(missing_docs)]
@@ -75530,10 +74412,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH13`"]
         pub enum CH13W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH13W {
             #[allow(missing_docs)]
@@ -75588,10 +74468,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH14`"]
         pub enum CH14W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH14W {
             #[allow(missing_docs)]
@@ -75646,10 +74524,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH15`"]
         pub enum CH15W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH15W {
             #[allow(missing_docs)]
@@ -75704,10 +74580,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH20`"]
         pub enum CH20W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH20W {
             #[allow(missing_docs)]
@@ -75762,10 +74636,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH21`"]
         pub enum CH21W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH21W {
             #[allow(missing_docs)]
@@ -75820,10 +74692,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH22`"]
         pub enum CH22W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH22W {
             #[allow(missing_docs)]
@@ -75878,10 +74748,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH23`"]
         pub enum CH23W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH23W {
             #[allow(missing_docs)]
@@ -75936,10 +74804,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH24`"]
         pub enum CH24W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH24W {
             #[allow(missing_docs)]
@@ -75994,10 +74860,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH25`"]
         pub enum CH25W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH25W {
             #[allow(missing_docs)]
@@ -76052,10 +74916,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH26`"]
         pub enum CH26W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH26W {
             #[allow(missing_docs)]
@@ -76110,10 +74972,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH27`"]
         pub enum CH27W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH27W {
             #[allow(missing_docs)]
@@ -76168,10 +75028,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH28`"]
         pub enum CH28W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH28W {
             #[allow(missing_docs)]
@@ -76226,10 +75084,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH29`"]
         pub enum CH29W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH29W {
             #[allow(missing_docs)]
@@ -76284,10 +75140,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH30`"]
         pub enum CH30W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH30W {
             #[allow(missing_docs)]
@@ -76342,10 +75196,8 @@ pub mod ppi {
         }
         #[doc = "Values that can be written to the field `CH31`"]
         pub enum CH31W {
-            #[doc = "Channel excluded."]
-            EXCLUDED,
-            #[doc = "Channel included."]
-            INCLUDED,
+            #[doc = "Channel excluded."] EXCLUDED,
+            #[doc = "Channel included."] INCLUDED,
         }
         impl CH31W {
             #[allow(missing_docs)]
@@ -76902,7 +75754,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -76971,7 +75825,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -77040,7 +75896,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -77109,7 +75967,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -77130,12 +75990,9 @@ pub mod ficr {
         #[doc = "Possible values of the field `PPFC`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PPFCR {
-            #[doc = "Not present."]
-            NOTPRESENT,
-            #[doc = "Present."]
-            PRESENT,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Not present."] NOTPRESENT,
+            #[doc = "Present."] PRESENT,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl PPFCR {
             #[doc = r" Value of the field as raw bits"]
@@ -77170,10 +76027,8 @@ pub mod ficr {
         }
         #[doc = "Values that can be written to the field `PPFC`"]
         pub enum PPFCW {
-            #[doc = "Not present."]
-            NOTPRESENT,
-            #[doc = "Present."]
-            PRESENT,
+            #[doc = "Not present."] NOTPRESENT,
+            #[doc = "Present."] PRESENT,
         }
         impl PPFCW {
             #[allow(missing_docs)]
@@ -77281,7 +76136,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -77350,7 +76207,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -77419,7 +76278,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -77488,7 +76349,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -77639,7 +76502,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -77708,7 +76573,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -77777,7 +76644,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -77846,7 +76715,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -77867,10 +76738,8 @@ pub mod ficr {
         #[doc = "Possible values of the field `DEVICEADDRTYPE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DEVICEADDRTYPER {
-            #[doc = "Public address."]
-            PUBLIC,
-            #[doc = "Random address."]
-            RANDOM,
+            #[doc = "Public address."] PUBLIC,
+            #[doc = "Random address."] RANDOM,
         }
         impl DEVICEADDRTYPER {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -77913,10 +76782,8 @@ pub mod ficr {
         }
         #[doc = "Values that can be written to the field `DEVICEADDRTYPE`"]
         pub enum DEVICEADDRTYPEW {
-            #[doc = "Public address."]
-            PUBLIC,
-            #[doc = "Random address."]
-            RANDOM,
+            #[doc = "Public address."] PUBLIC,
+            #[doc = "Random address."] RANDOM,
         }
         impl DEVICEADDRTYPEW {
             #[allow(missing_docs)]
@@ -78034,7 +76901,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -78103,7 +76972,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -78124,10 +76995,8 @@ pub mod ficr {
         #[doc = "Possible values of the field `NRF_1MBIT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum NRF_1MBITR {
-            #[doc = "Override the default values for NRF_1Mbit mode."]
-            OVERRIDE,
-            #[doc = "Do not override the default values for NRF_1Mbit mode."]
-            NOTOVERRIDE,
+            #[doc = "Override the default values for NRF_1Mbit mode."] OVERRIDE,
+            #[doc = "Do not override the default values for NRF_1Mbit mode."] NOTOVERRIDE,
         }
         impl NRF_1MBITR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -78171,10 +77040,8 @@ pub mod ficr {
         #[doc = "Possible values of the field `BLE_1MBIT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum BLE_1MBITR {
-            #[doc = "Override the default values for BLE_1Mbit mode."]
-            OVERRIDE,
-            #[doc = "Do not override the default values for BLE_1Mbit mode."]
-            NOTOVERRIDE,
+            #[doc = "Override the default values for BLE_1Mbit mode."] OVERRIDE,
+            #[doc = "Do not override the default values for BLE_1Mbit mode."] NOTOVERRIDE,
         }
         impl BLE_1MBITR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -78217,10 +77084,8 @@ pub mod ficr {
         }
         #[doc = "Values that can be written to the field `NRF_1MBIT`"]
         pub enum NRF_1MBITW {
-            #[doc = "Override the default values for NRF_1Mbit mode."]
-            OVERRIDE,
-            #[doc = "Do not override the default values for NRF_1Mbit mode."]
-            NOTOVERRIDE,
+            #[doc = "Override the default values for NRF_1Mbit mode."] OVERRIDE,
+            #[doc = "Do not override the default values for NRF_1Mbit mode."] NOTOVERRIDE,
         }
         impl NRF_1MBITW {
             #[allow(missing_docs)]
@@ -78275,10 +77140,8 @@ pub mod ficr {
         }
         #[doc = "Values that can be written to the field `BLE_1MBIT`"]
         pub enum BLE_1MBITW {
-            #[doc = "Override the default values for BLE_1Mbit mode."]
-            OVERRIDE,
-            #[doc = "Do not override the default values for BLE_1Mbit mode."]
-            NOTOVERRIDE,
+            #[doc = "Override the default values for BLE_1Mbit mode."] OVERRIDE,
+            #[doc = "Do not override the default values for BLE_1Mbit mode."] NOTOVERRIDE,
         }
         impl BLE_1MBITW {
             #[allow(missing_docs)]
@@ -78410,7 +77273,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -78479,7 +77344,9 @@ pub mod ficr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -78589,7 +77456,9 @@ pub mod uicr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -78658,7 +77527,9 @@ pub mod uicr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -78679,12 +77550,9 @@ pub mod uicr {
         #[doc = "Possible values of the field `PR0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PR0R {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl PR0R {
             #[doc = r" Value of the field as raw bits"]
@@ -78720,12 +77588,9 @@ pub mod uicr {
         #[doc = "Possible values of the field `PALL`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PALLR {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl PALLR {
             #[doc = r" Value of the field as raw bits"]
@@ -78760,10 +77625,8 @@ pub mod uicr {
         }
         #[doc = "Values that can be written to the field `PR0`"]
         pub enum PR0W {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl PR0W {
             #[allow(missing_docs)]
@@ -78808,10 +77671,8 @@ pub mod uicr {
         }
         #[doc = "Values that can be written to the field `PALL`"]
         pub enum PALLW {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Enabled."]
-            ENABLED,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Enabled."] ENABLED,
         }
         impl PALLW {
             #[allow(missing_docs)]
@@ -78933,7 +77794,9 @@ pub mod uicr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -78954,12 +77817,9 @@ pub mod uicr {
         #[doc = "Possible values of the field `XTALFREQ`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum XTALFREQR {
-            #[doc = "16MHz Xtal is used."]
-            _16MHZ,
-            #[doc = "32MHz Xtal is used."]
-            _32MHZ,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "16MHz Xtal is used."] _16MHZ,
+            #[doc = "32MHz Xtal is used."] _32MHZ,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl XTALFREQR {
             #[doc = r" Value of the field as raw bits"]
@@ -78994,10 +77854,8 @@ pub mod uicr {
         }
         #[doc = "Values that can be written to the field `XTALFREQ`"]
         pub enum XTALFREQW {
-            #[doc = "16MHz Xtal is used."]
-            _16MHZ,
-            #[doc = "32MHz Xtal is used."]
-            _32MHZ,
+            #[doc = "16MHz Xtal is used."] _16MHZ,
+            #[doc = "32MHz Xtal is used."] _32MHZ,
         }
         impl XTALFREQW {
             #[allow(missing_docs)]
@@ -79089,7 +77947,9 @@ pub mod uicr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = r" Value of the field"]
@@ -79151,7 +78011,9 @@ pub mod uicr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -79220,7 +78082,9 @@ pub mod uicr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -79289,7 +78153,9 @@ pub mod uicr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -79358,7 +78224,9 @@ pub mod uicr {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -79470,7 +78338,9 @@ pub mod gpio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -79491,10 +78361,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN0R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -79538,10 +78406,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN1R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -79585,10 +78451,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN2R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -79632,10 +78496,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN3R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -79679,10 +78541,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN4R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -79726,10 +78586,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN5R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -79773,10 +78631,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN6R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -79820,10 +78676,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN7R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -79867,10 +78721,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN8`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN8R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN8R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -79914,10 +78766,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN9`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN9R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN9R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -79961,10 +78811,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN10`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN10R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN10R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80008,10 +78856,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN11`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN11R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN11R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80055,10 +78901,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN12`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN12R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN12R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80102,10 +78946,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN13`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN13R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN13R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80149,10 +78991,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN14`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN14R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN14R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80196,10 +79036,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN15`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN15R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN15R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80243,10 +79081,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN16`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN16R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN16R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80290,10 +79126,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN17`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN17R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN17R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80337,10 +79171,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN18`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN18R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN18R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80384,10 +79216,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN19`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN19R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN19R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80431,10 +79261,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN20`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN20R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN20R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80478,10 +79306,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN21`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN21R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN21R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80525,10 +79351,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN22`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN22R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN22R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80572,10 +79396,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN23`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN23R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN23R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80619,10 +79441,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN24`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN24R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN24R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80666,10 +79486,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN25`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN25R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN25R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80713,10 +79531,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN26`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN26R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN26R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80760,10 +79576,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN27`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN27R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN27R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80807,10 +79621,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN28`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN28R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN28R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80854,10 +79666,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN29`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN29R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN29R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80901,10 +79711,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN30`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN30R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN30R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80948,10 +79756,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN31`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN31R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN31R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -80994,10 +79800,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN0`"]
         pub enum PIN0W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN0W {
             #[allow(missing_docs)]
@@ -81052,10 +79856,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN1`"]
         pub enum PIN1W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN1W {
             #[allow(missing_docs)]
@@ -81110,10 +79912,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN2`"]
         pub enum PIN2W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN2W {
             #[allow(missing_docs)]
@@ -81168,10 +79968,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN3`"]
         pub enum PIN3W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN3W {
             #[allow(missing_docs)]
@@ -81226,10 +80024,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN4`"]
         pub enum PIN4W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN4W {
             #[allow(missing_docs)]
@@ -81284,10 +80080,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN5`"]
         pub enum PIN5W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN5W {
             #[allow(missing_docs)]
@@ -81342,10 +80136,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN6`"]
         pub enum PIN6W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN6W {
             #[allow(missing_docs)]
@@ -81400,10 +80192,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN7`"]
         pub enum PIN7W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN7W {
             #[allow(missing_docs)]
@@ -81458,10 +80248,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN8`"]
         pub enum PIN8W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN8W {
             #[allow(missing_docs)]
@@ -81516,10 +80304,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN9`"]
         pub enum PIN9W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN9W {
             #[allow(missing_docs)]
@@ -81574,10 +80360,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN10`"]
         pub enum PIN10W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN10W {
             #[allow(missing_docs)]
@@ -81632,10 +80416,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN11`"]
         pub enum PIN11W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN11W {
             #[allow(missing_docs)]
@@ -81690,10 +80472,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN12`"]
         pub enum PIN12W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN12W {
             #[allow(missing_docs)]
@@ -81748,10 +80528,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN13`"]
         pub enum PIN13W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN13W {
             #[allow(missing_docs)]
@@ -81806,10 +80584,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN14`"]
         pub enum PIN14W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN14W {
             #[allow(missing_docs)]
@@ -81864,10 +80640,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN15`"]
         pub enum PIN15W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN15W {
             #[allow(missing_docs)]
@@ -81922,10 +80696,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN16`"]
         pub enum PIN16W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN16W {
             #[allow(missing_docs)]
@@ -81980,10 +80752,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN17`"]
         pub enum PIN17W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN17W {
             #[allow(missing_docs)]
@@ -82038,10 +80808,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN18`"]
         pub enum PIN18W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN18W {
             #[allow(missing_docs)]
@@ -82096,10 +80864,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN19`"]
         pub enum PIN19W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN19W {
             #[allow(missing_docs)]
@@ -82154,10 +80920,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN20`"]
         pub enum PIN20W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN20W {
             #[allow(missing_docs)]
@@ -82212,10 +80976,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN21`"]
         pub enum PIN21W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN21W {
             #[allow(missing_docs)]
@@ -82270,10 +81032,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN22`"]
         pub enum PIN22W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN22W {
             #[allow(missing_docs)]
@@ -82328,10 +81088,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN23`"]
         pub enum PIN23W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN23W {
             #[allow(missing_docs)]
@@ -82386,10 +81144,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN24`"]
         pub enum PIN24W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN24W {
             #[allow(missing_docs)]
@@ -82444,10 +81200,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN25`"]
         pub enum PIN25W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN25W {
             #[allow(missing_docs)]
@@ -82502,10 +81256,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN26`"]
         pub enum PIN26W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN26W {
             #[allow(missing_docs)]
@@ -82560,10 +81312,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN27`"]
         pub enum PIN27W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN27W {
             #[allow(missing_docs)]
@@ -82618,10 +81368,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN28`"]
         pub enum PIN28W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN28W {
             #[allow(missing_docs)]
@@ -82676,10 +81424,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN29`"]
         pub enum PIN29W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN29W {
             #[allow(missing_docs)]
@@ -82734,10 +81480,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN30`"]
         pub enum PIN30W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN30W {
             #[allow(missing_docs)]
@@ -82792,10 +81536,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN31`"]
         pub enum PIN31W {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN31W {
             #[allow(missing_docs)]
@@ -83347,7 +82089,9 @@ pub mod gpio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -83368,10 +82112,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN0R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -83415,10 +82157,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN1R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -83462,10 +82202,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN2R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -83509,10 +82247,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN3R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -83556,10 +82292,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN4R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -83603,10 +82337,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN5R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -83650,10 +82382,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN6R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -83697,10 +82427,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN7R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -83744,10 +82472,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN8`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN8R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN8R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -83791,10 +82517,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN9`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN9R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN9R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -83838,10 +82562,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN10`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN10R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN10R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -83885,10 +82607,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN11`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN11R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN11R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -83932,10 +82652,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN12`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN12R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN12R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -83979,10 +82697,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN13`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN13R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN13R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84026,10 +82742,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN14`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN14R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN14R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84073,10 +82787,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN15`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN15R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN15R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84120,10 +82832,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN16`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN16R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN16R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84167,10 +82877,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN17`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN17R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN17R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84214,10 +82922,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN18`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN18R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN18R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84261,10 +82967,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN19`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN19R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN19R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84308,10 +83012,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN20`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN20R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN20R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84355,10 +83057,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN21`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN21R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN21R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84402,10 +83102,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN22`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN22R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN22R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84449,10 +83147,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN23`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN23R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN23R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84496,10 +83192,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN24`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN24R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN24R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84543,10 +83237,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN25`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN25R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN25R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84590,10 +83282,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN26`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN26R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN26R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84637,10 +83327,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN27`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN27R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN27R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84684,10 +83372,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN28`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN28R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN28R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84731,10 +83417,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN29`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN29R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN29R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84778,10 +83462,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN30`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN30R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN30R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84825,10 +83507,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN31`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN31R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN31R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -84871,8 +83551,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN0`"]
         pub enum PIN0W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN0W {
             #[allow(missing_docs)]
@@ -84921,8 +83600,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN1`"]
         pub enum PIN1W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN1W {
             #[allow(missing_docs)]
@@ -84971,8 +83649,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN2`"]
         pub enum PIN2W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN2W {
             #[allow(missing_docs)]
@@ -85021,8 +83698,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN3`"]
         pub enum PIN3W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN3W {
             #[allow(missing_docs)]
@@ -85071,8 +83747,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN4`"]
         pub enum PIN4W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN4W {
             #[allow(missing_docs)]
@@ -85121,8 +83796,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN5`"]
         pub enum PIN5W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN5W {
             #[allow(missing_docs)]
@@ -85171,8 +83845,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN6`"]
         pub enum PIN6W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN6W {
             #[allow(missing_docs)]
@@ -85221,8 +83894,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN7`"]
         pub enum PIN7W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN7W {
             #[allow(missing_docs)]
@@ -85271,8 +83943,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN8`"]
         pub enum PIN8W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN8W {
             #[allow(missing_docs)]
@@ -85321,8 +83992,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN9`"]
         pub enum PIN9W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN9W {
             #[allow(missing_docs)]
@@ -85371,8 +84041,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN10`"]
         pub enum PIN10W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN10W {
             #[allow(missing_docs)]
@@ -85421,8 +84090,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN11`"]
         pub enum PIN11W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN11W {
             #[allow(missing_docs)]
@@ -85471,8 +84139,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN12`"]
         pub enum PIN12W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN12W {
             #[allow(missing_docs)]
@@ -85521,8 +84188,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN13`"]
         pub enum PIN13W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN13W {
             #[allow(missing_docs)]
@@ -85571,8 +84237,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN14`"]
         pub enum PIN14W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN14W {
             #[allow(missing_docs)]
@@ -85621,8 +84286,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN15`"]
         pub enum PIN15W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN15W {
             #[allow(missing_docs)]
@@ -85671,8 +84335,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN16`"]
         pub enum PIN16W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN16W {
             #[allow(missing_docs)]
@@ -85721,8 +84384,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN17`"]
         pub enum PIN17W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN17W {
             #[allow(missing_docs)]
@@ -85771,8 +84433,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN18`"]
         pub enum PIN18W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN18W {
             #[allow(missing_docs)]
@@ -85821,8 +84482,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN19`"]
         pub enum PIN19W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN19W {
             #[allow(missing_docs)]
@@ -85871,8 +84531,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN20`"]
         pub enum PIN20W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN20W {
             #[allow(missing_docs)]
@@ -85921,8 +84580,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN21`"]
         pub enum PIN21W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN21W {
             #[allow(missing_docs)]
@@ -85971,8 +84629,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN22`"]
         pub enum PIN22W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN22W {
             #[allow(missing_docs)]
@@ -86021,8 +84678,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN23`"]
         pub enum PIN23W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN23W {
             #[allow(missing_docs)]
@@ -86071,8 +84727,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN24`"]
         pub enum PIN24W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN24W {
             #[allow(missing_docs)]
@@ -86121,8 +84776,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN25`"]
         pub enum PIN25W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN25W {
             #[allow(missing_docs)]
@@ -86171,8 +84825,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN26`"]
         pub enum PIN26W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN26W {
             #[allow(missing_docs)]
@@ -86221,8 +84874,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN27`"]
         pub enum PIN27W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN27W {
             #[allow(missing_docs)]
@@ -86271,8 +84923,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN28`"]
         pub enum PIN28W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN28W {
             #[allow(missing_docs)]
@@ -86321,8 +84972,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN29`"]
         pub enum PIN29W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN29W {
             #[allow(missing_docs)]
@@ -86371,8 +85021,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN30`"]
         pub enum PIN30W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN30W {
             #[allow(missing_docs)]
@@ -86421,8 +85070,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN31`"]
         pub enum PIN31W {
-            #[doc = "Set pin driver high."]
-            SET,
+            #[doc = "Set pin driver high."] SET,
         }
         impl PIN31W {
             #[allow(missing_docs)]
@@ -86968,7 +85616,9 @@ pub mod gpio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -86989,10 +85639,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN0R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87036,10 +85684,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN1R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87083,10 +85729,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN2R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87130,10 +85774,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN3R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87177,10 +85819,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN4R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87224,10 +85864,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN5R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87271,10 +85909,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN6R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87318,10 +85954,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN7R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87365,10 +85999,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN8`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN8R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN8R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87412,10 +86044,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN9`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN9R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN9R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87459,10 +86089,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN10`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN10R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN10R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87506,10 +86134,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN11`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN11R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN11R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87553,10 +86179,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN12`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN12R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN12R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87600,10 +86224,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN13`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN13R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN13R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87647,10 +86269,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN14`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN14R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN14R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87694,10 +86314,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN15`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN15R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN15R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87741,10 +86359,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN16`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN16R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN16R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87788,10 +86404,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN17`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN17R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN17R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87835,10 +86449,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN18`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN18R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN18R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87882,10 +86494,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN19`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN19R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN19R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87929,10 +86539,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN20`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN20R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN20R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -87976,10 +86584,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN21`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN21R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN21R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -88023,10 +86629,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN22`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN22R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN22R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -88070,10 +86674,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN23`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN23R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN23R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -88117,10 +86719,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN24`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN24R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN24R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -88164,10 +86764,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN25`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN25R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN25R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -88211,10 +86809,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN26`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN26R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN26R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -88258,10 +86854,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN27`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN27R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN27R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -88305,10 +86899,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN28`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN28R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN28R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -88352,10 +86944,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN29`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN29R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN29R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -88399,10 +86989,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN30`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN30R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN30R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -88446,10 +87034,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN31`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN31R {
-            #[doc = "Pin driver is low."]
-            LOW,
-            #[doc = "Pin driver is high."]
-            HIGH,
+            #[doc = "Pin driver is low."] LOW,
+            #[doc = "Pin driver is high."] HIGH,
         }
         impl PIN31R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -88492,8 +87078,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN0`"]
         pub enum PIN0W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN0W {
             #[allow(missing_docs)]
@@ -88542,8 +87127,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN1`"]
         pub enum PIN1W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN1W {
             #[allow(missing_docs)]
@@ -88592,8 +87176,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN2`"]
         pub enum PIN2W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN2W {
             #[allow(missing_docs)]
@@ -88642,8 +87225,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN3`"]
         pub enum PIN3W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN3W {
             #[allow(missing_docs)]
@@ -88692,8 +87274,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN4`"]
         pub enum PIN4W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN4W {
             #[allow(missing_docs)]
@@ -88742,8 +87323,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN5`"]
         pub enum PIN5W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN5W {
             #[allow(missing_docs)]
@@ -88792,8 +87372,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN6`"]
         pub enum PIN6W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN6W {
             #[allow(missing_docs)]
@@ -88842,8 +87421,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN7`"]
         pub enum PIN7W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN7W {
             #[allow(missing_docs)]
@@ -88892,8 +87470,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN8`"]
         pub enum PIN8W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN8W {
             #[allow(missing_docs)]
@@ -88942,8 +87519,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN9`"]
         pub enum PIN9W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN9W {
             #[allow(missing_docs)]
@@ -88992,8 +87568,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN10`"]
         pub enum PIN10W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN10W {
             #[allow(missing_docs)]
@@ -89042,8 +87617,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN11`"]
         pub enum PIN11W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN11W {
             #[allow(missing_docs)]
@@ -89092,8 +87666,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN12`"]
         pub enum PIN12W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN12W {
             #[allow(missing_docs)]
@@ -89142,8 +87715,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN13`"]
         pub enum PIN13W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN13W {
             #[allow(missing_docs)]
@@ -89192,8 +87764,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN14`"]
         pub enum PIN14W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN14W {
             #[allow(missing_docs)]
@@ -89242,8 +87813,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN15`"]
         pub enum PIN15W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN15W {
             #[allow(missing_docs)]
@@ -89292,8 +87862,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN16`"]
         pub enum PIN16W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN16W {
             #[allow(missing_docs)]
@@ -89342,8 +87911,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN17`"]
         pub enum PIN17W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN17W {
             #[allow(missing_docs)]
@@ -89392,8 +87960,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN18`"]
         pub enum PIN18W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN18W {
             #[allow(missing_docs)]
@@ -89442,8 +88009,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN19`"]
         pub enum PIN19W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN19W {
             #[allow(missing_docs)]
@@ -89492,8 +88058,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN20`"]
         pub enum PIN20W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN20W {
             #[allow(missing_docs)]
@@ -89542,8 +88107,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN21`"]
         pub enum PIN21W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN21W {
             #[allow(missing_docs)]
@@ -89592,8 +88156,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN22`"]
         pub enum PIN22W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN22W {
             #[allow(missing_docs)]
@@ -89642,8 +88205,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN23`"]
         pub enum PIN23W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN23W {
             #[allow(missing_docs)]
@@ -89692,8 +88254,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN24`"]
         pub enum PIN24W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN24W {
             #[allow(missing_docs)]
@@ -89742,8 +88303,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN25`"]
         pub enum PIN25W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN25W {
             #[allow(missing_docs)]
@@ -89792,8 +88352,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN26`"]
         pub enum PIN26W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN26W {
             #[allow(missing_docs)]
@@ -89842,8 +88401,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN27`"]
         pub enum PIN27W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN27W {
             #[allow(missing_docs)]
@@ -89892,8 +88450,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN28`"]
         pub enum PIN28W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN28W {
             #[allow(missing_docs)]
@@ -89942,8 +88499,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN29`"]
         pub enum PIN29W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN29W {
             #[allow(missing_docs)]
@@ -89992,8 +88548,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN30`"]
         pub enum PIN30W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN30W {
             #[allow(missing_docs)]
@@ -90042,8 +88597,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN31`"]
         pub enum PIN31W {
-            #[doc = "Set pin driver low."]
-            CLEAR,
+            #[doc = "Set pin driver low."] CLEAR,
         }
         impl PIN31W {
             #[allow(missing_docs)]
@@ -90573,16 +89127,16 @@ pub mod gpio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
         }
         #[doc = "Possible values of the field `PIN0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN0R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -90626,10 +89180,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN1R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -90673,10 +89225,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN2R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -90720,10 +89270,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN3R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -90767,10 +89315,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN4R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -90814,10 +89360,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN5R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -90861,10 +89405,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN6R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -90908,10 +89450,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN7R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -90955,10 +89495,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN8`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN8R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN8R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91002,10 +89540,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN9`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN9R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN9R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91049,10 +89585,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN10`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN10R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN10R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91096,10 +89630,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN11`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN11R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN11R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91143,10 +89675,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN12`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN12R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN12R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91190,10 +89720,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN13`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN13R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN13R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91237,10 +89765,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN14`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN14R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN14R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91284,10 +89810,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN15`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN15R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN15R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91331,10 +89855,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN16`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN16R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN16R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91378,10 +89900,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN17`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN17R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN17R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91425,10 +89945,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN18`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN18R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN18R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91472,10 +89990,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN19`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN19R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN19R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91519,10 +90035,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN20`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN20R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN20R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91566,10 +90080,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN21`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN21R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN21R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91613,10 +90125,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN22`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN22R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN22R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91660,10 +90170,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN23`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN23R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN23R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91707,10 +90215,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN24`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN24R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN24R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91754,10 +90260,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN25`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN25R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN25R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91801,10 +90305,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN26`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN26R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN26R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91848,10 +90350,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN27`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN27R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN27R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91895,10 +90395,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN28`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN28R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN28R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91942,10 +90440,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN29`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN29R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN29R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -91989,10 +90485,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN30`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN30R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN30R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92036,10 +90530,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN31`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN31R {
-            #[doc = "Pin input is low."]
-            LOW,
-            #[doc = "Pin input is high."]
-            HIGH,
+            #[doc = "Pin input is low."] LOW,
+            #[doc = "Pin input is high."] HIGH,
         }
         impl PIN31R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92406,7 +90898,9 @@ pub mod gpio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -92427,10 +90921,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN0R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92474,10 +90966,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN1R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92521,10 +91011,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN2R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92568,10 +91056,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN3R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92615,10 +91101,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN4R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92662,10 +91146,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN5R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92709,10 +91191,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN6R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92756,10 +91236,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN7R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92803,10 +91281,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN8`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN8R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN8R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92850,10 +91326,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN9`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN9R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN9R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92897,10 +91371,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN10`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN10R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN10R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92944,10 +91416,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN11`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN11R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN11R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -92991,10 +91461,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN12`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN12R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN12R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93038,10 +91506,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN13`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN13R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN13R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93085,10 +91551,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN14`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN14R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN14R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93132,10 +91596,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN15`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN15R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN15R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93179,10 +91641,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN16`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN16R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN16R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93226,10 +91686,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN17`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN17R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN17R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93273,10 +91731,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN18`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN18R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN18R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93320,10 +91776,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN19`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN19R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN19R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93367,10 +91821,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN20`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN20R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN20R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93414,10 +91866,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN21`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN21R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN21R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93461,10 +91911,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN22`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN22R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN22R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93508,10 +91956,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN23`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN23R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN23R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93555,10 +92001,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN24`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN24R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN24R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93602,10 +92046,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN25`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN25R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN25R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93649,10 +92091,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN26`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN26R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN26R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93696,10 +92136,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN27`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN27R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN27R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93743,10 +92181,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN28`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN28R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN28R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93790,10 +92226,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN29`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN29R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN29R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93837,10 +92271,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN30`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN30R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN30R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93884,10 +92316,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN31`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN31R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN31R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -93930,10 +92360,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN0`"]
         pub enum PIN0W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN0W {
             #[allow(missing_docs)]
@@ -93988,10 +92416,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN1`"]
         pub enum PIN1W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN1W {
             #[allow(missing_docs)]
@@ -94046,10 +92472,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN2`"]
         pub enum PIN2W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN2W {
             #[allow(missing_docs)]
@@ -94104,10 +92528,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN3`"]
         pub enum PIN3W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN3W {
             #[allow(missing_docs)]
@@ -94162,10 +92584,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN4`"]
         pub enum PIN4W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN4W {
             #[allow(missing_docs)]
@@ -94220,10 +92640,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN5`"]
         pub enum PIN5W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN5W {
             #[allow(missing_docs)]
@@ -94278,10 +92696,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN6`"]
         pub enum PIN6W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN6W {
             #[allow(missing_docs)]
@@ -94336,10 +92752,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN7`"]
         pub enum PIN7W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN7W {
             #[allow(missing_docs)]
@@ -94394,10 +92808,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN8`"]
         pub enum PIN8W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN8W {
             #[allow(missing_docs)]
@@ -94452,10 +92864,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN9`"]
         pub enum PIN9W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN9W {
             #[allow(missing_docs)]
@@ -94510,10 +92920,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN10`"]
         pub enum PIN10W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN10W {
             #[allow(missing_docs)]
@@ -94568,10 +92976,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN11`"]
         pub enum PIN11W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN11W {
             #[allow(missing_docs)]
@@ -94626,10 +93032,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN12`"]
         pub enum PIN12W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN12W {
             #[allow(missing_docs)]
@@ -94684,10 +93088,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN13`"]
         pub enum PIN13W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN13W {
             #[allow(missing_docs)]
@@ -94742,10 +93144,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN14`"]
         pub enum PIN14W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN14W {
             #[allow(missing_docs)]
@@ -94800,10 +93200,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN15`"]
         pub enum PIN15W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN15W {
             #[allow(missing_docs)]
@@ -94858,10 +93256,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN16`"]
         pub enum PIN16W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN16W {
             #[allow(missing_docs)]
@@ -94916,10 +93312,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN17`"]
         pub enum PIN17W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN17W {
             #[allow(missing_docs)]
@@ -94974,10 +93368,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN18`"]
         pub enum PIN18W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN18W {
             #[allow(missing_docs)]
@@ -95032,10 +93424,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN19`"]
         pub enum PIN19W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN19W {
             #[allow(missing_docs)]
@@ -95090,10 +93480,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN20`"]
         pub enum PIN20W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN20W {
             #[allow(missing_docs)]
@@ -95148,10 +93536,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN21`"]
         pub enum PIN21W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN21W {
             #[allow(missing_docs)]
@@ -95206,10 +93592,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN22`"]
         pub enum PIN22W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN22W {
             #[allow(missing_docs)]
@@ -95264,10 +93648,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN23`"]
         pub enum PIN23W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN23W {
             #[allow(missing_docs)]
@@ -95322,10 +93704,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN24`"]
         pub enum PIN24W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN24W {
             #[allow(missing_docs)]
@@ -95380,10 +93760,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN25`"]
         pub enum PIN25W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN25W {
             #[allow(missing_docs)]
@@ -95438,10 +93816,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN26`"]
         pub enum PIN26W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN26W {
             #[allow(missing_docs)]
@@ -95496,10 +93872,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN27`"]
         pub enum PIN27W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN27W {
             #[allow(missing_docs)]
@@ -95554,10 +93928,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN28`"]
         pub enum PIN28W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN28W {
             #[allow(missing_docs)]
@@ -95612,10 +93984,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN29`"]
         pub enum PIN29W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN29W {
             #[allow(missing_docs)]
@@ -95670,10 +94040,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN30`"]
         pub enum PIN30W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN30W {
             #[allow(missing_docs)]
@@ -95728,10 +94096,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN31`"]
         pub enum PIN31W {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN31W {
             #[allow(missing_docs)]
@@ -96283,7 +94649,9 @@ pub mod gpio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -96304,10 +94672,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN0R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96351,10 +94717,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN1R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96398,10 +94762,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN2R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96445,10 +94807,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN3R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96492,10 +94852,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN4R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96539,10 +94897,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN5R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96586,10 +94942,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN6R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96633,10 +94987,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN7R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96680,10 +95032,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN8`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN8R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN8R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96727,10 +95077,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN9`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN9R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN9R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96774,10 +95122,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN10`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN10R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN10R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96821,10 +95167,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN11`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN11R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN11R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96868,10 +95212,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN12`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN12R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN12R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96915,10 +95257,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN13`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN13R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN13R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -96962,10 +95302,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN14`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN14R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN14R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97009,10 +95347,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN15`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN15R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN15R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97056,10 +95392,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN16`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN16R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN16R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97103,10 +95437,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN17`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN17R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN17R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97150,10 +95482,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN18`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN18R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN18R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97197,10 +95527,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN19`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN19R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN19R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97244,10 +95572,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN20`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN20R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN20R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97291,10 +95617,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN21`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN21R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN21R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97338,10 +95662,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN22`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN22R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN22R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97385,10 +95707,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN23`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN23R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN23R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97432,10 +95752,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN24`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN24R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN24R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97479,10 +95797,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN25`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN25R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN25R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97526,10 +95842,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN26`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN26R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN26R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97573,10 +95887,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN27`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN27R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN27R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97620,10 +95932,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN28`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN28R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN28R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97667,10 +95977,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN29`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN29R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN29R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97714,10 +96022,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN30`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN30R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN30R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97761,10 +96067,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN31`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN31R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN31R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -97807,8 +96111,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN0`"]
         pub enum PIN0W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN0W {
             #[allow(missing_docs)]
@@ -97857,8 +96160,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN1`"]
         pub enum PIN1W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN1W {
             #[allow(missing_docs)]
@@ -97907,8 +96209,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN2`"]
         pub enum PIN2W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN2W {
             #[allow(missing_docs)]
@@ -97957,8 +96258,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN3`"]
         pub enum PIN3W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN3W {
             #[allow(missing_docs)]
@@ -98007,8 +96307,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN4`"]
         pub enum PIN4W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN4W {
             #[allow(missing_docs)]
@@ -98057,8 +96356,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN5`"]
         pub enum PIN5W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN5W {
             #[allow(missing_docs)]
@@ -98107,8 +96405,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN6`"]
         pub enum PIN6W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN6W {
             #[allow(missing_docs)]
@@ -98157,8 +96454,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN7`"]
         pub enum PIN7W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN7W {
             #[allow(missing_docs)]
@@ -98207,8 +96503,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN8`"]
         pub enum PIN8W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN8W {
             #[allow(missing_docs)]
@@ -98257,8 +96552,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN9`"]
         pub enum PIN9W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN9W {
             #[allow(missing_docs)]
@@ -98307,8 +96601,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN10`"]
         pub enum PIN10W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN10W {
             #[allow(missing_docs)]
@@ -98357,8 +96650,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN11`"]
         pub enum PIN11W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN11W {
             #[allow(missing_docs)]
@@ -98407,8 +96699,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN12`"]
         pub enum PIN12W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN12W {
             #[allow(missing_docs)]
@@ -98457,8 +96748,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN13`"]
         pub enum PIN13W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN13W {
             #[allow(missing_docs)]
@@ -98507,8 +96797,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN14`"]
         pub enum PIN14W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN14W {
             #[allow(missing_docs)]
@@ -98557,8 +96846,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN15`"]
         pub enum PIN15W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN15W {
             #[allow(missing_docs)]
@@ -98607,8 +96895,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN16`"]
         pub enum PIN16W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN16W {
             #[allow(missing_docs)]
@@ -98657,8 +96944,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN17`"]
         pub enum PIN17W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN17W {
             #[allow(missing_docs)]
@@ -98707,8 +96993,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN18`"]
         pub enum PIN18W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN18W {
             #[allow(missing_docs)]
@@ -98757,8 +97042,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN19`"]
         pub enum PIN19W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN19W {
             #[allow(missing_docs)]
@@ -98807,8 +97091,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN20`"]
         pub enum PIN20W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN20W {
             #[allow(missing_docs)]
@@ -98857,8 +97140,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN21`"]
         pub enum PIN21W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN21W {
             #[allow(missing_docs)]
@@ -98907,8 +97189,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN22`"]
         pub enum PIN22W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN22W {
             #[allow(missing_docs)]
@@ -98957,8 +97238,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN23`"]
         pub enum PIN23W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN23W {
             #[allow(missing_docs)]
@@ -99007,8 +97287,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN24`"]
         pub enum PIN24W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN24W {
             #[allow(missing_docs)]
@@ -99057,8 +97336,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN25`"]
         pub enum PIN25W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN25W {
             #[allow(missing_docs)]
@@ -99107,8 +97385,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN26`"]
         pub enum PIN26W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN26W {
             #[allow(missing_docs)]
@@ -99157,8 +97434,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN27`"]
         pub enum PIN27W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN27W {
             #[allow(missing_docs)]
@@ -99207,8 +97483,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN28`"]
         pub enum PIN28W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN28W {
             #[allow(missing_docs)]
@@ -99257,8 +97532,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN29`"]
         pub enum PIN29W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN29W {
             #[allow(missing_docs)]
@@ -99307,8 +97581,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN30`"]
         pub enum PIN30W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN30W {
             #[allow(missing_docs)]
@@ -99357,8 +97630,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN31`"]
         pub enum PIN31W {
-            #[doc = "Set pin as output."]
-            SET,
+            #[doc = "Set pin as output."] SET,
         }
         impl PIN31W {
             #[allow(missing_docs)]
@@ -99904,7 +98176,9 @@ pub mod gpio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -99925,10 +98199,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN0`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN0R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN0R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -99972,10 +98244,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN1`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN1R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN1R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100019,10 +98289,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN2`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN2R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN2R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100066,10 +98334,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN3`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN3R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN3R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100113,10 +98379,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN4`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN4R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN4R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100160,10 +98424,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN5`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN5R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN5R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100207,10 +98469,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN6`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN6R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN6R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100254,10 +98514,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN7`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN7R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN7R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100301,10 +98559,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN8`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN8R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN8R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100348,10 +98604,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN9`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN9R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN9R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100395,10 +98649,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN10`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN10R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN10R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100442,10 +98694,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN11`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN11R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN11R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100489,10 +98739,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN12`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN12R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN12R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100536,10 +98784,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN13`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN13R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN13R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100583,10 +98829,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN14`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN14R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN14R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100630,10 +98874,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN15`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN15R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN15R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100677,10 +98919,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN16`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN16R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN16R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100724,10 +98964,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN17`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN17R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN17R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100771,10 +99009,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN18`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN18R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN18R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100818,10 +99054,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN19`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN19R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN19R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100865,10 +99099,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN20`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN20R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN20R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100912,10 +99144,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN21`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN21R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN21R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -100959,10 +99189,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN22`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN22R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN22R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -101006,10 +99234,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN23`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN23R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN23R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -101053,10 +99279,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN24`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN24R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN24R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -101100,10 +99324,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN25`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN25R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN25R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -101147,10 +99369,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN26`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN26R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN26R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -101194,10 +99414,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN27`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN27R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN27R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -101241,10 +99459,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN28`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN28R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN28R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -101288,10 +99504,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN29`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN29R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN29R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -101335,10 +99549,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN30`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN30R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN30R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -101382,10 +99594,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `PIN31`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PIN31R {
-            #[doc = "Pin set as input."]
-            INPUT,
-            #[doc = "Pin set as output."]
-            OUTPUT,
+            #[doc = "Pin set as input."] INPUT,
+            #[doc = "Pin set as output."] OUTPUT,
         }
         impl PIN31R {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -101428,8 +99638,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN0`"]
         pub enum PIN0W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN0W {
             #[allow(missing_docs)]
@@ -101478,8 +99687,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN1`"]
         pub enum PIN1W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN1W {
             #[allow(missing_docs)]
@@ -101528,8 +99736,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN2`"]
         pub enum PIN2W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN2W {
             #[allow(missing_docs)]
@@ -101578,8 +99785,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN3`"]
         pub enum PIN3W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN3W {
             #[allow(missing_docs)]
@@ -101628,8 +99834,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN4`"]
         pub enum PIN4W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN4W {
             #[allow(missing_docs)]
@@ -101678,8 +99883,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN5`"]
         pub enum PIN5W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN5W {
             #[allow(missing_docs)]
@@ -101728,8 +99932,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN6`"]
         pub enum PIN6W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN6W {
             #[allow(missing_docs)]
@@ -101778,8 +99981,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN7`"]
         pub enum PIN7W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN7W {
             #[allow(missing_docs)]
@@ -101828,8 +100030,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN8`"]
         pub enum PIN8W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN8W {
             #[allow(missing_docs)]
@@ -101878,8 +100079,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN9`"]
         pub enum PIN9W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN9W {
             #[allow(missing_docs)]
@@ -101928,8 +100128,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN10`"]
         pub enum PIN10W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN10W {
             #[allow(missing_docs)]
@@ -101978,8 +100177,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN11`"]
         pub enum PIN11W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN11W {
             #[allow(missing_docs)]
@@ -102028,8 +100226,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN12`"]
         pub enum PIN12W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN12W {
             #[allow(missing_docs)]
@@ -102078,8 +100275,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN13`"]
         pub enum PIN13W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN13W {
             #[allow(missing_docs)]
@@ -102128,8 +100324,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN14`"]
         pub enum PIN14W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN14W {
             #[allow(missing_docs)]
@@ -102178,8 +100373,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN15`"]
         pub enum PIN15W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN15W {
             #[allow(missing_docs)]
@@ -102228,8 +100422,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN16`"]
         pub enum PIN16W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN16W {
             #[allow(missing_docs)]
@@ -102278,8 +100471,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN17`"]
         pub enum PIN17W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN17W {
             #[allow(missing_docs)]
@@ -102328,8 +100520,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN18`"]
         pub enum PIN18W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN18W {
             #[allow(missing_docs)]
@@ -102378,8 +100569,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN19`"]
         pub enum PIN19W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN19W {
             #[allow(missing_docs)]
@@ -102428,8 +100618,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN20`"]
         pub enum PIN20W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN20W {
             #[allow(missing_docs)]
@@ -102478,8 +100667,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN21`"]
         pub enum PIN21W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN21W {
             #[allow(missing_docs)]
@@ -102528,8 +100716,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN22`"]
         pub enum PIN22W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN22W {
             #[allow(missing_docs)]
@@ -102578,8 +100765,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN23`"]
         pub enum PIN23W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN23W {
             #[allow(missing_docs)]
@@ -102628,8 +100814,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN24`"]
         pub enum PIN24W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN24W {
             #[allow(missing_docs)]
@@ -102678,8 +100863,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN25`"]
         pub enum PIN25W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN25W {
             #[allow(missing_docs)]
@@ -102728,8 +100912,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN26`"]
         pub enum PIN26W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN26W {
             #[allow(missing_docs)]
@@ -102778,8 +100961,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN27`"]
         pub enum PIN27W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN27W {
             #[allow(missing_docs)]
@@ -102828,8 +101010,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN28`"]
         pub enum PIN28W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN28W {
             #[allow(missing_docs)]
@@ -102878,8 +101059,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN29`"]
         pub enum PIN29W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN29W {
             #[allow(missing_docs)]
@@ -102928,8 +101108,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN30`"]
         pub enum PIN30W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN30W {
             #[allow(missing_docs)]
@@ -102978,8 +101157,7 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PIN31`"]
         pub enum PIN31W {
-            #[doc = "Set pin as input."]
-            CLEAR,
+            #[doc = "Set pin as input."] CLEAR,
         }
         impl PIN31W {
             #[allow(missing_docs)]
@@ -103525,7 +101703,9 @@ pub mod gpio {
             #[doc = r" Reads the contents of the register"]
             #[inline]
             pub fn read(&self) -> R {
-                R { bits: self.register.get() }
+                R {
+                    bits: self.register.get(),
+                }
             }
             #[doc = r" Writes to the register"]
             #[inline]
@@ -103546,10 +101726,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `DIR`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DIRR {
-            #[doc = "Configure pin as an input pin."]
-            INPUT,
-            #[doc = "Configure pin as an output pin."]
-            OUTPUT,
+            #[doc = "Configure pin as an input pin."] INPUT,
+            #[doc = "Configure pin as an output pin."] OUTPUT,
         }
         impl DIRR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -103593,10 +101771,8 @@ pub mod gpio {
         #[doc = "Possible values of the field `INPUT`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum INPUTR {
-            #[doc = "Connect input pin."]
-            CONNECT,
-            #[doc = "Disconnect input pin."]
-            DISCONNECT,
+            #[doc = "Connect input pin."] CONNECT,
+            #[doc = "Disconnect input pin."] DISCONNECT,
         }
         impl INPUTR {
             #[doc = r" Returns `true` if the bit is clear (0)"]
@@ -103640,14 +101816,10 @@ pub mod gpio {
         #[doc = "Possible values of the field `PULL`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum PULLR {
-            #[doc = "No pull."]
-            DISABLED,
-            #[doc = "Pulldown on pin."]
-            PULLDOWN,
-            #[doc = "Pullup on pin."]
-            PULLUP,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "No pull."] DISABLED,
+            #[doc = "Pulldown on pin."] PULLDOWN,
+            #[doc = "Pullup on pin."] PULLUP,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl PULLR {
             #[doc = r" Value of the field as raw bits"]
@@ -103690,22 +101862,14 @@ pub mod gpio {
         #[doc = "Possible values of the field `DRIVE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum DRIVER {
-            #[doc = "Standard '0', Standard '1'."]
-            S0S1,
-            #[doc = "High '0', Standard '1'."]
-            H0S1,
-            #[doc = "Standard '0', High '1'."]
-            S0H1,
-            #[doc = "High '0', High '1'."]
-            H0H1,
-            #[doc = "Disconnected '0', Standard '1'."]
-            D0S1,
-            #[doc = "Disconnected '0', High '1'."]
-            D0H1,
-            #[doc = "Standard '0', Disconnected '1'."]
-            S0D1,
-            #[doc = "High '0', Disconnected '1'."]
-            H0D1,
+            #[doc = "Standard '0', Standard '1'."] S0S1,
+            #[doc = "High '0', Standard '1'."] H0S1,
+            #[doc = "Standard '0', High '1'."] S0H1,
+            #[doc = "High '0', High '1'."] H0H1,
+            #[doc = "Disconnected '0', Standard '1'."] D0S1,
+            #[doc = "Disconnected '0', High '1'."] D0H1,
+            #[doc = "Standard '0', Disconnected '1'."] S0D1,
+            #[doc = "High '0', Disconnected '1'."] H0D1,
         }
         impl DRIVER {
             #[doc = r" Value of the field as raw bits"]
@@ -103782,14 +101946,10 @@ pub mod gpio {
         #[doc = "Possible values of the field `SENSE`"]
         #[derive(Clone, Copy, Debug, PartialEq)]
         pub enum SENSER {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Wakeup on high level."]
-            HIGH,
-            #[doc = "Wakeup on low level."]
-            LOW,
-            #[doc = r" Reserved"]
-            _Reserved(u8),
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Wakeup on high level."] HIGH,
+            #[doc = "Wakeup on low level."] LOW,
+            #[doc = r" Reserved"] _Reserved(u8),
         }
         impl SENSER {
             #[doc = r" Value of the field as raw bits"]
@@ -103831,10 +101991,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `DIR`"]
         pub enum DIRW {
-            #[doc = "Configure pin as an input pin."]
-            INPUT,
-            #[doc = "Configure pin as an output pin."]
-            OUTPUT,
+            #[doc = "Configure pin as an input pin."] INPUT,
+            #[doc = "Configure pin as an output pin."] OUTPUT,
         }
         impl DIRW {
             #[allow(missing_docs)]
@@ -103889,10 +102047,8 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `INPUT`"]
         pub enum INPUTW {
-            #[doc = "Connect input pin."]
-            CONNECT,
-            #[doc = "Disconnect input pin."]
-            DISCONNECT,
+            #[doc = "Connect input pin."] CONNECT,
+            #[doc = "Disconnect input pin."] DISCONNECT,
         }
         impl INPUTW {
             #[allow(missing_docs)]
@@ -103947,12 +102103,9 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `PULL`"]
         pub enum PULLW {
-            #[doc = "No pull."]
-            DISABLED,
-            #[doc = "Pulldown on pin."]
-            PULLDOWN,
-            #[doc = "Pullup on pin."]
-            PULLUP,
+            #[doc = "No pull."] DISABLED,
+            #[doc = "Pulldown on pin."] PULLDOWN,
+            #[doc = "Pullup on pin."] PULLUP,
         }
         impl PULLW {
             #[allow(missing_docs)]
@@ -104003,22 +102156,14 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `DRIVE`"]
         pub enum DRIVEW {
-            #[doc = "Standard '0', Standard '1'."]
-            S0S1,
-            #[doc = "High '0', Standard '1'."]
-            H0S1,
-            #[doc = "Standard '0', High '1'."]
-            S0H1,
-            #[doc = "High '0', High '1'."]
-            H0H1,
-            #[doc = "Disconnected '0', Standard '1'."]
-            D0S1,
-            #[doc = "Disconnected '0', High '1'."]
-            D0H1,
-            #[doc = "Standard '0', Disconnected '1'."]
-            S0D1,
-            #[doc = "High '0', Disconnected '1'."]
-            H0D1,
+            #[doc = "Standard '0', Standard '1'."] S0S1,
+            #[doc = "High '0', Standard '1'."] H0S1,
+            #[doc = "Standard '0', High '1'."] S0H1,
+            #[doc = "High '0', High '1'."] H0H1,
+            #[doc = "Disconnected '0', Standard '1'."] D0S1,
+            #[doc = "Disconnected '0', High '1'."] D0H1,
+            #[doc = "Standard '0', Disconnected '1'."] S0D1,
+            #[doc = "High '0', Disconnected '1'."] H0D1,
         }
         impl DRIVEW {
             #[allow(missing_docs)]
@@ -104101,12 +102246,9 @@ pub mod gpio {
         }
         #[doc = "Values that can be written to the field `SENSE`"]
         pub enum SENSEW {
-            #[doc = "Disabled."]
-            DISABLED,
-            #[doc = "Wakeup on high level."]
-            HIGH,
-            #[doc = "Wakeup on low level."]
-            LOW,
+            #[doc = "Disabled."] DISABLED,
+            #[doc = "Wakeup on high level."] HIGH,
+            #[doc = "Wakeup on low level."] LOW,
         }
         impl SENSEW {
             #[allow(missing_docs)]
@@ -104319,10 +102461,12 @@ impl Peripherals {
     #[doc = r" Returns all the peripherals *once*"]
     #[inline]
     pub fn take() -> Option<Self> {
-        cortex_m::interrupt::free(|_| if unsafe { DEVICE_PERIPHERALS } {
-            None
-        } else {
-            Some(unsafe { Peripherals::steal() })
+        cortex_m::interrupt::free(|_| {
+            if unsafe { DEVICE_PERIPHERALS } {
+                None
+            } else {
+                Some(unsafe { Peripherals::steal() })
+            }
         })
     }
     #[doc = r" Unchecked version of `Peripherals::take`"]
@@ -104330,37 +102474,99 @@ impl Peripherals {
         debug_assert!(!DEVICE_PERIPHERALS);
         DEVICE_PERIPHERALS = true;
         Peripherals {
-            POWER: POWER { _marker: PhantomData },
-            CLOCK: CLOCK { _marker: PhantomData },
-            RADIO: RADIO { _marker: PhantomData },
-            UART0: UART0 { _marker: PhantomData },
-            SPI0: SPI0 { _marker: PhantomData },
-            TWI0: TWI0 { _marker: PhantomData },
-            SPI1: SPI1 { _marker: PhantomData },
-            TWI1: TWI1 { _marker: PhantomData },
-            SPIS1: SPIS1 { _marker: PhantomData },
-            SPIM1: SPIM1 { _marker: PhantomData },
-            GPIOTE: GPIOTE { _marker: PhantomData },
-            ADC: ADC { _marker: PhantomData },
-            TIMER0: TIMER0 { _marker: PhantomData },
-            TIMER1: TIMER1 { _marker: PhantomData },
-            TIMER2: TIMER2 { _marker: PhantomData },
-            RTC0: RTC0 { _marker: PhantomData },
-            TEMP: TEMP { _marker: PhantomData },
-            RNG: RNG { _marker: PhantomData },
-            ECB: ECB { _marker: PhantomData },
-            AAR: AAR { _marker: PhantomData },
-            CCM: CCM { _marker: PhantomData },
-            WDT: WDT { _marker: PhantomData },
-            RTC1: RTC1 { _marker: PhantomData },
-            QDEC: QDEC { _marker: PhantomData },
-            LPCOMP: LPCOMP { _marker: PhantomData },
-            SWI: SWI { _marker: PhantomData },
-            NVMC: NVMC { _marker: PhantomData },
-            PPI: PPI { _marker: PhantomData },
-            FICR: FICR { _marker: PhantomData },
-            UICR: UICR { _marker: PhantomData },
-            GPIO: GPIO { _marker: PhantomData },
+            POWER: POWER {
+                _marker: PhantomData,
+            },
+            CLOCK: CLOCK {
+                _marker: PhantomData,
+            },
+            RADIO: RADIO {
+                _marker: PhantomData,
+            },
+            UART0: UART0 {
+                _marker: PhantomData,
+            },
+            SPI0: SPI0 {
+                _marker: PhantomData,
+            },
+            TWI0: TWI0 {
+                _marker: PhantomData,
+            },
+            SPI1: SPI1 {
+                _marker: PhantomData,
+            },
+            TWI1: TWI1 {
+                _marker: PhantomData,
+            },
+            SPIS1: SPIS1 {
+                _marker: PhantomData,
+            },
+            SPIM1: SPIM1 {
+                _marker: PhantomData,
+            },
+            GPIOTE: GPIOTE {
+                _marker: PhantomData,
+            },
+            ADC: ADC {
+                _marker: PhantomData,
+            },
+            TIMER0: TIMER0 {
+                _marker: PhantomData,
+            },
+            TIMER1: TIMER1 {
+                _marker: PhantomData,
+            },
+            TIMER2: TIMER2 {
+                _marker: PhantomData,
+            },
+            RTC0: RTC0 {
+                _marker: PhantomData,
+            },
+            TEMP: TEMP {
+                _marker: PhantomData,
+            },
+            RNG: RNG {
+                _marker: PhantomData,
+            },
+            ECB: ECB {
+                _marker: PhantomData,
+            },
+            AAR: AAR {
+                _marker: PhantomData,
+            },
+            CCM: CCM {
+                _marker: PhantomData,
+            },
+            WDT: WDT {
+                _marker: PhantomData,
+            },
+            RTC1: RTC1 {
+                _marker: PhantomData,
+            },
+            QDEC: QDEC {
+                _marker: PhantomData,
+            },
+            LPCOMP: LPCOMP {
+                _marker: PhantomData,
+            },
+            SWI: SWI {
+                _marker: PhantomData,
+            },
+            NVMC: NVMC {
+                _marker: PhantomData,
+            },
+            PPI: PPI {
+                _marker: PhantomData,
+            },
+            FICR: FICR {
+                _marker: PhantomData,
+            },
+            UICR: UICR {
+                _marker: PhantomData,
+            },
+            GPIO: GPIO {
+                _marker: PhantomData,
+            },
         }
     }
 }
