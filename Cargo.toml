@@ -1,16 +1,21 @@
 [package]
-authors = ["Daniel Egger <daniel@eggers-club.de>"]
+authors = [
+    "Jorge Aparicio <jorge@japaric.io>",
+    "Daniel Egger <daniel@eggers-club.de>",
+]
 categories = ["embedded"]
-description = "Rust register descriptions for Nordic Semiconductor NRF51 MCUs"
+description = "Peripheral access API for nRF51 microcontrollers"
+documentation = "https://docs.rs/nrf51"
 keywords = [
+    "no-std",
     "arm",
     "cortex-m",
-    "nrf51",
+    "nordic",
 ]
 license = "0BSD"
 name = "nrf51"
 repository = "https://github.com/therealprof/nrf51"
-version = "0.1.2"
+version = "0.4.0"
 
 [dependencies]
 bare-metal = "0.1.1"
@@ -19,7 +24,7 @@ vcell = "0.1.0"
 
 [dependencies.cortex-m-rt]
 optional = true
-version = "0.3.12"
+version = "0.3.13"
 
 [features]
 rt = ["cortex-m-rt"]
