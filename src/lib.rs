@@ -1,36 +1,224 @@
-#![cfg_attr(feature = "rt", feature(global_asm))]
-#![cfg_attr(feature = "rt", feature(use_extern_macros))]
-#![cfg_attr(feature = "rt", feature(used))]
-#![doc = "Peripheral access API for NRF51 microcontrollers (generated using svd2rust v0.12.1)\n\nYou can find an overview of the API [here].\n\n[here]: https://docs.rs/svd2rust/0.12.1/svd2rust/#peripheral-api"]
-#![allow(private_no_mangle_statics)]
+#![doc = "Peripheral access API for NRF51 microcontrollers (generated using svd2rust v0.13.1)\n\nYou can find an overview of the API [here].\n\n[here]: https://docs.rs/svd2rust/0.13.1/svd2rust/#peripheral-api"]
 #![deny(missing_docs)]
 #![deny(warnings)]
 #![allow(non_camel_case_types)]
-#![feature(const_fn)]
-#![feature(try_from)]
 #![no_std]
+extern crate bare_metal;
 extern crate cortex_m;
 #[cfg(feature = "rt")]
 extern crate cortex_m_rt;
-#[cfg(feature = "rt")]
-pub use cortex_m_rt::{default_handler, exception};
-extern crate bare_metal;
 extern crate vcell;
 use core::marker::PhantomData;
 use core::ops::Deref;
 #[doc = r" Number available in the NVIC for configuring priority"]
 pub const NVIC_PRIO_BITS: u8 = 2;
-pub use interrupt::Interrupt;
+#[cfg(feature = "rt")]
+extern "C" {
+    fn POWER_CLOCK();
+    fn RADIO();
+    fn UART0();
+    fn SPI0_TWI0();
+    fn SPI1_TWI1();
+    fn GPIOTE();
+    fn ADC();
+    fn TIMER0();
+    fn TIMER1();
+    fn TIMER2();
+    fn RTC0();
+    fn TEMP();
+    fn RNG();
+    fn ECB();
+    fn CCM_AAR();
+    fn WDT();
+    fn RTC1();
+    fn QDEC();
+    fn LPCOMP();
+    fn SWI0();
+    fn SWI1();
+    fn SWI2();
+    fn SWI3();
+    fn SWI4();
+    fn SWI5();
+}
+#[doc(hidden)]
+pub union Vector {
+    _handler: unsafe extern "C" fn(),
+    _reserved: u32,
+}
+#[cfg(feature = "rt")]
+#[doc(hidden)]
+#[link_section = ".vector_table.interrupts"]
+#[no_mangle]
+pub static __INTERRUPTS: [Vector; 26] = [
+    Vector {
+        _handler: POWER_CLOCK,
+    },
+    Vector { _handler: RADIO },
+    Vector { _handler: UART0 },
+    Vector {
+        _handler: SPI0_TWI0,
+    },
+    Vector {
+        _handler: SPI1_TWI1,
+    },
+    Vector { _reserved: 0 },
+    Vector { _handler: GPIOTE },
+    Vector { _handler: ADC },
+    Vector { _handler: TIMER0 },
+    Vector { _handler: TIMER1 },
+    Vector { _handler: TIMER2 },
+    Vector { _handler: RTC0 },
+    Vector { _handler: TEMP },
+    Vector { _handler: RNG },
+    Vector { _handler: ECB },
+    Vector { _handler: CCM_AAR },
+    Vector { _handler: WDT },
+    Vector { _handler: RTC1 },
+    Vector { _handler: QDEC },
+    Vector { _handler: LPCOMP },
+    Vector { _handler: SWI0 },
+    Vector { _handler: SWI1 },
+    Vector { _handler: SWI2 },
+    Vector { _handler: SWI3 },
+    Vector { _handler: SWI4 },
+    Vector { _handler: SWI5 },
+];
+#[doc = r" Macro to override a device specific interrupt handler"]
+#[doc = r""]
+#[doc = r" # Syntax"]
+#[doc = r""]
+#[doc = r" ``` ignore"]
+#[doc = r" interrupt!("]
+#[doc = r"     // Name of the interrupt"]
+#[doc = r"     $Name:ident,"]
+#[doc = r""]
+#[doc = r"     // Path to the interrupt handler (a function)"]
+#[doc = r"     $handler:path,"]
+#[doc = r""]
+#[doc = r"     // Optional, state preserved across invocations of the handler"]
+#[doc = r"     state: $State:ty = $initial_state:expr,"]
+#[doc = r" );"]
+#[doc = r" ```"]
+#[doc = r""]
+#[doc = r" Where `$Name` must match the name of one of the variants of the `Interrupt`"]
+#[doc = r" enum."]
+#[doc = r""]
+#[doc = r" The handler must have signature `fn()` is no state was associated to it;"]
+#[doc = r" otherwise its signature must be `fn(&mut $State)`."]
+#[cfg(feature = "rt")]
+#[macro_export]
+macro_rules! interrupt {
+    ($Name:ident, $handler:path,state: $State:ty = $initial_state:expr) => {
+        #[allow(unsafe_code)]
+        #[deny(private_no_mangle_fns)]
+        #[no_mangle]
+        pub unsafe extern "C" fn $Name() {
+            static mut STATE: $State = $initial_state;
+            let _ = $crate::Interrupt::$Name;
+            let f: fn(&mut $State) = $handler;
+            f(&mut STATE)
+        }
+    };
+    ($Name:ident, $handler:path) => {
+        #[allow(unsafe_code)]
+        #[deny(private_no_mangle_fns)]
+        #[no_mangle]
+        pub unsafe extern "C" fn $Name() {
+            let _ = $crate::Interrupt::$Name;
+            let f: fn() = $handler;
+            f()
+        }
+    };
+}
+#[doc = r" Enumeration of all the interrupts"]
+pub enum Interrupt {
+    #[doc = "0 - POWER_CLOCK"]
+    POWER_CLOCK,
+    #[doc = "1 - RADIO"]
+    RADIO,
+    #[doc = "2 - UART0"]
+    UART0,
+    #[doc = "3 - SPI0_TWI0"]
+    SPI0_TWI0,
+    #[doc = "4 - SPI1_TWI1"]
+    SPI1_TWI1,
+    #[doc = "6 - GPIOTE"]
+    GPIOTE,
+    #[doc = "7 - ADC"]
+    ADC,
+    #[doc = "8 - TIMER0"]
+    TIMER0,
+    #[doc = "9 - TIMER1"]
+    TIMER1,
+    #[doc = "10 - TIMER2"]
+    TIMER2,
+    #[doc = "11 - RTC0"]
+    RTC0,
+    #[doc = "12 - TEMP"]
+    TEMP,
+    #[doc = "13 - RNG"]
+    RNG,
+    #[doc = "14 - ECB"]
+    ECB,
+    #[doc = "15 - CCM_AAR"]
+    CCM_AAR,
+    #[doc = "16 - WDT"]
+    WDT,
+    #[doc = "17 - RTC1"]
+    RTC1,
+    #[doc = "18 - QDEC"]
+    QDEC,
+    #[doc = "19 - LPCOMP"]
+    LPCOMP,
+    #[doc = "20 - SWI0"]
+    SWI0,
+    #[doc = "21 - SWI1"]
+    SWI1,
+    #[doc = "22 - SWI2"]
+    SWI2,
+    #[doc = "23 - SWI3"]
+    SWI3,
+    #[doc = "24 - SWI4"]
+    SWI4,
+    #[doc = "25 - SWI5"]
+    SWI5,
+}
+unsafe impl ::bare_metal::Nr for Interrupt {
+    #[inline]
+    fn nr(&self) -> u8 {
+        match *self {
+            Interrupt::POWER_CLOCK => 0,
+            Interrupt::RADIO => 1,
+            Interrupt::UART0 => 2,
+            Interrupt::SPI0_TWI0 => 3,
+            Interrupt::SPI1_TWI1 => 4,
+            Interrupt::GPIOTE => 6,
+            Interrupt::ADC => 7,
+            Interrupt::TIMER0 => 8,
+            Interrupt::TIMER1 => 9,
+            Interrupt::TIMER2 => 10,
+            Interrupt::RTC0 => 11,
+            Interrupt::TEMP => 12,
+            Interrupt::RNG => 13,
+            Interrupt::ECB => 14,
+            Interrupt::CCM_AAR => 15,
+            Interrupt::WDT => 16,
+            Interrupt::RTC1 => 17,
+            Interrupt::QDEC => 18,
+            Interrupt::LPCOMP => 19,
+            Interrupt::SWI0 => 20,
+            Interrupt::SWI1 => 21,
+            Interrupt::SWI2 => 22,
+            Interrupt::SWI3 => 23,
+            Interrupt::SWI4 => 24,
+            Interrupt::SWI5 => 25,
+        }
+    }
+}
 #[doc(hidden)]
 pub mod interrupt;
 pub use cortex_m::peripheral::Peripherals as CorePeripherals;
-pub use cortex_m::peripheral::CPUID;
-pub use cortex_m::peripheral::DCB;
-pub use cortex_m::peripheral::DWT;
-pub use cortex_m::peripheral::MPU;
-pub use cortex_m::peripheral::NVIC;
-pub use cortex_m::peripheral::SCB;
-pub use cortex_m::peripheral::SYST;
+pub use cortex_m::peripheral::{CBP, CPUID, DCB, DWT, FPB, FPU, ITM, MPU, NVIC, SCB, SYST, TPIU};
 #[doc = "Power Control."]
 pub struct POWER {
     _marker: PhantomData<*const ()>,
@@ -629,6 +817,7 @@ impl Deref for GPIO {
 }
 #[doc = "General purpose input and output."]
 pub mod gpio;
+#[allow(private_no_mangle_statics)]
 #[no_mangle]
 static mut DEVICE_PERIPHERALS: bool = false;
 #[doc = r" All the peripherals"]
