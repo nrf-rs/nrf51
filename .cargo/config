@@ -1,9 +1,7 @@
 [target.thumbv6m-none-eabi]
 rustflags = [
   "-C", "link-arg=-Tlink.x",
-  "-C", "linker=arm-none-eabi-ld",
-  "-Z", "linker-flavor=ld",
-  "--emit=asm",
+  #"--emit=asm",
 ]
 
 [build]
