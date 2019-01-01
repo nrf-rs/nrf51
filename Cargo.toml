@@ -14,7 +14,7 @@ keywords = [
 ]
 license = "0BSD"
 name = "nrf51"
-repository = "https://github.com/therealprof/nrf51"
+repository = "https://github.com/nrf-rs/nrf51"
 version = "0.6.0"
 
 [dependencies]
