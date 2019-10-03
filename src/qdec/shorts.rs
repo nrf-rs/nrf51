@@ -1,302 +1,192 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::SHORTS {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register SHORTS"]
+pub type R = crate::R<u32, super::SHORTS>;
+#[doc = "Writer for register SHORTS"]
+pub type W = crate::W<u32, super::SHORTS>;
+#[doc = "Register SHORTS `reset()`'s with value 0"]
+impl crate::ResetValue for super::SHORTS {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `REPORTRDY_READCLRACC`"]
+#[doc = "Shortcut between REPORTRDY event and READCLRACC task.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum REPORTRDY_READCLRACCR {
-    #[doc = "Shortcut disabled."]
+pub enum REPORTRDY_READCLRACC_A {
+    #[doc = "0: Shortcut disabled."]
     DISABLED,
-    #[doc = "Shortcut enabled."]
+    #[doc = "1: Shortcut enabled."]
     ENABLED,
 }
-impl REPORTRDY_READCLRACCR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            REPORTRDY_READCLRACCR::DISABLED => false,
-            REPORTRDY_READCLRACCR::ENABLED => true,
+impl From<REPORTRDY_READCLRACC_A> for bool {
+    #[inline(always)]
+    fn from(variant: REPORTRDY_READCLRACC_A) -> Self {
+        match variant {
+            REPORTRDY_READCLRACC_A::DISABLED => false,
+            REPORTRDY_READCLRACC_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> REPORTRDY_READCLRACCR {
-        match value {
-            false => REPORTRDY_READCLRACCR::DISABLED,
-            true => REPORTRDY_READCLRACCR::ENABLED,
+}
+#[doc = "Reader of field `REPORTRDY_READCLRACC`"]
+pub type REPORTRDY_READCLRACC_R = crate::R<bool, REPORTRDY_READCLRACC_A>;
+impl REPORTRDY_READCLRACC_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> REPORTRDY_READCLRACC_A {
+        match self.bits {
+            false => REPORTRDY_READCLRACC_A::DISABLED,
+            true => REPORTRDY_READCLRACC_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == REPORTRDY_READCLRACCR::DISABLED
+        *self == REPORTRDY_READCLRACC_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == REPORTRDY_READCLRACCR::ENABLED
+        *self == REPORTRDY_READCLRACC_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `SAMPLERDY_STOP`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum SAMPLERDY_STOPR {
-    #[doc = "Shortcut disabled."]
-    DISABLED,
-    #[doc = "Shortcut enabled."]
-    ENABLED,
-}
-impl SAMPLERDY_STOPR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            SAMPLERDY_STOPR::DISABLED => false,
-            SAMPLERDY_STOPR::ENABLED => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> SAMPLERDY_STOPR {
-        match value {
-            false => SAMPLERDY_STOPR::DISABLED,
-            true => SAMPLERDY_STOPR::ENABLED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
-    pub fn is_disabled(&self) -> bool {
-        *self == SAMPLERDY_STOPR::DISABLED
-    }
-    #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
-    pub fn is_enabled(&self) -> bool {
-        *self == SAMPLERDY_STOPR::ENABLED
-    }
-}
-#[doc = "Values that can be written to the field `REPORTRDY_READCLRACC`"]
-pub enum REPORTRDY_READCLRACCW {
-    #[doc = "Shortcut disabled."]
-    DISABLED,
-    #[doc = "Shortcut enabled."]
-    ENABLED,
-}
-impl REPORTRDY_READCLRACCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            REPORTRDY_READCLRACCW::DISABLED => false,
-            REPORTRDY_READCLRACCW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _REPORTRDY_READCLRACCW<'a> {
+#[doc = "Write proxy for field `REPORTRDY_READCLRACC`"]
+pub struct REPORTRDY_READCLRACC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _REPORTRDY_READCLRACCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: REPORTRDY_READCLRACCW) -> &'a mut W {
+impl<'a> REPORTRDY_READCLRACC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: REPORTRDY_READCLRACC_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Shortcut disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(REPORTRDY_READCLRACCW::DISABLED)
+        self.variant(REPORTRDY_READCLRACC_A::DISABLED)
     }
     #[doc = "Shortcut enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(REPORTRDY_READCLRACCW::ENABLED)
+        self.variant(REPORTRDY_READCLRACC_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `SAMPLERDY_STOP`"]
-pub enum SAMPLERDY_STOPW {
-    #[doc = "Shortcut disabled."]
+#[doc = "Shortcut between SAMPLERDY event and STOP task.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum SAMPLERDY_STOP_A {
+    #[doc = "0: Shortcut disabled."]
     DISABLED,
-    #[doc = "Shortcut enabled."]
+    #[doc = "1: Shortcut enabled."]
     ENABLED,
 }
-impl SAMPLERDY_STOPW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            SAMPLERDY_STOPW::DISABLED => false,
-            SAMPLERDY_STOPW::ENABLED => true,
+impl From<SAMPLERDY_STOP_A> for bool {
+    #[inline(always)]
+    fn from(variant: SAMPLERDY_STOP_A) -> Self {
+        match variant {
+            SAMPLERDY_STOP_A::DISABLED => false,
+            SAMPLERDY_STOP_A::ENABLED => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _SAMPLERDY_STOPW<'a> {
+#[doc = "Reader of field `SAMPLERDY_STOP`"]
+pub type SAMPLERDY_STOP_R = crate::R<bool, SAMPLERDY_STOP_A>;
+impl SAMPLERDY_STOP_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> SAMPLERDY_STOP_A {
+        match self.bits {
+            false => SAMPLERDY_STOP_A::DISABLED,
+            true => SAMPLERDY_STOP_A::ENABLED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == SAMPLERDY_STOP_A::DISABLED
+    }
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == SAMPLERDY_STOP_A::ENABLED
+    }
+}
+#[doc = "Write proxy for field `SAMPLERDY_STOP`"]
+pub struct SAMPLERDY_STOP_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _SAMPLERDY_STOPW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: SAMPLERDY_STOPW) -> &'a mut W {
+impl<'a> SAMPLERDY_STOP_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: SAMPLERDY_STOP_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Shortcut disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(SAMPLERDY_STOPW::DISABLED)
+        self.variant(SAMPLERDY_STOP_A::DISABLED)
     }
     #[doc = "Shortcut enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(SAMPLERDY_STOPW::ENABLED)
+        self.variant(SAMPLERDY_STOP_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Shortcut between REPORTRDY event and READCLRACC task."]
-    #[inline]
-    pub fn reportrdy_readclracc(&self) -> REPORTRDY_READCLRACCR {
-        REPORTRDY_READCLRACCR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn reportrdy_readclracc(&self) -> REPORTRDY_READCLRACC_R {
+        REPORTRDY_READCLRACC_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - Shortcut between SAMPLERDY event and STOP task."]
-    #[inline]
-    pub fn samplerdy_stop(&self) -> SAMPLERDY_STOPR {
-        SAMPLERDY_STOPR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn samplerdy_stop(&self) -> SAMPLERDY_STOP_R {
+        SAMPLERDY_STOP_R::new(((self.bits >> 1) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Shortcut between REPORTRDY event and READCLRACC task."]
-    #[inline]
-    pub fn reportrdy_readclracc(&mut self) -> _REPORTRDY_READCLRACCW {
-        _REPORTRDY_READCLRACCW { w: self }
+    #[inline(always)]
+    pub fn reportrdy_readclracc(&mut self) -> REPORTRDY_READCLRACC_W {
+        REPORTRDY_READCLRACC_W { w: self }
     }
     #[doc = "Bit 1 - Shortcut between SAMPLERDY event and STOP task."]
-    #[inline]
-    pub fn samplerdy_stop(&mut self) -> _SAMPLERDY_STOPW {
-        _SAMPLERDY_STOPW { w: self }
+    #[inline(always)]
+    pub fn samplerdy_stop(&mut self) -> SAMPLERDY_STOP_W {
+        SAMPLERDY_STOP_W { w: self }
     }
 }

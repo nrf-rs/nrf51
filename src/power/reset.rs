@@ -1,183 +1,104 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::RESET {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register RESET"]
+pub type R = crate::R<u32, super::RESET>;
+#[doc = "Writer for register RESET"]
+pub type W = crate::W<u32, super::RESET>;
+#[doc = "Register RESET `reset()`'s with value 0"]
+impl crate::ResetValue for super::RESET {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `RESET`"]
+#[doc = "Enable or disable pin reset in debug interface mode.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum RESETR {
-    #[doc = "Pin reset in debug interface mode disabled."]
+pub enum RESET_A {
+    #[doc = "0: Pin reset in debug interface mode disabled."]
     DISABLED,
-    #[doc = "Pin reset in debug interface mode enabled."]
+    #[doc = "1: Pin reset in debug interface mode enabled."]
     ENABLED,
 }
-impl RESETR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            RESETR::DISABLED => false,
-            RESETR::ENABLED => true,
+impl From<RESET_A> for bool {
+    #[inline(always)]
+    fn from(variant: RESET_A) -> Self {
+        match variant {
+            RESET_A::DISABLED => false,
+            RESET_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> RESETR {
-        match value {
-            false => RESETR::DISABLED,
-            true => RESETR::ENABLED,
+}
+#[doc = "Reader of field `RESET`"]
+pub type RESET_R = crate::R<bool, RESET_A>;
+impl RESET_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> RESET_A {
+        match self.bits {
+            false => RESET_A::DISABLED,
+            true => RESET_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == RESETR::DISABLED
+        *self == RESET_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == RESETR::ENABLED
+        *self == RESET_A::ENABLED
     }
 }
-#[doc = "Values that can be written to the field `RESET`"]
-pub enum RESETW {
-    #[doc = "Pin reset in debug interface mode disabled."]
-    DISABLED,
-    #[doc = "Pin reset in debug interface mode enabled."]
-    ENABLED,
-}
-impl RESETW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            RESETW::DISABLED => false,
-            RESETW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _RESETW<'a> {
+#[doc = "Write proxy for field `RESET`"]
+pub struct RESET_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _RESETW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: RESETW) -> &'a mut W {
+impl<'a> RESET_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: RESET_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Pin reset in debug interface mode disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(RESETW::DISABLED)
+        self.variant(RESET_A::DISABLED)
     }
     #[doc = "Pin reset in debug interface mode enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(RESETW::ENABLED)
+        self.variant(RESET_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Enable or disable pin reset in debug interface mode."]
-    #[inline]
-    pub fn reset(&self) -> RESETR {
-        RESETR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn reset(&self) -> RESET_R {
+        RESET_R::new((self.bits & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Enable or disable pin reset in debug interface mode."]
-    #[inline]
-    pub fn reset(&mut self) -> _RESETW {
-        _RESETW { w: self }
+    #[inline(always)]
+    pub fn reset(&mut self) -> RESET_W {
+        RESET_W { w: self }
     }
 }

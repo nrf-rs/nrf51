@@ -15,19 +15,19 @@ keywords = [
 license = "0BSD"
 name = "nrf51"
 repository = "https://github.com/nrf-rs/nrf51"
-version = "0.6.0"
+version = "0.7.0"
 
 [dependencies]
-cortex-m = "0.5.8"
-vcell = "0.1.0"
+cortex-m = "0.6.1"
+vcell = "0.1.2"
 
 [dependencies.bare-metal]
 features = ["const-fn"]
-version = "0.2.4"
+version = "0.2.5"
 
 [dependencies.cortex-m-rt]
 optional = true
-version = "0.6.7"
+version = "0.6.10"
 
 [features]
 default = ["rt"]

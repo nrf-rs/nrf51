@@ -1,11 +1,11 @@
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
     _reserved0: [u8; 3584usize],
     #[doc = "0xe00 - RAM configurable priority configuration structure."]
     pub rampri: RAMPRI,
 }
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[repr(C)]
 pub struct RAMPRI {
     #[doc = "0x00 - Configurable priority configuration register for CPU0."]
@@ -21,6 +21,6 @@ pub struct RAMPRI {
     #[doc = "0x14 - Configurable priority configuration register for AAR."]
     pub aar: self::rampri::AAR,
 }
-#[doc = r" Register block"]
+#[doc = r"Register block"]
 #[doc = "RAM configurable priority configuration structure."]
 pub mod rampri;

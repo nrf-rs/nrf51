@@ -1,480 +1,327 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::CONFIG {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register CONFIG[%s]"]
+pub type R = crate::R<u32, super::CONFIG>;
+#[doc = "Writer for register CONFIG[%s]"]
+pub type W = crate::W<u32, super::CONFIG>;
+#[doc = "Register CONFIG[%s] `reset()`'s with value 0"]
+impl crate::ResetValue for super::CONFIG {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `MODE`"]
+#[doc = "Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum MODER {
-    #[doc = "Disabled."]
+pub enum MODE_A {
+    #[doc = "0: Disabled."]
     DISABLED,
-    #[doc = "Channel configure in event mode."]
+    #[doc = "1: Channel configure in event mode."]
     EVENT,
-    #[doc = "Channel configure in task mode."]
+    #[doc = "3: Channel configure in task mode."]
     TASK,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl MODER {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            MODER::DISABLED => 0,
-            MODER::EVENT => 1,
-            MODER::TASK => 3,
-            MODER::_Reserved(bits) => bits,
+impl From<MODE_A> for u8 {
+    #[inline(always)]
+    fn from(variant: MODE_A) -> Self {
+        match variant {
+            MODE_A::DISABLED => 0,
+            MODE_A::EVENT => 1,
+            MODE_A::TASK => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> MODER {
-        match value {
-            0 => MODER::DISABLED,
-            1 => MODER::EVENT,
-            3 => MODER::TASK,
-            i => MODER::_Reserved(i),
+}
+#[doc = "Reader of field `MODE`"]
+pub type MODE_R = crate::R<u8, MODE_A>;
+impl MODE_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, MODE_A> {
+        use crate::Variant::*;
+        match self.bits {
+            0 => Val(MODE_A::DISABLED),
+            1 => Val(MODE_A::EVENT),
+            3 => Val(MODE_A::TASK),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == MODER::DISABLED
+        *self == MODE_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `EVENT`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_event(&self) -> bool {
-        *self == MODER::EVENT
+        *self == MODE_A::EVENT
     }
     #[doc = "Checks if the value of the field is `TASK`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_task(&self) -> bool {
-        *self == MODER::TASK
+        *self == MODE_A::TASK
     }
 }
-#[doc = r" Value of the field"]
-pub struct PSELR {
-    bits: u8,
+#[doc = "Write proxy for field `MODE`"]
+pub struct MODE_W<'a> {
+    w: &'a mut W,
 }
-impl PSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        self.bits
+impl<'a> MODE_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: MODE_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
+    }
+    #[doc = "Disabled."]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(MODE_A::DISABLED)
+    }
+    #[doc = "Channel configure in event mode."]
+    #[inline(always)]
+    pub fn event(self) -> &'a mut W {
+        self.variant(MODE_A::EVENT)
+    }
+    #[doc = "Channel configure in task mode."]
+    #[inline(always)]
+    pub fn task(self) -> &'a mut W {
+        self.variant(MODE_A::TASK)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x03) | ((value as u32) & 0x03);
+        self.w
     }
 }
-#[doc = "Possible values of the field `POLARITY`"]
+#[doc = "Reader of field `PSEL`"]
+pub type PSEL_R = crate::R<u8, u8>;
+#[doc = "Write proxy for field `PSEL`"]
+pub struct PSEL_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> PSEL_W<'a> {
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub unsafe fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x1f << 8)) | (((value as u32) & 0x1f) << 8);
+        self.w
+    }
+}
+#[doc = "Effects on output when in Task mode, or events on input that generates an event.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum POLARITYR {
-    #[doc = "No task or event."]
+pub enum POLARITY_A {
+    #[doc = "0: No task or event."]
     NONE,
-    #[doc = "Low to high."]
+    #[doc = "1: Low to high."]
     LOTOHI,
-    #[doc = "High to low."]
+    #[doc = "2: High to low."]
     HITOLO,
-    #[doc = "Toggle."]
+    #[doc = "3: Toggle."]
     TOGGLE,
 }
-impl POLARITYR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            POLARITYR::NONE => 0,
-            POLARITYR::LOTOHI => 1,
-            POLARITYR::HITOLO => 2,
-            POLARITYR::TOGGLE => 3,
+impl From<POLARITY_A> for u8 {
+    #[inline(always)]
+    fn from(variant: POLARITY_A) -> Self {
+        match variant {
+            POLARITY_A::NONE => 0,
+            POLARITY_A::LOTOHI => 1,
+            POLARITY_A::HITOLO => 2,
+            POLARITY_A::TOGGLE => 3,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> POLARITYR {
-        match value {
-            0 => POLARITYR::NONE,
-            1 => POLARITYR::LOTOHI,
-            2 => POLARITYR::HITOLO,
-            3 => POLARITYR::TOGGLE,
+}
+#[doc = "Reader of field `POLARITY`"]
+pub type POLARITY_R = crate::R<u8, POLARITY_A>;
+impl POLARITY_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> POLARITY_A {
+        match self.bits {
+            0 => POLARITY_A::NONE,
+            1 => POLARITY_A::LOTOHI,
+            2 => POLARITY_A::HITOLO,
+            3 => POLARITY_A::TOGGLE,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `NONE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_none(&self) -> bool {
-        *self == POLARITYR::NONE
+        *self == POLARITY_A::NONE
     }
     #[doc = "Checks if the value of the field is `LOTOHI`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_lo_to_hi(&self) -> bool {
-        *self == POLARITYR::LOTOHI
+        *self == POLARITY_A::LOTOHI
     }
     #[doc = "Checks if the value of the field is `HITOLO`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_hi_to_lo(&self) -> bool {
-        *self == POLARITYR::HITOLO
+        *self == POLARITY_A::HITOLO
     }
     #[doc = "Checks if the value of the field is `TOGGLE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_toggle(&self) -> bool {
-        *self == POLARITYR::TOGGLE
+        *self == POLARITY_A::TOGGLE
     }
 }
-#[doc = "Possible values of the field `OUTINIT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum OUTINITR {
-    #[doc = "Initial low output when in task mode."]
-    LOW,
-    #[doc = "Initial high output when in task mode."]
-    HIGH,
+#[doc = "Write proxy for field `POLARITY`"]
+pub struct POLARITY_W<'a> {
+    w: &'a mut W,
 }
-impl OUTINITR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            OUTINITR::LOW => false,
-            OUTINITR::HIGH => true,
+impl<'a> POLARITY_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: POLARITY_A) -> &'a mut W {
+        {
+            self.bits(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> OUTINITR {
-        match value {
-            false => OUTINITR::LOW,
-            true => OUTINITR::HIGH,
+    #[doc = "No task or event."]
+    #[inline(always)]
+    pub fn none(self) -> &'a mut W {
+        self.variant(POLARITY_A::NONE)
+    }
+    #[doc = "Low to high."]
+    #[inline(always)]
+    pub fn lo_to_hi(self) -> &'a mut W {
+        self.variant(POLARITY_A::LOTOHI)
+    }
+    #[doc = "High to low."]
+    #[inline(always)]
+    pub fn hi_to_lo(self) -> &'a mut W {
+        self.variant(POLARITY_A::HITOLO)
+    }
+    #[doc = "Toggle."]
+    #[inline(always)]
+    pub fn toggle(self) -> &'a mut W {
+        self.variant(POLARITY_A::TOGGLE)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bits(self, value: u8) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x03 << 16)) | (((value as u32) & 0x03) << 16);
+        self.w
+    }
+}
+#[doc = "Initial value of the output when the GPIOTE channel is configured as a Task.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum OUTINIT_A {
+    #[doc = "0: Initial low output when in task mode."]
+    LOW,
+    #[doc = "1: Initial high output when in task mode."]
+    HIGH,
+}
+impl From<OUTINIT_A> for bool {
+    #[inline(always)]
+    fn from(variant: OUTINIT_A) -> Self {
+        match variant {
+            OUTINIT_A::LOW => false,
+            OUTINIT_A::HIGH => true,
+        }
+    }
+}
+#[doc = "Reader of field `OUTINIT`"]
+pub type OUTINIT_R = crate::R<bool, OUTINIT_A>;
+impl OUTINIT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> OUTINIT_A {
+        match self.bits {
+            false => OUTINIT_A::LOW,
+            true => OUTINIT_A::HIGH,
         }
     }
     #[doc = "Checks if the value of the field is `LOW`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == OUTINITR::LOW
+        *self == OUTINIT_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == OUTINITR::HIGH
+        *self == OUTINIT_A::HIGH
     }
 }
-#[doc = "Values that can be written to the field `MODE`"]
-pub enum MODEW {
-    #[doc = "Disabled."]
-    DISABLED,
-    #[doc = "Channel configure in event mode."]
-    EVENT,
-    #[doc = "Channel configure in task mode."]
-    TASK,
-}
-impl MODEW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            MODEW::DISABLED => 0,
-            MODEW::EVENT => 1,
-            MODEW::TASK => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _MODEW<'a> {
+#[doc = "Write proxy for field `OUTINIT`"]
+pub struct OUTINIT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _MODEW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: MODEW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
-    }
-    #[doc = "Disabled."]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(MODEW::DISABLED)
-    }
-    #[doc = "Channel configure in event mode."]
-    #[inline]
-    pub fn event(self) -> &'a mut W {
-        self.variant(MODEW::EVENT)
-    }
-    #[doc = "Channel configure in task mode."]
-    #[inline]
-    pub fn task(self) -> &'a mut W {
-        self.variant(MODEW::TASK)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PSELW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _PSELW<'a> {
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 31;
-        const OFFSET: u8 = 8;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `POLARITY`"]
-pub enum POLARITYW {
-    #[doc = "No task or event."]
-    NONE,
-    #[doc = "Low to high."]
-    LOTOHI,
-    #[doc = "High to low."]
-    HITOLO,
-    #[doc = "Toggle."]
-    TOGGLE,
-}
-impl POLARITYW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            POLARITYW::NONE => 0,
-            POLARITYW::LOTOHI => 1,
-            POLARITYW::HITOLO => 2,
-            POLARITYW::TOGGLE => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _POLARITYW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _POLARITYW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: POLARITYW) -> &'a mut W {
+impl<'a> OUTINIT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: OUTINIT_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
-        }
-    }
-    #[doc = "No task or event."]
-    #[inline]
-    pub fn none(self) -> &'a mut W {
-        self.variant(POLARITYW::NONE)
-    }
-    #[doc = "Low to high."]
-    #[inline]
-    pub fn lo_to_hi(self) -> &'a mut W {
-        self.variant(POLARITYW::LOTOHI)
-    }
-    #[doc = "High to low."]
-    #[inline]
-    pub fn hi_to_lo(self) -> &'a mut W {
-        self.variant(POLARITYW::HITOLO)
-    }
-    #[doc = "Toggle."]
-    #[inline]
-    pub fn toggle(self) -> &'a mut W {
-        self.variant(POLARITYW::TOGGLE)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 16;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `OUTINIT`"]
-pub enum OUTINITW {
-    #[doc = "Initial low output when in task mode."]
-    LOW,
-    #[doc = "Initial high output when in task mode."]
-    HIGH,
-}
-impl OUTINITW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            OUTINITW::LOW => false,
-            OUTINITW::HIGH => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _OUTINITW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _OUTINITW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: OUTINITW) -> &'a mut W {
-        {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Initial low output when in task mode."]
-    #[inline]
+    #[inline(always)]
     pub fn low(self) -> &'a mut W {
-        self.variant(OUTINITW::LOW)
+        self.variant(OUTINIT_A::LOW)
     }
     #[doc = "Initial high output when in task mode."]
-    #[inline]
+    #[inline(always)]
     pub fn high(self) -> &'a mut W {
-        self.variant(OUTINITW::HIGH)
+        self.variant(OUTINIT_A::HIGH)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 20;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:1 - Mode"]
-    #[inline]
-    pub fn mode(&self) -> MODER {
-        MODER::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn mode(&self) -> MODE_R {
+        MODE_R::new((self.bits & 0x03) as u8)
     }
     #[doc = "Bits 8:12 - Pin select."]
-    #[inline]
-    pub fn psel(&self) -> PSELR {
-        let bits = {
-            const MASK: u8 = 31;
-            const OFFSET: u8 = 8;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        };
-        PSELR { bits }
+    #[inline(always)]
+    pub fn psel(&self) -> PSEL_R {
+        PSEL_R::new(((self.bits >> 8) & 0x1f) as u8)
     }
     #[doc = "Bits 16:17 - Effects on output when in Task mode, or events on input that generates an event."]
-    #[inline]
-    pub fn polarity(&self) -> POLARITYR {
-        POLARITYR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 16;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn polarity(&self) -> POLARITY_R {
+        POLARITY_R::new(((self.bits >> 16) & 0x03) as u8)
     }
     #[doc = "Bit 20 - Initial value of the output when the GPIOTE channel is configured as a Task."]
-    #[inline]
-    pub fn outinit(&self) -> OUTINITR {
-        OUTINITR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 20;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn outinit(&self) -> OUTINIT_R {
+        OUTINIT_R::new(((self.bits >> 20) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:1 - Mode"]
-    #[inline]
-    pub fn mode(&mut self) -> _MODEW {
-        _MODEW { w: self }
+    #[inline(always)]
+    pub fn mode(&mut self) -> MODE_W {
+        MODE_W { w: self }
     }
     #[doc = "Bits 8:12 - Pin select."]
-    #[inline]
-    pub fn psel(&mut self) -> _PSELW {
-        _PSELW { w: self }
+    #[inline(always)]
+    pub fn psel(&mut self) -> PSEL_W {
+        PSEL_W { w: self }
     }
     #[doc = "Bits 16:17 - Effects on output when in Task mode, or events on input that generates an event."]
-    #[inline]
-    pub fn polarity(&mut self) -> _POLARITYW {
-        _POLARITYW { w: self }
+    #[inline(always)]
+    pub fn polarity(&mut self) -> POLARITY_W {
+        POLARITY_W { w: self }
     }
     #[doc = "Bit 20 - Initial value of the output when the GPIOTE channel is configured as a Task."]
-    #[inline]
-    pub fn outinit(&mut self) -> _OUTINITW {
-        _OUTINITW { w: self }
+    #[inline(always)]
+    pub fn outinit(&mut self) -> OUTINIT_W {
+        OUTINIT_W { w: self }
     }
 }

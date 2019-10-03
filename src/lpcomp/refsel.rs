@@ -1,268 +1,179 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::REFSEL {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register REFSEL"]
+pub type R = crate::R<u32, super::REFSEL>;
+#[doc = "Writer for register REFSEL"]
+pub type W = crate::W<u32, super::REFSEL>;
+#[doc = "Register REFSEL `reset()`'s with value 0"]
+impl crate::ResetValue for super::REFSEL {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `REFSEL`"]
+#[doc = "Reference select.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum REFSELR {
-    #[doc = "Use supply with a 1/8 prescaler as reference."]
+pub enum REFSEL_A {
+    #[doc = "0: Use supply with a 1/8 prescaler as reference."]
     SUPPLYONEEIGHTHPRESCALING,
-    #[doc = "Use supply with a 2/8 prescaler as reference."]
+    #[doc = "1: Use supply with a 2/8 prescaler as reference."]
     SUPPLYTWOEIGHTHSPRESCALING,
-    #[doc = "Use supply with a 3/8 prescaler as reference."]
+    #[doc = "2: Use supply with a 3/8 prescaler as reference."]
     SUPPLYTHREEEIGHTHSPRESCALING,
-    #[doc = "Use supply with a 4/8 prescaler as reference."]
+    #[doc = "3: Use supply with a 4/8 prescaler as reference."]
     SUPPLYFOUREIGHTHSPRESCALING,
-    #[doc = "Use supply with a 5/8 prescaler as reference."]
+    #[doc = "4: Use supply with a 5/8 prescaler as reference."]
     SUPPLYFIVEEIGHTHSPRESCALING,
-    #[doc = "Use supply with a 6/8 prescaler as reference."]
+    #[doc = "5: Use supply with a 6/8 prescaler as reference."]
     SUPPLYSIXEIGHTHSPRESCALING,
-    #[doc = "Use supply with a 7/8 prescaler as reference."]
+    #[doc = "6: Use supply with a 7/8 prescaler as reference."]
     SUPPLYSEVENEIGHTHSPRESCALING,
-    #[doc = "Use external analog reference as reference."]
+    #[doc = "7: Use external analog reference as reference."]
     AREF,
 }
-impl REFSELR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            REFSELR::SUPPLYONEEIGHTHPRESCALING => 0,
-            REFSELR::SUPPLYTWOEIGHTHSPRESCALING => 1,
-            REFSELR::SUPPLYTHREEEIGHTHSPRESCALING => 2,
-            REFSELR::SUPPLYFOUREIGHTHSPRESCALING => 3,
-            REFSELR::SUPPLYFIVEEIGHTHSPRESCALING => 4,
-            REFSELR::SUPPLYSIXEIGHTHSPRESCALING => 5,
-            REFSELR::SUPPLYSEVENEIGHTHSPRESCALING => 6,
-            REFSELR::AREF => 7,
+impl From<REFSEL_A> for u8 {
+    #[inline(always)]
+    fn from(variant: REFSEL_A) -> Self {
+        match variant {
+            REFSEL_A::SUPPLYONEEIGHTHPRESCALING => 0,
+            REFSEL_A::SUPPLYTWOEIGHTHSPRESCALING => 1,
+            REFSEL_A::SUPPLYTHREEEIGHTHSPRESCALING => 2,
+            REFSEL_A::SUPPLYFOUREIGHTHSPRESCALING => 3,
+            REFSEL_A::SUPPLYFIVEEIGHTHSPRESCALING => 4,
+            REFSEL_A::SUPPLYSIXEIGHTHSPRESCALING => 5,
+            REFSEL_A::SUPPLYSEVENEIGHTHSPRESCALING => 6,
+            REFSEL_A::AREF => 7,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> REFSELR {
-        match value {
-            0 => REFSELR::SUPPLYONEEIGHTHPRESCALING,
-            1 => REFSELR::SUPPLYTWOEIGHTHSPRESCALING,
-            2 => REFSELR::SUPPLYTHREEEIGHTHSPRESCALING,
-            3 => REFSELR::SUPPLYFOUREIGHTHSPRESCALING,
-            4 => REFSELR::SUPPLYFIVEEIGHTHSPRESCALING,
-            5 => REFSELR::SUPPLYSIXEIGHTHSPRESCALING,
-            6 => REFSELR::SUPPLYSEVENEIGHTHSPRESCALING,
-            7 => REFSELR::AREF,
+}
+#[doc = "Reader of field `REFSEL`"]
+pub type REFSEL_R = crate::R<u8, REFSEL_A>;
+impl REFSEL_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> REFSEL_A {
+        match self.bits {
+            0 => REFSEL_A::SUPPLYONEEIGHTHPRESCALING,
+            1 => REFSEL_A::SUPPLYTWOEIGHTHSPRESCALING,
+            2 => REFSEL_A::SUPPLYTHREEEIGHTHSPRESCALING,
+            3 => REFSEL_A::SUPPLYFOUREIGHTHSPRESCALING,
+            4 => REFSEL_A::SUPPLYFIVEEIGHTHSPRESCALING,
+            5 => REFSEL_A::SUPPLYSIXEIGHTHSPRESCALING,
+            6 => REFSEL_A::SUPPLYSEVENEIGHTHSPRESCALING,
+            7 => REFSEL_A::AREF,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `SUPPLYONEEIGHTHPRESCALING`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_supply_one_eighth_prescaling(&self) -> bool {
-        *self == REFSELR::SUPPLYONEEIGHTHPRESCALING
+        *self == REFSEL_A::SUPPLYONEEIGHTHPRESCALING
     }
     #[doc = "Checks if the value of the field is `SUPPLYTWOEIGHTHSPRESCALING`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_supply_two_eighths_prescaling(&self) -> bool {
-        *self == REFSELR::SUPPLYTWOEIGHTHSPRESCALING
+        *self == REFSEL_A::SUPPLYTWOEIGHTHSPRESCALING
     }
     #[doc = "Checks if the value of the field is `SUPPLYTHREEEIGHTHSPRESCALING`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_supply_three_eighths_prescaling(&self) -> bool {
-        *self == REFSELR::SUPPLYTHREEEIGHTHSPRESCALING
+        *self == REFSEL_A::SUPPLYTHREEEIGHTHSPRESCALING
     }
     #[doc = "Checks if the value of the field is `SUPPLYFOUREIGHTHSPRESCALING`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_supply_four_eighths_prescaling(&self) -> bool {
-        *self == REFSELR::SUPPLYFOUREIGHTHSPRESCALING
+        *self == REFSEL_A::SUPPLYFOUREIGHTHSPRESCALING
     }
     #[doc = "Checks if the value of the field is `SUPPLYFIVEEIGHTHSPRESCALING`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_supply_five_eighths_prescaling(&self) -> bool {
-        *self == REFSELR::SUPPLYFIVEEIGHTHSPRESCALING
+        *self == REFSEL_A::SUPPLYFIVEEIGHTHSPRESCALING
     }
     #[doc = "Checks if the value of the field is `SUPPLYSIXEIGHTHSPRESCALING`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_supply_six_eighths_prescaling(&self) -> bool {
-        *self == REFSELR::SUPPLYSIXEIGHTHSPRESCALING
+        *self == REFSEL_A::SUPPLYSIXEIGHTHSPRESCALING
     }
     #[doc = "Checks if the value of the field is `SUPPLYSEVENEIGHTHSPRESCALING`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_supply_seven_eighths_prescaling(&self) -> bool {
-        *self == REFSELR::SUPPLYSEVENEIGHTHSPRESCALING
+        *self == REFSEL_A::SUPPLYSEVENEIGHTHSPRESCALING
     }
     #[doc = "Checks if the value of the field is `AREF`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_aref(&self) -> bool {
-        *self == REFSELR::AREF
+        *self == REFSEL_A::AREF
     }
 }
-#[doc = "Values that can be written to the field `REFSEL`"]
-pub enum REFSELW {
-    #[doc = "Use supply with a 1/8 prescaler as reference."]
-    SUPPLYONEEIGHTHPRESCALING,
-    #[doc = "Use supply with a 2/8 prescaler as reference."]
-    SUPPLYTWOEIGHTHSPRESCALING,
-    #[doc = "Use supply with a 3/8 prescaler as reference."]
-    SUPPLYTHREEEIGHTHSPRESCALING,
-    #[doc = "Use supply with a 4/8 prescaler as reference."]
-    SUPPLYFOUREIGHTHSPRESCALING,
-    #[doc = "Use supply with a 5/8 prescaler as reference."]
-    SUPPLYFIVEEIGHTHSPRESCALING,
-    #[doc = "Use supply with a 6/8 prescaler as reference."]
-    SUPPLYSIXEIGHTHSPRESCALING,
-    #[doc = "Use supply with a 7/8 prescaler as reference."]
-    SUPPLYSEVENEIGHTHSPRESCALING,
-    #[doc = "Use external analog reference as reference."]
-    AREF,
-}
-impl REFSELW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            REFSELW::SUPPLYONEEIGHTHPRESCALING => 0,
-            REFSELW::SUPPLYTWOEIGHTHSPRESCALING => 1,
-            REFSELW::SUPPLYTHREEEIGHTHSPRESCALING => 2,
-            REFSELW::SUPPLYFOUREIGHTHSPRESCALING => 3,
-            REFSELW::SUPPLYFIVEEIGHTHSPRESCALING => 4,
-            REFSELW::SUPPLYSIXEIGHTHSPRESCALING => 5,
-            REFSELW::SUPPLYSEVENEIGHTHSPRESCALING => 6,
-            REFSELW::AREF => 7,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _REFSELW<'a> {
+#[doc = "Write proxy for field `REFSEL`"]
+pub struct REFSEL_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _REFSELW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: REFSELW) -> &'a mut W {
+impl<'a> REFSEL_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: REFSEL_A) -> &'a mut W {
         {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Use supply with a 1/8 prescaler as reference."]
-    #[inline]
+    #[inline(always)]
     pub fn supply_one_eighth_prescaling(self) -> &'a mut W {
-        self.variant(REFSELW::SUPPLYONEEIGHTHPRESCALING)
+        self.variant(REFSEL_A::SUPPLYONEEIGHTHPRESCALING)
     }
     #[doc = "Use supply with a 2/8 prescaler as reference."]
-    #[inline]
+    #[inline(always)]
     pub fn supply_two_eighths_prescaling(self) -> &'a mut W {
-        self.variant(REFSELW::SUPPLYTWOEIGHTHSPRESCALING)
+        self.variant(REFSEL_A::SUPPLYTWOEIGHTHSPRESCALING)
     }
     #[doc = "Use supply with a 3/8 prescaler as reference."]
-    #[inline]
+    #[inline(always)]
     pub fn supply_three_eighths_prescaling(self) -> &'a mut W {
-        self.variant(REFSELW::SUPPLYTHREEEIGHTHSPRESCALING)
+        self.variant(REFSEL_A::SUPPLYTHREEEIGHTHSPRESCALING)
     }
     #[doc = "Use supply with a 4/8 prescaler as reference."]
-    #[inline]
+    #[inline(always)]
     pub fn supply_four_eighths_prescaling(self) -> &'a mut W {
-        self.variant(REFSELW::SUPPLYFOUREIGHTHSPRESCALING)
+        self.variant(REFSEL_A::SUPPLYFOUREIGHTHSPRESCALING)
     }
     #[doc = "Use supply with a 5/8 prescaler as reference."]
-    #[inline]
+    #[inline(always)]
     pub fn supply_five_eighths_prescaling(self) -> &'a mut W {
-        self.variant(REFSELW::SUPPLYFIVEEIGHTHSPRESCALING)
+        self.variant(REFSEL_A::SUPPLYFIVEEIGHTHSPRESCALING)
     }
     #[doc = "Use supply with a 6/8 prescaler as reference."]
-    #[inline]
+    #[inline(always)]
     pub fn supply_six_eighths_prescaling(self) -> &'a mut W {
-        self.variant(REFSELW::SUPPLYSIXEIGHTHSPRESCALING)
+        self.variant(REFSEL_A::SUPPLYSIXEIGHTHSPRESCALING)
     }
     #[doc = "Use supply with a 7/8 prescaler as reference."]
-    #[inline]
+    #[inline(always)]
     pub fn supply_seven_eighths_prescaling(self) -> &'a mut W {
-        self.variant(REFSELW::SUPPLYSEVENEIGHTHSPRESCALING)
+        self.variant(REFSEL_A::SUPPLYSEVENEIGHTHSPRESCALING)
     }
     #[doc = "Use external analog reference as reference."]
-    #[inline]
+    #[inline(always)]
     pub fn aref(self) -> &'a mut W {
-        self.variant(REFSELW::AREF)
+        self.variant(REFSEL_A::AREF)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 7;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x07) | ((value as u32) & 0x07);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:2 - Reference select."]
-    #[inline]
-    pub fn refsel(&self) -> REFSELR {
-        REFSELR::_from({
-            const MASK: u8 = 7;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn refsel(&self) -> REFSEL_R {
+        REFSEL_R::new((self.bits & 0x07) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:2 - Reference select."]
-    #[inline]
-    pub fn refsel(&mut self) -> _REFSELW {
-        _REFSELW { w: self }
+    #[inline(always)]
+    pub fn refsel(&mut self) -> REFSEL_W {
+        REFSEL_W { w: self }
     }
 }

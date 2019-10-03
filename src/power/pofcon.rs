@@ -1,319 +1,211 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::POFCON {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register POFCON"]
+pub type R = crate::R<u32, super::POFCON>;
+#[doc = "Writer for register POFCON"]
+pub type W = crate::W<u32, super::POFCON>;
+#[doc = "Register POFCON `reset()`'s with value 0"]
+impl crate::ResetValue for super::POFCON {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `POF`"]
+#[doc = "Power failure comparator enable.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum POFR {
-    #[doc = "Disabled."]
+pub enum POF_A {
+    #[doc = "0: Disabled."]
     DISABLED,
-    #[doc = "Enabled."]
+    #[doc = "1: Enabled."]
     ENABLED,
 }
-impl POFR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            POFR::DISABLED => false,
-            POFR::ENABLED => true,
+impl From<POF_A> for bool {
+    #[inline(always)]
+    fn from(variant: POF_A) -> Self {
+        match variant {
+            POF_A::DISABLED => false,
+            POF_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> POFR {
-        match value {
-            false => POFR::DISABLED,
-            true => POFR::ENABLED,
+}
+#[doc = "Reader of field `POF`"]
+pub type POF_R = crate::R<bool, POF_A>;
+impl POF_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> POF_A {
+        match self.bits {
+            false => POF_A::DISABLED,
+            true => POF_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == POFR::DISABLED
+        *self == POF_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == POFR::ENABLED
+        *self == POF_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `THRESHOLD`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum THRESHOLDR {
-    #[doc = "Set threshold to 2.1Volts."]
-    V21,
-    #[doc = "Set threshold to 2.3Volts."]
-    V23,
-    #[doc = "Set threshold to 2.5Volts."]
-    V25,
-    #[doc = "Set threshold to 2.7Volts."]
-    V27,
+#[doc = "Write proxy for field `POF`"]
+pub struct POF_W<'a> {
+    w: &'a mut W,
 }
-impl THRESHOLDR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            THRESHOLDR::V21 => 0,
-            THRESHOLDR::V23 => 1,
-            THRESHOLDR::V25 => 2,
-            THRESHOLDR::V27 => 3,
+impl<'a> POF_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: POF_A) -> &'a mut W {
+        {
+            self.bit(variant.into())
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> THRESHOLDR {
-        match value {
-            0 => THRESHOLDR::V21,
-            1 => THRESHOLDR::V23,
-            2 => THRESHOLDR::V25,
-            3 => THRESHOLDR::V27,
+    #[doc = "Disabled."]
+    #[inline(always)]
+    pub fn disabled(self) -> &'a mut W {
+        self.variant(POF_A::DISABLED)
+    }
+    #[doc = "Enabled."]
+    #[inline(always)]
+    pub fn enabled(self) -> &'a mut W {
+        self.variant(POF_A::ENABLED)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w
+    }
+}
+#[doc = "Set threshold level.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum THRESHOLD_A {
+    #[doc = "0: Set threshold to 2.1Volts."]
+    V21,
+    #[doc = "1: Set threshold to 2.3Volts."]
+    V23,
+    #[doc = "2: Set threshold to 2.5Volts."]
+    V25,
+    #[doc = "3: Set threshold to 2.7Volts."]
+    V27,
+}
+impl From<THRESHOLD_A> for u8 {
+    #[inline(always)]
+    fn from(variant: THRESHOLD_A) -> Self {
+        match variant {
+            THRESHOLD_A::V21 => 0,
+            THRESHOLD_A::V23 => 1,
+            THRESHOLD_A::V25 => 2,
+            THRESHOLD_A::V27 => 3,
+        }
+    }
+}
+#[doc = "Reader of field `THRESHOLD`"]
+pub type THRESHOLD_R = crate::R<u8, THRESHOLD_A>;
+impl THRESHOLD_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> THRESHOLD_A {
+        match self.bits {
+            0 => THRESHOLD_A::V21,
+            1 => THRESHOLD_A::V23,
+            2 => THRESHOLD_A::V25,
+            3 => THRESHOLD_A::V27,
             _ => unreachable!(),
         }
     }
     #[doc = "Checks if the value of the field is `V21`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_v21(&self) -> bool {
-        *self == THRESHOLDR::V21
+        *self == THRESHOLD_A::V21
     }
     #[doc = "Checks if the value of the field is `V23`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_v23(&self) -> bool {
-        *self == THRESHOLDR::V23
+        *self == THRESHOLD_A::V23
     }
     #[doc = "Checks if the value of the field is `V25`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_v25(&self) -> bool {
-        *self == THRESHOLDR::V25
+        *self == THRESHOLD_A::V25
     }
     #[doc = "Checks if the value of the field is `V27`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_v27(&self) -> bool {
-        *self == THRESHOLDR::V27
+        *self == THRESHOLD_A::V27
     }
 }
-#[doc = "Values that can be written to the field `POF`"]
-pub enum POFW {
-    #[doc = "Disabled."]
-    DISABLED,
-    #[doc = "Enabled."]
-    ENABLED,
-}
-impl POFW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            POFW::DISABLED => false,
-            POFW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _POFW<'a> {
+#[doc = "Write proxy for field `THRESHOLD`"]
+pub struct THRESHOLD_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _POFW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: POFW) -> &'a mut W {
+impl<'a> THRESHOLD_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: THRESHOLD_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
-        }
-    }
-    #[doc = "Disabled."]
-    #[inline]
-    pub fn disabled(self) -> &'a mut W {
-        self.variant(POFW::DISABLED)
-    }
-    #[doc = "Enabled."]
-    #[inline]
-    pub fn enabled(self) -> &'a mut W {
-        self.variant(POFW::ENABLED)
-    }
-    #[doc = r" Sets the field bit"]
-    pub fn set_bit(self) -> &'a mut W {
-        self.bit(true)
-    }
-    #[doc = r" Clears the field bit"]
-    pub fn clear_bit(self) -> &'a mut W {
-        self.bit(false)
-    }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
-    pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
-        self.w
-    }
-}
-#[doc = "Values that can be written to the field `THRESHOLD`"]
-pub enum THRESHOLDW {
-    #[doc = "Set threshold to 2.1Volts."]
-    V21,
-    #[doc = "Set threshold to 2.3Volts."]
-    V23,
-    #[doc = "Set threshold to 2.5Volts."]
-    V25,
-    #[doc = "Set threshold to 2.7Volts."]
-    V27,
-}
-impl THRESHOLDW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            THRESHOLDW::V21 => 0,
-            THRESHOLDW::V23 => 1,
-            THRESHOLDW::V25 => 2,
-            THRESHOLDW::V27 => 3,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _THRESHOLDW<'a> {
-    w: &'a mut W,
-}
-impl<'a> _THRESHOLDW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: THRESHOLDW) -> &'a mut W {
-        {
-            self.bits(variant._bits())
+            self.bits(variant.into())
         }
     }
     #[doc = "Set threshold to 2.1Volts."]
-    #[inline]
+    #[inline(always)]
     pub fn v21(self) -> &'a mut W {
-        self.variant(THRESHOLDW::V21)
+        self.variant(THRESHOLD_A::V21)
     }
     #[doc = "Set threshold to 2.3Volts."]
-    #[inline]
+    #[inline(always)]
     pub fn v23(self) -> &'a mut W {
-        self.variant(THRESHOLDW::V23)
+        self.variant(THRESHOLD_A::V23)
     }
     #[doc = "Set threshold to 2.5Volts."]
-    #[inline]
+    #[inline(always)]
     pub fn v25(self) -> &'a mut W {
-        self.variant(THRESHOLDW::V25)
+        self.variant(THRESHOLD_A::V25)
     }
     #[doc = "Set threshold to 2.7Volts."]
-    #[inline]
+    #[inline(always)]
     pub fn v27(self) -> &'a mut W {
-        self.variant(THRESHOLDW::V27)
+        self.variant(THRESHOLD_A::V27)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 3;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x03 << 1)) | (((value as u32) & 0x03) << 1);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Power failure comparator enable."]
-    #[inline]
-    pub fn pof(&self) -> POFR {
-        POFR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn pof(&self) -> POF_R {
+        POF_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bits 1:2 - Set threshold level."]
-    #[inline]
-    pub fn threshold(&self) -> THRESHOLDR {
-        THRESHOLDR::_from({
-            const MASK: u8 = 3;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn threshold(&self) -> THRESHOLD_R {
+        THRESHOLD_R::new(((self.bits >> 1) & 0x03) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Power failure comparator enable."]
-    #[inline]
-    pub fn pof(&mut self) -> _POFW {
-        _POFW { w: self }
+    #[inline(always)]
+    pub fn pof(&mut self) -> POF_W {
+        POF_W { w: self }
     }
     #[doc = "Bits 1:2 - Set threshold level."]
-    #[inline]
-    pub fn threshold(&mut self) -> _THRESHOLDW {
-        _THRESHOLDW { w: self }
+    #[inline(always)]
+    pub fn threshold(&mut self) -> THRESHOLD_W {
+        THRESHOLD_W { w: self }
     }
 }

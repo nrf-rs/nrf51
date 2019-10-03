@@ -1,167 +1,94 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::PPFC {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register PPFC"]
+pub type R = crate::R<u32, super::PPFC>;
+#[doc = "Writer for register PPFC"]
+pub type W = crate::W<u32, super::PPFC>;
+#[doc = "Register PPFC `reset()`'s with value 0"]
+impl crate::ResetValue for super::PPFC {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `PPFC`"]
+#[doc = "Pre-programmed factory code present.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PPFCR {
-    #[doc = "Not present."]
+pub enum PPFC_A {
+    #[doc = "255: Not present."]
     NOTPRESENT,
-    #[doc = "Present."]
+    #[doc = "0: Present."]
     PRESENT,
-    #[doc = r" Reserved"]
-    _Reserved(u8),
 }
-impl PPFCR {
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u8 {
-        match *self {
-            PPFCR::NOTPRESENT => 255,
-            PPFCR::PRESENT => 0,
-            PPFCR::_Reserved(bits) => bits,
+impl From<PPFC_A> for u8 {
+    #[inline(always)]
+    fn from(variant: PPFC_A) -> Self {
+        match variant {
+            PPFC_A::NOTPRESENT => 255,
+            PPFC_A::PRESENT => 0,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: u8) -> PPFCR {
-        match value {
-            255 => PPFCR::NOTPRESENT,
-            0 => PPFCR::PRESENT,
-            i => PPFCR::_Reserved(i),
+}
+#[doc = "Reader of field `PPFC`"]
+pub type PPFC_R = crate::R<u8, PPFC_A>;
+impl PPFC_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> crate::Variant<u8, PPFC_A> {
+        use crate::Variant::*;
+        match self.bits {
+            255 => Val(PPFC_A::NOTPRESENT),
+            0 => Val(PPFC_A::PRESENT),
+            i => Res(i),
         }
     }
     #[doc = "Checks if the value of the field is `NOTPRESENT`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_not_present(&self) -> bool {
-        *self == PPFCR::NOTPRESENT
+        *self == PPFC_A::NOTPRESENT
     }
     #[doc = "Checks if the value of the field is `PRESENT`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_present(&self) -> bool {
-        *self == PPFCR::PRESENT
+        *self == PPFC_A::PRESENT
     }
 }
-#[doc = "Values that can be written to the field `PPFC`"]
-pub enum PPFCW {
-    #[doc = "Not present."]
-    NOTPRESENT,
-    #[doc = "Present."]
-    PRESENT,
-}
-impl PPFCW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> u8 {
-        match *self {
-            PPFCW::NOTPRESENT => 255,
-            PPFCW::PRESENT => 0,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _PPFCW<'a> {
+#[doc = "Write proxy for field `PPFC`"]
+pub struct PPFC_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PPFCW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PPFCW) -> &'a mut W {
-        unsafe { self.bits(variant._bits()) }
+impl<'a> PPFC_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PPFC_A) -> &'a mut W {
+        unsafe { self.bits(variant.into()) }
     }
     #[doc = "Not present."]
-    #[inline]
+    #[inline(always)]
     pub fn not_present(self) -> &'a mut W {
-        self.variant(PPFCW::NOTPRESENT)
+        self.variant(PPFC_A::NOTPRESENT)
     }
     #[doc = "Present."]
-    #[inline]
+    #[inline(always)]
     pub fn present(self) -> &'a mut W {
-        self.variant(PPFCW::PRESENT)
+        self.variant(PPFC_A::PRESENT)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        const MASK: u8 = 255;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0xff) | ((value as u32) & 0xff);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bits 0:7 - Pre-programmed factory code present."]
-    #[inline]
-    pub fn ppfc(&self) -> PPFCR {
-        PPFCR::_from({
-            const MASK: u8 = 255;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) as u8
-        })
+    #[inline(always)]
+    pub fn ppfc(&self) -> PPFC_R {
+        PPFC_R::new((self.bits & 0xff) as u8)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bits 0:7 - Pre-programmed factory code present."]
-    #[inline]
-    pub fn ppfc(&mut self) -> _PPFCW {
-        _PPFCW { w: self }
+    #[inline(always)]
+    pub fn ppfc(&mut self) -> PPFC_W {
+        PPFC_W { w: self }
     }
 }

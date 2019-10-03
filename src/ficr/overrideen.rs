@@ -1,302 +1,192 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::OVERRIDEEN {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register OVERRIDEEN"]
+pub type R = crate::R<u32, super::OVERRIDEEN>;
+#[doc = "Writer for register OVERRIDEEN"]
+pub type W = crate::W<u32, super::OVERRIDEEN>;
+#[doc = "Register OVERRIDEEN `reset()`'s with value 0"]
+impl crate::ResetValue for super::OVERRIDEEN {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `NRF_1MBIT`"]
+#[doc = "Override default values for NRF_1Mbit mode.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum NRF_1MBITR {
-    #[doc = "Override the default values for NRF_1Mbit mode."]
+pub enum NRF_1MBIT_A {
+    #[doc = "0: Override the default values for NRF_1Mbit mode."]
     OVERRIDE,
-    #[doc = "Do not override the default values for NRF_1Mbit mode."]
+    #[doc = "1: Do not override the default values for NRF_1Mbit mode."]
     NOTOVERRIDE,
 }
-impl NRF_1MBITR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            NRF_1MBITR::OVERRIDE => false,
-            NRF_1MBITR::NOTOVERRIDE => true,
+impl From<NRF_1MBIT_A> for bool {
+    #[inline(always)]
+    fn from(variant: NRF_1MBIT_A) -> Self {
+        match variant {
+            NRF_1MBIT_A::OVERRIDE => false,
+            NRF_1MBIT_A::NOTOVERRIDE => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> NRF_1MBITR {
-        match value {
-            false => NRF_1MBITR::OVERRIDE,
-            true => NRF_1MBITR::NOTOVERRIDE,
+}
+#[doc = "Reader of field `NRF_1MBIT`"]
+pub type NRF_1MBIT_R = crate::R<bool, NRF_1MBIT_A>;
+impl NRF_1MBIT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> NRF_1MBIT_A {
+        match self.bits {
+            false => NRF_1MBIT_A::OVERRIDE,
+            true => NRF_1MBIT_A::NOTOVERRIDE,
         }
     }
     #[doc = "Checks if the value of the field is `OVERRIDE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_override_(&self) -> bool {
-        *self == NRF_1MBITR::OVERRIDE
+        *self == NRF_1MBIT_A::OVERRIDE
     }
     #[doc = "Checks if the value of the field is `NOTOVERRIDE`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_not_override(&self) -> bool {
-        *self == NRF_1MBITR::NOTOVERRIDE
+        *self == NRF_1MBIT_A::NOTOVERRIDE
     }
 }
-#[doc = "Possible values of the field `BLE_1MBIT`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum BLE_1MBITR {
-    #[doc = "Override the default values for BLE_1Mbit mode."]
-    OVERRIDE,
-    #[doc = "Do not override the default values for BLE_1Mbit mode."]
-    NOTOVERRIDE,
-}
-impl BLE_1MBITR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            BLE_1MBITR::OVERRIDE => false,
-            BLE_1MBITR::NOTOVERRIDE => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> BLE_1MBITR {
-        match value {
-            false => BLE_1MBITR::OVERRIDE,
-            true => BLE_1MBITR::NOTOVERRIDE,
-        }
-    }
-    #[doc = "Checks if the value of the field is `OVERRIDE`"]
-    #[inline]
-    pub fn is_override_(&self) -> bool {
-        *self == BLE_1MBITR::OVERRIDE
-    }
-    #[doc = "Checks if the value of the field is `NOTOVERRIDE`"]
-    #[inline]
-    pub fn is_not_override(&self) -> bool {
-        *self == BLE_1MBITR::NOTOVERRIDE
-    }
-}
-#[doc = "Values that can be written to the field `NRF_1MBIT`"]
-pub enum NRF_1MBITW {
-    #[doc = "Override the default values for NRF_1Mbit mode."]
-    OVERRIDE,
-    #[doc = "Do not override the default values for NRF_1Mbit mode."]
-    NOTOVERRIDE,
-}
-impl NRF_1MBITW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            NRF_1MBITW::OVERRIDE => false,
-            NRF_1MBITW::NOTOVERRIDE => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _NRF_1MBITW<'a> {
+#[doc = "Write proxy for field `NRF_1MBIT`"]
+pub struct NRF_1MBIT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _NRF_1MBITW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: NRF_1MBITW) -> &'a mut W {
+impl<'a> NRF_1MBIT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: NRF_1MBIT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Override the default values for NRF_1Mbit mode."]
-    #[inline]
+    #[inline(always)]
     pub fn override_(self) -> &'a mut W {
-        self.variant(NRF_1MBITW::OVERRIDE)
+        self.variant(NRF_1MBIT_A::OVERRIDE)
     }
     #[doc = "Do not override the default values for NRF_1Mbit mode."]
-    #[inline]
+    #[inline(always)]
     pub fn not_override(self) -> &'a mut W {
-        self.variant(NRF_1MBITW::NOTOVERRIDE)
+        self.variant(NRF_1MBIT_A::NOTOVERRIDE)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `BLE_1MBIT`"]
-pub enum BLE_1MBITW {
-    #[doc = "Override the default values for BLE_1Mbit mode."]
+#[doc = "Override default values for BLE_1Mbit mode.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum BLE_1MBIT_A {
+    #[doc = "0: Override the default values for BLE_1Mbit mode."]
     OVERRIDE,
-    #[doc = "Do not override the default values for BLE_1Mbit mode."]
+    #[doc = "1: Do not override the default values for BLE_1Mbit mode."]
     NOTOVERRIDE,
 }
-impl BLE_1MBITW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            BLE_1MBITW::OVERRIDE => false,
-            BLE_1MBITW::NOTOVERRIDE => true,
+impl From<BLE_1MBIT_A> for bool {
+    #[inline(always)]
+    fn from(variant: BLE_1MBIT_A) -> Self {
+        match variant {
+            BLE_1MBIT_A::OVERRIDE => false,
+            BLE_1MBIT_A::NOTOVERRIDE => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _BLE_1MBITW<'a> {
+#[doc = "Reader of field `BLE_1MBIT`"]
+pub type BLE_1MBIT_R = crate::R<bool, BLE_1MBIT_A>;
+impl BLE_1MBIT_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> BLE_1MBIT_A {
+        match self.bits {
+            false => BLE_1MBIT_A::OVERRIDE,
+            true => BLE_1MBIT_A::NOTOVERRIDE,
+        }
+    }
+    #[doc = "Checks if the value of the field is `OVERRIDE`"]
+    #[inline(always)]
+    pub fn is_override_(&self) -> bool {
+        *self == BLE_1MBIT_A::OVERRIDE
+    }
+    #[doc = "Checks if the value of the field is `NOTOVERRIDE`"]
+    #[inline(always)]
+    pub fn is_not_override(&self) -> bool {
+        *self == BLE_1MBIT_A::NOTOVERRIDE
+    }
+}
+#[doc = "Write proxy for field `BLE_1MBIT`"]
+pub struct BLE_1MBIT_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _BLE_1MBITW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: BLE_1MBITW) -> &'a mut W {
+impl<'a> BLE_1MBIT_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: BLE_1MBIT_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Override the default values for BLE_1Mbit mode."]
-    #[inline]
+    #[inline(always)]
     pub fn override_(self) -> &'a mut W {
-        self.variant(BLE_1MBITW::OVERRIDE)
+        self.variant(BLE_1MBIT_A::OVERRIDE)
     }
     #[doc = "Do not override the default values for BLE_1Mbit mode."]
-    #[inline]
+    #[inline(always)]
     pub fn not_override(self) -> &'a mut W {
-        self.variant(BLE_1MBITW::NOTOVERRIDE)
+        self.variant(BLE_1MBIT_A::NOTOVERRIDE)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 3;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Override default values for NRF_1Mbit mode."]
-    #[inline]
-    pub fn nrf_1mbit(&self) -> NRF_1MBITR {
-        NRF_1MBITR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn nrf_1mbit(&self) -> NRF_1MBIT_R {
+        NRF_1MBIT_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 3 - Override default values for BLE_1Mbit mode."]
-    #[inline]
-    pub fn ble_1mbit(&self) -> BLE_1MBITR {
-        BLE_1MBITR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 3;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn ble_1mbit(&self) -> BLE_1MBIT_R {
+        BLE_1MBIT_R::new(((self.bits >> 3) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Override default values for NRF_1Mbit mode."]
-    #[inline]
-    pub fn nrf_1mbit(&mut self) -> _NRF_1MBITW {
-        _NRF_1MBITW { w: self }
+    #[inline(always)]
+    pub fn nrf_1mbit(&mut self) -> NRF_1MBIT_W {
+        NRF_1MBIT_W { w: self }
     }
     #[doc = "Bit 3 - Override default values for BLE_1Mbit mode."]
-    #[inline]
-    pub fn ble_1mbit(&mut self) -> _BLE_1MBITW {
-        _BLE_1MBITW { w: self }
+    #[inline(always)]
+    pub fn ble_1mbit(&mut self) -> BLE_1MBIT_W {
+        BLE_1MBIT_W { w: self }
     }
 }

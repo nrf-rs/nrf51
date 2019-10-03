@@ -1,302 +1,192 @@
-#[doc = r" Value read from the register"]
-pub struct R {
-    bits: u32,
-}
-#[doc = r" Value to write to the register"]
-pub struct W {
-    bits: u32,
-}
-impl super::TEST {
-    #[doc = r" Modifies the contents of the register"]
-    #[inline]
-    pub fn modify<F>(&self, f: F)
-    where
-        for<'w> F: FnOnce(&R, &'w mut W) -> &'w mut W,
-    {
-        let bits = self.register.get();
-        let r = R { bits: bits };
-        let mut w = W { bits: bits };
-        f(&r, &mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Reads the contents of the register"]
-    #[inline]
-    pub fn read(&self) -> R {
-        R {
-            bits: self.register.get(),
-        }
-    }
-    #[doc = r" Writes to the register"]
-    #[inline]
-    pub fn write<F>(&self, f: F)
-    where
-        F: FnOnce(&mut W) -> &mut W,
-    {
-        let mut w = W::reset_value();
-        f(&mut w);
-        self.register.set(w.bits);
-    }
-    #[doc = r" Writes the reset value to the register"]
-    #[inline]
-    pub fn reset(&self) {
-        self.write(|w| w)
+#[doc = "Reader of register TEST"]
+pub type R = crate::R<u32, super::TEST>;
+#[doc = "Writer for register TEST"]
+pub type W = crate::W<u32, super::TEST>;
+#[doc = "Register TEST `reset()`'s with value 0"]
+impl crate::ResetValue for super::TEST {
+    type Type = u32;
+    #[inline(always)]
+    fn reset_value() -> Self::Type {
+        0
     }
 }
-#[doc = "Possible values of the field `CONSTCARRIER`"]
+#[doc = "Constant carrier. Decision point: TXEN task.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub enum CONSTCARRIERR {
-    #[doc = "Constant carrier disabled."]
+pub enum CONSTCARRIER_A {
+    #[doc = "0: Constant carrier disabled."]
     DISABLED,
-    #[doc = "Constant carrier enabled."]
+    #[doc = "1: Constant carrier enabled."]
     ENABLED,
 }
-impl CONSTCARRIERR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            CONSTCARRIERR::DISABLED => false,
-            CONSTCARRIERR::ENABLED => true,
+impl From<CONSTCARRIER_A> for bool {
+    #[inline(always)]
+    fn from(variant: CONSTCARRIER_A) -> Self {
+        match variant {
+            CONSTCARRIER_A::DISABLED => false,
+            CONSTCARRIER_A::ENABLED => true,
         }
     }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> CONSTCARRIERR {
-        match value {
-            false => CONSTCARRIERR::DISABLED,
-            true => CONSTCARRIERR::ENABLED,
+}
+#[doc = "Reader of field `CONSTCARRIER`"]
+pub type CONSTCARRIER_R = crate::R<bool, CONSTCARRIER_A>;
+impl CONSTCARRIER_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> CONSTCARRIER_A {
+        match self.bits {
+            false => CONSTCARRIER_A::DISABLED,
+            true => CONSTCARRIER_A::ENABLED,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == CONSTCARRIERR::DISABLED
+        *self == CONSTCARRIER_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
+    #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == CONSTCARRIERR::ENABLED
+        *self == CONSTCARRIER_A::ENABLED
     }
 }
-#[doc = "Possible values of the field `PLLLOCK`"]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub enum PLLLOCKR {
-    #[doc = "PLL lock disabled."]
-    DISABLED,
-    #[doc = "PLL lock enabled."]
-    ENABLED,
-}
-impl PLLLOCKR {
-    #[doc = r" Returns `true` if the bit is clear (0)"]
-    #[inline]
-    pub fn bit_is_clear(&self) -> bool {
-        !self.bit()
-    }
-    #[doc = r" Returns `true` if the bit is set (1)"]
-    #[inline]
-    pub fn bit_is_set(&self) -> bool {
-        self.bit()
-    }
-    #[doc = r" Value of the field as raw bits"]
-    #[inline]
-    pub fn bit(&self) -> bool {
-        match *self {
-            PLLLOCKR::DISABLED => false,
-            PLLLOCKR::ENABLED => true,
-        }
-    }
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _from(value: bool) -> PLLLOCKR {
-        match value {
-            false => PLLLOCKR::DISABLED,
-            true => PLLLOCKR::ENABLED,
-        }
-    }
-    #[doc = "Checks if the value of the field is `DISABLED`"]
-    #[inline]
-    pub fn is_disabled(&self) -> bool {
-        *self == PLLLOCKR::DISABLED
-    }
-    #[doc = "Checks if the value of the field is `ENABLED`"]
-    #[inline]
-    pub fn is_enabled(&self) -> bool {
-        *self == PLLLOCKR::ENABLED
-    }
-}
-#[doc = "Values that can be written to the field `CONSTCARRIER`"]
-pub enum CONSTCARRIERW {
-    #[doc = "Constant carrier disabled."]
-    DISABLED,
-    #[doc = "Constant carrier enabled."]
-    ENABLED,
-}
-impl CONSTCARRIERW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            CONSTCARRIERW::DISABLED => false,
-            CONSTCARRIERW::ENABLED => true,
-        }
-    }
-}
-#[doc = r" Proxy"]
-pub struct _CONSTCARRIERW<'a> {
+#[doc = "Write proxy for field `CONSTCARRIER`"]
+pub struct CONSTCARRIER_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _CONSTCARRIERW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: CONSTCARRIERW) -> &'a mut W {
+impl<'a> CONSTCARRIER_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: CONSTCARRIER_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "Constant carrier disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(CONSTCARRIERW::DISABLED)
+        self.variant(CONSTCARRIER_A::DISABLED)
     }
     #[doc = "Constant carrier enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(CONSTCARRIERW::ENABLED)
+        self.variant(CONSTCARRIER_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 0;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
         self.w
     }
 }
-#[doc = "Values that can be written to the field `PLLLOCK`"]
-pub enum PLLLOCKW {
-    #[doc = "PLL lock disabled."]
+#[doc = "PLL lock. Decision point: TXEN or RXEN task.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum PLLLOCK_A {
+    #[doc = "0: PLL lock disabled."]
     DISABLED,
-    #[doc = "PLL lock enabled."]
+    #[doc = "1: PLL lock enabled."]
     ENABLED,
 }
-impl PLLLOCKW {
-    #[allow(missing_docs)]
-    #[doc(hidden)]
-    #[inline]
-    pub fn _bits(&self) -> bool {
-        match *self {
-            PLLLOCKW::DISABLED => false,
-            PLLLOCKW::ENABLED => true,
+impl From<PLLLOCK_A> for bool {
+    #[inline(always)]
+    fn from(variant: PLLLOCK_A) -> Self {
+        match variant {
+            PLLLOCK_A::DISABLED => false,
+            PLLLOCK_A::ENABLED => true,
         }
     }
 }
-#[doc = r" Proxy"]
-pub struct _PLLLOCKW<'a> {
+#[doc = "Reader of field `PLLLOCK`"]
+pub type PLLLOCK_R = crate::R<bool, PLLLOCK_A>;
+impl PLLLOCK_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> PLLLOCK_A {
+        match self.bits {
+            false => PLLLOCK_A::DISABLED,
+            true => PLLLOCK_A::ENABLED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == PLLLOCK_A::DISABLED
+    }
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == PLLLOCK_A::ENABLED
+    }
+}
+#[doc = "Write proxy for field `PLLLOCK`"]
+pub struct PLLLOCK_W<'a> {
     w: &'a mut W,
 }
-impl<'a> _PLLLOCKW<'a> {
-    #[doc = r" Writes `variant` to the field"]
-    #[inline]
-    pub fn variant(self, variant: PLLLOCKW) -> &'a mut W {
+impl<'a> PLLLOCK_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: PLLLOCK_A) -> &'a mut W {
         {
-            self.bit(variant._bits())
+            self.bit(variant.into())
         }
     }
     #[doc = "PLL lock disabled."]
-    #[inline]
+    #[inline(always)]
     pub fn disabled(self) -> &'a mut W {
-        self.variant(PLLLOCKW::DISABLED)
+        self.variant(PLLLOCK_A::DISABLED)
     }
     #[doc = "PLL lock enabled."]
-    #[inline]
+    #[inline(always)]
     pub fn enabled(self) -> &'a mut W {
-        self.variant(PLLLOCKW::ENABLED)
+        self.variant(PLLLOCK_A::ENABLED)
     }
-    #[doc = r" Sets the field bit"]
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
     pub fn set_bit(self) -> &'a mut W {
         self.bit(true)
     }
-    #[doc = r" Clears the field bit"]
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
     pub fn clear_bit(self) -> &'a mut W {
         self.bit(false)
     }
-    #[doc = r" Writes raw bits to the field"]
-    #[inline]
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        const MASK: bool = true;
-        const OFFSET: u8 = 1;
-        self.w.bits &= !((MASK as u32) << OFFSET);
-        self.w.bits |= ((value & MASK) as u32) << OFFSET;
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
         self.w
     }
 }
 impl R {
-    #[doc = r" Value of the register as raw bits"]
-    #[inline]
-    pub fn bits(&self) -> u32 {
-        self.bits
-    }
     #[doc = "Bit 0 - Constant carrier. Decision point: TXEN task."]
-    #[inline]
-    pub fn constcarrier(&self) -> CONSTCARRIERR {
-        CONSTCARRIERR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 0;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn constcarrier(&self) -> CONSTCARRIER_R {
+        CONSTCARRIER_R::new((self.bits & 0x01) != 0)
     }
     #[doc = "Bit 1 - PLL lock. Decision point: TXEN or RXEN task."]
-    #[inline]
-    pub fn plllock(&self) -> PLLLOCKR {
-        PLLLOCKR::_from({
-            const MASK: bool = true;
-            const OFFSET: u8 = 1;
-            ((self.bits >> OFFSET) & MASK as u32) != 0
-        })
+    #[inline(always)]
+    pub fn plllock(&self) -> PLLLOCK_R {
+        PLLLOCK_R::new(((self.bits >> 1) & 0x01) != 0)
     }
 }
 impl W {
-    #[doc = r" Reset value of the register"]
-    #[inline]
-    pub fn reset_value() -> W {
-        W { bits: 0 }
-    }
-    #[doc = r" Writes raw bits to the register"]
-    #[inline]
-    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
-        self.bits = bits;
-        self
-    }
     #[doc = "Bit 0 - Constant carrier. Decision point: TXEN task."]
-    #[inline]
-    pub fn constcarrier(&mut self) -> _CONSTCARRIERW {
-        _CONSTCARRIERW { w: self }
+    #[inline(always)]
+    pub fn constcarrier(&mut self) -> CONSTCARRIER_W {
+        CONSTCARRIER_W { w: self }
     }
     #[doc = "Bit 1 - PLL lock. Decision point: TXEN or RXEN task."]
-    #[inline]
-    pub fn plllock(&mut self) -> _PLLLOCKW {
-        _PLLLOCKW { w: self }
+    #[inline(always)]
+    pub fn plllock(&mut self) -> PLLLOCK_W {
+        PLLLOCK_W { w: self }
     }
 }
