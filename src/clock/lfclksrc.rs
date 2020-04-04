@@ -12,22 +12,19 @@ impl crate::ResetValue for super::LFCLKSRC {
 }
 #[doc = "Clock source.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SRC_A {
     #[doc = "0: Internal 32KiHz RC oscillator."]
-    RC,
+    RC = 0,
     #[doc = "1: External 32KiHz crystal."]
-    XTAL,
+    XTAL = 1,
     #[doc = "2: Internal 32KiHz synthesizer from HFCLK system clock."]
-    SYNTH,
+    SYNTH = 2,
 }
 impl From<SRC_A> for u8 {
     #[inline(always)]
     fn from(variant: SRC_A) -> Self {
-        match variant {
-            SRC_A::RC => 0,
-            SRC_A::XTAL => 1,
-            SRC_A::SYNTH => 2,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SRC`"]

@@ -14,17 +14,14 @@ impl crate::ResetValue for super::INTENCLR {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum END_A {
     #[doc = "0: Interrupt disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Interrupt enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<END_A> for bool {
     #[inline(always)]
     fn from(variant: END_A) -> Self {
-        match variant {
-            END_A::DISABLED => false,
-            END_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `END`"]
@@ -53,14 +50,12 @@ impl END_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum END_AW {
     #[doc = "1: Disable interrupt on write."]
-    CLEAR,
+    CLEAR = 1,
 }
 impl From<END_AW> for bool {
     #[inline(always)]
     fn from(variant: END_AW) -> Self {
-        match variant {
-            END_AW::CLEAR => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `END`"]

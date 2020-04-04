@@ -14,17 +14,14 @@ impl crate::ResetValue for super::INTENSET {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum COMPARE0_A {
     #[doc = "0: Interrupt disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Interrupt enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<COMPARE0_A> for bool {
     #[inline(always)]
     fn from(variant: COMPARE0_A) -> Self {
-        match variant {
-            COMPARE0_A::DISABLED => false,
-            COMPARE0_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `COMPARE0`"]
@@ -53,14 +50,12 @@ impl COMPARE0_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum COMPARE0_AW {
     #[doc = "1: Enable interrupt on write."]
-    SET,
+    SET = 1,
 }
 impl From<COMPARE0_AW> for bool {
     #[inline(always)]
     fn from(variant: COMPARE0_AW) -> Self {
-        match variant {
-            COMPARE0_AW::SET => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `COMPARE0`"]
@@ -101,17 +96,14 @@ impl<'a> COMPARE0_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum COMPARE1_A {
     #[doc = "0: Interrupt disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Interrupt enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<COMPARE1_A> for bool {
     #[inline(always)]
     fn from(variant: COMPARE1_A) -> Self {
-        match variant {
-            COMPARE1_A::DISABLED => false,
-            COMPARE1_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `COMPARE1`"]
@@ -140,14 +132,12 @@ impl COMPARE1_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum COMPARE1_AW {
     #[doc = "1: Enable interrupt on write."]
-    SET,
+    SET = 1,
 }
 impl From<COMPARE1_AW> for bool {
     #[inline(always)]
     fn from(variant: COMPARE1_AW) -> Self {
-        match variant {
-            COMPARE1_AW::SET => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `COMPARE1`"]
@@ -188,17 +178,14 @@ impl<'a> COMPARE1_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum COMPARE2_A {
     #[doc = "0: Interrupt disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Interrupt enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<COMPARE2_A> for bool {
     #[inline(always)]
     fn from(variant: COMPARE2_A) -> Self {
-        match variant {
-            COMPARE2_A::DISABLED => false,
-            COMPARE2_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `COMPARE2`"]
@@ -227,14 +214,12 @@ impl COMPARE2_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum COMPARE2_AW {
     #[doc = "1: Enable interrupt on write."]
-    SET,
+    SET = 1,
 }
 impl From<COMPARE2_AW> for bool {
     #[inline(always)]
     fn from(variant: COMPARE2_AW) -> Self {
-        match variant {
-            COMPARE2_AW::SET => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `COMPARE2`"]
@@ -275,17 +260,14 @@ impl<'a> COMPARE2_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum COMPARE3_A {
     #[doc = "0: Interrupt disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Interrupt enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<COMPARE3_A> for bool {
     #[inline(always)]
     fn from(variant: COMPARE3_A) -> Self {
-        match variant {
-            COMPARE3_A::DISABLED => false,
-            COMPARE3_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `COMPARE3`"]
@@ -314,14 +296,12 @@ impl COMPARE3_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum COMPARE3_AW {
     #[doc = "1: Enable interrupt on write."]
-    SET,
+    SET = 1,
 }
 impl From<COMPARE3_AW> for bool {
     #[inline(always)]
     fn from(variant: COMPARE3_AW) -> Self {
-        match variant {
-            COMPARE3_AW::SET => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `COMPARE3`"]

@@ -14,17 +14,14 @@ impl crate::ResetValue for super::MODE {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MODE_A {
     #[doc = "0: CCM mode TX"]
-    ENCRYPTION,
+    ENCRYPTION = 0,
     #[doc = "1: CCM mode TX"]
-    DECRYPTION,
+    DECRYPTION = 1,
 }
 impl From<MODE_A> for bool {
     #[inline(always)]
     fn from(variant: MODE_A) -> Self {
-        match variant {
-            MODE_A::ENCRYPTION => false,
-            MODE_A::DECRYPTION => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MODE`"]

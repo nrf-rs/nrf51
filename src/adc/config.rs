@@ -12,22 +12,19 @@ impl crate::ResetValue for super::CONFIG {
 }
 #[doc = "ADC resolution.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum RES_A {
     #[doc = "0: 8bit ADC resolution."]
-    _8BIT,
+    _8BIT = 0,
     #[doc = "1: 9bit ADC resolution."]
-    _9BIT,
+    _9BIT = 1,
     #[doc = "2: 10bit ADC resolution."]
-    _10BIT,
+    _10BIT = 2,
 }
 impl From<RES_A> for u8 {
     #[inline(always)]
     fn from(variant: RES_A) -> Self {
-        match variant {
-            RES_A::_8BIT => 0,
-            RES_A::_9BIT => 1,
-            RES_A::_10BIT => 2,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `RES`"]
@@ -94,28 +91,23 @@ impl<'a> RES_W<'a> {
 }
 #[doc = "ADC input selection.\n\nValue on reset: 6"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum INPSEL_A {
     #[doc = "0: Analog input specified by PSEL with no prescaling used as input for the conversion."]
-    ANALOGINPUTNOPRESCALING,
+    ANALOGINPUTNOPRESCALING = 0,
     #[doc = "1: Analog input specified by PSEL with 2/3 prescaling used as input for the conversion."]
-    ANALOGINPUTTWOTHIRDSPRESCALING,
+    ANALOGINPUTTWOTHIRDSPRESCALING = 1,
     #[doc = "2: Analog input specified by PSEL with 1/3 prescaling used as input for the conversion."]
-    ANALOGINPUTONETHIRDPRESCALING,
+    ANALOGINPUTONETHIRDPRESCALING = 2,
     #[doc = "5: Supply voltage with 2/3 prescaling used as input for the conversion."]
-    SUPPLYTWOTHIRDSPRESCALING,
+    SUPPLYTWOTHIRDSPRESCALING = 5,
     #[doc = "6: Supply voltage with 1/3 prescaling used as input for the conversion."]
-    SUPPLYONETHIRDPRESCALING,
+    SUPPLYONETHIRDPRESCALING = 6,
 }
 impl From<INPSEL_A> for u8 {
     #[inline(always)]
     fn from(variant: INPSEL_A) -> Self {
-        match variant {
-            INPSEL_A::ANALOGINPUTNOPRESCALING => 0,
-            INPSEL_A::ANALOGINPUTTWOTHIRDSPRESCALING => 1,
-            INPSEL_A::ANALOGINPUTONETHIRDPRESCALING => 2,
-            INPSEL_A::SUPPLYTWOTHIRDSPRESCALING => 5,
-            INPSEL_A::SUPPLYONETHIRDPRESCALING => 6,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `INPSEL`"]
@@ -204,25 +196,21 @@ impl<'a> INPSEL_W<'a> {
 }
 #[doc = "ADC reference selection.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum REFSEL_A {
     #[doc = "0: Use internal 1.2V bandgap voltage as reference for conversion."]
-    VBG,
+    VBG = 0,
     #[doc = "1: Use external source configured by EXTREFSEL as reference for conversion."]
-    EXTERNAL,
+    EXTERNAL = 1,
     #[doc = "2: Use supply voltage with 1/2 prescaling as reference for conversion. Only usable when supply voltage is between 1.7V and 2.6V."]
-    SUPPLYONEHALFPRESCALING,
+    SUPPLYONEHALFPRESCALING = 2,
     #[doc = "3: Use supply voltage with 1/3 prescaling as reference for conversion. Only usable when supply voltage is between 2.5V and 3.6V."]
-    SUPPLYONETHIRDPRESCALING,
+    SUPPLYONETHIRDPRESCALING = 3,
 }
 impl From<REFSEL_A> for u8 {
     #[inline(always)]
     fn from(variant: REFSEL_A) -> Self {
-        match variant {
-            REFSEL_A::VBG => 0,
-            REFSEL_A::EXTERNAL => 1,
-            REFSEL_A::SUPPLYONEHALFPRESCALING => 2,
-            REFSEL_A::SUPPLYONETHIRDPRESCALING => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `REFSEL`"]
@@ -301,40 +289,31 @@ impl<'a> REFSEL_W<'a> {
 }
 #[doc = "ADC analog pin selection.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum PSEL_A {
     #[doc = "0: Analog input pins disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Use analog input 0 as analog input."]
-    ANALOGINPUT0,
+    ANALOGINPUT0 = 1,
     #[doc = "2: Use analog input 1 as analog input."]
-    ANALOGINPUT1,
+    ANALOGINPUT1 = 2,
     #[doc = "4: Use analog input 2 as analog input."]
-    ANALOGINPUT2,
+    ANALOGINPUT2 = 4,
     #[doc = "8: Use analog input 3 as analog input."]
-    ANALOGINPUT3,
+    ANALOGINPUT3 = 8,
     #[doc = "16: Use analog input 4 as analog input."]
-    ANALOGINPUT4,
+    ANALOGINPUT4 = 16,
     #[doc = "32: Use analog input 5 as analog input."]
-    ANALOGINPUT5,
+    ANALOGINPUT5 = 32,
     #[doc = "64: Use analog input 6 as analog input."]
-    ANALOGINPUT6,
+    ANALOGINPUT6 = 64,
     #[doc = "128: Use analog input 7 as analog input."]
-    ANALOGINPUT7,
+    ANALOGINPUT7 = 128,
 }
 impl From<PSEL_A> for u8 {
     #[inline(always)]
     fn from(variant: PSEL_A) -> Self {
-        match variant {
-            PSEL_A::DISABLED => 0,
-            PSEL_A::ANALOGINPUT0 => 1,
-            PSEL_A::ANALOGINPUT1 => 2,
-            PSEL_A::ANALOGINPUT2 => 4,
-            PSEL_A::ANALOGINPUT3 => 8,
-            PSEL_A::ANALOGINPUT4 => 16,
-            PSEL_A::ANALOGINPUT5 => 32,
-            PSEL_A::ANALOGINPUT6 => 64,
-            PSEL_A::ANALOGINPUT7 => 128,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `PSEL`"]
@@ -467,22 +446,19 @@ impl<'a> PSEL_W<'a> {
 }
 #[doc = "ADC external reference pin selection.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum EXTREFSEL_A {
     #[doc = "0: Analog external reference inputs disabled."]
-    NONE,
+    NONE = 0,
     #[doc = "1: Use analog reference 0 as reference."]
-    ANALOGREFERENCE0,
+    ANALOGREFERENCE0 = 1,
     #[doc = "2: Use analog reference 1 as reference."]
-    ANALOGREFERENCE1,
+    ANALOGREFERENCE1 = 2,
 }
 impl From<EXTREFSEL_A> for u8 {
     #[inline(always)]
     fn from(variant: EXTREFSEL_A) -> Self {
-        match variant {
-            EXTREFSEL_A::NONE => 0,
-            EXTREFSEL_A::ANALOGREFERENCE0 => 1,
-            EXTREFSEL_A::ANALOGREFERENCE1 => 2,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `EXTREFSEL`"]

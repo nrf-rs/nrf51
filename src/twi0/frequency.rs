@@ -12,22 +12,19 @@ impl crate::ResetValue for super::FREQUENCY {
 }
 #[doc = "Two-wire master clock frequency.\n\nValue on reset: 67108864"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u32)]
 pub enum FREQUENCY_A {
     #[doc = "26738688: 100 kbps."]
-    K100,
+    K100 = 26738688,
     #[doc = "67108864: 250 kbps."]
-    K250,
-    #[doc = "107479040: 400 kbps."]
-    K400,
+    K250 = 67108864,
+    #[doc = "107479040: 400 kbps (actual rate 410.256 kbps)."]
+    K400 = 107479040,
 }
 impl From<FREQUENCY_A> for u32 {
     #[inline(always)]
     fn from(variant: FREQUENCY_A) -> Self {
-        match variant {
-            FREQUENCY_A::K100 => 26738688,
-            FREQUENCY_A::K250 => 67108864,
-            FREQUENCY_A::K400 => 107479040,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `FREQUENCY`"]
@@ -80,7 +77,7 @@ impl<'a> FREQUENCY_W<'a> {
     pub fn k250(self) -> &'a mut W {
         self.variant(FREQUENCY_A::K250)
     }
-    #[doc = "400 kbps."]
+    #[doc = "400 kbps (actual rate 410.256 kbps)."]
     #[inline(always)]
     pub fn k400(self) -> &'a mut W {
         self.variant(FREQUENCY_A::K400)

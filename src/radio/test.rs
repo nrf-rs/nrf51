@@ -14,17 +14,14 @@ impl crate::ResetValue for super::TEST {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum CONSTCARRIER_A {
     #[doc = "0: Constant carrier disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Constant carrier enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<CONSTCARRIER_A> for bool {
     #[inline(always)]
     fn from(variant: CONSTCARRIER_A) -> Self {
-        match variant {
-            CONSTCARRIER_A::DISABLED => false,
-            CONSTCARRIER_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `CONSTCARRIER`"]
@@ -92,17 +89,14 @@ impl<'a> CONSTCARRIER_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PLLLOCK_A {
     #[doc = "0: PLL lock disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: PLL lock enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<PLLLOCK_A> for bool {
     #[inline(always)]
     fn from(variant: PLLLOCK_A) -> Self {
-        match variant {
-            PLLLOCK_A::DISABLED => false,
-            PLLLOCK_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `PLLLOCK`"]

@@ -2,7 +2,8 @@
 pub type R = crate::R<u32, super::CONFIG>;
 #[doc = "Writer for register CONFIG[%s]"]
 pub type W = crate::W<u32, super::CONFIG>;
-#[doc = "Register CONFIG[%s] `reset()`'s with value 0"]
+#[doc = "Register CONFIG[%s]
+`reset()`'s with value 0"]
 impl crate::ResetValue for super::CONFIG {
     type Type = u32;
     #[inline(always)]
@@ -12,22 +13,19 @@ impl crate::ResetValue for super::CONFIG {
 }
 #[doc = "Mode\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum MODE_A {
     #[doc = "0: Disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Channel configure in event mode."]
-    EVENT,
+    EVENT = 1,
     #[doc = "3: Channel configure in task mode."]
-    TASK,
+    TASK = 3,
 }
 impl From<MODE_A> for u8 {
     #[inline(always)]
     fn from(variant: MODE_A) -> Self {
-        match variant {
-            MODE_A::DISABLED => 0,
-            MODE_A::EVENT => 1,
-            MODE_A::TASK => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `MODE`"]
@@ -108,25 +106,21 @@ impl<'a> PSEL_W<'a> {
 }
 #[doc = "Effects on output when in Task mode, or events on input that generates an event.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum POLARITY_A {
     #[doc = "0: No task or event."]
-    NONE,
+    NONE = 0,
     #[doc = "1: Low to high."]
-    LOTOHI,
+    LOTOHI = 1,
     #[doc = "2: High to low."]
-    HITOLO,
+    HITOLO = 2,
     #[doc = "3: Toggle."]
-    TOGGLE,
+    TOGGLE = 3,
 }
 impl From<POLARITY_A> for u8 {
     #[inline(always)]
     fn from(variant: POLARITY_A) -> Self {
-        match variant {
-            POLARITY_A::NONE => 0,
-            POLARITY_A::LOTOHI => 1,
-            POLARITY_A::HITOLO => 2,
-            POLARITY_A::TOGGLE => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `POLARITY`"]
@@ -207,17 +201,14 @@ impl<'a> POLARITY_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum OUTINIT_A {
     #[doc = "0: Initial low output when in task mode."]
-    LOW,
+    LOW = 0,
     #[doc = "1: Initial high output when in task mode."]
-    HIGH,
+    HIGH = 1,
 }
 impl From<OUTINIT_A> for bool {
     #[inline(always)]
     fn from(variant: OUTINIT_A) -> Self {
-        match variant {
-            OUTINIT_A::LOW => false,
-            OUTINIT_A::HIGH => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `OUTINIT`"]

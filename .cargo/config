@@ -1,8 +1,0 @@
-[target.thumbv6m-none-eabi]
-rustflags = [
-  "-C", "link-arg=-Tlink.x",
-  #"--emit=asm",
-]
-
-[build]
-target = "thumbv6m-none-eabi"
