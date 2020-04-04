@@ -14,17 +14,14 @@ impl crate::ResetValue for super::LEDPOL {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum LEDPOL_A {
     #[doc = "0: LED output is active low."]
-    ACTIVELOW,
+    ACTIVELOW = 0,
     #[doc = "1: LED output is active high."]
-    ACTIVEHIGH,
+    ACTIVEHIGH = 1,
 }
 impl From<LEDPOL_A> for bool {
     #[inline(always)]
     fn from(variant: LEDPOL_A) -> Self {
-        match variant {
-            LEDPOL_A::ACTIVELOW => false,
-            LEDPOL_A::ACTIVEHIGH => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `LEDPOL`"]

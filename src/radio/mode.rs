@@ -12,25 +12,21 @@ impl crate::ResetValue for super::MODE {
 }
 #[doc = "Radio data rate and modulation setting. Decision point: TXEN or RXEN task.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum MODE_A {
     #[doc = "0: 1Mbit/s Nordic propietary radio mode."]
-    NRF_1MBIT,
+    NRF_1MBIT = 0,
     #[doc = "1: 2Mbit/s Nordic propietary radio mode."]
-    NRF_2MBIT,
+    NRF_2MBIT = 1,
     #[doc = "2: 250kbit/s Nordic propietary radio mode."]
-    NRF_250KBIT,
+    NRF_250KBIT = 2,
     #[doc = "3: 1Mbit/s Bluetooth Low Energy"]
-    BLE_1MBIT,
+    BLE_1MBIT = 3,
 }
 impl From<MODE_A> for u8 {
     #[inline(always)]
     fn from(variant: MODE_A) -> Self {
-        match variant {
-            MODE_A::NRF_1MBIT => 0,
-            MODE_A::NRF_2MBIT => 1,
-            MODE_A::NRF_250KBIT => 2,
-            MODE_A::BLE_1MBIT => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `MODE`"]

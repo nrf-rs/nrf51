@@ -4,17 +4,14 @@ pub type R = crate::R<u32, super::BUSY>;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum BUSY_A {
     #[doc = "0: No ongoing ADC conversion is taking place. ADC is ready."]
-    READY,
+    READY = 0,
     #[doc = "1: An ADC conversion is taking place. ADC is busy."]
-    BUSY,
+    BUSY = 1,
 }
 impl From<BUSY_A> for bool {
     #[inline(always)]
     fn from(variant: BUSY_A) -> Self {
-        match variant {
-            BUSY_A::READY => false,
-            BUSY_A::BUSY => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `BUSY`"]

@@ -12,19 +12,17 @@ impl crate::ResetValue for super::ENABLE {
 }
 #[doc = "ADC enable.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum ENABLE_A {
     #[doc = "0: ADC is disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: ADC is enabled. If an analog input pin is selected as source of the conversion, the selected pin is configured as an analog input."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<ENABLE_A> for u8 {
     #[inline(always)]
     fn from(variant: ENABLE_A) -> Self {
-        match variant {
-            ENABLE_A::DISABLED => 0,
-            ENABLE_A::ENABLED => 1,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `ENABLE`"]

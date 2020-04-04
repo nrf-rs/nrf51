@@ -28,17 +28,14 @@ impl<'a> OVERRIDE4_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ENABLE_A {
     #[doc = "0: Override trim values disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Override trim values enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<ENABLE_A> for bool {
     #[inline(always)]
     fn from(variant: ENABLE_A) -> Self {
-        match variant {
-            ENABLE_A::DISABLED => false,
-            ENABLE_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ENABLE`"]

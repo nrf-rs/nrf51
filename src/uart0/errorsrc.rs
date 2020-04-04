@@ -14,17 +14,14 @@ impl crate::ResetValue for super::ERRORSRC {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum OVERRUN_A {
     #[doc = "0: Error not present."]
-    NOTPRESENT,
+    NOTPRESENT = 0,
     #[doc = "1: Error present."]
-    PRESENT,
+    PRESENT = 1,
 }
 impl From<OVERRUN_A> for bool {
     #[inline(always)]
     fn from(variant: OVERRUN_A) -> Self {
-        match variant {
-            OVERRUN_A::NOTPRESENT => false,
-            OVERRUN_A::PRESENT => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `OVERRUN`"]
@@ -53,14 +50,12 @@ impl OVERRUN_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum OVERRUN_AW {
     #[doc = "1: Clear error on write."]
-    CLEAR,
+    CLEAR = 1,
 }
 impl From<OVERRUN_AW> for bool {
     #[inline(always)]
     fn from(variant: OVERRUN_AW) -> Self {
-        match variant {
-            OVERRUN_AW::CLEAR => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `OVERRUN`"]
@@ -101,17 +96,14 @@ impl<'a> OVERRUN_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PARITY_A {
     #[doc = "0: Error not present."]
-    NOTPRESENT,
+    NOTPRESENT = 0,
     #[doc = "1: Error present."]
-    PRESENT,
+    PRESENT = 1,
 }
 impl From<PARITY_A> for bool {
     #[inline(always)]
     fn from(variant: PARITY_A) -> Self {
-        match variant {
-            PARITY_A::NOTPRESENT => false,
-            PARITY_A::PRESENT => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `PARITY`"]
@@ -140,14 +132,12 @@ impl PARITY_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PARITY_AW {
     #[doc = "1: Clear error on write."]
-    CLEAR,
+    CLEAR = 1,
 }
 impl From<PARITY_AW> for bool {
     #[inline(always)]
     fn from(variant: PARITY_AW) -> Self {
-        match variant {
-            PARITY_AW::CLEAR => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `PARITY`"]
@@ -188,17 +178,14 @@ impl<'a> PARITY_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FRAMING_A {
     #[doc = "0: Error not present."]
-    NOTPRESENT,
+    NOTPRESENT = 0,
     #[doc = "1: Error present."]
-    PRESENT,
+    PRESENT = 1,
 }
 impl From<FRAMING_A> for bool {
     #[inline(always)]
     fn from(variant: FRAMING_A) -> Self {
-        match variant {
-            FRAMING_A::NOTPRESENT => false,
-            FRAMING_A::PRESENT => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FRAMING`"]
@@ -227,14 +214,12 @@ impl FRAMING_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FRAMING_AW {
     #[doc = "1: Clear error on write."]
-    CLEAR,
+    CLEAR = 1,
 }
 impl From<FRAMING_AW> for bool {
     #[inline(always)]
     fn from(variant: FRAMING_AW) -> Self {
-        match variant {
-            FRAMING_AW::CLEAR => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `FRAMING`"]
@@ -275,17 +260,14 @@ impl<'a> FRAMING_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum BREAK_A {
     #[doc = "0: Error not present."]
-    NOTPRESENT,
+    NOTPRESENT = 0,
     #[doc = "1: Error present."]
-    PRESENT,
+    PRESENT = 1,
 }
 impl From<BREAK_A> for bool {
     #[inline(always)]
     fn from(variant: BREAK_A) -> Self {
-        match variant {
-            BREAK_A::NOTPRESENT => false,
-            BREAK_A::PRESENT => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `BREAK`"]
@@ -314,14 +296,12 @@ impl BREAK_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum BREAK_AW {
     #[doc = "1: Clear error on write."]
-    CLEAR,
+    CLEAR = 1,
 }
 impl From<BREAK_AW> for bool {
     #[inline(always)]
     fn from(variant: BREAK_AW) -> Self {
-        match variant {
-            BREAK_AW::CLEAR => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `BREAK`"]

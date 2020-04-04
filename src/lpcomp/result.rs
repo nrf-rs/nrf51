@@ -4,17 +4,14 @@ pub type R = crate::R<u32, super::RESULT>;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RESULT_A {
     #[doc = "0: Input voltage is bellow the reference threshold."]
-    BELLOW,
+    BELOW = 0,
     #[doc = "1: Input voltage is above the reference threshold."]
-    ABOVE,
+    ABOVE = 1,
 }
 impl From<RESULT_A> for bool {
     #[inline(always)]
     fn from(variant: RESULT_A) -> Self {
-        match variant {
-            RESULT_A::BELLOW => false,
-            RESULT_A::ABOVE => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `RESULT`"]
@@ -24,14 +21,14 @@ impl RESULT_R {
     #[inline(always)]
     pub fn variant(&self) -> RESULT_A {
         match self.bits {
-            false => RESULT_A::BELLOW,
+            false => RESULT_A::BELOW,
             true => RESULT_A::ABOVE,
         }
     }
-    #[doc = "Checks if the value of the field is `BELLOW`"]
+    #[doc = "Checks if the value of the field is `BELOW`"]
     #[inline(always)]
-    pub fn is_bellow(&self) -> bool {
-        *self == RESULT_A::BELLOW
+    pub fn is_below(&self) -> bool {
+        *self == RESULT_A::BELOW
     }
     #[doc = "Checks if the value of the field is `ABOVE`"]
     #[inline(always)]

@@ -12,19 +12,17 @@ impl crate::ResetValue for super::XTALFREQ {
 }
 #[doc = "External Xtal frequency selection.\n\nValue on reset: 255"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum XTALFREQ_A {
     #[doc = "255: 16MHz xtal is used as source for the HFCLK oscillator."]
-    _16MHZ,
+    _16MHZ = 255,
     #[doc = "0: 32MHz xtal is used as source for the HFCLK oscillator."]
-    _32MHZ,
+    _32MHZ = 0,
 }
 impl From<XTALFREQ_A> for u8 {
     #[inline(always)]
     fn from(variant: XTALFREQ_A) -> Self {
-        match variant {
-            XTALFREQ_A::_16MHZ => 255,
-            XTALFREQ_A::_32MHZ => 0,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `XTALFREQ`"]

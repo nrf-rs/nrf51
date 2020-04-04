@@ -2,12 +2,12 @@
 pub type R = crate::R<u32, super::CONFIGID>;
 #[doc = "Writer for register CONFIGID"]
 pub type W = crate::W<u32, super::CONFIGID>;
-#[doc = "Register CONFIGID `reset()`'s with value 0"]
+#[doc = "Register CONFIGID `reset()`'s with value 0xffff_ffff"]
 impl crate::ResetValue for super::CONFIGID {
     type Type = u32;
     #[inline(always)]
     fn reset_value() -> Self::Type {
-        0
+        0xffff_ffff
     }
 }
 #[doc = "Reader of field `HWID`"]

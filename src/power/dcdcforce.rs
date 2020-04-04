@@ -14,17 +14,14 @@ impl crate::ResetValue for super::DCDCFORCE {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FORCEOFF_A {
     #[doc = "0: No force."]
-    NOFORCE,
+    NOFORCE = 0,
     #[doc = "1: Force."]
-    FORCE,
+    FORCE = 1,
 }
 impl From<FORCEOFF_A> for bool {
     #[inline(always)]
     fn from(variant: FORCEOFF_A) -> Self {
-        match variant {
-            FORCEOFF_A::NOFORCE => false,
-            FORCEOFF_A::FORCE => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FORCEOFF`"]
@@ -92,17 +89,14 @@ impl<'a> FORCEOFF_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum FORCEON_A {
     #[doc = "0: No force."]
-    NOFORCE,
+    NOFORCE = 0,
     #[doc = "1: Force."]
-    FORCE,
+    FORCE = 1,
 }
 impl From<FORCEON_A> for bool {
     #[inline(always)]
     fn from(variant: FORCEON_A) -> Self {
-        match variant {
-            FORCEON_A::NOFORCE => false,
-            FORCEON_A::FORCE => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `FORCEON`"]

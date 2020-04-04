@@ -3,18 +3,17 @@ pub type R = crate::R<u32, super::REQSTATUS>;
 #[doc = "Request status for RR\\[0\\].\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RR0_A {
-    #[doc = "0: RR\\[0\\] register is not enabled or has already requested reload."]
-    DISABLEDORREQUESTED,
-    #[doc = "1: RR\\[0\\] register is enabled and has not jet requested."]
-    ENABLEDANDUNREQUESTED,
+    #[doc = "0: RR\\[0\\]
+register is not enabled or has already requested reload."]
+    DISABLEDORREQUESTED = 0,
+    #[doc = "1: RR\\[0\\]
+register is enabled and has not jet requested."]
+    ENABLEDANDUNREQUESTED = 1,
 }
 impl From<RR0_A> for bool {
     #[inline(always)]
     fn from(variant: RR0_A) -> Self {
-        match variant {
-            RR0_A::DISABLEDORREQUESTED => false,
-            RR0_A::ENABLEDANDUNREQUESTED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `RR0`"]
@@ -42,18 +41,17 @@ impl RR0_R {
 #[doc = "Request status for RR\\[1\\].\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RR1_A {
-    #[doc = "0: RR\\[1\\] register is not enabled or has already requested reload."]
-    DISABLEDORREQUESTED,
-    #[doc = "1: RR\\[1\\] register is enabled and has not jet requested."]
-    ENABLEDANDUNREQUESTED,
+    #[doc = "0: RR\\[1\\]
+register is not enabled or has already requested reload."]
+    DISABLEDORREQUESTED = 0,
+    #[doc = "1: RR\\[1\\]
+register is enabled and has not jet requested."]
+    ENABLEDANDUNREQUESTED = 1,
 }
 impl From<RR1_A> for bool {
     #[inline(always)]
     fn from(variant: RR1_A) -> Self {
-        match variant {
-            RR1_A::DISABLEDORREQUESTED => false,
-            RR1_A::ENABLEDANDUNREQUESTED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `RR1`"]
@@ -81,18 +79,17 @@ impl RR1_R {
 #[doc = "Request status for RR\\[2\\].\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RR2_A {
-    #[doc = "0: RR\\[2\\] register is not enabled or has already requested reload."]
-    DISABLEDORREQUESTED,
-    #[doc = "1: RR\\[2\\] register is enabled and has not jet requested."]
-    ENABLEDANDUNREQUESTED,
+    #[doc = "0: RR\\[2\\]
+register is not enabled or has already requested reload."]
+    DISABLEDORREQUESTED = 0,
+    #[doc = "1: RR\\[2\\]
+register is enabled and has not jet requested."]
+    ENABLEDANDUNREQUESTED = 1,
 }
 impl From<RR2_A> for bool {
     #[inline(always)]
     fn from(variant: RR2_A) -> Self {
-        match variant {
-            RR2_A::DISABLEDORREQUESTED => false,
-            RR2_A::ENABLEDANDUNREQUESTED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `RR2`"]
@@ -120,18 +117,17 @@ impl RR2_R {
 #[doc = "Request status for RR\\[3\\].\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RR3_A {
-    #[doc = "0: RR\\[3\\] register is not enabled or has already requested reload."]
-    DISABLEDORREQUESTED,
-    #[doc = "1: RR\\[3\\] register is enabled and has not jet requested."]
-    ENABLEDANDUNREQUESTED,
+    #[doc = "0: RR\\[3\\]
+register is not enabled or has already requested reload."]
+    DISABLEDORREQUESTED = 0,
+    #[doc = "1: RR\\[3\\]
+register is enabled and has not jet requested."]
+    ENABLEDANDUNREQUESTED = 1,
 }
 impl From<RR3_A> for bool {
     #[inline(always)]
     fn from(variant: RR3_A) -> Self {
-        match variant {
-            RR3_A::DISABLEDORREQUESTED => false,
-            RR3_A::ENABLEDANDUNREQUESTED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `RR3`"]
@@ -159,18 +155,17 @@ impl RR3_R {
 #[doc = "Request status for RR\\[4\\].\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RR4_A {
-    #[doc = "0: RR\\[4\\] register is not enabled or has already requested reload."]
-    DISABLEDORREQUESTED,
-    #[doc = "1: RR\\[4\\] register is enabled and has not jet requested."]
-    ENABLEDANDUNREQUESTED,
+    #[doc = "0: RR\\[4\\]
+register is not enabled or has already requested reload."]
+    DISABLEDORREQUESTED = 0,
+    #[doc = "1: RR\\[4\\]
+register is enabled and has not jet requested."]
+    ENABLEDANDUNREQUESTED = 1,
 }
 impl From<RR4_A> for bool {
     #[inline(always)]
     fn from(variant: RR4_A) -> Self {
-        match variant {
-            RR4_A::DISABLEDORREQUESTED => false,
-            RR4_A::ENABLEDANDUNREQUESTED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `RR4`"]
@@ -198,18 +193,17 @@ impl RR4_R {
 #[doc = "Request status for RR\\[5\\].\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RR5_A {
-    #[doc = "0: RR\\[5\\] register is not enabled or has already requested reload."]
-    DISABLEDORREQUESTED,
-    #[doc = "1: RR\\[5\\] register is enabled and has not jet requested."]
-    ENABLEDANDUNREQUESTED,
+    #[doc = "0: RR\\[5\\]
+register is not enabled or has already requested reload."]
+    DISABLEDORREQUESTED = 0,
+    #[doc = "1: RR\\[5\\]
+register is enabled and has not jet requested."]
+    ENABLEDANDUNREQUESTED = 1,
 }
 impl From<RR5_A> for bool {
     #[inline(always)]
     fn from(variant: RR5_A) -> Self {
-        match variant {
-            RR5_A::DISABLEDORREQUESTED => false,
-            RR5_A::ENABLEDANDUNREQUESTED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `RR5`"]
@@ -237,18 +231,17 @@ impl RR5_R {
 #[doc = "Request status for RR\\[6\\].\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RR6_A {
-    #[doc = "0: RR\\[6\\] register is not enabled or has already requested reload."]
-    DISABLEDORREQUESTED,
-    #[doc = "1: RR\\[6\\] register is enabled and has not jet requested."]
-    ENABLEDANDUNREQUESTED,
+    #[doc = "0: RR\\[6\\]
+register is not enabled or has already requested reload."]
+    DISABLEDORREQUESTED = 0,
+    #[doc = "1: RR\\[6\\]
+register is enabled and has not jet requested."]
+    ENABLEDANDUNREQUESTED = 1,
 }
 impl From<RR6_A> for bool {
     #[inline(always)]
     fn from(variant: RR6_A) -> Self {
-        match variant {
-            RR6_A::DISABLEDORREQUESTED => false,
-            RR6_A::ENABLEDANDUNREQUESTED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `RR6`"]
@@ -276,18 +269,17 @@ impl RR6_R {
 #[doc = "Request status for RR\\[7\\].\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RR7_A {
-    #[doc = "0: RR\\[7\\] register is not enabled or has already requested reload."]
-    DISABLEDORREQUESTED,
-    #[doc = "1: RR\\[7\\] register is enabled and has not jet requested."]
-    ENABLEDANDUNREQUESTED,
+    #[doc = "0: RR\\[7\\]
+register is not enabled or has already requested reload."]
+    DISABLEDORREQUESTED = 0,
+    #[doc = "1: RR\\[7\\]
+register is enabled and has not jet requested."]
+    ENABLEDANDUNREQUESTED = 1,
 }
 impl From<RR7_A> for bool {
     #[inline(always)]
     fn from(variant: RR7_A) -> Self {
-        match variant {
-            RR7_A::DISABLEDORREQUESTED => false,
-            RR7_A::ENABLEDANDUNREQUESTED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `RR7`"]

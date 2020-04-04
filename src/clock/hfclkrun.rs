@@ -4,17 +4,14 @@ pub type R = crate::R<u32, super::HFCLKRUN>;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum STATUS_A {
     #[doc = "0: Task HFCLKSTART has not been triggered."]
-    NOTTRIGGERED,
+    NOTTRIGGERED = 0,
     #[doc = "1: Task HFCLKSTART has been triggered."]
-    TRIGGERED,
+    TRIGGERED = 1,
 }
 impl From<STATUS_A> for bool {
     #[inline(always)]
     fn from(variant: STATUS_A) -> Self {
-        match variant {
-            STATUS_A::NOTTRIGGERED => false,
-            STATUS_A::TRIGGERED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `STATUS`"]

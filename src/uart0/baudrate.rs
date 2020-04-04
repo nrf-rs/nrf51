@@ -12,61 +12,49 @@ impl crate::ResetValue for super::BAUDRATE {
 }
 #[doc = "UART baudrate.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u32)]
 pub enum BAUDRATE_A {
     #[doc = "323584: 1200 baud."]
-    BAUD1200,
+    BAUD1200 = 323584,
     #[doc = "643072: 2400 baud."]
-    BAUD2400,
+    BAUD2400 = 643072,
     #[doc = "1290240: 4800 baud."]
-    BAUD4800,
+    BAUD4800 = 1290240,
     #[doc = "2576384: 9600 baud."]
-    BAUD9600,
+    BAUD9600 = 2576384,
     #[doc = "3866624: 14400 baud."]
-    BAUD14400,
+    BAUD14400 = 3866624,
     #[doc = "5152768: 19200 baud."]
-    BAUD19200,
+    BAUD19200 = 5152768,
     #[doc = "7729152: 28800 baud."]
-    BAUD28800,
+    BAUD28800 = 7729152,
+    #[doc = "8388608: 31250 baud."]
+    BAUD31250 = 8388608,
     #[doc = "10309632: 38400 baud."]
-    BAUD38400,
+    BAUD38400 = 10309632,
+    #[doc = "15007744: 56000 baud."]
+    BAUD56000 = 15007744,
     #[doc = "15462400: 57600 baud."]
-    BAUD57600,
+    BAUD57600 = 15462400,
     #[doc = "20615168: 76800 baud."]
-    BAUD76800,
+    BAUD76800 = 20615168,
     #[doc = "30924800: 115200 baud."]
-    BAUD115200,
+    BAUD115200 = 30924800,
     #[doc = "61845504: 230400 baud."]
-    BAUD230400,
+    BAUD230400 = 61845504,
     #[doc = "67108864: 250000 baud."]
-    BAUD250000,
+    BAUD250000 = 67108864,
     #[doc = "123695104: 460800 baud."]
-    BAUD460800,
+    BAUD460800 = 123695104,
     #[doc = "247386112: 921600 baud."]
-    BAUD921600,
+    BAUD921600 = 247386112,
     #[doc = "268435456: 1M baud."]
-    BAUD1M,
+    BAUD1M = 268435456,
 }
 impl From<BAUDRATE_A> for u32 {
     #[inline(always)]
     fn from(variant: BAUDRATE_A) -> Self {
-        match variant {
-            BAUDRATE_A::BAUD1200 => 323584,
-            BAUDRATE_A::BAUD2400 => 643072,
-            BAUDRATE_A::BAUD4800 => 1290240,
-            BAUDRATE_A::BAUD9600 => 2576384,
-            BAUDRATE_A::BAUD14400 => 3866624,
-            BAUDRATE_A::BAUD19200 => 5152768,
-            BAUDRATE_A::BAUD28800 => 7729152,
-            BAUDRATE_A::BAUD38400 => 10309632,
-            BAUDRATE_A::BAUD57600 => 15462400,
-            BAUDRATE_A::BAUD76800 => 20615168,
-            BAUDRATE_A::BAUD115200 => 30924800,
-            BAUDRATE_A::BAUD230400 => 61845504,
-            BAUDRATE_A::BAUD250000 => 67108864,
-            BAUDRATE_A::BAUD460800 => 123695104,
-            BAUDRATE_A::BAUD921600 => 247386112,
-            BAUDRATE_A::BAUD1M => 268435456,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `BAUDRATE`"]
@@ -84,7 +72,9 @@ impl BAUDRATE_R {
             3866624 => Val(BAUDRATE_A::BAUD14400),
             5152768 => Val(BAUDRATE_A::BAUD19200),
             7729152 => Val(BAUDRATE_A::BAUD28800),
+            8388608 => Val(BAUDRATE_A::BAUD31250),
             10309632 => Val(BAUDRATE_A::BAUD38400),
+            15007744 => Val(BAUDRATE_A::BAUD56000),
             15462400 => Val(BAUDRATE_A::BAUD57600),
             20615168 => Val(BAUDRATE_A::BAUD76800),
             30924800 => Val(BAUDRATE_A::BAUD115200),
@@ -131,10 +121,20 @@ impl BAUDRATE_R {
     pub fn is_baud28800(&self) -> bool {
         *self == BAUDRATE_A::BAUD28800
     }
+    #[doc = "Checks if the value of the field is `BAUD31250`"]
+    #[inline(always)]
+    pub fn is_baud31250(&self) -> bool {
+        *self == BAUDRATE_A::BAUD31250
+    }
     #[doc = "Checks if the value of the field is `BAUD38400`"]
     #[inline(always)]
     pub fn is_baud38400(&self) -> bool {
         *self == BAUDRATE_A::BAUD38400
+    }
+    #[doc = "Checks if the value of the field is `BAUD56000`"]
+    #[inline(always)]
+    pub fn is_baud56000(&self) -> bool {
+        *self == BAUDRATE_A::BAUD56000
     }
     #[doc = "Checks if the value of the field is `BAUD57600`"]
     #[inline(always)]
@@ -222,10 +222,20 @@ impl<'a> BAUDRATE_W<'a> {
     pub fn baud28800(self) -> &'a mut W {
         self.variant(BAUDRATE_A::BAUD28800)
     }
+    #[doc = "31250 baud."]
+    #[inline(always)]
+    pub fn baud31250(self) -> &'a mut W {
+        self.variant(BAUDRATE_A::BAUD31250)
+    }
     #[doc = "38400 baud."]
     #[inline(always)]
     pub fn baud38400(self) -> &'a mut W {
         self.variant(BAUDRATE_A::BAUD38400)
+    }
+    #[doc = "56000 baud."]
+    #[inline(always)]
+    pub fn baud56000(self) -> &'a mut W {
+        self.variant(BAUDRATE_A::BAUD56000)
     }
     #[doc = "57600 baud."]
     #[inline(always)]

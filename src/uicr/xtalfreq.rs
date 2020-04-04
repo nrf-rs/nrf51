@@ -2,29 +2,27 @@
 pub type R = crate::R<u32, super::XTALFREQ>;
 #[doc = "Writer for register XTALFREQ"]
 pub type W = crate::W<u32, super::XTALFREQ>;
-#[doc = "Register XTALFREQ `reset()`'s with value 0"]
+#[doc = "Register XTALFREQ `reset()`'s with value 0xffff_ffff"]
 impl crate::ResetValue for super::XTALFREQ {
     type Type = u32;
     #[inline(always)]
     fn reset_value() -> Self::Type {
-        0
+        0xffff_ffff
     }
 }
-#[doc = "Reset value for CLOCK XTALFREQ register.\n\nValue on reset: 0"]
+#[doc = "Reset value for CLOCK XTALFREQ register.\n\nValue on reset: 255"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum XTALFREQ_A {
     #[doc = "255: 16MHz Xtal is used."]
-    _16MHZ,
+    _16MHZ = 255,
     #[doc = "0: 32MHz Xtal is used."]
-    _32MHZ,
+    _32MHZ = 0,
 }
 impl From<XTALFREQ_A> for u8 {
     #[inline(always)]
     fn from(variant: XTALFREQ_A) -> Self {
-        match variant {
-            XTALFREQ_A::_16MHZ => 255,
-            XTALFREQ_A::_32MHZ => 0,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `XTALFREQ`"]

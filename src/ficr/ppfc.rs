@@ -2,29 +2,27 @@
 pub type R = crate::R<u32, super::PPFC>;
 #[doc = "Writer for register PPFC"]
 pub type W = crate::W<u32, super::PPFC>;
-#[doc = "Register PPFC `reset()`'s with value 0"]
+#[doc = "Register PPFC `reset()`'s with value 0xffff_ffff"]
 impl crate::ResetValue for super::PPFC {
     type Type = u32;
     #[inline(always)]
     fn reset_value() -> Self::Type {
-        0
+        0xffff_ffff
     }
 }
-#[doc = "Pre-programmed factory code present.\n\nValue on reset: 0"]
+#[doc = "Pre-programmed factory code present.\n\nValue on reset: 255"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum PPFC_A {
     #[doc = "255: Not present."]
-    NOTPRESENT,
+    NOTPRESENT = 255,
     #[doc = "0: Present."]
-    PRESENT,
+    PRESENT = 0,
 }
 impl From<PPFC_A> for u8 {
     #[inline(always)]
     fn from(variant: PPFC_A) -> Self {
-        match variant {
-            PPFC_A::NOTPRESENT => 255,
-            PPFC_A::PRESENT => 0,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `PPFC`"]

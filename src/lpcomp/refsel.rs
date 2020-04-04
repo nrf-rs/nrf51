@@ -12,37 +12,29 @@ impl crate::ResetValue for super::REFSEL {
 }
 #[doc = "Reference select.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum REFSEL_A {
     #[doc = "0: Use supply with a 1/8 prescaler as reference."]
-    SUPPLYONEEIGHTHPRESCALING,
+    SUPPLYONEEIGHTHPRESCALING = 0,
     #[doc = "1: Use supply with a 2/8 prescaler as reference."]
-    SUPPLYTWOEIGHTHSPRESCALING,
+    SUPPLYTWOEIGHTHSPRESCALING = 1,
     #[doc = "2: Use supply with a 3/8 prescaler as reference."]
-    SUPPLYTHREEEIGHTHSPRESCALING,
+    SUPPLYTHREEEIGHTHSPRESCALING = 2,
     #[doc = "3: Use supply with a 4/8 prescaler as reference."]
-    SUPPLYFOUREIGHTHSPRESCALING,
+    SUPPLYFOUREIGHTHSPRESCALING = 3,
     #[doc = "4: Use supply with a 5/8 prescaler as reference."]
-    SUPPLYFIVEEIGHTHSPRESCALING,
+    SUPPLYFIVEEIGHTHSPRESCALING = 4,
     #[doc = "5: Use supply with a 6/8 prescaler as reference."]
-    SUPPLYSIXEIGHTHSPRESCALING,
+    SUPPLYSIXEIGHTHSPRESCALING = 5,
     #[doc = "6: Use supply with a 7/8 prescaler as reference."]
-    SUPPLYSEVENEIGHTHSPRESCALING,
+    SUPPLYSEVENEIGHTHSPRESCALING = 6,
     #[doc = "7: Use external analog reference as reference."]
-    AREF,
+    AREF = 7,
 }
 impl From<REFSEL_A> for u8 {
     #[inline(always)]
     fn from(variant: REFSEL_A) -> Self {
-        match variant {
-            REFSEL_A::SUPPLYONEEIGHTHPRESCALING => 0,
-            REFSEL_A::SUPPLYTWOEIGHTHSPRESCALING => 1,
-            REFSEL_A::SUPPLYTHREEEIGHTHSPRESCALING => 2,
-            REFSEL_A::SUPPLYFOUREIGHTHSPRESCALING => 3,
-            REFSEL_A::SUPPLYFIVEEIGHTHSPRESCALING => 4,
-            REFSEL_A::SUPPLYSIXEIGHTHSPRESCALING => 5,
-            REFSEL_A::SUPPLYSEVENEIGHTHSPRESCALING => 6,
-            REFSEL_A::AREF => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `REFSEL`"]

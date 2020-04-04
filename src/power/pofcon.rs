@@ -14,17 +14,14 @@ impl crate::ResetValue for super::POFCON {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum POF_A {
     #[doc = "0: Disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<POF_A> for bool {
     #[inline(always)]
     fn from(variant: POF_A) -> Self {
-        match variant {
-            POF_A::DISABLED => false,
-            POF_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `POF`"]
@@ -90,25 +87,21 @@ impl<'a> POF_W<'a> {
 }
 #[doc = "Set threshold level.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum THRESHOLD_A {
     #[doc = "0: Set threshold to 2.1Volts."]
-    V21,
+    V21 = 0,
     #[doc = "1: Set threshold to 2.3Volts."]
-    V23,
+    V23 = 1,
     #[doc = "2: Set threshold to 2.5Volts."]
-    V25,
+    V25 = 2,
     #[doc = "3: Set threshold to 2.7Volts."]
-    V27,
+    V27 = 3,
 }
 impl From<THRESHOLD_A> for u8 {
     #[inline(always)]
     fn from(variant: THRESHOLD_A) -> Self {
-        match variant {
-            THRESHOLD_A::V21 => 0,
-            THRESHOLD_A::V23 => 1,
-            THRESHOLD_A::V25 => 2,
-            THRESHOLD_A::V27 => 3,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `THRESHOLD`"]

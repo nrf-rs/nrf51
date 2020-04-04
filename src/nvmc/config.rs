@@ -12,22 +12,19 @@ impl crate::ResetValue for super::CONFIG {
 }
 #[doc = "Program write enable.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum WEN_A {
     #[doc = "0: Read only access."]
-    REN,
+    REN = 0,
     #[doc = "1: Write enabled."]
-    WEN,
+    WEN = 1,
     #[doc = "2: Erase enabled."]
-    EEN,
+    EEN = 2,
 }
 impl From<WEN_A> for u8 {
     #[inline(always)]
     fn from(variant: WEN_A) -> Self {
-        match variant {
-            WEN_A::REN => 0,
-            WEN_A::WEN => 1,
-            WEN_A::EEN => 2,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `WEN`"]

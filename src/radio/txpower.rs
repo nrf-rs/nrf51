@@ -12,37 +12,29 @@ impl crate::ResetValue for super::TXPOWER {
 }
 #[doc = "Radio output power. Decision point: TXEN task.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum TXPOWER_A {
     #[doc = "4: +4dBm."]
-    POS4DBM,
+    POS4DBM = 4,
     #[doc = "0: 0dBm."]
-    _0DBM,
+    _0DBM = 0,
     #[doc = "252: -4dBm."]
-    NEG4DBM,
+    NEG4DBM = 252,
     #[doc = "248: -8dBm."]
-    NEG8DBM,
+    NEG8DBM = 248,
     #[doc = "244: -12dBm."]
-    NEG12DBM,
+    NEG12DBM = 244,
     #[doc = "240: -16dBm."]
-    NEG16DBM,
+    NEG16DBM = 240,
     #[doc = "236: -20dBm."]
-    NEG20DBM,
+    NEG20DBM = 236,
     #[doc = "216: -30dBm."]
-    NEG30DBM,
+    NEG30DBM = 216,
 }
 impl From<TXPOWER_A> for u8 {
     #[inline(always)]
     fn from(variant: TXPOWER_A) -> Self {
-        match variant {
-            TXPOWER_A::POS4DBM => 4,
-            TXPOWER_A::_0DBM => 0,
-            TXPOWER_A::NEG4DBM => 252,
-            TXPOWER_A::NEG8DBM => 248,
-            TXPOWER_A::NEG12DBM => 244,
-            TXPOWER_A::NEG16DBM => 240,
-            TXPOWER_A::NEG20DBM => 236,
-            TXPOWER_A::NEG30DBM => 216,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `TXPOWER`"]

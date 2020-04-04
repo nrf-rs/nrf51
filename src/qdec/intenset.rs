@@ -14,17 +14,14 @@ impl crate::ResetValue for super::INTENSET {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SAMPLERDY_A {
     #[doc = "0: Interrupt disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Interrupt enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<SAMPLERDY_A> for bool {
     #[inline(always)]
     fn from(variant: SAMPLERDY_A) -> Self {
-        match variant {
-            SAMPLERDY_A::DISABLED => false,
-            SAMPLERDY_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SAMPLERDY`"]
@@ -53,14 +50,12 @@ impl SAMPLERDY_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SAMPLERDY_AW {
     #[doc = "1: Enable interrupt on write."]
-    SET,
+    SET = 1,
 }
 impl From<SAMPLERDY_AW> for bool {
     #[inline(always)]
     fn from(variant: SAMPLERDY_AW) -> Self {
-        match variant {
-            SAMPLERDY_AW::SET => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `SAMPLERDY`"]
@@ -101,17 +96,14 @@ impl<'a> SAMPLERDY_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum REPORTRDY_A {
     #[doc = "0: Interrupt disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Interrupt enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<REPORTRDY_A> for bool {
     #[inline(always)]
     fn from(variant: REPORTRDY_A) -> Self {
-        match variant {
-            REPORTRDY_A::DISABLED => false,
-            REPORTRDY_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `REPORTRDY`"]
@@ -140,14 +132,12 @@ impl REPORTRDY_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum REPORTRDY_AW {
     #[doc = "1: Enable interrupt on write."]
-    SET,
+    SET = 1,
 }
 impl From<REPORTRDY_AW> for bool {
     #[inline(always)]
     fn from(variant: REPORTRDY_AW) -> Self {
-        match variant {
-            REPORTRDY_AW::SET => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `REPORTRDY`"]
@@ -188,17 +178,14 @@ impl<'a> REPORTRDY_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACCOF_A {
     #[doc = "0: Interrupt disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Interrupt enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<ACCOF_A> for bool {
     #[inline(always)]
     fn from(variant: ACCOF_A) -> Self {
-        match variant {
-            ACCOF_A::DISABLED => false,
-            ACCOF_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACCOF`"]
@@ -227,14 +214,12 @@ impl ACCOF_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACCOF_AW {
     #[doc = "1: Enable interrupt on write."]
-    SET,
+    SET = 1,
 }
 impl From<ACCOF_AW> for bool {
     #[inline(always)]
     fn from(variant: ACCOF_AW) -> Self {
-        match variant {
-            ACCOF_AW::SET => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `ACCOF`"]
