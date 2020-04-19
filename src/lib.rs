@@ -1,7 +1,25 @@
-#![doc = "Peripheral access API for NRF51 microcontrollers (generated using svd2rust v0.16.1)\n\nYou can find an overview of the API [here].\n\n[here]: https://docs.rs/svd2rust/0.16.1/svd2rust/#peripheral-api"]
+#![doc = "Peripheral access API for NRF51 microcontrollers (generated using svd2rust v0.17.0)\n\nYou can find an overview of the API [here].\n\n[here]: https://docs.rs/svd2rust/0.17.0/svd2rust/#peripheral-api"]
+#![deny(const_err)]
+#![deny(dead_code)]
+#![deny(improper_ctypes)]
+#![deny(legacy_directory_ownership)]
 #![deny(missing_docs)]
-#![deny(warnings)]
+#![deny(no_mangle_generic_items)]
+#![deny(non_shorthand_field_patterns)]
+#![deny(overflowing_literals)]
+#![deny(path_statements)]
+#![deny(patterns_in_fns_without_body)]
+#![deny(plugin_as_library)]
+#![deny(private_in_public)]
+#![deny(safe_extern_statics)]
+#![deny(unconditional_recursion)]
+#![deny(unions_with_drop_fields)]
+#![deny(unused_allocation)]
+#![deny(unused_comparisons)]
+#![deny(unused_parens)]
+#![deny(while_true)]
 #![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
 #![no_std]
 extern crate bare_metal;
 extern crate cortex_m;
@@ -85,88 +103,63 @@ pub static __INTERRUPTS: [Vector; 26] = [
 ];
 #[doc = r"Enumeration of all the interrupts"]
 #[derive(Copy, Clone, Debug)]
+#[repr(u8)]
 pub enum Interrupt {
     #[doc = "0 - POWER_CLOCK"]
-    POWER_CLOCK,
+    POWER_CLOCK = 0,
     #[doc = "1 - RADIO"]
-    RADIO,
+    RADIO = 1,
     #[doc = "2 - UART0"]
-    UART0,
+    UART0 = 2,
     #[doc = "3 - SPI0_TWI0"]
-    SPI0_TWI0,
+    SPI0_TWI0 = 3,
     #[doc = "4 - SPI1_TWI1"]
-    SPI1_TWI1,
+    SPI1_TWI1 = 4,
     #[doc = "6 - GPIOTE"]
-    GPIOTE,
+    GPIOTE = 6,
     #[doc = "7 - ADC"]
-    ADC,
+    ADC = 7,
     #[doc = "8 - TIMER0"]
-    TIMER0,
+    TIMER0 = 8,
     #[doc = "9 - TIMER1"]
-    TIMER1,
+    TIMER1 = 9,
     #[doc = "10 - TIMER2"]
-    TIMER2,
+    TIMER2 = 10,
     #[doc = "11 - RTC0"]
-    RTC0,
+    RTC0 = 11,
     #[doc = "12 - TEMP"]
-    TEMP,
+    TEMP = 12,
     #[doc = "13 - RNG"]
-    RNG,
+    RNG = 13,
     #[doc = "14 - ECB"]
-    ECB,
+    ECB = 14,
     #[doc = "15 - CCM_AAR"]
-    CCM_AAR,
+    CCM_AAR = 15,
     #[doc = "16 - WDT"]
-    WDT,
+    WDT = 16,
     #[doc = "17 - RTC1"]
-    RTC1,
+    RTC1 = 17,
     #[doc = "18 - QDEC"]
-    QDEC,
+    QDEC = 18,
     #[doc = "19 - LPCOMP"]
-    LPCOMP,
+    LPCOMP = 19,
     #[doc = "20 - SWI0"]
-    SWI0,
+    SWI0 = 20,
     #[doc = "21 - SWI1"]
-    SWI1,
+    SWI1 = 21,
     #[doc = "22 - SWI2"]
-    SWI2,
+    SWI2 = 22,
     #[doc = "23 - SWI3"]
-    SWI3,
+    SWI3 = 23,
     #[doc = "24 - SWI4"]
-    SWI4,
+    SWI4 = 24,
     #[doc = "25 - SWI5"]
-    SWI5,
+    SWI5 = 25,
 }
 unsafe impl bare_metal::Nr for Interrupt {
-    #[inline]
+    #[inline(always)]
     fn nr(&self) -> u8 {
-        match *self {
-            Interrupt::POWER_CLOCK => 0,
-            Interrupt::RADIO => 1,
-            Interrupt::UART0 => 2,
-            Interrupt::SPI0_TWI0 => 3,
-            Interrupt::SPI1_TWI1 => 4,
-            Interrupt::GPIOTE => 6,
-            Interrupt::ADC => 7,
-            Interrupt::TIMER0 => 8,
-            Interrupt::TIMER1 => 9,
-            Interrupt::TIMER2 => 10,
-            Interrupt::RTC0 => 11,
-            Interrupt::TEMP => 12,
-            Interrupt::RNG => 13,
-            Interrupt::ECB => 14,
-            Interrupt::CCM_AAR => 15,
-            Interrupt::WDT => 16,
-            Interrupt::RTC1 => 17,
-            Interrupt::QDEC => 18,
-            Interrupt::LPCOMP => 19,
-            Interrupt::SWI0 => 20,
-            Interrupt::SWI1 => 21,
-            Interrupt::SWI2 => 22,
-            Interrupt::SWI3 => 23,
-            Interrupt::SWI4 => 24,
-            Interrupt::SWI5 => 25,
-        }
+        *self as u8
     }
 }
 #[cfg(feature = "rt")]
@@ -193,6 +186,7 @@ impl POWER {
 }
 impl Deref for POWER {
     type Target = power::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*POWER::ptr() }
     }
@@ -213,32 +207,13 @@ impl CLOCK {
 }
 impl Deref for CLOCK {
     type Target = clock::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*CLOCK::ptr() }
     }
 }
 #[doc = "Clock control."]
 pub mod clock;
-#[doc = "AHB Multi-Layer Interface."]
-pub struct AMLI {
-    _marker: PhantomData<*const ()>,
-}
-unsafe impl Send for AMLI {}
-impl AMLI {
-    #[doc = r"Returns a pointer to the register block"]
-    #[inline(always)]
-    pub const fn ptr() -> *const amli::RegisterBlock {
-        0x4000_0000 as *const _
-    }
-}
-impl Deref for AMLI {
-    type Target = amli::RegisterBlock;
-    fn deref(&self) -> &Self::Target {
-        unsafe { &*AMLI::ptr() }
-    }
-}
-#[doc = "AHB Multi-Layer Interface."]
-pub mod amli;
 #[doc = "The radio."]
 pub struct RADIO {
     _marker: PhantomData<*const ()>,
@@ -253,6 +228,7 @@ impl RADIO {
 }
 impl Deref for RADIO {
     type Target = radio::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*RADIO::ptr() }
     }
@@ -273,6 +249,7 @@ impl UART0 {
 }
 impl Deref for UART0 {
     type Target = uart0::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*UART0::ptr() }
     }
@@ -293,6 +270,7 @@ impl SPI0 {
 }
 impl Deref for SPI0 {
     type Target = spi0::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*SPI0::ptr() }
     }
@@ -313,6 +291,7 @@ impl TWI0 {
 }
 impl Deref for TWI0 {
     type Target = twi0::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*TWI0::ptr() }
     }
@@ -333,6 +312,7 @@ impl SPI1 {
 }
 impl Deref for SPI1 {
     type Target = spi0::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*SPI1::ptr() }
     }
@@ -351,6 +331,7 @@ impl TWI1 {
 }
 impl Deref for TWI1 {
     type Target = twi0::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*TWI1::ptr() }
     }
@@ -369,32 +350,13 @@ impl SPIS1 {
 }
 impl Deref for SPIS1 {
     type Target = spis1::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*SPIS1::ptr() }
     }
 }
 #[doc = "SPI slave 1."]
 pub mod spis1;
-#[doc = "SPI master with easyDMA 1."]
-pub struct SPIM1 {
-    _marker: PhantomData<*const ()>,
-}
-unsafe impl Send for SPIM1 {}
-impl SPIM1 {
-    #[doc = r"Returns a pointer to the register block"]
-    #[inline(always)]
-    pub const fn ptr() -> *const spim1::RegisterBlock {
-        0x4000_4000 as *const _
-    }
-}
-impl Deref for SPIM1 {
-    type Target = spim1::RegisterBlock;
-    fn deref(&self) -> &Self::Target {
-        unsafe { &*SPIM1::ptr() }
-    }
-}
-#[doc = "SPI master with easyDMA 1."]
-pub mod spim1;
 #[doc = "GPIO tasks and events."]
 pub struct GPIOTE {
     _marker: PhantomData<*const ()>,
@@ -409,6 +371,7 @@ impl GPIOTE {
 }
 impl Deref for GPIOTE {
     type Target = gpiote::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*GPIOTE::ptr() }
     }
@@ -429,6 +392,7 @@ impl ADC {
 }
 impl Deref for ADC {
     type Target = adc::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*ADC::ptr() }
     }
@@ -449,6 +413,7 @@ impl TIMER0 {
 }
 impl Deref for TIMER0 {
     type Target = timer0::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*TIMER0::ptr() }
     }
@@ -469,6 +434,7 @@ impl TIMER1 {
 }
 impl Deref for TIMER1 {
     type Target = timer0::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*TIMER1::ptr() }
     }
@@ -487,6 +453,7 @@ impl TIMER2 {
 }
 impl Deref for TIMER2 {
     type Target = timer0::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*TIMER2::ptr() }
     }
@@ -505,6 +472,7 @@ impl RTC0 {
 }
 impl Deref for RTC0 {
     type Target = rtc0::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*RTC0::ptr() }
     }
@@ -525,6 +493,7 @@ impl TEMP {
 }
 impl Deref for TEMP {
     type Target = temp::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*TEMP::ptr() }
     }
@@ -545,6 +514,7 @@ impl RNG {
 }
 impl Deref for RNG {
     type Target = rng::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*RNG::ptr() }
     }
@@ -565,6 +535,7 @@ impl ECB {
 }
 impl Deref for ECB {
     type Target = ecb::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*ECB::ptr() }
     }
@@ -585,6 +556,7 @@ impl AAR {
 }
 impl Deref for AAR {
     type Target = aar::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*AAR::ptr() }
     }
@@ -605,6 +577,7 @@ impl CCM {
 }
 impl Deref for CCM {
     type Target = ccm::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*CCM::ptr() }
     }
@@ -625,6 +598,7 @@ impl WDT {
 }
 impl Deref for WDT {
     type Target = wdt::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*WDT::ptr() }
     }
@@ -645,6 +619,7 @@ impl RTC1 {
 }
 impl Deref for RTC1 {
     type Target = rtc0::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*RTC1::ptr() }
     }
@@ -663,6 +638,7 @@ impl QDEC {
 }
 impl Deref for QDEC {
     type Target = qdec::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*QDEC::ptr() }
     }
@@ -683,6 +659,7 @@ impl LPCOMP {
 }
 impl Deref for LPCOMP {
     type Target = lpcomp::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*LPCOMP::ptr() }
     }
@@ -703,6 +680,7 @@ impl SWI {
 }
 impl Deref for SWI {
     type Target = swi::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*SWI::ptr() }
     }
@@ -723,6 +701,7 @@ impl NVMC {
 }
 impl Deref for NVMC {
     type Target = nvmc::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*NVMC::ptr() }
     }
@@ -743,6 +722,7 @@ impl PPI {
 }
 impl Deref for PPI {
     type Target = ppi::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*PPI::ptr() }
     }
@@ -763,6 +743,7 @@ impl FICR {
 }
 impl Deref for FICR {
     type Target = ficr::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*FICR::ptr() }
     }
@@ -783,6 +764,7 @@ impl UICR {
 }
 impl Deref for UICR {
     type Target = uicr::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*UICR::ptr() }
     }
@@ -803,6 +785,7 @@ impl GPIO {
 }
 impl Deref for GPIO {
     type Target = gpio::RegisterBlock;
+    #[inline(always)]
     fn deref(&self) -> &Self::Target {
         unsafe { &*GPIO::ptr() }
     }
@@ -818,8 +801,6 @@ pub struct Peripherals {
     pub POWER: POWER,
     #[doc = "CLOCK"]
     pub CLOCK: CLOCK,
-    #[doc = "AMLI"]
-    pub AMLI: AMLI,
     #[doc = "RADIO"]
     pub RADIO: RADIO,
     #[doc = "UART0"]
@@ -834,8 +815,6 @@ pub struct Peripherals {
     pub TWI1: TWI1,
     #[doc = "SPIS1"]
     pub SPIS1: SPIS1,
-    #[doc = "SPIM1"]
-    pub SPIM1: SPIM1,
     #[doc = "GPIOTE"]
     pub GPIOTE: GPIOTE,
     #[doc = "ADC"]
@@ -892,6 +871,7 @@ impl Peripherals {
         })
     }
     #[doc = r"Unchecked version of `Peripherals::take`"]
+    #[inline]
     pub unsafe fn steal() -> Self {
         DEVICE_PERIPHERALS = true;
         Peripherals {
@@ -899,9 +879,6 @@ impl Peripherals {
                 _marker: PhantomData,
             },
             CLOCK: CLOCK {
-                _marker: PhantomData,
-            },
-            AMLI: AMLI {
                 _marker: PhantomData,
             },
             RADIO: RADIO {
@@ -923,9 +900,6 @@ impl Peripherals {
                 _marker: PhantomData,
             },
             SPIS1: SPIS1 {
-                _marker: PhantomData,
-            },
-            SPIM1: SPIM1 {
                 _marker: PhantomData,
             },
             GPIOTE: GPIOTE {

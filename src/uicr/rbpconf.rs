@@ -2,29 +2,27 @@
 pub type R = crate::R<u32, super::RBPCONF>;
 #[doc = "Writer for register RBPCONF"]
 pub type W = crate::W<u32, super::RBPCONF>;
-#[doc = "Register RBPCONF `reset()`'s with value 0"]
+#[doc = "Register RBPCONF `reset()`'s with value 0xffff_ffff"]
 impl crate::ResetValue for super::RBPCONF {
     type Type = u32;
     #[inline(always)]
     fn reset_value() -> Self::Type {
-        0
+        0xffff_ffff
     }
 }
-#[doc = "Readback protect region 0. Will be ignored if pre-programmed factory code is present on the chip.\n\nValue on reset: 0"]
+#[doc = "Readback protect region 0. Will be ignored if pre-programmed factory code is present on the chip.\n\nValue on reset: 255"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum PR0_A {
     #[doc = "255: Disabled."]
-    DISABLED,
+    DISABLED = 255,
     #[doc = "0: Enabled."]
-    ENABLED,
+    ENABLED = 0,
 }
 impl From<PR0_A> for u8 {
     #[inline(always)]
     fn from(variant: PR0_A) -> Self {
-        match variant {
-            PR0_A::DISABLED => 255,
-            PR0_A::ENABLED => 0,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `PR0`"]
@@ -78,21 +76,19 @@ impl<'a> PR0_W<'a> {
         self.w
     }
 }
-#[doc = "Readback protect all code in the device.\n\nValue on reset: 0"]
+#[doc = "Readback protect all code in the device.\n\nValue on reset: 255"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum PALL_A {
     #[doc = "255: Disabled."]
-    DISABLED,
+    DISABLED = 255,
     #[doc = "0: Enabled."]
-    ENABLED,
+    ENABLED = 0,
 }
 impl From<PALL_A> for u8 {
     #[inline(always)]
     fn from(variant: PALL_A) -> Self {
-        match variant {
-            PALL_A::DISABLED => 255,
-            PALL_A::ENABLED => 0,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `PALL`"]

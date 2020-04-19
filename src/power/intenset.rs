@@ -14,17 +14,14 @@ impl crate::ResetValue for super::INTENSET {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum POFWARN_A {
     #[doc = "0: Interrupt disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Interrupt enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<POFWARN_A> for bool {
     #[inline(always)]
     fn from(variant: POFWARN_A) -> Self {
-        match variant {
-            POFWARN_A::DISABLED => false,
-            POFWARN_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `POFWARN`"]
@@ -53,14 +50,12 @@ impl POFWARN_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum POFWARN_AW {
     #[doc = "1: Enable interrupt on write."]
-    SET,
+    SET = 1,
 }
 impl From<POFWARN_AW> for bool {
     #[inline(always)]
     fn from(variant: POFWARN_AW) -> Self {
-        match variant {
-            POFWARN_AW::SET => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `POFWARN`"]

@@ -2,29 +2,26 @@
 pub type R = crate::R<u32, super::OVERRIDEEN>;
 #[doc = "Writer for register OVERRIDEEN"]
 pub type W = crate::W<u32, super::OVERRIDEEN>;
-#[doc = "Register OVERRIDEEN `reset()`'s with value 0"]
+#[doc = "Register OVERRIDEEN `reset()`'s with value 0xffff_ffff"]
 impl crate::ResetValue for super::OVERRIDEEN {
     type Type = u32;
     #[inline(always)]
     fn reset_value() -> Self::Type {
-        0
+        0xffff_ffff
     }
 }
-#[doc = "Override default values for NRF_1Mbit mode.\n\nValue on reset: 0"]
+#[doc = "Override default values for NRF_1Mbit mode.\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum NRF_1MBIT_A {
     #[doc = "0: Override the default values for NRF_1Mbit mode."]
-    OVERRIDE,
+    OVERRIDE = 0,
     #[doc = "1: Do not override the default values for NRF_1Mbit mode."]
-    NOTOVERRIDE,
+    NOTOVERRIDE = 1,
 }
 impl From<NRF_1MBIT_A> for bool {
     #[inline(always)]
     fn from(variant: NRF_1MBIT_A) -> Self {
-        match variant {
-            NRF_1MBIT_A::OVERRIDE => false,
-            NRF_1MBIT_A::NOTOVERRIDE => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `NRF_1MBIT`"]
@@ -88,21 +85,18 @@ impl<'a> NRF_1MBIT_W<'a> {
         self.w
     }
 }
-#[doc = "Override default values for BLE_1Mbit mode.\n\nValue on reset: 0"]
+#[doc = "Override default values for BLE_1Mbit mode.\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum BLE_1MBIT_A {
     #[doc = "0: Override the default values for BLE_1Mbit mode."]
-    OVERRIDE,
+    OVERRIDE = 0,
     #[doc = "1: Do not override the default values for BLE_1Mbit mode."]
-    NOTOVERRIDE,
+    NOTOVERRIDE = 1,
 }
 impl From<BLE_1MBIT_A> for bool {
     #[inline(always)]
     fn from(variant: BLE_1MBIT_A) -> Self {
-        match variant {
-            BLE_1MBIT_A::OVERRIDE => false,
-            BLE_1MBIT_A::NOTOVERRIDE => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `BLE_1MBIT`"]

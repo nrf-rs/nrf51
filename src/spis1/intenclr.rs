@@ -14,17 +14,14 @@ impl crate::ResetValue for super::INTENCLR {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum END_A {
     #[doc = "0: Interrupt disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Interrupt enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<END_A> for bool {
     #[inline(always)]
     fn from(variant: END_A) -> Self {
-        match variant {
-            END_A::DISABLED => false,
-            END_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `END`"]
@@ -53,14 +50,12 @@ impl END_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum END_AW {
     #[doc = "1: Disable interrupt on write."]
-    CLEAR,
+    CLEAR = 1,
 }
 impl From<END_AW> for bool {
     #[inline(always)]
     fn from(variant: END_AW) -> Self {
-        match variant {
-            END_AW::CLEAR => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `END`"]
@@ -97,21 +92,100 @@ impl<'a> END_W<'a> {
         self.w
     }
 }
+#[doc = "Disable interrupt on ENDRX event.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ENDRX_A {
+    #[doc = "0: Interrupt disabled."]
+    DISABLED = 0,
+    #[doc = "1: Interrupt enabled."]
+    ENABLED = 1,
+}
+impl From<ENDRX_A> for bool {
+    #[inline(always)]
+    fn from(variant: ENDRX_A) -> Self {
+        variant as u8 != 0
+    }
+}
+#[doc = "Reader of field `ENDRX`"]
+pub type ENDRX_R = crate::R<bool, ENDRX_A>;
+impl ENDRX_R {
+    #[doc = r"Get enumerated values variant"]
+    #[inline(always)]
+    pub fn variant(&self) -> ENDRX_A {
+        match self.bits {
+            false => ENDRX_A::DISABLED,
+            true => ENDRX_A::ENABLED,
+        }
+    }
+    #[doc = "Checks if the value of the field is `DISABLED`"]
+    #[inline(always)]
+    pub fn is_disabled(&self) -> bool {
+        *self == ENDRX_A::DISABLED
+    }
+    #[doc = "Checks if the value of the field is `ENABLED`"]
+    #[inline(always)]
+    pub fn is_enabled(&self) -> bool {
+        *self == ENDRX_A::ENABLED
+    }
+}
+#[doc = "Disable interrupt on ENDRX event.\n\nValue on reset: 0"]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum ENDRX_AW {
+    #[doc = "1: Disable interrupt on write."]
+    CLEAR = 1,
+}
+impl From<ENDRX_AW> for bool {
+    #[inline(always)]
+    fn from(variant: ENDRX_AW) -> Self {
+        variant as u8 != 0
+    }
+}
+#[doc = "Write proxy for field `ENDRX`"]
+pub struct ENDRX_W<'a> {
+    w: &'a mut W,
+}
+impl<'a> ENDRX_W<'a> {
+    #[doc = r"Writes `variant` to the field"]
+    #[inline(always)]
+    pub fn variant(self, variant: ENDRX_AW) -> &'a mut W {
+        {
+            self.bit(variant.into())
+        }
+    }
+    #[doc = "Disable interrupt on write."]
+    #[inline(always)]
+    pub fn clear(self) -> &'a mut W {
+        self.variant(ENDRX_AW::CLEAR)
+    }
+    #[doc = r"Sets the field bit"]
+    #[inline(always)]
+    pub fn set_bit(self) -> &'a mut W {
+        self.bit(true)
+    }
+    #[doc = r"Clears the field bit"]
+    #[inline(always)]
+    pub fn clear_bit(self) -> &'a mut W {
+        self.bit(false)
+    }
+    #[doc = r"Writes raw bits to the field"]
+    #[inline(always)]
+    pub fn bit(self, value: bool) -> &'a mut W {
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w
+    }
+}
 #[doc = "Disable interrupt on ACQUIRED event.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACQUIRED_A {
     #[doc = "0: Interrupt disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Interrupt enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<ACQUIRED_A> for bool {
     #[inline(always)]
     fn from(variant: ACQUIRED_A) -> Self {
-        match variant {
-            ACQUIRED_A::DISABLED => false,
-            ACQUIRED_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `ACQUIRED`"]
@@ -140,14 +214,12 @@ impl ACQUIRED_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ACQUIRED_AW {
     #[doc = "1: Disable interrupt on write."]
-    CLEAR,
+    CLEAR = 1,
 }
 impl From<ACQUIRED_AW> for bool {
     #[inline(always)]
     fn from(variant: ACQUIRED_AW) -> Self {
-        match variant {
-            ACQUIRED_AW::CLEAR => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Write proxy for field `ACQUIRED`"]
@@ -190,6 +262,11 @@ impl R {
     pub fn end(&self) -> END_R {
         END_R::new(((self.bits >> 1) & 0x01) != 0)
     }
+    #[doc = "Bit 4 - Disable interrupt on ENDRX event."]
+    #[inline(always)]
+    pub fn endrx(&self) -> ENDRX_R {
+        ENDRX_R::new(((self.bits >> 4) & 0x01) != 0)
+    }
     #[doc = "Bit 10 - Disable interrupt on ACQUIRED event."]
     #[inline(always)]
     pub fn acquired(&self) -> ACQUIRED_R {
@@ -201,6 +278,11 @@ impl W {
     #[inline(always)]
     pub fn end(&mut self) -> END_W {
         END_W { w: self }
+    }
+    #[doc = "Bit 4 - Disable interrupt on ENDRX event."]
+    #[inline(always)]
+    pub fn endrx(&mut self) -> ENDRX_W {
+        ENDRX_W { w: self }
     }
     #[doc = "Bit 10 - Disable interrupt on ACQUIRED event."]
     #[inline(always)]

@@ -4,17 +4,14 @@ pub type R = crate::R<u32, super::HFCLKSTAT>;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SRC_A {
     #[doc = "0: Internal 16MHz RC oscillator running and generating the HFCLK clock."]
-    RC,
+    RC = 0,
     #[doc = "1: External 16MHz/32MHz crystal oscillator running and generating the HFCLK clock."]
-    XTAL,
+    XTAL = 1,
 }
 impl From<SRC_A> for bool {
     #[inline(always)]
     fn from(variant: SRC_A) -> Self {
-        match variant {
-            SRC_A::RC => false,
-            SRC_A::XTAL => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SRC`"]
@@ -43,17 +40,14 @@ impl SRC_R {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum STATE_A {
     #[doc = "0: HFCLK clock not running."]
-    NOTRUNNING,
+    NOTRUNNING = 0,
     #[doc = "1: HFCLK clock running."]
-    RUNNING,
+    RUNNING = 1,
 }
 impl From<STATE_A> for bool {
     #[inline(always)]
     fn from(variant: STATE_A) -> Self {
-        match variant {
-            STATE_A::NOTRUNNING => false,
-            STATE_A::RUNNING => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `STATE`"]

@@ -14,17 +14,14 @@ impl crate::ResetValue for super::SHORTS {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum REPORTRDY_READCLRACC_A {
     #[doc = "0: Shortcut disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Shortcut enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<REPORTRDY_READCLRACC_A> for bool {
     #[inline(always)]
     fn from(variant: REPORTRDY_READCLRACC_A) -> Self {
-        match variant {
-            REPORTRDY_READCLRACC_A::DISABLED => false,
-            REPORTRDY_READCLRACC_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `REPORTRDY_READCLRACC`"]
@@ -92,17 +89,14 @@ impl<'a> REPORTRDY_READCLRACC_W<'a> {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SAMPLERDY_STOP_A {
     #[doc = "0: Shortcut disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Shortcut enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<SAMPLERDY_STOP_A> for bool {
     #[inline(always)]
     fn from(variant: SAMPLERDY_STOP_A) -> Self {
-        match variant {
-            SAMPLERDY_STOP_A::DISABLED => false,
-            SAMPLERDY_STOP_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `SAMPLERDY_STOP`"]

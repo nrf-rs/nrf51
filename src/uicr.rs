@@ -38,7 +38,7 @@ impl RegisterBlock {
         unsafe { &mut *(((self as *const Self) as *mut u8).add(20usize) as *mut BOOTLOADERADDR) }
     }
 }
-#[doc = "Length of code region 0.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [clenr0](clenr0) module"]
+#[doc = "Length of code region 0.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [clenr0](clenr0) module"]
 pub type CLENR0 = crate::Reg<u32, _CLENR0>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -49,7 +49,7 @@ impl crate::Readable for CLENR0 {}
 impl crate::Writable for CLENR0 {}
 #[doc = "Length of code region 0."]
 pub mod clenr0;
-#[doc = "Readback protection configuration.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [rbpconf](rbpconf) module"]
+#[doc = "Readback protection configuration.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [rbpconf](rbpconf) module"]
 pub type RBPCONF = crate::Reg<u32, _RBPCONF>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -60,7 +60,7 @@ impl crate::Readable for RBPCONF {}
 impl crate::Writable for RBPCONF {}
 #[doc = "Readback protection configuration."]
 pub mod rbpconf;
-#[doc = "Reset value for CLOCK XTALFREQ register.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [xtalfreq](xtalfreq) module"]
+#[doc = "Reset value for CLOCK XTALFREQ register.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xtalfreq](xtalfreq) module"]
 pub type XTALFREQ = crate::Reg<u32, _XTALFREQ>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -71,7 +71,7 @@ impl crate::Readable for XTALFREQ {}
 impl crate::Writable for XTALFREQ {}
 #[doc = "Reset value for CLOCK XTALFREQ register."]
 pub mod xtalfreq;
-#[doc = "Firmware ID.\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [fwid](fwid) module"]
+#[doc = "Firmware ID.\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [fwid](fwid) module"]
 pub type FWID = crate::Reg<u32, _FWID>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -80,7 +80,7 @@ pub struct _FWID;
 impl crate::Readable for FWID {}
 #[doc = "Firmware ID."]
 pub mod fwid;
-#[doc = "Bootloader start address.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [bootloaderaddr](bootloaderaddr) module"]
+#[doc = "Bootloader start address.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [bootloaderaddr](bootloaderaddr) module"]
 pub type BOOTLOADERADDR = crate::Reg<u32, _BOOTLOADERADDR>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -91,7 +91,7 @@ impl crate::Readable for BOOTLOADERADDR {}
 impl crate::Writable for BOOTLOADERADDR {}
 #[doc = "Bootloader start address."]
 pub mod bootloaderaddr;
-#[doc = "Reserved for Nordic firmware design.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [nrffw](nrffw) module"]
+#[doc = "Reserved for Nordic firmware design.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [nrffw](nrffw) module"]
 pub type NRFFW = crate::Reg<u32, _NRFFW>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -102,7 +102,7 @@ impl crate::Readable for NRFFW {}
 impl crate::Writable for NRFFW {}
 #[doc = "Reserved for Nordic firmware design."]
 pub mod nrffw;
-#[doc = "Reserved for Nordic hardware design.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [nrfhw](nrfhw) module"]
+#[doc = "Reserved for Nordic hardware design.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [nrfhw](nrfhw) module"]
 pub type NRFHW = crate::Reg<u32, _NRFHW>;
 #[allow(missing_docs)]
 #[doc(hidden)]
@@ -113,7 +113,7 @@ impl crate::Readable for NRFHW {}
 impl crate::Writable for NRFHW {}
 #[doc = "Reserved for Nordic hardware design."]
 pub mod nrfhw;
-#[doc = "Reserved for customer.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about avaliable fields see [customer](customer) module"]
+#[doc = "Reserved for customer.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [customer](customer) module"]
 pub type CUSTOMER = crate::Reg<u32, _CUSTOMER>;
 #[allow(missing_docs)]
 #[doc(hidden)]

@@ -14,17 +14,14 @@ impl crate::ResetValue for super::RESET {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum RESET_A {
     #[doc = "0: Pin reset in debug interface mode disabled."]
-    DISABLED,
+    DISABLED = 0,
     #[doc = "1: Pin reset in debug interface mode enabled."]
-    ENABLED,
+    ENABLED = 1,
 }
 impl From<RESET_A> for bool {
     #[inline(always)]
     fn from(variant: RESET_A) -> Self {
-        match variant {
-            RESET_A::DISABLED => false,
-            RESET_A::ENABLED => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `RESET`"]

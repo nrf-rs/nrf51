@@ -14,17 +14,14 @@ impl crate::ResetValue for super::MODE {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum MODE_A {
     #[doc = "1: Timer in Counter mode."]
-    COUNTER,
+    COUNTER = 1,
     #[doc = "0: Timer in Normal mode."]
-    TIMER,
+    TIMER = 0,
 }
 impl From<MODE_A> for bool {
     #[inline(always)]
     fn from(variant: MODE_A) -> Self {
-        match variant {
-            MODE_A::COUNTER => true,
-            MODE_A::TIMER => false,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `MODE`"]

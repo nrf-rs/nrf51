@@ -2,29 +2,26 @@
 pub type R = crate::R<u32, super::DEVICEADDRTYPE>;
 #[doc = "Writer for register DEVICEADDRTYPE"]
 pub type W = crate::W<u32, super::DEVICEADDRTYPE>;
-#[doc = "Register DEVICEADDRTYPE `reset()`'s with value 0"]
+#[doc = "Register DEVICEADDRTYPE `reset()`'s with value 0xffff_ffff"]
 impl crate::ResetValue for super::DEVICEADDRTYPE {
     type Type = u32;
     #[inline(always)]
     fn reset_value() -> Self::Type {
-        0
+        0xffff_ffff
     }
 }
-#[doc = "Device address type.\n\nValue on reset: 0"]
+#[doc = "Device address type.\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum DEVICEADDRTYPE_A {
     #[doc = "0: Public address."]
-    PUBLIC,
+    PUBLIC = 0,
     #[doc = "1: Random address."]
-    RANDOM,
+    RANDOM = 1,
 }
 impl From<DEVICEADDRTYPE_A> for bool {
     #[inline(always)]
     fn from(variant: DEVICEADDRTYPE_A) -> Self {
-        match variant {
-            DEVICEADDRTYPE_A::PUBLIC => false,
-            DEVICEADDRTYPE_A::RANDOM => true,
-        }
+        variant as u8 != 0
     }
 }
 #[doc = "Reader of field `DEVICEADDRTYPE`"]

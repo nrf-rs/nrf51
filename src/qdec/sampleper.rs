@@ -12,37 +12,29 @@ impl crate::ResetValue for super::SAMPLEPER {
 }
 #[doc = "Sample period.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
+#[repr(u8)]
 pub enum SAMPLEPER_A {
     #[doc = "0: 128us sample period."]
-    _128US,
+    _128US = 0,
     #[doc = "1: 256us sample period."]
-    _256US,
+    _256US = 1,
     #[doc = "2: 512us sample period."]
-    _512US,
+    _512US = 2,
     #[doc = "3: 1024us sample period."]
-    _1024US,
+    _1024US = 3,
     #[doc = "4: 2048us sample period."]
-    _2048US,
+    _2048US = 4,
     #[doc = "5: 4096us sample period."]
-    _4096US,
+    _4096US = 5,
     #[doc = "6: 8192us sample period."]
-    _8192US,
+    _8192US = 6,
     #[doc = "7: 16384us sample period."]
-    _16384US,
+    _16384US = 7,
 }
 impl From<SAMPLEPER_A> for u8 {
     #[inline(always)]
     fn from(variant: SAMPLEPER_A) -> Self {
-        match variant {
-            SAMPLEPER_A::_128US => 0,
-            SAMPLEPER_A::_256US => 1,
-            SAMPLEPER_A::_512US => 2,
-            SAMPLEPER_A::_1024US => 3,
-            SAMPLEPER_A::_2048US => 4,
-            SAMPLEPER_A::_4096US => 5,
-            SAMPLEPER_A::_8192US => 6,
-            SAMPLEPER_A::_16384US => 7,
-        }
+        variant as _
     }
 }
 #[doc = "Reader of field `SAMPLEPER`"]
