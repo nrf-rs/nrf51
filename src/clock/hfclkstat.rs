@@ -1,5 +1,18 @@
-#[doc = "Reader of register HFCLKSTAT"]
-pub type R = crate::R<u32, super::HFCLKSTAT>;
+#[doc = "Register `HFCLKSTAT` reader"]
+pub struct R(crate::R<HFCLKSTAT_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<HFCLKSTAT_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<HFCLKSTAT_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<HFCLKSTAT_SPEC>) -> Self {
+        R(reader)
+    }
+}
 #[doc = "Active clock source for the HF clock.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SRC_A {
@@ -14,9 +27,12 @@ impl From<SRC_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `SRC`"]
-pub type SRC_R = crate::R<bool, SRC_A>;
+#[doc = "Field `SRC` reader - Active clock source for the HF clock."]
+pub struct SRC_R(crate::FieldReader<bool, SRC_A>);
 impl SRC_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        SRC_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> SRC_A {
@@ -28,12 +44,19 @@ impl SRC_R {
     #[doc = "Checks if the value of the field is `RC`"]
     #[inline(always)]
     pub fn is_rc(&self) -> bool {
-        *self == SRC_A::RC
+        **self == SRC_A::RC
     }
     #[doc = "Checks if the value of the field is `XTAL`"]
     #[inline(always)]
     pub fn is_xtal(&self) -> bool {
-        *self == SRC_A::XTAL
+        **self == SRC_A::XTAL
+    }
+}
+impl core::ops::Deref for SRC_R {
+    type Target = crate::FieldReader<bool, SRC_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "State for the HFCLK.\n\nValue on reset: 0"]
@@ -50,9 +73,12 @@ impl From<STATE_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `STATE`"]
-pub type STATE_R = crate::R<bool, STATE_A>;
+#[doc = "Field `STATE` reader - State for the HFCLK."]
+pub struct STATE_R(crate::FieldReader<bool, STATE_A>);
 impl STATE_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        STATE_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> STATE_A {
@@ -64,12 +90,19 @@ impl STATE_R {
     #[doc = "Checks if the value of the field is `NOTRUNNING`"]
     #[inline(always)]
     pub fn is_not_running(&self) -> bool {
-        *self == STATE_A::NOTRUNNING
+        **self == STATE_A::NOTRUNNING
     }
     #[doc = "Checks if the value of the field is `RUNNING`"]
     #[inline(always)]
     pub fn is_running(&self) -> bool {
-        *self == STATE_A::RUNNING
+        **self == STATE_A::RUNNING
+    }
+}
+impl core::ops::Deref for STATE_R {
+    type Target = crate::FieldReader<bool, STATE_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 impl R {
@@ -82,5 +115,21 @@ impl R {
     #[inline(always)]
     pub fn state(&self) -> STATE_R {
         STATE_R::new(((self.bits >> 16) & 0x01) != 0)
+    }
+}
+#[doc = "High frequency clock status.\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [hfclkstat](index.html) module"]
+pub struct HFCLKSTAT_SPEC;
+impl crate::RegisterSpec for HFCLKSTAT_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [hfclkstat::R](R) reader structure"]
+impl crate::Readable for HFCLKSTAT_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets HFCLKSTAT to value 0"]
+impl crate::Resettable for HFCLKSTAT_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

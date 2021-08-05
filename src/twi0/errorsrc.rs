@@ -1,13 +1,37 @@
-#[doc = "Reader of register ERRORSRC"]
-pub type R = crate::R<u32, super::ERRORSRC>;
-#[doc = "Writer for register ERRORSRC"]
-pub type W = crate::W<u32, super::ERRORSRC>;
-#[doc = "Register ERRORSRC `reset()`'s with value 0"]
-impl crate::ResetValue for super::ERRORSRC {
-    type Type = u32;
+#[doc = "Register `ERRORSRC` reader"]
+pub struct R(crate::R<ERRORSRC_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<ERRORSRC_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<ERRORSRC_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<ERRORSRC_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `ERRORSRC` writer"]
+pub struct W(crate::W<ERRORSRC_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<ERRORSRC_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<ERRORSRC_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<ERRORSRC_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Byte received in RXD register before read of the last received byte (data loss).\n\nValue on reset: 0"]
@@ -24,9 +48,12 @@ impl From<OVERRUN_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `OVERRUN`"]
-pub type OVERRUN_R = crate::R<bool, OVERRUN_A>;
+#[doc = "Field `OVERRUN` reader - Byte received in RXD register before read of the last received byte (data loss)."]
+pub struct OVERRUN_R(crate::FieldReader<bool, OVERRUN_A>);
 impl OVERRUN_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        OVERRUN_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> OVERRUN_A {
@@ -38,12 +65,19 @@ impl OVERRUN_R {
     #[doc = "Checks if the value of the field is `NOTPRESENT`"]
     #[inline(always)]
     pub fn is_not_present(&self) -> bool {
-        *self == OVERRUN_A::NOTPRESENT
+        **self == OVERRUN_A::NOTPRESENT
     }
     #[doc = "Checks if the value of the field is `PRESENT`"]
     #[inline(always)]
     pub fn is_present(&self) -> bool {
-        *self == OVERRUN_A::PRESENT
+        **self == OVERRUN_A::PRESENT
+    }
+}
+impl core::ops::Deref for OVERRUN_R {
+    type Target = crate::FieldReader<bool, OVERRUN_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Byte received in RXD register before read of the last received byte (data loss).\n\nValue on reset: 0"]
@@ -58,7 +92,7 @@ impl From<OVERRUN_AW> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Write proxy for field `OVERRUN`"]
+#[doc = "Field `OVERRUN` writer - Byte received in RXD register before read of the last received byte (data loss)."]
 pub struct OVERRUN_W<'a> {
     w: &'a mut W,
 }
@@ -66,9 +100,7 @@ impl<'a> OVERRUN_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: OVERRUN_AW) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Clear error on write."]
     #[inline(always)]
@@ -88,7 +120,7 @@ impl<'a> OVERRUN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
@@ -106,9 +138,12 @@ impl From<ANACK_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `ANACK`"]
-pub type ANACK_R = crate::R<bool, ANACK_A>;
+#[doc = "Field `ANACK` reader - NACK received after sending the address."]
+pub struct ANACK_R(crate::FieldReader<bool, ANACK_A>);
 impl ANACK_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        ANACK_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> ANACK_A {
@@ -120,12 +155,19 @@ impl ANACK_R {
     #[doc = "Checks if the value of the field is `NOTPRESENT`"]
     #[inline(always)]
     pub fn is_not_present(&self) -> bool {
-        *self == ANACK_A::NOTPRESENT
+        **self == ANACK_A::NOTPRESENT
     }
     #[doc = "Checks if the value of the field is `PRESENT`"]
     #[inline(always)]
     pub fn is_present(&self) -> bool {
-        *self == ANACK_A::PRESENT
+        **self == ANACK_A::PRESENT
+    }
+}
+impl core::ops::Deref for ANACK_R {
+    type Target = crate::FieldReader<bool, ANACK_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "NACK received after sending the address.\n\nValue on reset: 0"]
@@ -140,7 +182,7 @@ impl From<ANACK_AW> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Write proxy for field `ANACK`"]
+#[doc = "Field `ANACK` writer - NACK received after sending the address."]
 pub struct ANACK_W<'a> {
     w: &'a mut W,
 }
@@ -148,9 +190,7 @@ impl<'a> ANACK_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: ANACK_AW) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Clear error on write."]
     #[inline(always)]
@@ -170,7 +210,7 @@ impl<'a> ANACK_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
@@ -188,9 +228,12 @@ impl From<DNACK_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `DNACK`"]
-pub type DNACK_R = crate::R<bool, DNACK_A>;
+#[doc = "Field `DNACK` reader - NACK received after sending a data byte."]
+pub struct DNACK_R(crate::FieldReader<bool, DNACK_A>);
 impl DNACK_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        DNACK_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> DNACK_A {
@@ -202,12 +245,19 @@ impl DNACK_R {
     #[doc = "Checks if the value of the field is `NOTPRESENT`"]
     #[inline(always)]
     pub fn is_not_present(&self) -> bool {
-        *self == DNACK_A::NOTPRESENT
+        **self == DNACK_A::NOTPRESENT
     }
     #[doc = "Checks if the value of the field is `PRESENT`"]
     #[inline(always)]
     pub fn is_present(&self) -> bool {
-        *self == DNACK_A::PRESENT
+        **self == DNACK_A::PRESENT
+    }
+}
+impl core::ops::Deref for DNACK_R {
+    type Target = crate::FieldReader<bool, DNACK_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "NACK received after sending a data byte.\n\nValue on reset: 0"]
@@ -222,7 +272,7 @@ impl From<DNACK_AW> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Write proxy for field `DNACK`"]
+#[doc = "Field `DNACK` writer - NACK received after sending a data byte."]
 pub struct DNACK_W<'a> {
     w: &'a mut W,
 }
@@ -230,9 +280,7 @@ impl<'a> DNACK_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: DNACK_AW) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Clear error on write."]
     #[inline(always)]
@@ -252,7 +300,7 @@ impl<'a> DNACK_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
@@ -288,5 +336,31 @@ impl W {
     #[inline(always)]
     pub fn dnack(&mut self) -> DNACK_W {
         DNACK_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Two-wire error source. Write error field to 1 to clear error.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [errorsrc](index.html) module"]
+pub struct ERRORSRC_SPEC;
+impl crate::RegisterSpec for ERRORSRC_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [errorsrc::R](R) reader structure"]
+impl crate::Readable for ERRORSRC_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [errorsrc::W](W) writer structure"]
+impl crate::Writable for ERRORSRC_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets ERRORSRC to value 0"]
+impl crate::Resettable for ERRORSRC_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

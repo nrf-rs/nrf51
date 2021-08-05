@@ -1,114 +1,63 @@
 #[doc = r"Register block"]
 #[repr(C)]
 pub struct RegisterBlock {
-    _reserved0: [u8; 1024usize],
+    _reserved0: [u8; 0x0400],
     #[doc = "0x400 - Ready flag."]
-    pub ready: READY,
-    _reserved1: [u8; 256usize],
+    pub ready: crate::Reg<ready::READY_SPEC>,
+    _reserved1: [u8; 0x0100],
     #[doc = "0x504 - Configuration register."]
-    pub config: CONFIG,
-    _reserved_2_erasepage: [u8; 4usize],
+    pub config: crate::Reg<config::CONFIG_SPEC>,
+    _reserved_2_erasepage: [u8; 0x04],
     #[doc = "0x50c - Register for erasing all non-volatile user memory."]
-    pub eraseall: ERASEALL,
+    pub eraseall: crate::Reg<eraseall::ERASEALL_SPEC>,
     #[doc = "0x510 - Register for erasing a protected non-volatile memory page."]
-    pub erasepcr0: ERASEPCR0,
+    pub erasepcr0: crate::Reg<erasepcr0::ERASEPCR0_SPEC>,
     #[doc = "0x514 - Register for start erasing User Information Congfiguration Registers."]
-    pub eraseuicr: ERASEUICR,
+    pub eraseuicr: crate::Reg<eraseuicr::ERASEUICR_SPEC>,
 }
 impl RegisterBlock {
     #[doc = "0x508 - Register for erasing a non-protected non-volatile memory page."]
     #[inline(always)]
-    pub fn erasepcr1(&self) -> &ERASEPCR1 {
-        unsafe { &*(((self as *const Self) as *const u8).add(1288usize) as *const ERASEPCR1) }
+    pub fn erasepcr1(&self) -> &crate::Reg<erasepcr1::ERASEPCR1_SPEC> {
+        unsafe {
+            &*(((self as *const Self) as *const u8).add(1288usize)
+                as *const crate::Reg<erasepcr1::ERASEPCR1_SPEC>)
+        }
     }
     #[doc = "0x508 - Register for erasing a non-protected non-volatile memory page."]
     #[inline(always)]
-    pub fn erasepcr1_mut(&self) -> &mut ERASEPCR1 {
-        unsafe { &mut *(((self as *const Self) as *mut u8).add(1288usize) as *mut ERASEPCR1) }
-    }
-    #[doc = "0x508 - Register for erasing a non-protected non-volatile memory page."]
-    #[inline(always)]
-    pub fn erasepage(&self) -> &ERASEPAGE {
-        unsafe { &*(((self as *const Self) as *const u8).add(1288usize) as *const ERASEPAGE) }
-    }
-    #[doc = "0x508 - Register for erasing a non-protected non-volatile memory page."]
-    #[inline(always)]
-    pub fn erasepage_mut(&self) -> &mut ERASEPAGE {
-        unsafe { &mut *(((self as *const Self) as *mut u8).add(1288usize) as *mut ERASEPAGE) }
+    pub fn erasepage(&self) -> &crate::Reg<erasepage::ERASEPAGE_SPEC> {
+        unsafe {
+            &*(((self as *const Self) as *const u8).add(1288usize)
+                as *const crate::Reg<erasepage::ERASEPAGE_SPEC>)
+        }
     }
 }
-#[doc = "Ready flag.\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [ready](ready) module"]
-pub type READY = crate::Reg<u32, _READY>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _READY;
-#[doc = "`read()` method returns [ready::R](ready::R) reader structure"]
-impl crate::Readable for READY {}
+#[doc = "READY register accessor: an alias for `Reg<READY_SPEC>`"]
+pub type READY = crate::Reg<ready::READY_SPEC>;
 #[doc = "Ready flag."]
 pub mod ready;
-#[doc = "Configuration register.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [config](config) module"]
-pub type CONFIG = crate::Reg<u32, _CONFIG>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _CONFIG;
-#[doc = "`read()` method returns [config::R](config::R) reader structure"]
-impl crate::Readable for CONFIG {}
-#[doc = "`write(|w| ..)` method takes [config::W](config::W) writer structure"]
-impl crate::Writable for CONFIG {}
+#[doc = "CONFIG register accessor: an alias for `Reg<CONFIG_SPEC>`"]
+pub type CONFIG = crate::Reg<config::CONFIG_SPEC>;
 #[doc = "Configuration register."]
 pub mod config;
-#[doc = "Register for erasing a non-protected non-volatile memory page.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [erasepage](erasepage) module"]
-pub type ERASEPAGE = crate::Reg<u32, _ERASEPAGE>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ERASEPAGE;
-#[doc = "`read()` method returns [erasepage::R](erasepage::R) reader structure"]
-impl crate::Readable for ERASEPAGE {}
-#[doc = "`write(|w| ..)` method takes [erasepage::W](erasepage::W) writer structure"]
-impl crate::Writable for ERASEPAGE {}
+#[doc = "ERASEPAGE register accessor: an alias for `Reg<ERASEPAGE_SPEC>`"]
+pub type ERASEPAGE = crate::Reg<erasepage::ERASEPAGE_SPEC>;
 #[doc = "Register for erasing a non-protected non-volatile memory page."]
 pub mod erasepage;
-#[doc = "Register for erasing a non-protected non-volatile memory page.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [erasepcr1](erasepcr1) module"]
-pub type ERASEPCR1 = crate::Reg<u32, _ERASEPCR1>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ERASEPCR1;
-#[doc = "`read()` method returns [erasepcr1::R](erasepcr1::R) reader structure"]
-impl crate::Readable for ERASEPCR1 {}
-#[doc = "`write(|w| ..)` method takes [erasepcr1::W](erasepcr1::W) writer structure"]
-impl crate::Writable for ERASEPCR1 {}
+#[doc = "ERASEPCR1 register accessor: an alias for `Reg<ERASEPCR1_SPEC>`"]
+pub type ERASEPCR1 = crate::Reg<erasepcr1::ERASEPCR1_SPEC>;
 #[doc = "Register for erasing a non-protected non-volatile memory page."]
 pub mod erasepcr1;
-#[doc = "Register for erasing all non-volatile user memory.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [eraseall](eraseall) module"]
-pub type ERASEALL = crate::Reg<u32, _ERASEALL>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ERASEALL;
-#[doc = "`read()` method returns [eraseall::R](eraseall::R) reader structure"]
-impl crate::Readable for ERASEALL {}
-#[doc = "`write(|w| ..)` method takes [eraseall::W](eraseall::W) writer structure"]
-impl crate::Writable for ERASEALL {}
+#[doc = "ERASEALL register accessor: an alias for `Reg<ERASEALL_SPEC>`"]
+pub type ERASEALL = crate::Reg<eraseall::ERASEALL_SPEC>;
 #[doc = "Register for erasing all non-volatile user memory."]
 pub mod eraseall;
-#[doc = "Register for erasing a protected non-volatile memory page.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [erasepcr0](erasepcr0) module"]
-pub type ERASEPCR0 = crate::Reg<u32, _ERASEPCR0>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ERASEPCR0;
-#[doc = "`read()` method returns [erasepcr0::R](erasepcr0::R) reader structure"]
-impl crate::Readable for ERASEPCR0 {}
-#[doc = "`write(|w| ..)` method takes [erasepcr0::W](erasepcr0::W) writer structure"]
-impl crate::Writable for ERASEPCR0 {}
+#[doc = "ERASEPCR0 register accessor: an alias for `Reg<ERASEPCR0_SPEC>`"]
+pub type ERASEPCR0 = crate::Reg<erasepcr0::ERASEPCR0_SPEC>;
 #[doc = "Register for erasing a protected non-volatile memory page."]
 pub mod erasepcr0;
-#[doc = "Register for start erasing User Information Congfiguration Registers.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [eraseuicr](eraseuicr) module"]
-pub type ERASEUICR = crate::Reg<u32, _ERASEUICR>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _ERASEUICR;
-#[doc = "`read()` method returns [eraseuicr::R](eraseuicr::R) reader structure"]
-impl crate::Readable for ERASEUICR {}
-#[doc = "`write(|w| ..)` method takes [eraseuicr::W](eraseuicr::W) writer structure"]
-impl crate::Writable for ERASEUICR {}
+#[doc = "ERASEUICR register accessor: an alias for `Reg<ERASEUICR_SPEC>`"]
+pub type ERASEUICR = crate::Reg<eraseuicr::ERASEUICR_SPEC>;
 #[doc = "Register for start erasing User Information Congfiguration Registers."]
 pub mod eraseuicr;

@@ -1,13 +1,37 @@
-#[doc = "Reader of register POFCON"]
-pub type R = crate::R<u32, super::POFCON>;
-#[doc = "Writer for register POFCON"]
-pub type W = crate::W<u32, super::POFCON>;
-#[doc = "Register POFCON `reset()`'s with value 0"]
-impl crate::ResetValue for super::POFCON {
-    type Type = u32;
+#[doc = "Register `POFCON` reader"]
+pub struct R(crate::R<POFCON_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<POFCON_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<POFCON_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<POFCON_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `POFCON` writer"]
+pub struct W(crate::W<POFCON_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<POFCON_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<POFCON_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<POFCON_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Power failure comparator enable.\n\nValue on reset: 0"]
@@ -24,9 +48,12 @@ impl From<POF_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `POF`"]
-pub type POF_R = crate::R<bool, POF_A>;
+#[doc = "Field `POF` reader - Power failure comparator enable."]
+pub struct POF_R(crate::FieldReader<bool, POF_A>);
 impl POF_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        POF_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> POF_A {
@@ -38,15 +65,22 @@ impl POF_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == POF_A::DISABLED
+        **self == POF_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == POF_A::ENABLED
+        **self == POF_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `POF`"]
+impl core::ops::Deref for POF_R {
+    type Target = crate::FieldReader<bool, POF_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `POF` writer - Power failure comparator enable."]
 pub struct POF_W<'a> {
     w: &'a mut W,
 }
@@ -54,9 +88,7 @@ impl<'a> POF_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: POF_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Disabled."]
     #[inline(always)]
@@ -81,7 +113,7 @@ impl<'a> POF_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
@@ -104,9 +136,12 @@ impl From<THRESHOLD_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `THRESHOLD`"]
-pub type THRESHOLD_R = crate::R<u8, THRESHOLD_A>;
+#[doc = "Field `THRESHOLD` reader - Set threshold level."]
+pub struct THRESHOLD_R(crate::FieldReader<u8, THRESHOLD_A>);
 impl THRESHOLD_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        THRESHOLD_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> THRESHOLD_A {
@@ -121,25 +156,32 @@ impl THRESHOLD_R {
     #[doc = "Checks if the value of the field is `V21`"]
     #[inline(always)]
     pub fn is_v21(&self) -> bool {
-        *self == THRESHOLD_A::V21
+        **self == THRESHOLD_A::V21
     }
     #[doc = "Checks if the value of the field is `V23`"]
     #[inline(always)]
     pub fn is_v23(&self) -> bool {
-        *self == THRESHOLD_A::V23
+        **self == THRESHOLD_A::V23
     }
     #[doc = "Checks if the value of the field is `V25`"]
     #[inline(always)]
     pub fn is_v25(&self) -> bool {
-        *self == THRESHOLD_A::V25
+        **self == THRESHOLD_A::V25
     }
     #[doc = "Checks if the value of the field is `V27`"]
     #[inline(always)]
     pub fn is_v27(&self) -> bool {
-        *self == THRESHOLD_A::V27
+        **self == THRESHOLD_A::V27
     }
 }
-#[doc = "Write proxy for field `THRESHOLD`"]
+impl core::ops::Deref for THRESHOLD_R {
+    type Target = crate::FieldReader<u8, THRESHOLD_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `THRESHOLD` writer - Set threshold level."]
 pub struct THRESHOLD_W<'a> {
     w: &'a mut W,
 }
@@ -147,9 +189,7 @@ impl<'a> THRESHOLD_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: THRESHOLD_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
+        self.bits(variant.into())
     }
     #[doc = "Set threshold to 2.1Volts."]
     #[inline(always)]
@@ -174,7 +214,7 @@ impl<'a> THRESHOLD_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 1)) | (((value as u32) & 0x03) << 1);
+        self.w.bits = (self.w.bits & !(0x03 << 1)) | ((value as u32 & 0x03) << 1);
         self.w
     }
 }
@@ -200,5 +240,31 @@ impl W {
     #[inline(always)]
     pub fn threshold(&mut self) -> THRESHOLD_W {
         THRESHOLD_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Power failure configuration.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pofcon](index.html) module"]
+pub struct POFCON_SPEC;
+impl crate::RegisterSpec for POFCON_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [pofcon::R](R) reader structure"]
+impl crate::Readable for POFCON_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [pofcon::W](W) writer structure"]
+impl crate::Writable for POFCON_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets POFCON to value 0"]
+impl crate::Resettable for POFCON_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

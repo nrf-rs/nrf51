@@ -1,13 +1,37 @@
-#[doc = "Reader of register BAUDRATE"]
-pub type R = crate::R<u32, super::BAUDRATE>;
-#[doc = "Writer for register BAUDRATE"]
-pub type W = crate::W<u32, super::BAUDRATE>;
-#[doc = "Register BAUDRATE `reset()`'s with value 0"]
-impl crate::ResetValue for super::BAUDRATE {
-    type Type = u32;
+#[doc = "Register `BAUDRATE` reader"]
+pub struct R(crate::R<BAUDRATE_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<BAUDRATE_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<BAUDRATE_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<BAUDRATE_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `BAUDRATE` writer"]
+pub struct W(crate::W<BAUDRATE_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<BAUDRATE_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<BAUDRATE_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<BAUDRATE_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "UART baudrate.\n\nValue on reset: 0"]
@@ -57,127 +81,136 @@ impl From<BAUDRATE_A> for u32 {
         variant as _
     }
 }
-#[doc = "Reader of field `BAUDRATE`"]
-pub type BAUDRATE_R = crate::R<u32, BAUDRATE_A>;
+#[doc = "Field `BAUDRATE` reader - UART baudrate."]
+pub struct BAUDRATE_R(crate::FieldReader<u32, BAUDRATE_A>);
 impl BAUDRATE_R {
+    pub(crate) fn new(bits: u32) -> Self {
+        BAUDRATE_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u32, BAUDRATE_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<BAUDRATE_A> {
         match self.bits {
-            323584 => Val(BAUDRATE_A::BAUD1200),
-            643072 => Val(BAUDRATE_A::BAUD2400),
-            1290240 => Val(BAUDRATE_A::BAUD4800),
-            2576384 => Val(BAUDRATE_A::BAUD9600),
-            3866624 => Val(BAUDRATE_A::BAUD14400),
-            5152768 => Val(BAUDRATE_A::BAUD19200),
-            7729152 => Val(BAUDRATE_A::BAUD28800),
-            8388608 => Val(BAUDRATE_A::BAUD31250),
-            10309632 => Val(BAUDRATE_A::BAUD38400),
-            15007744 => Val(BAUDRATE_A::BAUD56000),
-            15462400 => Val(BAUDRATE_A::BAUD57600),
-            20615168 => Val(BAUDRATE_A::BAUD76800),
-            30924800 => Val(BAUDRATE_A::BAUD115200),
-            61845504 => Val(BAUDRATE_A::BAUD230400),
-            67108864 => Val(BAUDRATE_A::BAUD250000),
-            123695104 => Val(BAUDRATE_A::BAUD460800),
-            247386112 => Val(BAUDRATE_A::BAUD921600),
-            268435456 => Val(BAUDRATE_A::BAUD1M),
-            i => Res(i),
+            323584 => Some(BAUDRATE_A::BAUD1200),
+            643072 => Some(BAUDRATE_A::BAUD2400),
+            1290240 => Some(BAUDRATE_A::BAUD4800),
+            2576384 => Some(BAUDRATE_A::BAUD9600),
+            3866624 => Some(BAUDRATE_A::BAUD14400),
+            5152768 => Some(BAUDRATE_A::BAUD19200),
+            7729152 => Some(BAUDRATE_A::BAUD28800),
+            8388608 => Some(BAUDRATE_A::BAUD31250),
+            10309632 => Some(BAUDRATE_A::BAUD38400),
+            15007744 => Some(BAUDRATE_A::BAUD56000),
+            15462400 => Some(BAUDRATE_A::BAUD57600),
+            20615168 => Some(BAUDRATE_A::BAUD76800),
+            30924800 => Some(BAUDRATE_A::BAUD115200),
+            61845504 => Some(BAUDRATE_A::BAUD230400),
+            67108864 => Some(BAUDRATE_A::BAUD250000),
+            123695104 => Some(BAUDRATE_A::BAUD460800),
+            247386112 => Some(BAUDRATE_A::BAUD921600),
+            268435456 => Some(BAUDRATE_A::BAUD1M),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `BAUD1200`"]
     #[inline(always)]
     pub fn is_baud1200(&self) -> bool {
-        *self == BAUDRATE_A::BAUD1200
+        **self == BAUDRATE_A::BAUD1200
     }
     #[doc = "Checks if the value of the field is `BAUD2400`"]
     #[inline(always)]
     pub fn is_baud2400(&self) -> bool {
-        *self == BAUDRATE_A::BAUD2400
+        **self == BAUDRATE_A::BAUD2400
     }
     #[doc = "Checks if the value of the field is `BAUD4800`"]
     #[inline(always)]
     pub fn is_baud4800(&self) -> bool {
-        *self == BAUDRATE_A::BAUD4800
+        **self == BAUDRATE_A::BAUD4800
     }
     #[doc = "Checks if the value of the field is `BAUD9600`"]
     #[inline(always)]
     pub fn is_baud9600(&self) -> bool {
-        *self == BAUDRATE_A::BAUD9600
+        **self == BAUDRATE_A::BAUD9600
     }
     #[doc = "Checks if the value of the field is `BAUD14400`"]
     #[inline(always)]
     pub fn is_baud14400(&self) -> bool {
-        *self == BAUDRATE_A::BAUD14400
+        **self == BAUDRATE_A::BAUD14400
     }
     #[doc = "Checks if the value of the field is `BAUD19200`"]
     #[inline(always)]
     pub fn is_baud19200(&self) -> bool {
-        *self == BAUDRATE_A::BAUD19200
+        **self == BAUDRATE_A::BAUD19200
     }
     #[doc = "Checks if the value of the field is `BAUD28800`"]
     #[inline(always)]
     pub fn is_baud28800(&self) -> bool {
-        *self == BAUDRATE_A::BAUD28800
+        **self == BAUDRATE_A::BAUD28800
     }
     #[doc = "Checks if the value of the field is `BAUD31250`"]
     #[inline(always)]
     pub fn is_baud31250(&self) -> bool {
-        *self == BAUDRATE_A::BAUD31250
+        **self == BAUDRATE_A::BAUD31250
     }
     #[doc = "Checks if the value of the field is `BAUD38400`"]
     #[inline(always)]
     pub fn is_baud38400(&self) -> bool {
-        *self == BAUDRATE_A::BAUD38400
+        **self == BAUDRATE_A::BAUD38400
     }
     #[doc = "Checks if the value of the field is `BAUD56000`"]
     #[inline(always)]
     pub fn is_baud56000(&self) -> bool {
-        *self == BAUDRATE_A::BAUD56000
+        **self == BAUDRATE_A::BAUD56000
     }
     #[doc = "Checks if the value of the field is `BAUD57600`"]
     #[inline(always)]
     pub fn is_baud57600(&self) -> bool {
-        *self == BAUDRATE_A::BAUD57600
+        **self == BAUDRATE_A::BAUD57600
     }
     #[doc = "Checks if the value of the field is `BAUD76800`"]
     #[inline(always)]
     pub fn is_baud76800(&self) -> bool {
-        *self == BAUDRATE_A::BAUD76800
+        **self == BAUDRATE_A::BAUD76800
     }
     #[doc = "Checks if the value of the field is `BAUD115200`"]
     #[inline(always)]
     pub fn is_baud115200(&self) -> bool {
-        *self == BAUDRATE_A::BAUD115200
+        **self == BAUDRATE_A::BAUD115200
     }
     #[doc = "Checks if the value of the field is `BAUD230400`"]
     #[inline(always)]
     pub fn is_baud230400(&self) -> bool {
-        *self == BAUDRATE_A::BAUD230400
+        **self == BAUDRATE_A::BAUD230400
     }
     #[doc = "Checks if the value of the field is `BAUD250000`"]
     #[inline(always)]
     pub fn is_baud250000(&self) -> bool {
-        *self == BAUDRATE_A::BAUD250000
+        **self == BAUDRATE_A::BAUD250000
     }
     #[doc = "Checks if the value of the field is `BAUD460800`"]
     #[inline(always)]
     pub fn is_baud460800(&self) -> bool {
-        *self == BAUDRATE_A::BAUD460800
+        **self == BAUDRATE_A::BAUD460800
     }
     #[doc = "Checks if the value of the field is `BAUD921600`"]
     #[inline(always)]
     pub fn is_baud921600(&self) -> bool {
-        *self == BAUDRATE_A::BAUD921600
+        **self == BAUDRATE_A::BAUD921600
     }
     #[doc = "Checks if the value of the field is `BAUD1M`"]
     #[inline(always)]
     pub fn is_baud1m(&self) -> bool {
-        *self == BAUDRATE_A::BAUD1M
+        **self == BAUDRATE_A::BAUD1M
     }
 }
-#[doc = "Write proxy for field `BAUDRATE`"]
+impl core::ops::Deref for BAUDRATE_R {
+    type Target = crate::FieldReader<u32, BAUDRATE_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `BAUDRATE` writer - UART baudrate."]
 pub struct BAUDRATE_W<'a> {
     w: &'a mut W,
 }
@@ -280,7 +313,7 @@ impl<'a> BAUDRATE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u32) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0xffff_ffff) | ((value as u32) & 0xffff_ffff);
+        self.w.bits = (self.w.bits & !0xffff_ffff) | (value as u32 & 0xffff_ffff);
         self.w
     }
 }
@@ -296,5 +329,31 @@ impl W {
     #[inline(always)]
     pub fn baudrate(&mut self) -> BAUDRATE_W {
         BAUDRATE_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "UART Baudrate.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [baudrate](index.html) module"]
+pub struct BAUDRATE_SPEC;
+impl crate::RegisterSpec for BAUDRATE_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [baudrate::R](R) reader structure"]
+impl crate::Readable for BAUDRATE_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [baudrate::W](W) writer structure"]
+impl crate::Writable for BAUDRATE_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets BAUDRATE to value 0"]
+impl crate::Resettable for BAUDRATE_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

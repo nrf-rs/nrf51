@@ -1,13 +1,37 @@
-#[doc = "Reader of register TEST"]
-pub type R = crate::R<u32, super::TEST>;
-#[doc = "Writer for register TEST"]
-pub type W = crate::W<u32, super::TEST>;
-#[doc = "Register TEST `reset()`'s with value 0"]
-impl crate::ResetValue for super::TEST {
-    type Type = u32;
+#[doc = "Register `TEST` reader"]
+pub struct R(crate::R<TEST_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<TEST_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<TEST_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<TEST_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `TEST` writer"]
+pub struct W(crate::W<TEST_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<TEST_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<TEST_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<TEST_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Constant carrier. Decision point: TXEN task.\n\nValue on reset: 0"]
@@ -24,9 +48,12 @@ impl From<CONSTCARRIER_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CONSTCARRIER`"]
-pub type CONSTCARRIER_R = crate::R<bool, CONSTCARRIER_A>;
+#[doc = "Field `CONSTCARRIER` reader - Constant carrier. Decision point: TXEN task."]
+pub struct CONSTCARRIER_R(crate::FieldReader<bool, CONSTCARRIER_A>);
 impl CONSTCARRIER_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CONSTCARRIER_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CONSTCARRIER_A {
@@ -38,15 +65,22 @@ impl CONSTCARRIER_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == CONSTCARRIER_A::DISABLED
+        **self == CONSTCARRIER_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == CONSTCARRIER_A::ENABLED
+        **self == CONSTCARRIER_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `CONSTCARRIER`"]
+impl core::ops::Deref for CONSTCARRIER_R {
+    type Target = crate::FieldReader<bool, CONSTCARRIER_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CONSTCARRIER` writer - Constant carrier. Decision point: TXEN task."]
 pub struct CONSTCARRIER_W<'a> {
     w: &'a mut W,
 }
@@ -54,9 +88,7 @@ impl<'a> CONSTCARRIER_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CONSTCARRIER_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Constant carrier disabled."]
     #[inline(always)]
@@ -81,7 +113,7 @@ impl<'a> CONSTCARRIER_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
@@ -99,9 +131,12 @@ impl From<PLLLOCK_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PLLLOCK`"]
-pub type PLLLOCK_R = crate::R<bool, PLLLOCK_A>;
+#[doc = "Field `PLLLOCK` reader - PLL lock. Decision point: TXEN or RXEN task."]
+pub struct PLLLOCK_R(crate::FieldReader<bool, PLLLOCK_A>);
 impl PLLLOCK_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PLLLOCK_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PLLLOCK_A {
@@ -113,15 +148,22 @@ impl PLLLOCK_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == PLLLOCK_A::DISABLED
+        **self == PLLLOCK_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == PLLLOCK_A::ENABLED
+        **self == PLLLOCK_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `PLLLOCK`"]
+impl core::ops::Deref for PLLLOCK_R {
+    type Target = crate::FieldReader<bool, PLLLOCK_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PLLLOCK` writer - PLL lock. Decision point: TXEN or RXEN task."]
 pub struct PLLLOCK_W<'a> {
     w: &'a mut W,
 }
@@ -129,9 +171,7 @@ impl<'a> PLLLOCK_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: PLLLOCK_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "PLL lock disabled."]
     #[inline(always)]
@@ -156,7 +196,7 @@ impl<'a> PLLLOCK_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
@@ -182,5 +222,31 @@ impl W {
     #[inline(always)]
     pub fn plllock(&mut self) -> PLLLOCK_W {
         PLLLOCK_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Test features enable register.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [test](index.html) module"]
+pub struct TEST_SPEC;
+impl crate::RegisterSpec for TEST_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [test::R](R) reader structure"]
+impl crate::Readable for TEST_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [test::W](W) writer structure"]
+impl crate::Writable for TEST_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets TEST to value 0"]
+impl crate::Resettable for TEST_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

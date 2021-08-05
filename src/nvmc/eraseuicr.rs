@@ -1,13 +1,37 @@
-#[doc = "Reader of register ERASEUICR"]
-pub type R = crate::R<u32, super::ERASEUICR>;
-#[doc = "Writer for register ERASEUICR"]
-pub type W = crate::W<u32, super::ERASEUICR>;
-#[doc = "Register ERASEUICR `reset()`'s with value 0"]
-impl crate::ResetValue for super::ERASEUICR {
-    type Type = u32;
+#[doc = "Register `ERASEUICR` reader"]
+pub struct R(crate::R<ERASEUICR_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<ERASEUICR_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<ERASEUICR_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<ERASEUICR_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `ERASEUICR` writer"]
+pub struct W(crate::W<ERASEUICR_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<ERASEUICR_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<ERASEUICR_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<ERASEUICR_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "It can only be used when all contents of code region 1 are erased.\n\nValue on reset: 0"]
@@ -24,9 +48,12 @@ impl From<ERASEUICR_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `ERASEUICR`"]
-pub type ERASEUICR_R = crate::R<bool, ERASEUICR_A>;
+#[doc = "Field `ERASEUICR` reader - It can only be used when all contents of code region 1 are erased."]
+pub struct ERASEUICR_R(crate::FieldReader<bool, ERASEUICR_A>);
 impl ERASEUICR_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        ERASEUICR_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> ERASEUICR_A {
@@ -38,15 +65,22 @@ impl ERASEUICR_R {
     #[doc = "Checks if the value of the field is `NOOPERATION`"]
     #[inline(always)]
     pub fn is_no_operation(&self) -> bool {
-        *self == ERASEUICR_A::NOOPERATION
+        **self == ERASEUICR_A::NOOPERATION
     }
     #[doc = "Checks if the value of the field is `ERASE`"]
     #[inline(always)]
     pub fn is_erase(&self) -> bool {
-        *self == ERASEUICR_A::ERASE
+        **self == ERASEUICR_A::ERASE
     }
 }
-#[doc = "Write proxy for field `ERASEUICR`"]
+impl core::ops::Deref for ERASEUICR_R {
+    type Target = crate::FieldReader<bool, ERASEUICR_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `ERASEUICR` writer - It can only be used when all contents of code region 1 are erased."]
 pub struct ERASEUICR_W<'a> {
     w: &'a mut W,
 }
@@ -54,9 +88,7 @@ impl<'a> ERASEUICR_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: ERASEUICR_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "No operation."]
     #[inline(always)]
@@ -81,7 +113,7 @@ impl<'a> ERASEUICR_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
@@ -97,5 +129,31 @@ impl W {
     #[inline(always)]
     pub fn eraseuicr(&mut self) -> ERASEUICR_W {
         ERASEUICR_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Register for start erasing User Information Congfiguration Registers.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [eraseuicr](index.html) module"]
+pub struct ERASEUICR_SPEC;
+impl crate::RegisterSpec for ERASEUICR_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [eraseuicr::R](R) reader structure"]
+impl crate::Readable for ERASEUICR_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [eraseuicr::W](W) writer structure"]
+impl crate::Writable for ERASEUICR_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets ERASEUICR to value 0"]
+impl crate::Resettable for ERASEUICR_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

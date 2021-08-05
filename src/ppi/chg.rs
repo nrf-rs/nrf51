@@ -1,14 +1,37 @@
-#[doc = "Reader of register CHG[%s]"]
-pub type R = crate::R<u32, super::CHG>;
-#[doc = "Writer for register CHG[%s]"]
-pub type W = crate::W<u32, super::CHG>;
-#[doc = "Register CHG[%s]
-`reset()`'s with value 0"]
-impl crate::ResetValue for super::CHG {
-    type Type = u32;
+#[doc = "Register `CHG[%s]` reader"]
+pub struct R(crate::R<CHG_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<CHG_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<CHG_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<CHG_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `CHG[%s]` writer"]
+pub struct W(crate::W<CHG_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<CHG_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<CHG_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<CHG_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Include CH0 in channel group.\n\nValue on reset: 0"]
@@ -25,9 +48,12 @@ impl From<CH0_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH0`"]
-pub type CH0_R = crate::R<bool, CH0_A>;
+#[doc = "Field `CH0` reader - Include CH0 in channel group."]
+pub struct CH0_R(crate::FieldReader<bool, CH0_A>);
 impl CH0_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH0_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH0_A {
@@ -39,15 +65,22 @@ impl CH0_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH0_A::EXCLUDED
+        **self == CH0_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH0_A::INCLUDED
+        **self == CH0_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH0`"]
+impl core::ops::Deref for CH0_R {
+    type Target = crate::FieldReader<bool, CH0_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH0` writer - Include CH0 in channel group."]
 pub struct CH0_W<'a> {
     w: &'a mut W,
 }
@@ -55,9 +88,7 @@ impl<'a> CH0_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH0_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -82,7 +113,7 @@ impl<'a> CH0_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
@@ -100,9 +131,12 @@ impl From<CH1_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH1`"]
-pub type CH1_R = crate::R<bool, CH1_A>;
+#[doc = "Field `CH1` reader - Include CH1 in channel group."]
+pub struct CH1_R(crate::FieldReader<bool, CH1_A>);
 impl CH1_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH1_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH1_A {
@@ -114,15 +148,22 @@ impl CH1_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH1_A::EXCLUDED
+        **self == CH1_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH1_A::INCLUDED
+        **self == CH1_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH1`"]
+impl core::ops::Deref for CH1_R {
+    type Target = crate::FieldReader<bool, CH1_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH1` writer - Include CH1 in channel group."]
 pub struct CH1_W<'a> {
     w: &'a mut W,
 }
@@ -130,9 +171,7 @@ impl<'a> CH1_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH1_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -157,7 +196,7 @@ impl<'a> CH1_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
@@ -175,9 +214,12 @@ impl From<CH2_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH2`"]
-pub type CH2_R = crate::R<bool, CH2_A>;
+#[doc = "Field `CH2` reader - Include CH2 in channel group."]
+pub struct CH2_R(crate::FieldReader<bool, CH2_A>);
 impl CH2_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH2_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH2_A {
@@ -189,15 +231,22 @@ impl CH2_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH2_A::EXCLUDED
+        **self == CH2_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH2_A::INCLUDED
+        **self == CH2_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH2`"]
+impl core::ops::Deref for CH2_R {
+    type Target = crate::FieldReader<bool, CH2_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH2` writer - Include CH2 in channel group."]
 pub struct CH2_W<'a> {
     w: &'a mut W,
 }
@@ -205,9 +254,7 @@ impl<'a> CH2_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH2_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -232,7 +279,7 @@ impl<'a> CH2_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
@@ -250,9 +297,12 @@ impl From<CH3_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH3`"]
-pub type CH3_R = crate::R<bool, CH3_A>;
+#[doc = "Field `CH3` reader - Include CH3 in channel group."]
+pub struct CH3_R(crate::FieldReader<bool, CH3_A>);
 impl CH3_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH3_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH3_A {
@@ -264,15 +314,22 @@ impl CH3_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH3_A::EXCLUDED
+        **self == CH3_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH3_A::INCLUDED
+        **self == CH3_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH3`"]
+impl core::ops::Deref for CH3_R {
+    type Target = crate::FieldReader<bool, CH3_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH3` writer - Include CH3 in channel group."]
 pub struct CH3_W<'a> {
     w: &'a mut W,
 }
@@ -280,9 +337,7 @@ impl<'a> CH3_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH3_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -307,7 +362,7 @@ impl<'a> CH3_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
@@ -325,9 +380,12 @@ impl From<CH4_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH4`"]
-pub type CH4_R = crate::R<bool, CH4_A>;
+#[doc = "Field `CH4` reader - Include CH4 in channel group."]
+pub struct CH4_R(crate::FieldReader<bool, CH4_A>);
 impl CH4_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH4_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH4_A {
@@ -339,15 +397,22 @@ impl CH4_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH4_A::EXCLUDED
+        **self == CH4_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH4_A::INCLUDED
+        **self == CH4_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH4`"]
+impl core::ops::Deref for CH4_R {
+    type Target = crate::FieldReader<bool, CH4_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH4` writer - Include CH4 in channel group."]
 pub struct CH4_W<'a> {
     w: &'a mut W,
 }
@@ -355,9 +420,7 @@ impl<'a> CH4_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH4_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -382,7 +445,7 @@ impl<'a> CH4_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
         self.w
     }
 }
@@ -400,9 +463,12 @@ impl From<CH5_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH5`"]
-pub type CH5_R = crate::R<bool, CH5_A>;
+#[doc = "Field `CH5` reader - Include CH5 in channel group."]
+pub struct CH5_R(crate::FieldReader<bool, CH5_A>);
 impl CH5_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH5_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH5_A {
@@ -414,15 +480,22 @@ impl CH5_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH5_A::EXCLUDED
+        **self == CH5_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH5_A::INCLUDED
+        **self == CH5_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH5`"]
+impl core::ops::Deref for CH5_R {
+    type Target = crate::FieldReader<bool, CH5_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH5` writer - Include CH5 in channel group."]
 pub struct CH5_W<'a> {
     w: &'a mut W,
 }
@@ -430,9 +503,7 @@ impl<'a> CH5_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH5_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -457,7 +528,7 @@ impl<'a> CH5_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
         self.w
     }
 }
@@ -475,9 +546,12 @@ impl From<CH6_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH6`"]
-pub type CH6_R = crate::R<bool, CH6_A>;
+#[doc = "Field `CH6` reader - Include CH6 in channel group."]
+pub struct CH6_R(crate::FieldReader<bool, CH6_A>);
 impl CH6_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH6_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH6_A {
@@ -489,15 +563,22 @@ impl CH6_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH6_A::EXCLUDED
+        **self == CH6_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH6_A::INCLUDED
+        **self == CH6_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH6`"]
+impl core::ops::Deref for CH6_R {
+    type Target = crate::FieldReader<bool, CH6_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH6` writer - Include CH6 in channel group."]
 pub struct CH6_W<'a> {
     w: &'a mut W,
 }
@@ -505,9 +586,7 @@ impl<'a> CH6_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH6_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -532,7 +611,7 @@ impl<'a> CH6_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
         self.w
     }
 }
@@ -550,9 +629,12 @@ impl From<CH7_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH7`"]
-pub type CH7_R = crate::R<bool, CH7_A>;
+#[doc = "Field `CH7` reader - Include CH7 in channel group."]
+pub struct CH7_R(crate::FieldReader<bool, CH7_A>);
 impl CH7_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH7_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH7_A {
@@ -564,15 +646,22 @@ impl CH7_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH7_A::EXCLUDED
+        **self == CH7_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH7_A::INCLUDED
+        **self == CH7_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH7`"]
+impl core::ops::Deref for CH7_R {
+    type Target = crate::FieldReader<bool, CH7_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH7` writer - Include CH7 in channel group."]
 pub struct CH7_W<'a> {
     w: &'a mut W,
 }
@@ -580,9 +669,7 @@ impl<'a> CH7_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH7_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -607,7 +694,7 @@ impl<'a> CH7_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 7)) | (((value as u32) & 0x01) << 7);
+        self.w.bits = (self.w.bits & !(0x01 << 7)) | ((value as u32 & 0x01) << 7);
         self.w
     }
 }
@@ -625,9 +712,12 @@ impl From<CH8_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH8`"]
-pub type CH8_R = crate::R<bool, CH8_A>;
+#[doc = "Field `CH8` reader - Include CH8 in channel group."]
+pub struct CH8_R(crate::FieldReader<bool, CH8_A>);
 impl CH8_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH8_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH8_A {
@@ -639,15 +729,22 @@ impl CH8_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH8_A::EXCLUDED
+        **self == CH8_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH8_A::INCLUDED
+        **self == CH8_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH8`"]
+impl core::ops::Deref for CH8_R {
+    type Target = crate::FieldReader<bool, CH8_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH8` writer - Include CH8 in channel group."]
 pub struct CH8_W<'a> {
     w: &'a mut W,
 }
@@ -655,9 +752,7 @@ impl<'a> CH8_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH8_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -682,7 +777,7 @@ impl<'a> CH8_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
@@ -700,9 +795,12 @@ impl From<CH9_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH9`"]
-pub type CH9_R = crate::R<bool, CH9_A>;
+#[doc = "Field `CH9` reader - Include CH9 in channel group."]
+pub struct CH9_R(crate::FieldReader<bool, CH9_A>);
 impl CH9_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH9_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH9_A {
@@ -714,15 +812,22 @@ impl CH9_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH9_A::EXCLUDED
+        **self == CH9_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH9_A::INCLUDED
+        **self == CH9_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH9`"]
+impl core::ops::Deref for CH9_R {
+    type Target = crate::FieldReader<bool, CH9_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH9` writer - Include CH9 in channel group."]
 pub struct CH9_W<'a> {
     w: &'a mut W,
 }
@@ -730,9 +835,7 @@ impl<'a> CH9_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH9_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -757,7 +860,7 @@ impl<'a> CH9_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 9)) | (((value as u32) & 0x01) << 9);
+        self.w.bits = (self.w.bits & !(0x01 << 9)) | ((value as u32 & 0x01) << 9);
         self.w
     }
 }
@@ -775,9 +878,12 @@ impl From<CH10_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH10`"]
-pub type CH10_R = crate::R<bool, CH10_A>;
+#[doc = "Field `CH10` reader - Include CH10 in channel group."]
+pub struct CH10_R(crate::FieldReader<bool, CH10_A>);
 impl CH10_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH10_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH10_A {
@@ -789,15 +895,22 @@ impl CH10_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH10_A::EXCLUDED
+        **self == CH10_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH10_A::INCLUDED
+        **self == CH10_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH10`"]
+impl core::ops::Deref for CH10_R {
+    type Target = crate::FieldReader<bool, CH10_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH10` writer - Include CH10 in channel group."]
 pub struct CH10_W<'a> {
     w: &'a mut W,
 }
@@ -805,9 +918,7 @@ impl<'a> CH10_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH10_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -832,7 +943,7 @@ impl<'a> CH10_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 10)) | (((value as u32) & 0x01) << 10);
+        self.w.bits = (self.w.bits & !(0x01 << 10)) | ((value as u32 & 0x01) << 10);
         self.w
     }
 }
@@ -850,9 +961,12 @@ impl From<CH11_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH11`"]
-pub type CH11_R = crate::R<bool, CH11_A>;
+#[doc = "Field `CH11` reader - Include CH11 in channel group."]
+pub struct CH11_R(crate::FieldReader<bool, CH11_A>);
 impl CH11_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH11_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH11_A {
@@ -864,15 +978,22 @@ impl CH11_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH11_A::EXCLUDED
+        **self == CH11_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH11_A::INCLUDED
+        **self == CH11_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH11`"]
+impl core::ops::Deref for CH11_R {
+    type Target = crate::FieldReader<bool, CH11_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH11` writer - Include CH11 in channel group."]
 pub struct CH11_W<'a> {
     w: &'a mut W,
 }
@@ -880,9 +1001,7 @@ impl<'a> CH11_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH11_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -907,7 +1026,7 @@ impl<'a> CH11_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 11)) | (((value as u32) & 0x01) << 11);
+        self.w.bits = (self.w.bits & !(0x01 << 11)) | ((value as u32 & 0x01) << 11);
         self.w
     }
 }
@@ -925,9 +1044,12 @@ impl From<CH12_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH12`"]
-pub type CH12_R = crate::R<bool, CH12_A>;
+#[doc = "Field `CH12` reader - Include CH12 in channel group."]
+pub struct CH12_R(crate::FieldReader<bool, CH12_A>);
 impl CH12_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH12_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH12_A {
@@ -939,15 +1061,22 @@ impl CH12_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH12_A::EXCLUDED
+        **self == CH12_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH12_A::INCLUDED
+        **self == CH12_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH12`"]
+impl core::ops::Deref for CH12_R {
+    type Target = crate::FieldReader<bool, CH12_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH12` writer - Include CH12 in channel group."]
 pub struct CH12_W<'a> {
     w: &'a mut W,
 }
@@ -955,9 +1084,7 @@ impl<'a> CH12_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH12_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -982,7 +1109,7 @@ impl<'a> CH12_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 12)) | (((value as u32) & 0x01) << 12);
+        self.w.bits = (self.w.bits & !(0x01 << 12)) | ((value as u32 & 0x01) << 12);
         self.w
     }
 }
@@ -1000,9 +1127,12 @@ impl From<CH13_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH13`"]
-pub type CH13_R = crate::R<bool, CH13_A>;
+#[doc = "Field `CH13` reader - Include CH13 in channel group."]
+pub struct CH13_R(crate::FieldReader<bool, CH13_A>);
 impl CH13_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH13_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH13_A {
@@ -1014,15 +1144,22 @@ impl CH13_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH13_A::EXCLUDED
+        **self == CH13_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH13_A::INCLUDED
+        **self == CH13_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH13`"]
+impl core::ops::Deref for CH13_R {
+    type Target = crate::FieldReader<bool, CH13_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH13` writer - Include CH13 in channel group."]
 pub struct CH13_W<'a> {
     w: &'a mut W,
 }
@@ -1030,9 +1167,7 @@ impl<'a> CH13_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH13_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -1057,7 +1192,7 @@ impl<'a> CH13_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 13)) | (((value as u32) & 0x01) << 13);
+        self.w.bits = (self.w.bits & !(0x01 << 13)) | ((value as u32 & 0x01) << 13);
         self.w
     }
 }
@@ -1075,9 +1210,12 @@ impl From<CH14_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH14`"]
-pub type CH14_R = crate::R<bool, CH14_A>;
+#[doc = "Field `CH14` reader - Include CH14 in channel group."]
+pub struct CH14_R(crate::FieldReader<bool, CH14_A>);
 impl CH14_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH14_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH14_A {
@@ -1089,15 +1227,22 @@ impl CH14_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH14_A::EXCLUDED
+        **self == CH14_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH14_A::INCLUDED
+        **self == CH14_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH14`"]
+impl core::ops::Deref for CH14_R {
+    type Target = crate::FieldReader<bool, CH14_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH14` writer - Include CH14 in channel group."]
 pub struct CH14_W<'a> {
     w: &'a mut W,
 }
@@ -1105,9 +1250,7 @@ impl<'a> CH14_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH14_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -1132,7 +1275,7 @@ impl<'a> CH14_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 14)) | (((value as u32) & 0x01) << 14);
+        self.w.bits = (self.w.bits & !(0x01 << 14)) | ((value as u32 & 0x01) << 14);
         self.w
     }
 }
@@ -1150,9 +1293,12 @@ impl From<CH15_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH15`"]
-pub type CH15_R = crate::R<bool, CH15_A>;
+#[doc = "Field `CH15` reader - Include CH15 in channel group."]
+pub struct CH15_R(crate::FieldReader<bool, CH15_A>);
 impl CH15_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH15_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH15_A {
@@ -1164,15 +1310,22 @@ impl CH15_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH15_A::EXCLUDED
+        **self == CH15_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH15_A::INCLUDED
+        **self == CH15_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH15`"]
+impl core::ops::Deref for CH15_R {
+    type Target = crate::FieldReader<bool, CH15_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH15` writer - Include CH15 in channel group."]
 pub struct CH15_W<'a> {
     w: &'a mut W,
 }
@@ -1180,9 +1333,7 @@ impl<'a> CH15_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH15_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -1207,7 +1358,7 @@ impl<'a> CH15_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 15)) | (((value as u32) & 0x01) << 15);
+        self.w.bits = (self.w.bits & !(0x01 << 15)) | ((value as u32 & 0x01) << 15);
         self.w
     }
 }
@@ -1225,9 +1376,12 @@ impl From<CH20_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH20`"]
-pub type CH20_R = crate::R<bool, CH20_A>;
+#[doc = "Field `CH20` reader - Include CH20 in channel group."]
+pub struct CH20_R(crate::FieldReader<bool, CH20_A>);
 impl CH20_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH20_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH20_A {
@@ -1239,15 +1393,22 @@ impl CH20_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH20_A::EXCLUDED
+        **self == CH20_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH20_A::INCLUDED
+        **self == CH20_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH20`"]
+impl core::ops::Deref for CH20_R {
+    type Target = crate::FieldReader<bool, CH20_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH20` writer - Include CH20 in channel group."]
 pub struct CH20_W<'a> {
     w: &'a mut W,
 }
@@ -1255,9 +1416,7 @@ impl<'a> CH20_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH20_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -1282,7 +1441,7 @@ impl<'a> CH20_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | ((value as u32 & 0x01) << 20);
         self.w
     }
 }
@@ -1300,9 +1459,12 @@ impl From<CH21_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH21`"]
-pub type CH21_R = crate::R<bool, CH21_A>;
+#[doc = "Field `CH21` reader - Include CH21 in channel group."]
+pub struct CH21_R(crate::FieldReader<bool, CH21_A>);
 impl CH21_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH21_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH21_A {
@@ -1314,15 +1476,22 @@ impl CH21_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH21_A::EXCLUDED
+        **self == CH21_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH21_A::INCLUDED
+        **self == CH21_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH21`"]
+impl core::ops::Deref for CH21_R {
+    type Target = crate::FieldReader<bool, CH21_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH21` writer - Include CH21 in channel group."]
 pub struct CH21_W<'a> {
     w: &'a mut W,
 }
@@ -1330,9 +1499,7 @@ impl<'a> CH21_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH21_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -1357,7 +1524,7 @@ impl<'a> CH21_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 21)) | (((value as u32) & 0x01) << 21);
+        self.w.bits = (self.w.bits & !(0x01 << 21)) | ((value as u32 & 0x01) << 21);
         self.w
     }
 }
@@ -1375,9 +1542,12 @@ impl From<CH22_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH22`"]
-pub type CH22_R = crate::R<bool, CH22_A>;
+#[doc = "Field `CH22` reader - Include CH22 in channel group."]
+pub struct CH22_R(crate::FieldReader<bool, CH22_A>);
 impl CH22_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH22_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH22_A {
@@ -1389,15 +1559,22 @@ impl CH22_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH22_A::EXCLUDED
+        **self == CH22_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH22_A::INCLUDED
+        **self == CH22_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH22`"]
+impl core::ops::Deref for CH22_R {
+    type Target = crate::FieldReader<bool, CH22_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH22` writer - Include CH22 in channel group."]
 pub struct CH22_W<'a> {
     w: &'a mut W,
 }
@@ -1405,9 +1582,7 @@ impl<'a> CH22_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH22_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -1432,7 +1607,7 @@ impl<'a> CH22_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 22)) | (((value as u32) & 0x01) << 22);
+        self.w.bits = (self.w.bits & !(0x01 << 22)) | ((value as u32 & 0x01) << 22);
         self.w
     }
 }
@@ -1450,9 +1625,12 @@ impl From<CH23_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH23`"]
-pub type CH23_R = crate::R<bool, CH23_A>;
+#[doc = "Field `CH23` reader - Include CH23 in channel group."]
+pub struct CH23_R(crate::FieldReader<bool, CH23_A>);
 impl CH23_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH23_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH23_A {
@@ -1464,15 +1642,22 @@ impl CH23_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH23_A::EXCLUDED
+        **self == CH23_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH23_A::INCLUDED
+        **self == CH23_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH23`"]
+impl core::ops::Deref for CH23_R {
+    type Target = crate::FieldReader<bool, CH23_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH23` writer - Include CH23 in channel group."]
 pub struct CH23_W<'a> {
     w: &'a mut W,
 }
@@ -1480,9 +1665,7 @@ impl<'a> CH23_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH23_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -1507,7 +1690,7 @@ impl<'a> CH23_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 23)) | (((value as u32) & 0x01) << 23);
+        self.w.bits = (self.w.bits & !(0x01 << 23)) | ((value as u32 & 0x01) << 23);
         self.w
     }
 }
@@ -1525,9 +1708,12 @@ impl From<CH24_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH24`"]
-pub type CH24_R = crate::R<bool, CH24_A>;
+#[doc = "Field `CH24` reader - Include CH24 in channel group."]
+pub struct CH24_R(crate::FieldReader<bool, CH24_A>);
 impl CH24_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH24_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH24_A {
@@ -1539,15 +1725,22 @@ impl CH24_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH24_A::EXCLUDED
+        **self == CH24_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH24_A::INCLUDED
+        **self == CH24_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH24`"]
+impl core::ops::Deref for CH24_R {
+    type Target = crate::FieldReader<bool, CH24_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH24` writer - Include CH24 in channel group."]
 pub struct CH24_W<'a> {
     w: &'a mut W,
 }
@@ -1555,9 +1748,7 @@ impl<'a> CH24_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH24_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -1582,7 +1773,7 @@ impl<'a> CH24_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 24)) | (((value as u32) & 0x01) << 24);
+        self.w.bits = (self.w.bits & !(0x01 << 24)) | ((value as u32 & 0x01) << 24);
         self.w
     }
 }
@@ -1600,9 +1791,12 @@ impl From<CH25_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH25`"]
-pub type CH25_R = crate::R<bool, CH25_A>;
+#[doc = "Field `CH25` reader - Include CH25 in channel group."]
+pub struct CH25_R(crate::FieldReader<bool, CH25_A>);
 impl CH25_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH25_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH25_A {
@@ -1614,15 +1808,22 @@ impl CH25_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH25_A::EXCLUDED
+        **self == CH25_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH25_A::INCLUDED
+        **self == CH25_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH25`"]
+impl core::ops::Deref for CH25_R {
+    type Target = crate::FieldReader<bool, CH25_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH25` writer - Include CH25 in channel group."]
 pub struct CH25_W<'a> {
     w: &'a mut W,
 }
@@ -1630,9 +1831,7 @@ impl<'a> CH25_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH25_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -1657,7 +1856,7 @@ impl<'a> CH25_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 25)) | (((value as u32) & 0x01) << 25);
+        self.w.bits = (self.w.bits & !(0x01 << 25)) | ((value as u32 & 0x01) << 25);
         self.w
     }
 }
@@ -1675,9 +1874,12 @@ impl From<CH26_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH26`"]
-pub type CH26_R = crate::R<bool, CH26_A>;
+#[doc = "Field `CH26` reader - Include CH26 in channel group."]
+pub struct CH26_R(crate::FieldReader<bool, CH26_A>);
 impl CH26_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH26_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH26_A {
@@ -1689,15 +1891,22 @@ impl CH26_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH26_A::EXCLUDED
+        **self == CH26_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH26_A::INCLUDED
+        **self == CH26_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH26`"]
+impl core::ops::Deref for CH26_R {
+    type Target = crate::FieldReader<bool, CH26_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH26` writer - Include CH26 in channel group."]
 pub struct CH26_W<'a> {
     w: &'a mut W,
 }
@@ -1705,9 +1914,7 @@ impl<'a> CH26_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH26_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -1732,7 +1939,7 @@ impl<'a> CH26_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 26)) | (((value as u32) & 0x01) << 26);
+        self.w.bits = (self.w.bits & !(0x01 << 26)) | ((value as u32 & 0x01) << 26);
         self.w
     }
 }
@@ -1750,9 +1957,12 @@ impl From<CH27_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH27`"]
-pub type CH27_R = crate::R<bool, CH27_A>;
+#[doc = "Field `CH27` reader - Include CH27 in channel group."]
+pub struct CH27_R(crate::FieldReader<bool, CH27_A>);
 impl CH27_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH27_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH27_A {
@@ -1764,15 +1974,22 @@ impl CH27_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH27_A::EXCLUDED
+        **self == CH27_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH27_A::INCLUDED
+        **self == CH27_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH27`"]
+impl core::ops::Deref for CH27_R {
+    type Target = crate::FieldReader<bool, CH27_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH27` writer - Include CH27 in channel group."]
 pub struct CH27_W<'a> {
     w: &'a mut W,
 }
@@ -1780,9 +1997,7 @@ impl<'a> CH27_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH27_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -1807,7 +2022,7 @@ impl<'a> CH27_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 27)) | (((value as u32) & 0x01) << 27);
+        self.w.bits = (self.w.bits & !(0x01 << 27)) | ((value as u32 & 0x01) << 27);
         self.w
     }
 }
@@ -1825,9 +2040,12 @@ impl From<CH28_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH28`"]
-pub type CH28_R = crate::R<bool, CH28_A>;
+#[doc = "Field `CH28` reader - Include CH28 in channel group."]
+pub struct CH28_R(crate::FieldReader<bool, CH28_A>);
 impl CH28_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH28_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH28_A {
@@ -1839,15 +2057,22 @@ impl CH28_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH28_A::EXCLUDED
+        **self == CH28_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH28_A::INCLUDED
+        **self == CH28_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH28`"]
+impl core::ops::Deref for CH28_R {
+    type Target = crate::FieldReader<bool, CH28_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH28` writer - Include CH28 in channel group."]
 pub struct CH28_W<'a> {
     w: &'a mut W,
 }
@@ -1855,9 +2080,7 @@ impl<'a> CH28_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH28_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -1882,7 +2105,7 @@ impl<'a> CH28_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 28)) | (((value as u32) & 0x01) << 28);
+        self.w.bits = (self.w.bits & !(0x01 << 28)) | ((value as u32 & 0x01) << 28);
         self.w
     }
 }
@@ -1900,9 +2123,12 @@ impl From<CH29_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH29`"]
-pub type CH29_R = crate::R<bool, CH29_A>;
+#[doc = "Field `CH29` reader - Include CH29 in channel group."]
+pub struct CH29_R(crate::FieldReader<bool, CH29_A>);
 impl CH29_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH29_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH29_A {
@@ -1914,15 +2140,22 @@ impl CH29_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH29_A::EXCLUDED
+        **self == CH29_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH29_A::INCLUDED
+        **self == CH29_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH29`"]
+impl core::ops::Deref for CH29_R {
+    type Target = crate::FieldReader<bool, CH29_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH29` writer - Include CH29 in channel group."]
 pub struct CH29_W<'a> {
     w: &'a mut W,
 }
@@ -1930,9 +2163,7 @@ impl<'a> CH29_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH29_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -1957,7 +2188,7 @@ impl<'a> CH29_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 29)) | (((value as u32) & 0x01) << 29);
+        self.w.bits = (self.w.bits & !(0x01 << 29)) | ((value as u32 & 0x01) << 29);
         self.w
     }
 }
@@ -1975,9 +2206,12 @@ impl From<CH30_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH30`"]
-pub type CH30_R = crate::R<bool, CH30_A>;
+#[doc = "Field `CH30` reader - Include CH30 in channel group."]
+pub struct CH30_R(crate::FieldReader<bool, CH30_A>);
 impl CH30_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH30_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH30_A {
@@ -1989,15 +2223,22 @@ impl CH30_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH30_A::EXCLUDED
+        **self == CH30_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH30_A::INCLUDED
+        **self == CH30_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH30`"]
+impl core::ops::Deref for CH30_R {
+    type Target = crate::FieldReader<bool, CH30_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH30` writer - Include CH30 in channel group."]
 pub struct CH30_W<'a> {
     w: &'a mut W,
 }
@@ -2005,9 +2246,7 @@ impl<'a> CH30_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH30_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -2032,7 +2271,7 @@ impl<'a> CH30_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 30)) | (((value as u32) & 0x01) << 30);
+        self.w.bits = (self.w.bits & !(0x01 << 30)) | ((value as u32 & 0x01) << 30);
         self.w
     }
 }
@@ -2050,9 +2289,12 @@ impl From<CH31_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CH31`"]
-pub type CH31_R = crate::R<bool, CH31_A>;
+#[doc = "Field `CH31` reader - Include CH31 in channel group."]
+pub struct CH31_R(crate::FieldReader<bool, CH31_A>);
 impl CH31_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CH31_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CH31_A {
@@ -2064,15 +2306,22 @@ impl CH31_R {
     #[doc = "Checks if the value of the field is `EXCLUDED`"]
     #[inline(always)]
     pub fn is_excluded(&self) -> bool {
-        *self == CH31_A::EXCLUDED
+        **self == CH31_A::EXCLUDED
     }
     #[doc = "Checks if the value of the field is `INCLUDED`"]
     #[inline(always)]
     pub fn is_included(&self) -> bool {
-        *self == CH31_A::INCLUDED
+        **self == CH31_A::INCLUDED
     }
 }
-#[doc = "Write proxy for field `CH31`"]
+impl core::ops::Deref for CH31_R {
+    type Target = crate::FieldReader<bool, CH31_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CH31` writer - Include CH31 in channel group."]
 pub struct CH31_W<'a> {
     w: &'a mut W,
 }
@@ -2080,9 +2329,7 @@ impl<'a> CH31_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CH31_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Channel excluded."]
     #[inline(always)]
@@ -2107,7 +2354,7 @@ impl<'a> CH31_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 31)) | (((value as u32) & 0x01) << 31);
+        self.w.bits = (self.w.bits & !(0x01 << 31)) | ((value as u32 & 0x01) << 31);
         self.w
     }
 }
@@ -2393,5 +2640,32 @@ impl W {
     #[inline(always)]
     pub fn ch31(&mut self) -> CH31_W {
         CH31_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Channel group configuration.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [chg](index.html) module"]
+pub struct CHG_SPEC;
+impl crate::RegisterSpec for CHG_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [chg::R](R) reader structure"]
+impl crate::Readable for CHG_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [chg::W](W) writer structure"]
+impl crate::Writable for CHG_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets CHG[%s]
+to value 0"]
+impl crate::Resettable for CHG_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

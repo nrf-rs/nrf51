@@ -1,13 +1,37 @@
-#[doc = "Reader of register FREQUENCY"]
-pub type R = crate::R<u32, super::FREQUENCY>;
-#[doc = "Writer for register FREQUENCY"]
-pub type W = crate::W<u32, super::FREQUENCY>;
-#[doc = "Register FREQUENCY `reset()`'s with value 0x0400_0000"]
-impl crate::ResetValue for super::FREQUENCY {
-    type Type = u32;
+#[doc = "Register `FREQUENCY` reader"]
+pub struct R(crate::R<FREQUENCY_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<FREQUENCY_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0x0400_0000
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<FREQUENCY_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<FREQUENCY_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `FREQUENCY` writer"]
+pub struct W(crate::W<FREQUENCY_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<FREQUENCY_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<FREQUENCY_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<FREQUENCY_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "SPI data rate.\n\nValue on reset: 67108864"]
@@ -35,61 +59,70 @@ impl From<FREQUENCY_A> for u32 {
         variant as _
     }
 }
-#[doc = "Reader of field `FREQUENCY`"]
-pub type FREQUENCY_R = crate::R<u32, FREQUENCY_A>;
+#[doc = "Field `FREQUENCY` reader - SPI data rate."]
+pub struct FREQUENCY_R(crate::FieldReader<u32, FREQUENCY_A>);
 impl FREQUENCY_R {
+    pub(crate) fn new(bits: u32) -> Self {
+        FREQUENCY_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u32, FREQUENCY_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<FREQUENCY_A> {
         match self.bits {
-            33554432 => Val(FREQUENCY_A::K125),
-            67108864 => Val(FREQUENCY_A::K250),
-            134217728 => Val(FREQUENCY_A::K500),
-            268435456 => Val(FREQUENCY_A::M1),
-            536870912 => Val(FREQUENCY_A::M2),
-            1073741824 => Val(FREQUENCY_A::M4),
-            2147483648 => Val(FREQUENCY_A::M8),
-            i => Res(i),
+            33554432 => Some(FREQUENCY_A::K125),
+            67108864 => Some(FREQUENCY_A::K250),
+            134217728 => Some(FREQUENCY_A::K500),
+            268435456 => Some(FREQUENCY_A::M1),
+            536870912 => Some(FREQUENCY_A::M2),
+            1073741824 => Some(FREQUENCY_A::M4),
+            2147483648 => Some(FREQUENCY_A::M8),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `K125`"]
     #[inline(always)]
     pub fn is_k125(&self) -> bool {
-        *self == FREQUENCY_A::K125
+        **self == FREQUENCY_A::K125
     }
     #[doc = "Checks if the value of the field is `K250`"]
     #[inline(always)]
     pub fn is_k250(&self) -> bool {
-        *self == FREQUENCY_A::K250
+        **self == FREQUENCY_A::K250
     }
     #[doc = "Checks if the value of the field is `K500`"]
     #[inline(always)]
     pub fn is_k500(&self) -> bool {
-        *self == FREQUENCY_A::K500
+        **self == FREQUENCY_A::K500
     }
     #[doc = "Checks if the value of the field is `M1`"]
     #[inline(always)]
     pub fn is_m1(&self) -> bool {
-        *self == FREQUENCY_A::M1
+        **self == FREQUENCY_A::M1
     }
     #[doc = "Checks if the value of the field is `M2`"]
     #[inline(always)]
     pub fn is_m2(&self) -> bool {
-        *self == FREQUENCY_A::M2
+        **self == FREQUENCY_A::M2
     }
     #[doc = "Checks if the value of the field is `M4`"]
     #[inline(always)]
     pub fn is_m4(&self) -> bool {
-        *self == FREQUENCY_A::M4
+        **self == FREQUENCY_A::M4
     }
     #[doc = "Checks if the value of the field is `M8`"]
     #[inline(always)]
     pub fn is_m8(&self) -> bool {
-        *self == FREQUENCY_A::M8
+        **self == FREQUENCY_A::M8
     }
 }
-#[doc = "Write proxy for field `FREQUENCY`"]
+impl core::ops::Deref for FREQUENCY_R {
+    type Target = crate::FieldReader<u32, FREQUENCY_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `FREQUENCY` writer - SPI data rate."]
 pub struct FREQUENCY_W<'a> {
     w: &'a mut W,
 }
@@ -137,7 +170,7 @@ impl<'a> FREQUENCY_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u32) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0xffff_ffff) | ((value as u32) & 0xffff_ffff);
+        self.w.bits = (self.w.bits & !0xffff_ffff) | (value as u32 & 0xffff_ffff);
         self.w
     }
 }
@@ -153,5 +186,31 @@ impl W {
     #[inline(always)]
     pub fn frequency(&mut self) -> FREQUENCY_W {
         FREQUENCY_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "SPI frequency\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [frequency](index.html) module"]
+pub struct FREQUENCY_SPEC;
+impl crate::RegisterSpec for FREQUENCY_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [frequency::R](R) reader structure"]
+impl crate::Readable for FREQUENCY_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [frequency::W](W) writer structure"]
+impl crate::Writable for FREQUENCY_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets FREQUENCY to value 0x0400_0000"]
+impl crate::Resettable for FREQUENCY_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0x0400_0000
     }
 }

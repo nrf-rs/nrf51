@@ -2,119 +2,62 @@
 #[repr(C)]
 pub struct RegisterBlock {
     #[doc = "0x00 - Start the random number generator."]
-    pub tasks_start: TASKS_START,
+    pub tasks_start: crate::Reg<tasks_start::TASKS_START_SPEC>,
     #[doc = "0x04 - Stop the random number generator."]
-    pub tasks_stop: TASKS_STOP,
-    _reserved2: [u8; 248usize],
+    pub tasks_stop: crate::Reg<tasks_stop::TASKS_STOP_SPEC>,
+    _reserved2: [u8; 0xf8],
     #[doc = "0x100 - New random number generated and written to VALUE register."]
-    pub events_valrdy: EVENTS_VALRDY,
-    _reserved3: [u8; 252usize],
+    pub events_valrdy: crate::Reg<events_valrdy::EVENTS_VALRDY_SPEC>,
+    _reserved3: [u8; 0xfc],
     #[doc = "0x200 - Shortcuts for the RNG."]
-    pub shorts: SHORTS,
-    _reserved4: [u8; 256usize],
+    pub shorts: crate::Reg<shorts::SHORTS_SPEC>,
+    _reserved4: [u8; 0x0100],
     #[doc = "0x304 - Interrupt enable set register"]
-    pub intenset: INTENSET,
+    pub intenset: crate::Reg<intenset::INTENSET_SPEC>,
     #[doc = "0x308 - Interrupt enable clear register"]
-    pub intenclr: INTENCLR,
-    _reserved6: [u8; 504usize],
+    pub intenclr: crate::Reg<intenclr::INTENCLR_SPEC>,
+    _reserved6: [u8; 0x01f8],
     #[doc = "0x504 - Configuration register."]
-    pub config: CONFIG,
+    pub config: crate::Reg<config::CONFIG_SPEC>,
     #[doc = "0x508 - RNG random number."]
-    pub value: VALUE,
-    _reserved8: [u8; 2800usize],
+    pub value: crate::Reg<value::VALUE_SPEC>,
+    _reserved8: [u8; 0x0af0],
     #[doc = "0xffc - Peripheral power control."]
-    pub power: POWER,
+    pub power: crate::Reg<power::POWER_SPEC>,
 }
-#[doc = "Start the random number generator.\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [tasks_start](tasks_start) module"]
-pub type TASKS_START = crate::Reg<u32, _TASKS_START>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _TASKS_START;
-#[doc = "`write(|w| ..)` method takes [tasks_start::W](tasks_start::W) writer structure"]
-impl crate::Writable for TASKS_START {}
+#[doc = "TASKS_START register accessor: an alias for `Reg<TASKS_START_SPEC>`"]
+pub type TASKS_START = crate::Reg<tasks_start::TASKS_START_SPEC>;
 #[doc = "Start the random number generator."]
 pub mod tasks_start;
-#[doc = "Stop the random number generator.\n\nThis register you can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [tasks_stop](tasks_stop) module"]
-pub type TASKS_STOP = crate::Reg<u32, _TASKS_STOP>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _TASKS_STOP;
-#[doc = "`write(|w| ..)` method takes [tasks_stop::W](tasks_stop::W) writer structure"]
-impl crate::Writable for TASKS_STOP {}
+#[doc = "TASKS_STOP register accessor: an alias for `Reg<TASKS_STOP_SPEC>`"]
+pub type TASKS_STOP = crate::Reg<tasks_stop::TASKS_STOP_SPEC>;
 #[doc = "Stop the random number generator."]
 pub mod tasks_stop;
-#[doc = "New random number generated and written to VALUE register.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [events_valrdy](events_valrdy) module"]
-pub type EVENTS_VALRDY = crate::Reg<u32, _EVENTS_VALRDY>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _EVENTS_VALRDY;
-#[doc = "`read()` method returns [events_valrdy::R](events_valrdy::R) reader structure"]
-impl crate::Readable for EVENTS_VALRDY {}
-#[doc = "`write(|w| ..)` method takes [events_valrdy::W](events_valrdy::W) writer structure"]
-impl crate::Writable for EVENTS_VALRDY {}
+#[doc = "EVENTS_VALRDY register accessor: an alias for `Reg<EVENTS_VALRDY_SPEC>`"]
+pub type EVENTS_VALRDY = crate::Reg<events_valrdy::EVENTS_VALRDY_SPEC>;
 #[doc = "New random number generated and written to VALUE register."]
 pub mod events_valrdy;
-#[doc = "Shortcuts for the RNG.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [shorts](shorts) module"]
-pub type SHORTS = crate::Reg<u32, _SHORTS>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _SHORTS;
-#[doc = "`read()` method returns [shorts::R](shorts::R) reader structure"]
-impl crate::Readable for SHORTS {}
-#[doc = "`write(|w| ..)` method takes [shorts::W](shorts::W) writer structure"]
-impl crate::Writable for SHORTS {}
+#[doc = "SHORTS register accessor: an alias for `Reg<SHORTS_SPEC>`"]
+pub type SHORTS = crate::Reg<shorts::SHORTS_SPEC>;
 #[doc = "Shortcuts for the RNG."]
 pub mod shorts;
-#[doc = "Interrupt enable set register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [intenset](intenset) module"]
-pub type INTENSET = crate::Reg<u32, _INTENSET>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _INTENSET;
-#[doc = "`read()` method returns [intenset::R](intenset::R) reader structure"]
-impl crate::Readable for INTENSET {}
-#[doc = "`write(|w| ..)` method takes [intenset::W](intenset::W) writer structure"]
-impl crate::Writable for INTENSET {}
+#[doc = "INTENSET register accessor: an alias for `Reg<INTENSET_SPEC>`"]
+pub type INTENSET = crate::Reg<intenset::INTENSET_SPEC>;
 #[doc = "Interrupt enable set register"]
 pub mod intenset;
-#[doc = "Interrupt enable clear register\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [intenclr](intenclr) module"]
-pub type INTENCLR = crate::Reg<u32, _INTENCLR>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _INTENCLR;
-#[doc = "`read()` method returns [intenclr::R](intenclr::R) reader structure"]
-impl crate::Readable for INTENCLR {}
-#[doc = "`write(|w| ..)` method takes [intenclr::W](intenclr::W) writer structure"]
-impl crate::Writable for INTENCLR {}
+#[doc = "INTENCLR register accessor: an alias for `Reg<INTENCLR_SPEC>`"]
+pub type INTENCLR = crate::Reg<intenclr::INTENCLR_SPEC>;
 #[doc = "Interrupt enable clear register"]
 pub mod intenclr;
-#[doc = "Configuration register.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [config](config) module"]
-pub type CONFIG = crate::Reg<u32, _CONFIG>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _CONFIG;
-#[doc = "`read()` method returns [config::R](config::R) reader structure"]
-impl crate::Readable for CONFIG {}
-#[doc = "`write(|w| ..)` method takes [config::W](config::W) writer structure"]
-impl crate::Writable for CONFIG {}
+#[doc = "CONFIG register accessor: an alias for `Reg<CONFIG_SPEC>`"]
+pub type CONFIG = crate::Reg<config::CONFIG_SPEC>;
 #[doc = "Configuration register."]
 pub mod config;
-#[doc = "RNG random number.\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [value](value) module"]
-pub type VALUE = crate::Reg<u32, _VALUE>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _VALUE;
-#[doc = "`read()` method returns [value::R](value::R) reader structure"]
-impl crate::Readable for VALUE {}
+#[doc = "VALUE register accessor: an alias for `Reg<VALUE_SPEC>`"]
+pub type VALUE = crate::Reg<value::VALUE_SPEC>;
 #[doc = "RNG random number."]
 pub mod value;
-#[doc = "Peripheral power control.\n\nThis register you can [`read`](crate::generic::Reg::read), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [power](power) module"]
-pub type POWER = crate::Reg<u32, _POWER>;
-#[allow(missing_docs)]
-#[doc(hidden)]
-pub struct _POWER;
-#[doc = "`read()` method returns [power::R](power::R) reader structure"]
-impl crate::Readable for POWER {}
-#[doc = "`write(|w| ..)` method takes [power::W](power::W) writer structure"]
-impl crate::Writable for POWER {}
+#[doc = "POWER register accessor: an alias for `Reg<POWER_SPEC>`"]
+pub type POWER = crate::Reg<power::POWER_SPEC>;
 #[doc = "Peripheral power control."]
 pub mod power;

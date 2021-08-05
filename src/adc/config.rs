@@ -1,13 +1,37 @@
-#[doc = "Reader of register CONFIG"]
-pub type R = crate::R<u32, super::CONFIG>;
-#[doc = "Writer for register CONFIG"]
-pub type W = crate::W<u32, super::CONFIG>;
-#[doc = "Register CONFIG `reset()`'s with value 0x18"]
-impl crate::ResetValue for super::CONFIG {
-    type Type = u32;
+#[doc = "Register `CONFIG` reader"]
+pub struct R(crate::R<CONFIG_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<CONFIG_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0x18
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<CONFIG_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<CONFIG_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `CONFIG` writer"]
+pub struct W(crate::W<CONFIG_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<CONFIG_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<CONFIG_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<CONFIG_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "ADC resolution.\n\nValue on reset: 0"]
@@ -27,37 +51,46 @@ impl From<RES_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `RES`"]
-pub type RES_R = crate::R<u8, RES_A>;
+#[doc = "Field `RES` reader - ADC resolution."]
+pub struct RES_R(crate::FieldReader<u8, RES_A>);
 impl RES_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        RES_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, RES_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<RES_A> {
         match self.bits {
-            0 => Val(RES_A::_8BIT),
-            1 => Val(RES_A::_9BIT),
-            2 => Val(RES_A::_10BIT),
-            i => Res(i),
+            0 => Some(RES_A::_8BIT),
+            1 => Some(RES_A::_9BIT),
+            2 => Some(RES_A::_10BIT),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `_8BIT`"]
     #[inline(always)]
     pub fn is_8bit(&self) -> bool {
-        *self == RES_A::_8BIT
+        **self == RES_A::_8BIT
     }
     #[doc = "Checks if the value of the field is `_9BIT`"]
     #[inline(always)]
     pub fn is_9bit(&self) -> bool {
-        *self == RES_A::_9BIT
+        **self == RES_A::_9BIT
     }
     #[doc = "Checks if the value of the field is `_10BIT`"]
     #[inline(always)]
     pub fn is_10bit(&self) -> bool {
-        *self == RES_A::_10BIT
+        **self == RES_A::_10BIT
     }
 }
-#[doc = "Write proxy for field `RES`"]
+impl core::ops::Deref for RES_R {
+    type Target = crate::FieldReader<u8, RES_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `RES` writer - ADC resolution."]
 pub struct RES_W<'a> {
     w: &'a mut W,
 }
@@ -85,7 +118,7 @@ impl<'a> RES_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x03) | ((value as u32) & 0x03);
+        self.w.bits = (self.w.bits & !0x03) | (value as u32 & 0x03);
         self.w
     }
 }
@@ -110,49 +143,58 @@ impl From<INPSEL_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `INPSEL`"]
-pub type INPSEL_R = crate::R<u8, INPSEL_A>;
+#[doc = "Field `INPSEL` reader - ADC input selection."]
+pub struct INPSEL_R(crate::FieldReader<u8, INPSEL_A>);
 impl INPSEL_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        INPSEL_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, INPSEL_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<INPSEL_A> {
         match self.bits {
-            0 => Val(INPSEL_A::ANALOGINPUTNOPRESCALING),
-            1 => Val(INPSEL_A::ANALOGINPUTTWOTHIRDSPRESCALING),
-            2 => Val(INPSEL_A::ANALOGINPUTONETHIRDPRESCALING),
-            5 => Val(INPSEL_A::SUPPLYTWOTHIRDSPRESCALING),
-            6 => Val(INPSEL_A::SUPPLYONETHIRDPRESCALING),
-            i => Res(i),
+            0 => Some(INPSEL_A::ANALOGINPUTNOPRESCALING),
+            1 => Some(INPSEL_A::ANALOGINPUTTWOTHIRDSPRESCALING),
+            2 => Some(INPSEL_A::ANALOGINPUTONETHIRDPRESCALING),
+            5 => Some(INPSEL_A::SUPPLYTWOTHIRDSPRESCALING),
+            6 => Some(INPSEL_A::SUPPLYONETHIRDPRESCALING),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUTNOPRESCALING`"]
     #[inline(always)]
     pub fn is_analog_input_no_prescaling(&self) -> bool {
-        *self == INPSEL_A::ANALOGINPUTNOPRESCALING
+        **self == INPSEL_A::ANALOGINPUTNOPRESCALING
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUTTWOTHIRDSPRESCALING`"]
     #[inline(always)]
     pub fn is_analog_input_two_thirds_prescaling(&self) -> bool {
-        *self == INPSEL_A::ANALOGINPUTTWOTHIRDSPRESCALING
+        **self == INPSEL_A::ANALOGINPUTTWOTHIRDSPRESCALING
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUTONETHIRDPRESCALING`"]
     #[inline(always)]
     pub fn is_analog_input_one_third_prescaling(&self) -> bool {
-        *self == INPSEL_A::ANALOGINPUTONETHIRDPRESCALING
+        **self == INPSEL_A::ANALOGINPUTONETHIRDPRESCALING
     }
     #[doc = "Checks if the value of the field is `SUPPLYTWOTHIRDSPRESCALING`"]
     #[inline(always)]
     pub fn is_supply_two_thirds_prescaling(&self) -> bool {
-        *self == INPSEL_A::SUPPLYTWOTHIRDSPRESCALING
+        **self == INPSEL_A::SUPPLYTWOTHIRDSPRESCALING
     }
     #[doc = "Checks if the value of the field is `SUPPLYONETHIRDPRESCALING`"]
     #[inline(always)]
     pub fn is_supply_one_third_prescaling(&self) -> bool {
-        *self == INPSEL_A::SUPPLYONETHIRDPRESCALING
+        **self == INPSEL_A::SUPPLYONETHIRDPRESCALING
     }
 }
-#[doc = "Write proxy for field `INPSEL`"]
+impl core::ops::Deref for INPSEL_R {
+    type Target = crate::FieldReader<u8, INPSEL_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `INPSEL` writer - ADC input selection."]
 pub struct INPSEL_W<'a> {
     w: &'a mut W,
 }
@@ -190,7 +232,7 @@ impl<'a> INPSEL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x07 << 2)) | (((value as u32) & 0x07) << 2);
+        self.w.bits = (self.w.bits & !(0x07 << 2)) | ((value as u32 & 0x07) << 2);
         self.w
     }
 }
@@ -213,9 +255,12 @@ impl From<REFSEL_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `REFSEL`"]
-pub type REFSEL_R = crate::R<u8, REFSEL_A>;
+#[doc = "Field `REFSEL` reader - ADC reference selection."]
+pub struct REFSEL_R(crate::FieldReader<u8, REFSEL_A>);
 impl REFSEL_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        REFSEL_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> REFSEL_A {
@@ -230,25 +275,32 @@ impl REFSEL_R {
     #[doc = "Checks if the value of the field is `VBG`"]
     #[inline(always)]
     pub fn is_vbg(&self) -> bool {
-        *self == REFSEL_A::VBG
+        **self == REFSEL_A::VBG
     }
     #[doc = "Checks if the value of the field is `EXTERNAL`"]
     #[inline(always)]
     pub fn is_external(&self) -> bool {
-        *self == REFSEL_A::EXTERNAL
+        **self == REFSEL_A::EXTERNAL
     }
     #[doc = "Checks if the value of the field is `SUPPLYONEHALFPRESCALING`"]
     #[inline(always)]
     pub fn is_supply_one_half_prescaling(&self) -> bool {
-        *self == REFSEL_A::SUPPLYONEHALFPRESCALING
+        **self == REFSEL_A::SUPPLYONEHALFPRESCALING
     }
     #[doc = "Checks if the value of the field is `SUPPLYONETHIRDPRESCALING`"]
     #[inline(always)]
     pub fn is_supply_one_third_prescaling(&self) -> bool {
-        *self == REFSEL_A::SUPPLYONETHIRDPRESCALING
+        **self == REFSEL_A::SUPPLYONETHIRDPRESCALING
     }
 }
-#[doc = "Write proxy for field `REFSEL`"]
+impl core::ops::Deref for REFSEL_R {
+    type Target = crate::FieldReader<u8, REFSEL_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `REFSEL` writer - ADC reference selection."]
 pub struct REFSEL_W<'a> {
     w: &'a mut W,
 }
@@ -256,9 +308,7 @@ impl<'a> REFSEL_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: REFSEL_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
+        self.bits(variant.into())
     }
     #[doc = "Use internal 1.2V bandgap voltage as reference for conversion."]
     #[inline(always)]
@@ -283,7 +333,7 @@ impl<'a> REFSEL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 5)) | (((value as u32) & 0x03) << 5);
+        self.w.bits = (self.w.bits & !(0x03 << 5)) | ((value as u32 & 0x03) << 5);
         self.w
     }
 }
@@ -316,73 +366,82 @@ impl From<PSEL_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `PSEL`"]
-pub type PSEL_R = crate::R<u8, PSEL_A>;
+#[doc = "Field `PSEL` reader - ADC analog pin selection."]
+pub struct PSEL_R(crate::FieldReader<u8, PSEL_A>);
 impl PSEL_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        PSEL_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, PSEL_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<PSEL_A> {
         match self.bits {
-            0 => Val(PSEL_A::DISABLED),
-            1 => Val(PSEL_A::ANALOGINPUT0),
-            2 => Val(PSEL_A::ANALOGINPUT1),
-            4 => Val(PSEL_A::ANALOGINPUT2),
-            8 => Val(PSEL_A::ANALOGINPUT3),
-            16 => Val(PSEL_A::ANALOGINPUT4),
-            32 => Val(PSEL_A::ANALOGINPUT5),
-            64 => Val(PSEL_A::ANALOGINPUT6),
-            128 => Val(PSEL_A::ANALOGINPUT7),
-            i => Res(i),
+            0 => Some(PSEL_A::DISABLED),
+            1 => Some(PSEL_A::ANALOGINPUT0),
+            2 => Some(PSEL_A::ANALOGINPUT1),
+            4 => Some(PSEL_A::ANALOGINPUT2),
+            8 => Some(PSEL_A::ANALOGINPUT3),
+            16 => Some(PSEL_A::ANALOGINPUT4),
+            32 => Some(PSEL_A::ANALOGINPUT5),
+            64 => Some(PSEL_A::ANALOGINPUT6),
+            128 => Some(PSEL_A::ANALOGINPUT7),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == PSEL_A::DISABLED
+        **self == PSEL_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT0`"]
     #[inline(always)]
     pub fn is_analog_input0(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT0
+        **self == PSEL_A::ANALOGINPUT0
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT1`"]
     #[inline(always)]
     pub fn is_analog_input1(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT1
+        **self == PSEL_A::ANALOGINPUT1
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT2`"]
     #[inline(always)]
     pub fn is_analog_input2(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT2
+        **self == PSEL_A::ANALOGINPUT2
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT3`"]
     #[inline(always)]
     pub fn is_analog_input3(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT3
+        **self == PSEL_A::ANALOGINPUT3
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT4`"]
     #[inline(always)]
     pub fn is_analog_input4(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT4
+        **self == PSEL_A::ANALOGINPUT4
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT5`"]
     #[inline(always)]
     pub fn is_analog_input5(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT5
+        **self == PSEL_A::ANALOGINPUT5
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT6`"]
     #[inline(always)]
     pub fn is_analog_input6(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT6
+        **self == PSEL_A::ANALOGINPUT6
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT7`"]
     #[inline(always)]
     pub fn is_analog_input7(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT7
+        **self == PSEL_A::ANALOGINPUT7
     }
 }
-#[doc = "Write proxy for field `PSEL`"]
+impl core::ops::Deref for PSEL_R {
+    type Target = crate::FieldReader<u8, PSEL_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PSEL` writer - ADC analog pin selection."]
 pub struct PSEL_W<'a> {
     w: &'a mut W,
 }
@@ -440,7 +499,7 @@ impl<'a> PSEL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0xff << 8)) | (((value as u32) & 0xff) << 8);
+        self.w.bits = (self.w.bits & !(0xff << 8)) | ((value as u32 & 0xff) << 8);
         self.w
     }
 }
@@ -461,37 +520,46 @@ impl From<EXTREFSEL_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `EXTREFSEL`"]
-pub type EXTREFSEL_R = crate::R<u8, EXTREFSEL_A>;
+#[doc = "Field `EXTREFSEL` reader - ADC external reference pin selection."]
+pub struct EXTREFSEL_R(crate::FieldReader<u8, EXTREFSEL_A>);
 impl EXTREFSEL_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        EXTREFSEL_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, EXTREFSEL_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<EXTREFSEL_A> {
         match self.bits {
-            0 => Val(EXTREFSEL_A::NONE),
-            1 => Val(EXTREFSEL_A::ANALOGREFERENCE0),
-            2 => Val(EXTREFSEL_A::ANALOGREFERENCE1),
-            i => Res(i),
+            0 => Some(EXTREFSEL_A::NONE),
+            1 => Some(EXTREFSEL_A::ANALOGREFERENCE0),
+            2 => Some(EXTREFSEL_A::ANALOGREFERENCE1),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `NONE`"]
     #[inline(always)]
     pub fn is_none(&self) -> bool {
-        *self == EXTREFSEL_A::NONE
+        **self == EXTREFSEL_A::NONE
     }
     #[doc = "Checks if the value of the field is `ANALOGREFERENCE0`"]
     #[inline(always)]
     pub fn is_analog_reference0(&self) -> bool {
-        *self == EXTREFSEL_A::ANALOGREFERENCE0
+        **self == EXTREFSEL_A::ANALOGREFERENCE0
     }
     #[doc = "Checks if the value of the field is `ANALOGREFERENCE1`"]
     #[inline(always)]
     pub fn is_analog_reference1(&self) -> bool {
-        *self == EXTREFSEL_A::ANALOGREFERENCE1
+        **self == EXTREFSEL_A::ANALOGREFERENCE1
     }
 }
-#[doc = "Write proxy for field `EXTREFSEL`"]
+impl core::ops::Deref for EXTREFSEL_R {
+    type Target = crate::FieldReader<u8, EXTREFSEL_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `EXTREFSEL` writer - ADC external reference pin selection."]
 pub struct EXTREFSEL_W<'a> {
     w: &'a mut W,
 }
@@ -519,7 +587,7 @@ impl<'a> EXTREFSEL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 16)) | (((value as u32) & 0x03) << 16);
+        self.w.bits = (self.w.bits & !(0x03 << 16)) | ((value as u32 & 0x03) << 16);
         self.w
     }
 }
@@ -575,5 +643,31 @@ impl W {
     #[inline(always)]
     pub fn extrefsel(&mut self) -> EXTREFSEL_W {
         EXTREFSEL_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "ADC configuration register.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [config](index.html) module"]
+pub struct CONFIG_SPEC;
+impl crate::RegisterSpec for CONFIG_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [config::R](R) reader structure"]
+impl crate::Readable for CONFIG_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [config::W](W) writer structure"]
+impl crate::Writable for CONFIG_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets CONFIG to value 0x18"]
+impl crate::Resettable for CONFIG_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0x18
     }
 }

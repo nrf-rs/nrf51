@@ -1,13 +1,37 @@
-#[doc = "Reader of register PSEL"]
-pub type R = crate::R<u32, super::PSEL>;
-#[doc = "Writer for register PSEL"]
-pub type W = crate::W<u32, super::PSEL>;
-#[doc = "Register PSEL `reset()`'s with value 0"]
-impl crate::ResetValue for super::PSEL {
-    type Type = u32;
+#[doc = "Register `PSEL` reader"]
+pub struct R(crate::R<PSEL_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<PSEL_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<PSEL_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<PSEL_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `PSEL` writer"]
+pub struct W(crate::W<PSEL_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<PSEL_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<PSEL_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<PSEL_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Analog input pin select.\n\nValue on reset: 0"]
@@ -37,9 +61,12 @@ impl From<PSEL_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `PSEL`"]
-pub type PSEL_R = crate::R<u8, PSEL_A>;
+#[doc = "Field `PSEL` reader - Analog input pin select."]
+pub struct PSEL_R(crate::FieldReader<u8, PSEL_A>);
 impl PSEL_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        PSEL_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PSEL_A {
@@ -58,45 +85,52 @@ impl PSEL_R {
     #[doc = "Checks if the value of the field is `ANALOGINPUT0`"]
     #[inline(always)]
     pub fn is_analog_input0(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT0
+        **self == PSEL_A::ANALOGINPUT0
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT1`"]
     #[inline(always)]
     pub fn is_analog_input1(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT1
+        **self == PSEL_A::ANALOGINPUT1
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT2`"]
     #[inline(always)]
     pub fn is_analog_input2(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT2
+        **self == PSEL_A::ANALOGINPUT2
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT3`"]
     #[inline(always)]
     pub fn is_analog_input3(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT3
+        **self == PSEL_A::ANALOGINPUT3
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT4`"]
     #[inline(always)]
     pub fn is_analog_input4(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT4
+        **self == PSEL_A::ANALOGINPUT4
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT5`"]
     #[inline(always)]
     pub fn is_analog_input5(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT5
+        **self == PSEL_A::ANALOGINPUT5
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT6`"]
     #[inline(always)]
     pub fn is_analog_input6(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT6
+        **self == PSEL_A::ANALOGINPUT6
     }
     #[doc = "Checks if the value of the field is `ANALOGINPUT7`"]
     #[inline(always)]
     pub fn is_analog_input7(&self) -> bool {
-        *self == PSEL_A::ANALOGINPUT7
+        **self == PSEL_A::ANALOGINPUT7
     }
 }
-#[doc = "Write proxy for field `PSEL`"]
+impl core::ops::Deref for PSEL_R {
+    type Target = crate::FieldReader<u8, PSEL_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PSEL` writer - Analog input pin select."]
 pub struct PSEL_W<'a> {
     w: &'a mut W,
 }
@@ -104,9 +138,7 @@ impl<'a> PSEL_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: PSEL_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
+        self.bits(variant.into())
     }
     #[doc = "Use analog input 0 as analog input."]
     #[inline(always)]
@@ -151,7 +183,7 @@ impl<'a> PSEL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x07) | ((value as u32) & 0x07);
+        self.w.bits = (self.w.bits & !0x07) | (value as u32 & 0x07);
         self.w
     }
 }
@@ -167,5 +199,31 @@ impl W {
     #[inline(always)]
     pub fn psel(&mut self) -> PSEL_W {
         PSEL_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Input pin select.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [psel](index.html) module"]
+pub struct PSEL_SPEC;
+impl crate::RegisterSpec for PSEL_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [psel::R](R) reader structure"]
+impl crate::Readable for PSEL_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [psel::W](W) writer structure"]
+impl crate::Writable for PSEL_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets PSEL to value 0"]
+impl crate::Resettable for PSEL_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

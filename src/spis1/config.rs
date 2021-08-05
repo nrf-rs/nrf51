@@ -1,13 +1,37 @@
-#[doc = "Reader of register CONFIG"]
-pub type R = crate::R<u32, super::CONFIG>;
-#[doc = "Writer for register CONFIG"]
-pub type W = crate::W<u32, super::CONFIG>;
-#[doc = "Register CONFIG `reset()`'s with value 0"]
-impl crate::ResetValue for super::CONFIG {
-    type Type = u32;
+#[doc = "Register `CONFIG` reader"]
+pub struct R(crate::R<CONFIG_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<CONFIG_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<CONFIG_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<CONFIG_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `CONFIG` writer"]
+pub struct W(crate::W<CONFIG_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<CONFIG_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<CONFIG_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<CONFIG_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Bit order.\n\nValue on reset: 0"]
@@ -24,9 +48,12 @@ impl From<ORDER_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `ORDER`"]
-pub type ORDER_R = crate::R<bool, ORDER_A>;
+#[doc = "Field `ORDER` reader - Bit order."]
+pub struct ORDER_R(crate::FieldReader<bool, ORDER_A>);
 impl ORDER_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        ORDER_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> ORDER_A {
@@ -38,15 +65,22 @@ impl ORDER_R {
     #[doc = "Checks if the value of the field is `MSBFIRST`"]
     #[inline(always)]
     pub fn is_msb_first(&self) -> bool {
-        *self == ORDER_A::MSBFIRST
+        **self == ORDER_A::MSBFIRST
     }
     #[doc = "Checks if the value of the field is `LSBFIRST`"]
     #[inline(always)]
     pub fn is_lsb_first(&self) -> bool {
-        *self == ORDER_A::LSBFIRST
+        **self == ORDER_A::LSBFIRST
     }
 }
-#[doc = "Write proxy for field `ORDER`"]
+impl core::ops::Deref for ORDER_R {
+    type Target = crate::FieldReader<bool, ORDER_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `ORDER` writer - Bit order."]
 pub struct ORDER_W<'a> {
     w: &'a mut W,
 }
@@ -54,9 +88,7 @@ impl<'a> ORDER_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: ORDER_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Most significant bit transmitted out first."]
     #[inline(always)]
@@ -81,7 +113,7 @@ impl<'a> ORDER_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
@@ -99,9 +131,12 @@ impl From<CPHA_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CPHA`"]
-pub type CPHA_R = crate::R<bool, CPHA_A>;
+#[doc = "Field `CPHA` reader - Serial clock (SCK) phase."]
+pub struct CPHA_R(crate::FieldReader<bool, CPHA_A>);
 impl CPHA_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CPHA_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CPHA_A {
@@ -113,15 +148,22 @@ impl CPHA_R {
     #[doc = "Checks if the value of the field is `LEADING`"]
     #[inline(always)]
     pub fn is_leading(&self) -> bool {
-        *self == CPHA_A::LEADING
+        **self == CPHA_A::LEADING
     }
     #[doc = "Checks if the value of the field is `TRAILING`"]
     #[inline(always)]
     pub fn is_trailing(&self) -> bool {
-        *self == CPHA_A::TRAILING
+        **self == CPHA_A::TRAILING
     }
 }
-#[doc = "Write proxy for field `CPHA`"]
+impl core::ops::Deref for CPHA_R {
+    type Target = crate::FieldReader<bool, CPHA_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CPHA` writer - Serial clock (SCK) phase."]
 pub struct CPHA_W<'a> {
     w: &'a mut W,
 }
@@ -129,9 +171,7 @@ impl<'a> CPHA_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CPHA_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Sample on leading edge of the clock. Shift serial data on trailing edge."]
     #[inline(always)]
@@ -156,7 +196,7 @@ impl<'a> CPHA_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
@@ -174,9 +214,12 @@ impl From<CPOL_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `CPOL`"]
-pub type CPOL_R = crate::R<bool, CPOL_A>;
+#[doc = "Field `CPOL` reader - Serial clock (SCK) polarity."]
+pub struct CPOL_R(crate::FieldReader<bool, CPOL_A>);
 impl CPOL_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        CPOL_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> CPOL_A {
@@ -188,15 +231,22 @@ impl CPOL_R {
     #[doc = "Checks if the value of the field is `ACTIVEHIGH`"]
     #[inline(always)]
     pub fn is_active_high(&self) -> bool {
-        *self == CPOL_A::ACTIVEHIGH
+        **self == CPOL_A::ACTIVEHIGH
     }
     #[doc = "Checks if the value of the field is `ACTIVELOW`"]
     #[inline(always)]
     pub fn is_active_low(&self) -> bool {
-        *self == CPOL_A::ACTIVELOW
+        **self == CPOL_A::ACTIVELOW
     }
 }
-#[doc = "Write proxy for field `CPOL`"]
+impl core::ops::Deref for CPOL_R {
+    type Target = crate::FieldReader<bool, CPOL_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `CPOL` writer - Serial clock (SCK) polarity."]
 pub struct CPOL_W<'a> {
     w: &'a mut W,
 }
@@ -204,9 +254,7 @@ impl<'a> CPOL_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: CPOL_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Active high."]
     #[inline(always)]
@@ -231,7 +279,7 @@ impl<'a> CPOL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
@@ -267,5 +315,31 @@ impl W {
     #[inline(always)]
     pub fn cpol(&mut self) -> CPOL_W {
         CPOL_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Configuration register.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [config](index.html) module"]
+pub struct CONFIG_SPEC;
+impl crate::RegisterSpec for CONFIG_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [config::R](R) reader structure"]
+impl crate::Readable for CONFIG_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [config::W](W) writer structure"]
+impl crate::Writable for CONFIG_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets CONFIG to value 0"]
+impl crate::Resettable for CONFIG_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

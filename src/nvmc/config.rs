@@ -1,13 +1,37 @@
-#[doc = "Reader of register CONFIG"]
-pub type R = crate::R<u32, super::CONFIG>;
-#[doc = "Writer for register CONFIG"]
-pub type W = crate::W<u32, super::CONFIG>;
-#[doc = "Register CONFIG `reset()`'s with value 0"]
-impl crate::ResetValue for super::CONFIG {
-    type Type = u32;
+#[doc = "Register `CONFIG` reader"]
+pub struct R(crate::R<CONFIG_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<CONFIG_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<CONFIG_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<CONFIG_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `CONFIG` writer"]
+pub struct W(crate::W<CONFIG_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<CONFIG_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<CONFIG_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<CONFIG_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Program write enable.\n\nValue on reset: 0"]
@@ -27,37 +51,46 @@ impl From<WEN_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `WEN`"]
-pub type WEN_R = crate::R<u8, WEN_A>;
+#[doc = "Field `WEN` reader - Program write enable."]
+pub struct WEN_R(crate::FieldReader<u8, WEN_A>);
 impl WEN_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        WEN_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, WEN_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<WEN_A> {
         match self.bits {
-            0 => Val(WEN_A::REN),
-            1 => Val(WEN_A::WEN),
-            2 => Val(WEN_A::EEN),
-            i => Res(i),
+            0 => Some(WEN_A::REN),
+            1 => Some(WEN_A::WEN),
+            2 => Some(WEN_A::EEN),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `REN`"]
     #[inline(always)]
     pub fn is_ren(&self) -> bool {
-        *self == WEN_A::REN
+        **self == WEN_A::REN
     }
     #[doc = "Checks if the value of the field is `WEN`"]
     #[inline(always)]
     pub fn is_wen(&self) -> bool {
-        *self == WEN_A::WEN
+        **self == WEN_A::WEN
     }
     #[doc = "Checks if the value of the field is `EEN`"]
     #[inline(always)]
     pub fn is_een(&self) -> bool {
-        *self == WEN_A::EEN
+        **self == WEN_A::EEN
     }
 }
-#[doc = "Write proxy for field `WEN`"]
+impl core::ops::Deref for WEN_R {
+    type Target = crate::FieldReader<u8, WEN_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `WEN` writer - Program write enable."]
 pub struct WEN_W<'a> {
     w: &'a mut W,
 }
@@ -85,7 +118,7 @@ impl<'a> WEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x03) | ((value as u32) & 0x03);
+        self.w.bits = (self.w.bits & !0x03) | (value as u32 & 0x03);
         self.w
     }
 }
@@ -101,5 +134,31 @@ impl W {
     #[inline(always)]
     pub fn wen(&mut self) -> WEN_W {
         WEN_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Configuration register.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [config](index.html) module"]
+pub struct CONFIG_SPEC;
+impl crate::RegisterSpec for CONFIG_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [config::R](R) reader structure"]
+impl crate::Readable for CONFIG_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [config::W](W) writer structure"]
+impl crate::Writable for CONFIG_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets CONFIG to value 0"]
+impl crate::Resettable for CONFIG_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

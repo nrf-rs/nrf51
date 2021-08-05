@@ -1,13 +1,37 @@
-#[doc = "Reader of register SHORTS"]
-pub type R = crate::R<u32, super::SHORTS>;
-#[doc = "Writer for register SHORTS"]
-pub type W = crate::W<u32, super::SHORTS>;
-#[doc = "Register SHORTS `reset()`'s with value 0"]
-impl crate::ResetValue for super::SHORTS {
-    type Type = u32;
+#[doc = "Register `SHORTS` reader"]
+pub struct R(crate::R<SHORTS_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<SHORTS_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<SHORTS_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<SHORTS_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `SHORTS` writer"]
+pub struct W(crate::W<SHORTS_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<SHORTS_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<SHORTS_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<SHORTS_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Shortcut between READY event and START task.\n\nValue on reset: 0"]
@@ -24,9 +48,12 @@ impl From<READY_START_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `READY_START`"]
-pub type READY_START_R = crate::R<bool, READY_START_A>;
+#[doc = "Field `READY_START` reader - Shortcut between READY event and START task."]
+pub struct READY_START_R(crate::FieldReader<bool, READY_START_A>);
 impl READY_START_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        READY_START_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> READY_START_A {
@@ -38,15 +65,22 @@ impl READY_START_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == READY_START_A::DISABLED
+        **self == READY_START_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == READY_START_A::ENABLED
+        **self == READY_START_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `READY_START`"]
+impl core::ops::Deref for READY_START_R {
+    type Target = crate::FieldReader<bool, READY_START_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `READY_START` writer - Shortcut between READY event and START task."]
 pub struct READY_START_W<'a> {
     w: &'a mut W,
 }
@@ -54,9 +88,7 @@ impl<'a> READY_START_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: READY_START_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Shortcut disabled."]
     #[inline(always)]
@@ -81,7 +113,7 @@ impl<'a> READY_START_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x01) | ((value as u32) & 0x01);
+        self.w.bits = (self.w.bits & !0x01) | (value as u32 & 0x01);
         self.w
     }
 }
@@ -99,9 +131,12 @@ impl From<END_DISABLE_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `END_DISABLE`"]
-pub type END_DISABLE_R = crate::R<bool, END_DISABLE_A>;
+#[doc = "Field `END_DISABLE` reader - Shortcut between END event and DISABLE task."]
+pub struct END_DISABLE_R(crate::FieldReader<bool, END_DISABLE_A>);
 impl END_DISABLE_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        END_DISABLE_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> END_DISABLE_A {
@@ -113,15 +148,22 @@ impl END_DISABLE_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == END_DISABLE_A::DISABLED
+        **self == END_DISABLE_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == END_DISABLE_A::ENABLED
+        **self == END_DISABLE_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `END_DISABLE`"]
+impl core::ops::Deref for END_DISABLE_R {
+    type Target = crate::FieldReader<bool, END_DISABLE_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `END_DISABLE` writer - Shortcut between END event and DISABLE task."]
 pub struct END_DISABLE_W<'a> {
     w: &'a mut W,
 }
@@ -129,9 +171,7 @@ impl<'a> END_DISABLE_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: END_DISABLE_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Shortcut disabled."]
     #[inline(always)]
@@ -156,7 +196,7 @@ impl<'a> END_DISABLE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 1)) | (((value as u32) & 0x01) << 1);
+        self.w.bits = (self.w.bits & !(0x01 << 1)) | ((value as u32 & 0x01) << 1);
         self.w
     }
 }
@@ -174,9 +214,12 @@ impl From<DISABLED_TXEN_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `DISABLED_TXEN`"]
-pub type DISABLED_TXEN_R = crate::R<bool, DISABLED_TXEN_A>;
+#[doc = "Field `DISABLED_TXEN` reader - Shortcut between DISABLED event and TXEN task."]
+pub struct DISABLED_TXEN_R(crate::FieldReader<bool, DISABLED_TXEN_A>);
 impl DISABLED_TXEN_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        DISABLED_TXEN_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> DISABLED_TXEN_A {
@@ -188,15 +231,22 @@ impl DISABLED_TXEN_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == DISABLED_TXEN_A::DISABLED
+        **self == DISABLED_TXEN_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == DISABLED_TXEN_A::ENABLED
+        **self == DISABLED_TXEN_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `DISABLED_TXEN`"]
+impl core::ops::Deref for DISABLED_TXEN_R {
+    type Target = crate::FieldReader<bool, DISABLED_TXEN_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISABLED_TXEN` writer - Shortcut between DISABLED event and TXEN task."]
 pub struct DISABLED_TXEN_W<'a> {
     w: &'a mut W,
 }
@@ -204,9 +254,7 @@ impl<'a> DISABLED_TXEN_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: DISABLED_TXEN_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Shortcut disabled."]
     #[inline(always)]
@@ -231,7 +279,7 @@ impl<'a> DISABLED_TXEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 2)) | (((value as u32) & 0x01) << 2);
+        self.w.bits = (self.w.bits & !(0x01 << 2)) | ((value as u32 & 0x01) << 2);
         self.w
     }
 }
@@ -249,9 +297,12 @@ impl From<DISABLED_RXEN_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `DISABLED_RXEN`"]
-pub type DISABLED_RXEN_R = crate::R<bool, DISABLED_RXEN_A>;
+#[doc = "Field `DISABLED_RXEN` reader - Shortcut between DISABLED event and RXEN task."]
+pub struct DISABLED_RXEN_R(crate::FieldReader<bool, DISABLED_RXEN_A>);
 impl DISABLED_RXEN_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        DISABLED_RXEN_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> DISABLED_RXEN_A {
@@ -263,15 +314,22 @@ impl DISABLED_RXEN_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == DISABLED_RXEN_A::DISABLED
+        **self == DISABLED_RXEN_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == DISABLED_RXEN_A::ENABLED
+        **self == DISABLED_RXEN_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `DISABLED_RXEN`"]
+impl core::ops::Deref for DISABLED_RXEN_R {
+    type Target = crate::FieldReader<bool, DISABLED_RXEN_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISABLED_RXEN` writer - Shortcut between DISABLED event and RXEN task."]
 pub struct DISABLED_RXEN_W<'a> {
     w: &'a mut W,
 }
@@ -279,9 +337,7 @@ impl<'a> DISABLED_RXEN_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: DISABLED_RXEN_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Shortcut disabled."]
     #[inline(always)]
@@ -306,7 +362,7 @@ impl<'a> DISABLED_RXEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 3)) | (((value as u32) & 0x01) << 3);
+        self.w.bits = (self.w.bits & !(0x01 << 3)) | ((value as u32 & 0x01) << 3);
         self.w
     }
 }
@@ -324,9 +380,12 @@ impl From<ADDRESS_RSSISTART_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `ADDRESS_RSSISTART`"]
-pub type ADDRESS_RSSISTART_R = crate::R<bool, ADDRESS_RSSISTART_A>;
+#[doc = "Field `ADDRESS_RSSISTART` reader - Shortcut between ADDRESS event and RSSISTART task."]
+pub struct ADDRESS_RSSISTART_R(crate::FieldReader<bool, ADDRESS_RSSISTART_A>);
 impl ADDRESS_RSSISTART_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        ADDRESS_RSSISTART_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> ADDRESS_RSSISTART_A {
@@ -338,15 +397,22 @@ impl ADDRESS_RSSISTART_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == ADDRESS_RSSISTART_A::DISABLED
+        **self == ADDRESS_RSSISTART_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == ADDRESS_RSSISTART_A::ENABLED
+        **self == ADDRESS_RSSISTART_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `ADDRESS_RSSISTART`"]
+impl core::ops::Deref for ADDRESS_RSSISTART_R {
+    type Target = crate::FieldReader<bool, ADDRESS_RSSISTART_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `ADDRESS_RSSISTART` writer - Shortcut between ADDRESS event and RSSISTART task."]
 pub struct ADDRESS_RSSISTART_W<'a> {
     w: &'a mut W,
 }
@@ -354,9 +420,7 @@ impl<'a> ADDRESS_RSSISTART_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: ADDRESS_RSSISTART_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Shortcut disabled."]
     #[inline(always)]
@@ -381,7 +445,7 @@ impl<'a> ADDRESS_RSSISTART_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 4)) | (((value as u32) & 0x01) << 4);
+        self.w.bits = (self.w.bits & !(0x01 << 4)) | ((value as u32 & 0x01) << 4);
         self.w
     }
 }
@@ -399,9 +463,12 @@ impl From<END_START_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `END_START`"]
-pub type END_START_R = crate::R<bool, END_START_A>;
+#[doc = "Field `END_START` reader - Shortcut between END event and START task."]
+pub struct END_START_R(crate::FieldReader<bool, END_START_A>);
 impl END_START_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        END_START_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> END_START_A {
@@ -413,15 +480,22 @@ impl END_START_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == END_START_A::DISABLED
+        **self == END_START_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == END_START_A::ENABLED
+        **self == END_START_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `END_START`"]
+impl core::ops::Deref for END_START_R {
+    type Target = crate::FieldReader<bool, END_START_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `END_START` writer - Shortcut between END event and START task."]
 pub struct END_START_W<'a> {
     w: &'a mut W,
 }
@@ -429,9 +503,7 @@ impl<'a> END_START_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: END_START_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Shortcut disabled."]
     #[inline(always)]
@@ -456,7 +528,7 @@ impl<'a> END_START_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 5)) | (((value as u32) & 0x01) << 5);
+        self.w.bits = (self.w.bits & !(0x01 << 5)) | ((value as u32 & 0x01) << 5);
         self.w
     }
 }
@@ -474,9 +546,12 @@ impl From<ADDRESS_BCSTART_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `ADDRESS_BCSTART`"]
-pub type ADDRESS_BCSTART_R = crate::R<bool, ADDRESS_BCSTART_A>;
+#[doc = "Field `ADDRESS_BCSTART` reader - Shortcut between ADDRESS event and BCSTART task."]
+pub struct ADDRESS_BCSTART_R(crate::FieldReader<bool, ADDRESS_BCSTART_A>);
 impl ADDRESS_BCSTART_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        ADDRESS_BCSTART_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> ADDRESS_BCSTART_A {
@@ -488,15 +563,22 @@ impl ADDRESS_BCSTART_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == ADDRESS_BCSTART_A::DISABLED
+        **self == ADDRESS_BCSTART_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == ADDRESS_BCSTART_A::ENABLED
+        **self == ADDRESS_BCSTART_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `ADDRESS_BCSTART`"]
+impl core::ops::Deref for ADDRESS_BCSTART_R {
+    type Target = crate::FieldReader<bool, ADDRESS_BCSTART_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `ADDRESS_BCSTART` writer - Shortcut between ADDRESS event and BCSTART task."]
 pub struct ADDRESS_BCSTART_W<'a> {
     w: &'a mut W,
 }
@@ -504,9 +586,7 @@ impl<'a> ADDRESS_BCSTART_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: ADDRESS_BCSTART_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Shortcut disabled."]
     #[inline(always)]
@@ -531,7 +611,7 @@ impl<'a> ADDRESS_BCSTART_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 6)) | (((value as u32) & 0x01) << 6);
+        self.w.bits = (self.w.bits & !(0x01 << 6)) | ((value as u32 & 0x01) << 6);
         self.w
     }
 }
@@ -549,9 +629,12 @@ impl From<DISABLED_RSSISTOP_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `DISABLED_RSSISTOP`"]
-pub type DISABLED_RSSISTOP_R = crate::R<bool, DISABLED_RSSISTOP_A>;
+#[doc = "Field `DISABLED_RSSISTOP` reader - Shortcut between DISABLED event and RSSISTOP task."]
+pub struct DISABLED_RSSISTOP_R(crate::FieldReader<bool, DISABLED_RSSISTOP_A>);
 impl DISABLED_RSSISTOP_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        DISABLED_RSSISTOP_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> DISABLED_RSSISTOP_A {
@@ -563,15 +646,22 @@ impl DISABLED_RSSISTOP_R {
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == DISABLED_RSSISTOP_A::DISABLED
+        **self == DISABLED_RSSISTOP_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `ENABLED`"]
     #[inline(always)]
     pub fn is_enabled(&self) -> bool {
-        *self == DISABLED_RSSISTOP_A::ENABLED
+        **self == DISABLED_RSSISTOP_A::ENABLED
     }
 }
-#[doc = "Write proxy for field `DISABLED_RSSISTOP`"]
+impl core::ops::Deref for DISABLED_RSSISTOP_R {
+    type Target = crate::FieldReader<bool, DISABLED_RSSISTOP_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `DISABLED_RSSISTOP` writer - Shortcut between DISABLED event and RSSISTOP task."]
 pub struct DISABLED_RSSISTOP_W<'a> {
     w: &'a mut W,
 }
@@ -579,9 +669,7 @@ impl<'a> DISABLED_RSSISTOP_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: DISABLED_RSSISTOP_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Shortcut disabled."]
     #[inline(always)]
@@ -606,7 +694,7 @@ impl<'a> DISABLED_RSSISTOP_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
@@ -692,5 +780,31 @@ impl W {
     #[inline(always)]
     pub fn disabled_rssistop(&mut self) -> DISABLED_RSSISTOP_W {
         DISABLED_RSSISTOP_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Shortcuts for the radio.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [shorts](index.html) module"]
+pub struct SHORTS_SPEC;
+impl crate::RegisterSpec for SHORTS_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [shorts::R](R) reader structure"]
+impl crate::Readable for SHORTS_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [shorts::W](W) writer structure"]
+impl crate::Writable for SHORTS_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets SHORTS to value 0"]
+impl crate::Resettable for SHORTS_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

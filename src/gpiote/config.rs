@@ -1,14 +1,37 @@
-#[doc = "Reader of register CONFIG[%s]"]
-pub type R = crate::R<u32, super::CONFIG>;
-#[doc = "Writer for register CONFIG[%s]"]
-pub type W = crate::W<u32, super::CONFIG>;
-#[doc = "Register CONFIG[%s]
-`reset()`'s with value 0"]
-impl crate::ResetValue for super::CONFIG {
-    type Type = u32;
+#[doc = "Register `CONFIG[%s]` reader"]
+pub struct R(crate::R<CONFIG_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<CONFIG_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<CONFIG_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<CONFIG_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `CONFIG[%s]` writer"]
+pub struct W(crate::W<CONFIG_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<CONFIG_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<CONFIG_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<CONFIG_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Mode\n\nValue on reset: 0"]
@@ -28,37 +51,46 @@ impl From<MODE_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `MODE`"]
-pub type MODE_R = crate::R<u8, MODE_A>;
+#[doc = "Field `MODE` reader - Mode"]
+pub struct MODE_R(crate::FieldReader<u8, MODE_A>);
 impl MODE_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        MODE_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, MODE_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<MODE_A> {
         match self.bits {
-            0 => Val(MODE_A::DISABLED),
-            1 => Val(MODE_A::EVENT),
-            3 => Val(MODE_A::TASK),
-            i => Res(i),
+            0 => Some(MODE_A::DISABLED),
+            1 => Some(MODE_A::EVENT),
+            3 => Some(MODE_A::TASK),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `DISABLED`"]
     #[inline(always)]
     pub fn is_disabled(&self) -> bool {
-        *self == MODE_A::DISABLED
+        **self == MODE_A::DISABLED
     }
     #[doc = "Checks if the value of the field is `EVENT`"]
     #[inline(always)]
     pub fn is_event(&self) -> bool {
-        *self == MODE_A::EVENT
+        **self == MODE_A::EVENT
     }
     #[doc = "Checks if the value of the field is `TASK`"]
     #[inline(always)]
     pub fn is_task(&self) -> bool {
-        *self == MODE_A::TASK
+        **self == MODE_A::TASK
     }
 }
-#[doc = "Write proxy for field `MODE`"]
+impl core::ops::Deref for MODE_R {
+    type Target = crate::FieldReader<u8, MODE_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `MODE` writer - Mode"]
 pub struct MODE_W<'a> {
     w: &'a mut W,
 }
@@ -86,13 +118,25 @@ impl<'a> MODE_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x03) | ((value as u32) & 0x03);
+        self.w.bits = (self.w.bits & !0x03) | (value as u32 & 0x03);
         self.w
     }
 }
-#[doc = "Reader of field `PSEL`"]
-pub type PSEL_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `PSEL`"]
+#[doc = "Field `PSEL` reader - Pin select."]
+pub struct PSEL_R(crate::FieldReader<u8, u8>);
+impl PSEL_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        PSEL_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for PSEL_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `PSEL` writer - Pin select."]
 pub struct PSEL_W<'a> {
     w: &'a mut W,
 }
@@ -100,7 +144,7 @@ impl<'a> PSEL_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x1f << 8)) | (((value as u32) & 0x1f) << 8);
+        self.w.bits = (self.w.bits & !(0x1f << 8)) | ((value as u32 & 0x1f) << 8);
         self.w
     }
 }
@@ -123,9 +167,12 @@ impl From<POLARITY_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `POLARITY`"]
-pub type POLARITY_R = crate::R<u8, POLARITY_A>;
+#[doc = "Field `POLARITY` reader - Effects on output when in Task mode, or events on input that generates an event."]
+pub struct POLARITY_R(crate::FieldReader<u8, POLARITY_A>);
 impl POLARITY_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        POLARITY_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> POLARITY_A {
@@ -140,25 +187,32 @@ impl POLARITY_R {
     #[doc = "Checks if the value of the field is `NONE`"]
     #[inline(always)]
     pub fn is_none(&self) -> bool {
-        *self == POLARITY_A::NONE
+        **self == POLARITY_A::NONE
     }
     #[doc = "Checks if the value of the field is `LOTOHI`"]
     #[inline(always)]
     pub fn is_lo_to_hi(&self) -> bool {
-        *self == POLARITY_A::LOTOHI
+        **self == POLARITY_A::LOTOHI
     }
     #[doc = "Checks if the value of the field is `HITOLO`"]
     #[inline(always)]
     pub fn is_hi_to_lo(&self) -> bool {
-        *self == POLARITY_A::HITOLO
+        **self == POLARITY_A::HITOLO
     }
     #[doc = "Checks if the value of the field is `TOGGLE`"]
     #[inline(always)]
     pub fn is_toggle(&self) -> bool {
-        *self == POLARITY_A::TOGGLE
+        **self == POLARITY_A::TOGGLE
     }
 }
-#[doc = "Write proxy for field `POLARITY`"]
+impl core::ops::Deref for POLARITY_R {
+    type Target = crate::FieldReader<u8, POLARITY_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `POLARITY` writer - Effects on output when in Task mode, or events on input that generates an event."]
 pub struct POLARITY_W<'a> {
     w: &'a mut W,
 }
@@ -166,9 +220,7 @@ impl<'a> POLARITY_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: POLARITY_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
+        self.bits(variant.into())
     }
     #[doc = "No task or event."]
     #[inline(always)]
@@ -193,7 +245,7 @@ impl<'a> POLARITY_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x03 << 16)) | (((value as u32) & 0x03) << 16);
+        self.w.bits = (self.w.bits & !(0x03 << 16)) | ((value as u32 & 0x03) << 16);
         self.w
     }
 }
@@ -211,9 +263,12 @@ impl From<OUTINIT_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `OUTINIT`"]
-pub type OUTINIT_R = crate::R<bool, OUTINIT_A>;
+#[doc = "Field `OUTINIT` reader - Initial value of the output when the GPIOTE channel is configured as a Task."]
+pub struct OUTINIT_R(crate::FieldReader<bool, OUTINIT_A>);
 impl OUTINIT_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        OUTINIT_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> OUTINIT_A {
@@ -225,15 +280,22 @@ impl OUTINIT_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == OUTINIT_A::LOW
+        **self == OUTINIT_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == OUTINIT_A::HIGH
+        **self == OUTINIT_A::HIGH
     }
 }
-#[doc = "Write proxy for field `OUTINIT`"]
+impl core::ops::Deref for OUTINIT_R {
+    type Target = crate::FieldReader<bool, OUTINIT_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `OUTINIT` writer - Initial value of the output when the GPIOTE channel is configured as a Task."]
 pub struct OUTINIT_W<'a> {
     w: &'a mut W,
 }
@@ -241,9 +303,7 @@ impl<'a> OUTINIT_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: OUTINIT_A) -> &'a mut W {
-        {
-            self.bit(variant.into())
-        }
+        self.bit(variant.into())
     }
     #[doc = "Initial low output when in task mode."]
     #[inline(always)]
@@ -268,7 +328,7 @@ impl<'a> OUTINIT_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 20)) | (((value as u32) & 0x01) << 20);
+        self.w.bits = (self.w.bits & !(0x01 << 20)) | ((value as u32 & 0x01) << 20);
         self.w
     }
 }
@@ -314,5 +374,32 @@ impl W {
     #[inline(always)]
     pub fn outinit(&mut self) -> OUTINIT_W {
         OUTINIT_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Channel configuration registers.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [config](index.html) module"]
+pub struct CONFIG_SPEC;
+impl crate::RegisterSpec for CONFIG_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [config::R](R) reader structure"]
+impl crate::Readable for CONFIG_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [config::W](W) writer structure"]
+impl crate::Writable for CONFIG_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets CONFIG[%s]
+to value 0"]
+impl crate::Resettable for CONFIG_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

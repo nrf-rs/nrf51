@@ -1,13 +1,37 @@
-#[doc = "Reader of register SAMPLEPER"]
-pub type R = crate::R<u32, super::SAMPLEPER>;
-#[doc = "Writer for register SAMPLEPER"]
-pub type W = crate::W<u32, super::SAMPLEPER>;
-#[doc = "Register SAMPLEPER `reset()`'s with value 0"]
-impl crate::ResetValue for super::SAMPLEPER {
-    type Type = u32;
+#[doc = "Register `SAMPLEPER` reader"]
+pub struct R(crate::R<SAMPLEPER_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<SAMPLEPER_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<SAMPLEPER_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<SAMPLEPER_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `SAMPLEPER` writer"]
+pub struct W(crate::W<SAMPLEPER_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<SAMPLEPER_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<SAMPLEPER_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<SAMPLEPER_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "Sample period.\n\nValue on reset: 0"]
@@ -37,9 +61,12 @@ impl From<SAMPLEPER_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `SAMPLEPER`"]
-pub type SAMPLEPER_R = crate::R<u8, SAMPLEPER_A>;
+#[doc = "Field `SAMPLEPER` reader - Sample period."]
+pub struct SAMPLEPER_R(crate::FieldReader<u8, SAMPLEPER_A>);
 impl SAMPLEPER_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        SAMPLEPER_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> SAMPLEPER_A {
@@ -58,45 +85,52 @@ impl SAMPLEPER_R {
     #[doc = "Checks if the value of the field is `_128US`"]
     #[inline(always)]
     pub fn is_128us(&self) -> bool {
-        *self == SAMPLEPER_A::_128US
+        **self == SAMPLEPER_A::_128US
     }
     #[doc = "Checks if the value of the field is `_256US`"]
     #[inline(always)]
     pub fn is_256us(&self) -> bool {
-        *self == SAMPLEPER_A::_256US
+        **self == SAMPLEPER_A::_256US
     }
     #[doc = "Checks if the value of the field is `_512US`"]
     #[inline(always)]
     pub fn is_512us(&self) -> bool {
-        *self == SAMPLEPER_A::_512US
+        **self == SAMPLEPER_A::_512US
     }
     #[doc = "Checks if the value of the field is `_1024US`"]
     #[inline(always)]
     pub fn is_1024us(&self) -> bool {
-        *self == SAMPLEPER_A::_1024US
+        **self == SAMPLEPER_A::_1024US
     }
     #[doc = "Checks if the value of the field is `_2048US`"]
     #[inline(always)]
     pub fn is_2048us(&self) -> bool {
-        *self == SAMPLEPER_A::_2048US
+        **self == SAMPLEPER_A::_2048US
     }
     #[doc = "Checks if the value of the field is `_4096US`"]
     #[inline(always)]
     pub fn is_4096us(&self) -> bool {
-        *self == SAMPLEPER_A::_4096US
+        **self == SAMPLEPER_A::_4096US
     }
     #[doc = "Checks if the value of the field is `_8192US`"]
     #[inline(always)]
     pub fn is_8192us(&self) -> bool {
-        *self == SAMPLEPER_A::_8192US
+        **self == SAMPLEPER_A::_8192US
     }
     #[doc = "Checks if the value of the field is `_16384US`"]
     #[inline(always)]
     pub fn is_16384us(&self) -> bool {
-        *self == SAMPLEPER_A::_16384US
+        **self == SAMPLEPER_A::_16384US
     }
 }
-#[doc = "Write proxy for field `SAMPLEPER`"]
+impl core::ops::Deref for SAMPLEPER_R {
+    type Target = crate::FieldReader<u8, SAMPLEPER_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `SAMPLEPER` writer - Sample period."]
 pub struct SAMPLEPER_W<'a> {
     w: &'a mut W,
 }
@@ -104,9 +138,7 @@ impl<'a> SAMPLEPER_W<'a> {
     #[doc = r"Writes `variant` to the field"]
     #[inline(always)]
     pub fn variant(self, variant: SAMPLEPER_A) -> &'a mut W {
-        {
-            self.bits(variant.into())
-        }
+        self.bits(variant.into())
     }
     #[doc = "128us sample period."]
     #[inline(always)]
@@ -151,7 +183,7 @@ impl<'a> SAMPLEPER_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x07) | ((value as u32) & 0x07);
+        self.w.bits = (self.w.bits & !0x07) | (value as u32 & 0x07);
         self.w
     }
 }
@@ -167,5 +199,31 @@ impl W {
     #[inline(always)]
     pub fn sampleper(&mut self) -> SAMPLEPER_W {
         SAMPLEPER_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Sample period.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [sampleper](index.html) module"]
+pub struct SAMPLEPER_SPEC;
+impl crate::RegisterSpec for SAMPLEPER_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [sampleper::R](R) reader structure"]
+impl crate::Readable for SAMPLEPER_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [sampleper::W](W) writer structure"]
+impl crate::Writable for SAMPLEPER_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets SAMPLEPER to value 0"]
+impl crate::Resettable for SAMPLEPER_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

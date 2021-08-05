@@ -1,18 +1,54 @@
-#[doc = "Reader of register PCNF0"]
-pub type R = crate::R<u32, super::PCNF0>;
-#[doc = "Writer for register PCNF0"]
-pub type W = crate::W<u32, super::PCNF0>;
-#[doc = "Register PCNF0 `reset()`'s with value 0"]
-impl crate::ResetValue for super::PCNF0 {
-    type Type = u32;
+#[doc = "Register `PCNF0` reader"]
+pub struct R(crate::R<PCNF0_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<PCNF0_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
-#[doc = "Reader of field `LFLEN`"]
-pub type LFLEN_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `LFLEN`"]
+impl From<crate::R<PCNF0_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<PCNF0_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `PCNF0` writer"]
+pub struct W(crate::W<PCNF0_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<PCNF0_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<PCNF0_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<PCNF0_SPEC>) -> Self {
+        W(writer)
+    }
+}
+#[doc = "Field `LFLEN` reader - Length of length field in number of bits. Decision point: START task."]
+pub struct LFLEN_R(crate::FieldReader<u8, u8>);
+impl LFLEN_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        LFLEN_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for LFLEN_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `LFLEN` writer - Length of length field in number of bits. Decision point: START task."]
 pub struct LFLEN_W<'a> {
     w: &'a mut W,
 }
@@ -20,13 +56,25 @@ impl<'a> LFLEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0x0f) | ((value as u32) & 0x0f);
+        self.w.bits = (self.w.bits & !0x0f) | (value as u32 & 0x0f);
         self.w
     }
 }
-#[doc = "Reader of field `S0LEN`"]
-pub type S0LEN_R = crate::R<bool, bool>;
-#[doc = "Write proxy for field `S0LEN`"]
+#[doc = "Field `S0LEN` reader - Length of S0 field in number of bytes. Decision point: START task."]
+pub struct S0LEN_R(crate::FieldReader<bool, bool>);
+impl S0LEN_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        S0LEN_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for S0LEN_R {
+    type Target = crate::FieldReader<bool, bool>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `S0LEN` writer - Length of S0 field in number of bytes. Decision point: START task."]
 pub struct S0LEN_W<'a> {
     w: &'a mut W,
 }
@@ -44,13 +92,25 @@ impl<'a> S0LEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub fn bit(self, value: bool) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x01 << 8)) | (((value as u32) & 0x01) << 8);
+        self.w.bits = (self.w.bits & !(0x01 << 8)) | ((value as u32 & 0x01) << 8);
         self.w
     }
 }
-#[doc = "Reader of field `S1LEN`"]
-pub type S1LEN_R = crate::R<u8, u8>;
-#[doc = "Write proxy for field `S1LEN`"]
+#[doc = "Field `S1LEN` reader - Length of S1 field in number of bits. Decision point: START task."]
+pub struct S1LEN_R(crate::FieldReader<u8, u8>);
+impl S1LEN_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        S1LEN_R(crate::FieldReader::new(bits))
+    }
+}
+impl core::ops::Deref for S1LEN_R {
+    type Target = crate::FieldReader<u8, u8>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `S1LEN` writer - Length of S1 field in number of bits. Decision point: START task."]
 pub struct S1LEN_W<'a> {
     w: &'a mut W,
 }
@@ -58,7 +118,7 @@ impl<'a> S1LEN_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !(0x0f << 16)) | (((value as u32) & 0x0f) << 16);
+        self.w.bits = (self.w.bits & !(0x0f << 16)) | ((value as u32 & 0x0f) << 16);
         self.w
     }
 }
@@ -94,5 +154,31 @@ impl W {
     #[inline(always)]
     pub fn s1len(&mut self) -> S1LEN_W {
         S1LEN_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Packet configuration 0.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [pcnf0](index.html) module"]
+pub struct PCNF0_SPEC;
+impl crate::RegisterSpec for PCNF0_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [pcnf0::R](R) reader structure"]
+impl crate::Readable for PCNF0_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [pcnf0::W](W) writer structure"]
+impl crate::Writable for PCNF0_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets PCNF0 to value 0"]
+impl crate::Resettable for PCNF0_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }

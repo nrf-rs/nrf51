@@ -1,13 +1,37 @@
-#[doc = "Reader of register XTALFREQ"]
-pub type R = crate::R<u32, super::XTALFREQ>;
-#[doc = "Writer for register XTALFREQ"]
-pub type W = crate::W<u32, super::XTALFREQ>;
-#[doc = "Register XTALFREQ `reset()`'s with value 0xffff_ffff"]
-impl crate::ResetValue for super::XTALFREQ {
-    type Type = u32;
+#[doc = "Register `XTALFREQ` reader"]
+pub struct R(crate::R<XTALFREQ_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<XTALFREQ_SPEC>;
     #[inline(always)]
-    fn reset_value() -> Self::Type {
-        0xffff_ffff
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<XTALFREQ_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<XTALFREQ_SPEC>) -> Self {
+        R(reader)
+    }
+}
+#[doc = "Register `XTALFREQ` writer"]
+pub struct W(crate::W<XTALFREQ_SPEC>);
+impl core::ops::Deref for W {
+    type Target = crate::W<XTALFREQ_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl core::ops::DerefMut for W {
+    #[inline(always)]
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+impl From<crate::W<XTALFREQ_SPEC>> for W {
+    #[inline(always)]
+    fn from(writer: crate::W<XTALFREQ_SPEC>) -> Self {
+        W(writer)
     }
 }
 #[doc = "External Xtal frequency selection.\n\nValue on reset: 255"]
@@ -25,31 +49,40 @@ impl From<XTALFREQ_A> for u8 {
         variant as _
     }
 }
-#[doc = "Reader of field `XTALFREQ`"]
-pub type XTALFREQ_R = crate::R<u8, XTALFREQ_A>;
+#[doc = "Field `XTALFREQ` reader - External Xtal frequency selection."]
+pub struct XTALFREQ_R(crate::FieldReader<u8, XTALFREQ_A>);
 impl XTALFREQ_R {
+    pub(crate) fn new(bits: u8) -> Self {
+        XTALFREQ_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
-    pub fn variant(&self) -> crate::Variant<u8, XTALFREQ_A> {
-        use crate::Variant::*;
+    pub fn variant(&self) -> Option<XTALFREQ_A> {
         match self.bits {
-            255 => Val(XTALFREQ_A::_16MHZ),
-            0 => Val(XTALFREQ_A::_32MHZ),
-            i => Res(i),
+            255 => Some(XTALFREQ_A::_16MHZ),
+            0 => Some(XTALFREQ_A::_32MHZ),
+            _ => None,
         }
     }
     #[doc = "Checks if the value of the field is `_16MHZ`"]
     #[inline(always)]
     pub fn is_16mhz(&self) -> bool {
-        *self == XTALFREQ_A::_16MHZ
+        **self == XTALFREQ_A::_16MHZ
     }
     #[doc = "Checks if the value of the field is `_32MHZ`"]
     #[inline(always)]
     pub fn is_32mhz(&self) -> bool {
-        *self == XTALFREQ_A::_32MHZ
+        **self == XTALFREQ_A::_32MHZ
     }
 }
-#[doc = "Write proxy for field `XTALFREQ`"]
+impl core::ops::Deref for XTALFREQ_R {
+    type Target = crate::FieldReader<u8, XTALFREQ_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+#[doc = "Field `XTALFREQ` writer - External Xtal frequency selection."]
 pub struct XTALFREQ_W<'a> {
     w: &'a mut W,
 }
@@ -72,7 +105,7 @@ impl<'a> XTALFREQ_W<'a> {
     #[doc = r"Writes raw bits to the field"]
     #[inline(always)]
     pub unsafe fn bits(self, value: u8) -> &'a mut W {
-        self.w.bits = (self.w.bits & !0xff) | ((value as u32) & 0xff);
+        self.w.bits = (self.w.bits & !0xff) | (value as u32 & 0xff);
         self.w
     }
 }
@@ -88,5 +121,31 @@ impl W {
     #[inline(always)]
     pub fn xtalfreq(&mut self) -> XTALFREQ_W {
         XTALFREQ_W { w: self }
+    }
+    #[doc = "Writes raw bits to the register."]
+    #[inline(always)]
+    pub unsafe fn bits(&mut self, bits: u32) -> &mut Self {
+        self.0.bits(bits);
+        self
+    }
+}
+#[doc = "Crystal frequency.\n\nThis register you can [`read`](crate::generic::Reg::read), [`write_with_zero`](crate::generic::Reg::write_with_zero), [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`modify`](crate::generic::Reg::modify). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [xtalfreq](index.html) module"]
+pub struct XTALFREQ_SPEC;
+impl crate::RegisterSpec for XTALFREQ_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [xtalfreq::R](R) reader structure"]
+impl crate::Readable for XTALFREQ_SPEC {
+    type Reader = R;
+}
+#[doc = "`write(|w| ..)` method takes [xtalfreq::W](W) writer structure"]
+impl crate::Writable for XTALFREQ_SPEC {
+    type Writer = W;
+}
+#[doc = "`reset()` method sets XTALFREQ to value 0xffff_ffff"]
+impl crate::Resettable for XTALFREQ_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0xffff_ffff
     }
 }

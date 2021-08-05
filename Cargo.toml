@@ -14,11 +14,8 @@ edition = "2018"
 
 [dependencies]
 vcell = "0.1.2"
-cortex-m = ">= 0.5.8, < 0.7"
-
-[dependencies.bare-metal]
-features = ["const-fn"]
-version = "0.2.5"
+cortex-m = "0.7.3"
+bare-metal = "1.0.0"
 
 [dependencies.cortex-m-rt]
 optional = true

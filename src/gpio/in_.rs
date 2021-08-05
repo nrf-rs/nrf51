@@ -1,5 +1,18 @@
-#[doc = "Reader of register IN"]
-pub type R = crate::R<u32, super::IN>;
+#[doc = "Register `IN` reader"]
+pub struct R(crate::R<IN_SPEC>);
+impl core::ops::Deref for R {
+    type Target = crate::R<IN_SPEC>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+impl From<crate::R<IN_SPEC>> for R {
+    #[inline(always)]
+    fn from(reader: crate::R<IN_SPEC>) -> Self {
+        R(reader)
+    }
+}
 #[doc = "Pin 0.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum PIN0_A {
@@ -14,9 +27,12 @@ impl From<PIN0_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN0`"]
-pub type PIN0_R = crate::R<bool, PIN0_A>;
+#[doc = "Field `PIN0` reader - Pin 0."]
+pub struct PIN0_R(crate::FieldReader<bool, PIN0_A>);
 impl PIN0_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN0_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN0_A {
@@ -28,12 +44,19 @@ impl PIN0_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN0_A::LOW
+        **self == PIN0_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN0_A::HIGH
+        **self == PIN0_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN0_R {
+    type Target = crate::FieldReader<bool, PIN0_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 1.\n\nValue on reset: 0"]
@@ -50,9 +73,12 @@ impl From<PIN1_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN1`"]
-pub type PIN1_R = crate::R<bool, PIN1_A>;
+#[doc = "Field `PIN1` reader - Pin 1."]
+pub struct PIN1_R(crate::FieldReader<bool, PIN1_A>);
 impl PIN1_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN1_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN1_A {
@@ -64,12 +90,19 @@ impl PIN1_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN1_A::LOW
+        **self == PIN1_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN1_A::HIGH
+        **self == PIN1_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN1_R {
+    type Target = crate::FieldReader<bool, PIN1_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 2.\n\nValue on reset: 0"]
@@ -86,9 +119,12 @@ impl From<PIN2_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN2`"]
-pub type PIN2_R = crate::R<bool, PIN2_A>;
+#[doc = "Field `PIN2` reader - Pin 2."]
+pub struct PIN2_R(crate::FieldReader<bool, PIN2_A>);
 impl PIN2_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN2_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN2_A {
@@ -100,12 +136,19 @@ impl PIN2_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN2_A::LOW
+        **self == PIN2_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN2_A::HIGH
+        **self == PIN2_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN2_R {
+    type Target = crate::FieldReader<bool, PIN2_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 3.\n\nValue on reset: 0"]
@@ -122,9 +165,12 @@ impl From<PIN3_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN3`"]
-pub type PIN3_R = crate::R<bool, PIN3_A>;
+#[doc = "Field `PIN3` reader - Pin 3."]
+pub struct PIN3_R(crate::FieldReader<bool, PIN3_A>);
 impl PIN3_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN3_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN3_A {
@@ -136,12 +182,19 @@ impl PIN3_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN3_A::LOW
+        **self == PIN3_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN3_A::HIGH
+        **self == PIN3_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN3_R {
+    type Target = crate::FieldReader<bool, PIN3_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 4.\n\nValue on reset: 0"]
@@ -158,9 +211,12 @@ impl From<PIN4_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN4`"]
-pub type PIN4_R = crate::R<bool, PIN4_A>;
+#[doc = "Field `PIN4` reader - Pin 4."]
+pub struct PIN4_R(crate::FieldReader<bool, PIN4_A>);
 impl PIN4_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN4_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN4_A {
@@ -172,12 +228,19 @@ impl PIN4_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN4_A::LOW
+        **self == PIN4_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN4_A::HIGH
+        **self == PIN4_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN4_R {
+    type Target = crate::FieldReader<bool, PIN4_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 5.\n\nValue on reset: 0"]
@@ -194,9 +257,12 @@ impl From<PIN5_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN5`"]
-pub type PIN5_R = crate::R<bool, PIN5_A>;
+#[doc = "Field `PIN5` reader - Pin 5."]
+pub struct PIN5_R(crate::FieldReader<bool, PIN5_A>);
 impl PIN5_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN5_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN5_A {
@@ -208,12 +274,19 @@ impl PIN5_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN5_A::LOW
+        **self == PIN5_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN5_A::HIGH
+        **self == PIN5_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN5_R {
+    type Target = crate::FieldReader<bool, PIN5_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 6.\n\nValue on reset: 0"]
@@ -230,9 +303,12 @@ impl From<PIN6_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN6`"]
-pub type PIN6_R = crate::R<bool, PIN6_A>;
+#[doc = "Field `PIN6` reader - Pin 6."]
+pub struct PIN6_R(crate::FieldReader<bool, PIN6_A>);
 impl PIN6_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN6_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN6_A {
@@ -244,12 +320,19 @@ impl PIN6_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN6_A::LOW
+        **self == PIN6_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN6_A::HIGH
+        **self == PIN6_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN6_R {
+    type Target = crate::FieldReader<bool, PIN6_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 7.\n\nValue on reset: 0"]
@@ -266,9 +349,12 @@ impl From<PIN7_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN7`"]
-pub type PIN7_R = crate::R<bool, PIN7_A>;
+#[doc = "Field `PIN7` reader - Pin 7."]
+pub struct PIN7_R(crate::FieldReader<bool, PIN7_A>);
 impl PIN7_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN7_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN7_A {
@@ -280,12 +366,19 @@ impl PIN7_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN7_A::LOW
+        **self == PIN7_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN7_A::HIGH
+        **self == PIN7_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN7_R {
+    type Target = crate::FieldReader<bool, PIN7_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 8.\n\nValue on reset: 0"]
@@ -302,9 +395,12 @@ impl From<PIN8_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN8`"]
-pub type PIN8_R = crate::R<bool, PIN8_A>;
+#[doc = "Field `PIN8` reader - Pin 8."]
+pub struct PIN8_R(crate::FieldReader<bool, PIN8_A>);
 impl PIN8_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN8_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN8_A {
@@ -316,12 +412,19 @@ impl PIN8_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN8_A::LOW
+        **self == PIN8_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN8_A::HIGH
+        **self == PIN8_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN8_R {
+    type Target = crate::FieldReader<bool, PIN8_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 9.\n\nValue on reset: 0"]
@@ -338,9 +441,12 @@ impl From<PIN9_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN9`"]
-pub type PIN9_R = crate::R<bool, PIN9_A>;
+#[doc = "Field `PIN9` reader - Pin 9."]
+pub struct PIN9_R(crate::FieldReader<bool, PIN9_A>);
 impl PIN9_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN9_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN9_A {
@@ -352,12 +458,19 @@ impl PIN9_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN9_A::LOW
+        **self == PIN9_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN9_A::HIGH
+        **self == PIN9_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN9_R {
+    type Target = crate::FieldReader<bool, PIN9_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 10.\n\nValue on reset: 0"]
@@ -374,9 +487,12 @@ impl From<PIN10_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN10`"]
-pub type PIN10_R = crate::R<bool, PIN10_A>;
+#[doc = "Field `PIN10` reader - Pin 10."]
+pub struct PIN10_R(crate::FieldReader<bool, PIN10_A>);
 impl PIN10_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN10_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN10_A {
@@ -388,12 +504,19 @@ impl PIN10_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN10_A::LOW
+        **self == PIN10_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN10_A::HIGH
+        **self == PIN10_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN10_R {
+    type Target = crate::FieldReader<bool, PIN10_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 11.\n\nValue on reset: 0"]
@@ -410,9 +533,12 @@ impl From<PIN11_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN11`"]
-pub type PIN11_R = crate::R<bool, PIN11_A>;
+#[doc = "Field `PIN11` reader - Pin 11."]
+pub struct PIN11_R(crate::FieldReader<bool, PIN11_A>);
 impl PIN11_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN11_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN11_A {
@@ -424,12 +550,19 @@ impl PIN11_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN11_A::LOW
+        **self == PIN11_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN11_A::HIGH
+        **self == PIN11_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN11_R {
+    type Target = crate::FieldReader<bool, PIN11_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 12.\n\nValue on reset: 0"]
@@ -446,9 +579,12 @@ impl From<PIN12_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN12`"]
-pub type PIN12_R = crate::R<bool, PIN12_A>;
+#[doc = "Field `PIN12` reader - Pin 12."]
+pub struct PIN12_R(crate::FieldReader<bool, PIN12_A>);
 impl PIN12_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN12_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN12_A {
@@ -460,12 +596,19 @@ impl PIN12_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN12_A::LOW
+        **self == PIN12_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN12_A::HIGH
+        **self == PIN12_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN12_R {
+    type Target = crate::FieldReader<bool, PIN12_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 13.\n\nValue on reset: 0"]
@@ -482,9 +625,12 @@ impl From<PIN13_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN13`"]
-pub type PIN13_R = crate::R<bool, PIN13_A>;
+#[doc = "Field `PIN13` reader - Pin 13."]
+pub struct PIN13_R(crate::FieldReader<bool, PIN13_A>);
 impl PIN13_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN13_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN13_A {
@@ -496,12 +642,19 @@ impl PIN13_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN13_A::LOW
+        **self == PIN13_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN13_A::HIGH
+        **self == PIN13_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN13_R {
+    type Target = crate::FieldReader<bool, PIN13_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 14.\n\nValue on reset: 0"]
@@ -518,9 +671,12 @@ impl From<PIN14_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN14`"]
-pub type PIN14_R = crate::R<bool, PIN14_A>;
+#[doc = "Field `PIN14` reader - Pin 14."]
+pub struct PIN14_R(crate::FieldReader<bool, PIN14_A>);
 impl PIN14_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN14_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN14_A {
@@ -532,12 +688,19 @@ impl PIN14_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN14_A::LOW
+        **self == PIN14_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN14_A::HIGH
+        **self == PIN14_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN14_R {
+    type Target = crate::FieldReader<bool, PIN14_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 15.\n\nValue on reset: 0"]
@@ -554,9 +717,12 @@ impl From<PIN15_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN15`"]
-pub type PIN15_R = crate::R<bool, PIN15_A>;
+#[doc = "Field `PIN15` reader - Pin 15."]
+pub struct PIN15_R(crate::FieldReader<bool, PIN15_A>);
 impl PIN15_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN15_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN15_A {
@@ -568,12 +734,19 @@ impl PIN15_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN15_A::LOW
+        **self == PIN15_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN15_A::HIGH
+        **self == PIN15_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN15_R {
+    type Target = crate::FieldReader<bool, PIN15_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 16.\n\nValue on reset: 0"]
@@ -590,9 +763,12 @@ impl From<PIN16_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN16`"]
-pub type PIN16_R = crate::R<bool, PIN16_A>;
+#[doc = "Field `PIN16` reader - Pin 16."]
+pub struct PIN16_R(crate::FieldReader<bool, PIN16_A>);
 impl PIN16_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN16_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN16_A {
@@ -604,12 +780,19 @@ impl PIN16_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN16_A::LOW
+        **self == PIN16_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN16_A::HIGH
+        **self == PIN16_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN16_R {
+    type Target = crate::FieldReader<bool, PIN16_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 17.\n\nValue on reset: 0"]
@@ -626,9 +809,12 @@ impl From<PIN17_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN17`"]
-pub type PIN17_R = crate::R<bool, PIN17_A>;
+#[doc = "Field `PIN17` reader - Pin 17."]
+pub struct PIN17_R(crate::FieldReader<bool, PIN17_A>);
 impl PIN17_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN17_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN17_A {
@@ -640,12 +826,19 @@ impl PIN17_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN17_A::LOW
+        **self == PIN17_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN17_A::HIGH
+        **self == PIN17_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN17_R {
+    type Target = crate::FieldReader<bool, PIN17_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 18.\n\nValue on reset: 0"]
@@ -662,9 +855,12 @@ impl From<PIN18_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN18`"]
-pub type PIN18_R = crate::R<bool, PIN18_A>;
+#[doc = "Field `PIN18` reader - Pin 18."]
+pub struct PIN18_R(crate::FieldReader<bool, PIN18_A>);
 impl PIN18_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN18_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN18_A {
@@ -676,12 +872,19 @@ impl PIN18_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN18_A::LOW
+        **self == PIN18_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN18_A::HIGH
+        **self == PIN18_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN18_R {
+    type Target = crate::FieldReader<bool, PIN18_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 19.\n\nValue on reset: 0"]
@@ -698,9 +901,12 @@ impl From<PIN19_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN19`"]
-pub type PIN19_R = crate::R<bool, PIN19_A>;
+#[doc = "Field `PIN19` reader - Pin 19."]
+pub struct PIN19_R(crate::FieldReader<bool, PIN19_A>);
 impl PIN19_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN19_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN19_A {
@@ -712,12 +918,19 @@ impl PIN19_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN19_A::LOW
+        **self == PIN19_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN19_A::HIGH
+        **self == PIN19_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN19_R {
+    type Target = crate::FieldReader<bool, PIN19_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 20.\n\nValue on reset: 0"]
@@ -734,9 +947,12 @@ impl From<PIN20_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN20`"]
-pub type PIN20_R = crate::R<bool, PIN20_A>;
+#[doc = "Field `PIN20` reader - Pin 20."]
+pub struct PIN20_R(crate::FieldReader<bool, PIN20_A>);
 impl PIN20_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN20_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN20_A {
@@ -748,12 +964,19 @@ impl PIN20_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN20_A::LOW
+        **self == PIN20_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN20_A::HIGH
+        **self == PIN20_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN20_R {
+    type Target = crate::FieldReader<bool, PIN20_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 21.\n\nValue on reset: 0"]
@@ -770,9 +993,12 @@ impl From<PIN21_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN21`"]
-pub type PIN21_R = crate::R<bool, PIN21_A>;
+#[doc = "Field `PIN21` reader - Pin 21."]
+pub struct PIN21_R(crate::FieldReader<bool, PIN21_A>);
 impl PIN21_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN21_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN21_A {
@@ -784,12 +1010,19 @@ impl PIN21_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN21_A::LOW
+        **self == PIN21_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN21_A::HIGH
+        **self == PIN21_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN21_R {
+    type Target = crate::FieldReader<bool, PIN21_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 22.\n\nValue on reset: 0"]
@@ -806,9 +1039,12 @@ impl From<PIN22_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN22`"]
-pub type PIN22_R = crate::R<bool, PIN22_A>;
+#[doc = "Field `PIN22` reader - Pin 22."]
+pub struct PIN22_R(crate::FieldReader<bool, PIN22_A>);
 impl PIN22_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN22_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN22_A {
@@ -820,12 +1056,19 @@ impl PIN22_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN22_A::LOW
+        **self == PIN22_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN22_A::HIGH
+        **self == PIN22_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN22_R {
+    type Target = crate::FieldReader<bool, PIN22_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 23.\n\nValue on reset: 0"]
@@ -842,9 +1085,12 @@ impl From<PIN23_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN23`"]
-pub type PIN23_R = crate::R<bool, PIN23_A>;
+#[doc = "Field `PIN23` reader - Pin 23."]
+pub struct PIN23_R(crate::FieldReader<bool, PIN23_A>);
 impl PIN23_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN23_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN23_A {
@@ -856,12 +1102,19 @@ impl PIN23_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN23_A::LOW
+        **self == PIN23_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN23_A::HIGH
+        **self == PIN23_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN23_R {
+    type Target = crate::FieldReader<bool, PIN23_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 24.\n\nValue on reset: 0"]
@@ -878,9 +1131,12 @@ impl From<PIN24_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN24`"]
-pub type PIN24_R = crate::R<bool, PIN24_A>;
+#[doc = "Field `PIN24` reader - Pin 24."]
+pub struct PIN24_R(crate::FieldReader<bool, PIN24_A>);
 impl PIN24_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN24_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN24_A {
@@ -892,12 +1148,19 @@ impl PIN24_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN24_A::LOW
+        **self == PIN24_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN24_A::HIGH
+        **self == PIN24_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN24_R {
+    type Target = crate::FieldReader<bool, PIN24_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 25.\n\nValue on reset: 0"]
@@ -914,9 +1177,12 @@ impl From<PIN25_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN25`"]
-pub type PIN25_R = crate::R<bool, PIN25_A>;
+#[doc = "Field `PIN25` reader - Pin 25."]
+pub struct PIN25_R(crate::FieldReader<bool, PIN25_A>);
 impl PIN25_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN25_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN25_A {
@@ -928,12 +1194,19 @@ impl PIN25_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN25_A::LOW
+        **self == PIN25_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN25_A::HIGH
+        **self == PIN25_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN25_R {
+    type Target = crate::FieldReader<bool, PIN25_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 26.\n\nValue on reset: 0"]
@@ -950,9 +1223,12 @@ impl From<PIN26_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN26`"]
-pub type PIN26_R = crate::R<bool, PIN26_A>;
+#[doc = "Field `PIN26` reader - Pin 26."]
+pub struct PIN26_R(crate::FieldReader<bool, PIN26_A>);
 impl PIN26_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN26_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN26_A {
@@ -964,12 +1240,19 @@ impl PIN26_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN26_A::LOW
+        **self == PIN26_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN26_A::HIGH
+        **self == PIN26_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN26_R {
+    type Target = crate::FieldReader<bool, PIN26_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 27.\n\nValue on reset: 0"]
@@ -986,9 +1269,12 @@ impl From<PIN27_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN27`"]
-pub type PIN27_R = crate::R<bool, PIN27_A>;
+#[doc = "Field `PIN27` reader - Pin 27."]
+pub struct PIN27_R(crate::FieldReader<bool, PIN27_A>);
 impl PIN27_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN27_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN27_A {
@@ -1000,12 +1286,19 @@ impl PIN27_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN27_A::LOW
+        **self == PIN27_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN27_A::HIGH
+        **self == PIN27_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN27_R {
+    type Target = crate::FieldReader<bool, PIN27_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 28.\n\nValue on reset: 0"]
@@ -1022,9 +1315,12 @@ impl From<PIN28_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN28`"]
-pub type PIN28_R = crate::R<bool, PIN28_A>;
+#[doc = "Field `PIN28` reader - Pin 28."]
+pub struct PIN28_R(crate::FieldReader<bool, PIN28_A>);
 impl PIN28_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN28_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN28_A {
@@ -1036,12 +1332,19 @@ impl PIN28_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN28_A::LOW
+        **self == PIN28_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN28_A::HIGH
+        **self == PIN28_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN28_R {
+    type Target = crate::FieldReader<bool, PIN28_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 29.\n\nValue on reset: 0"]
@@ -1058,9 +1361,12 @@ impl From<PIN29_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN29`"]
-pub type PIN29_R = crate::R<bool, PIN29_A>;
+#[doc = "Field `PIN29` reader - Pin 29."]
+pub struct PIN29_R(crate::FieldReader<bool, PIN29_A>);
 impl PIN29_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN29_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN29_A {
@@ -1072,12 +1378,19 @@ impl PIN29_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN29_A::LOW
+        **self == PIN29_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN29_A::HIGH
+        **self == PIN29_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN29_R {
+    type Target = crate::FieldReader<bool, PIN29_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 30.\n\nValue on reset: 0"]
@@ -1094,9 +1407,12 @@ impl From<PIN30_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN30`"]
-pub type PIN30_R = crate::R<bool, PIN30_A>;
+#[doc = "Field `PIN30` reader - Pin 30."]
+pub struct PIN30_R(crate::FieldReader<bool, PIN30_A>);
 impl PIN30_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN30_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN30_A {
@@ -1108,12 +1424,19 @@ impl PIN30_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN30_A::LOW
+        **self == PIN30_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN30_A::HIGH
+        **self == PIN30_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN30_R {
+    type Target = crate::FieldReader<bool, PIN30_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 #[doc = "Pin 31.\n\nValue on reset: 0"]
@@ -1130,9 +1453,12 @@ impl From<PIN31_A> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Reader of field `PIN31`"]
-pub type PIN31_R = crate::R<bool, PIN31_A>;
+#[doc = "Field `PIN31` reader - Pin 31."]
+pub struct PIN31_R(crate::FieldReader<bool, PIN31_A>);
 impl PIN31_R {
+    pub(crate) fn new(bits: bool) -> Self {
+        PIN31_R(crate::FieldReader::new(bits))
+    }
     #[doc = r"Get enumerated values variant"]
     #[inline(always)]
     pub fn variant(&self) -> PIN31_A {
@@ -1144,12 +1470,19 @@ impl PIN31_R {
     #[doc = "Checks if the value of the field is `LOW`"]
     #[inline(always)]
     pub fn is_low(&self) -> bool {
-        *self == PIN31_A::LOW
+        **self == PIN31_A::LOW
     }
     #[doc = "Checks if the value of the field is `HIGH`"]
     #[inline(always)]
     pub fn is_high(&self) -> bool {
-        *self == PIN31_A::HIGH
+        **self == PIN31_A::HIGH
+    }
+}
+impl core::ops::Deref for PIN31_R {
+    type Target = crate::FieldReader<bool, PIN31_A>;
+    #[inline(always)]
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 impl R {
@@ -1312,5 +1645,21 @@ impl R {
     #[inline(always)]
     pub fn pin31(&self) -> PIN31_R {
         PIN31_R::new(((self.bits >> 31) & 0x01) != 0)
+    }
+}
+#[doc = "Read GPIO port.\n\nThis register you can [`read`](crate::generic::Reg::read). See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [in_](index.html) module"]
+pub struct IN_SPEC;
+impl crate::RegisterSpec for IN_SPEC {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [in_::R](R) reader structure"]
+impl crate::Readable for IN_SPEC {
+    type Reader = R;
+}
+#[doc = "`reset()` method sets IN to value 0"]
+impl crate::Resettable for IN_SPEC {
+    #[inline(always)]
+    fn reset_value() -> Self::Ux {
+        0
     }
 }
