@@ -1,3 +1,5 @@
+**MOVED!** This repository has been moved to <https://github.com/nrf-rs/nrf-pacs>.
+
 # nrf51
 
 > Peripheral access API for the nRF51 microcontrollers
